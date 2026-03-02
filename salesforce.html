@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Salesforce | Rishabh Saxena</title>
+<meta name="description" content="Perspectives on the Salesforce ecosystem — presales, implementation, strategy, and what actually makes these projects succeed or fail.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+<style>
+:root {
+  --sf-blue: #0070D2; --sf-navy: #032D60; --sf-electric: #1B96FF;
+  --sf-light-bg: #F3F6FB; --sf-card: #FFFFFF; --sf-text: #0A1F44;
+  --sf-subtext: #3E5771; --sf-border: #D8E6F3; --sf-tag-bg: #E8F4FF;
+  --sf-tag-text: #0070D2; --nav-bg: rgba(243,246,251,0.92);
+  --shadow: 0 4px 32px rgba(0,112,210,0.10); --shadow-card: 0 2px 16px rgba(0,112,210,0.08);
+}
+[data-theme="dark"] {
+  --sf-blue: #1B96FF; --sf-navy: #0A1F44; --sf-electric: #5CB8FF;
+  --sf-light-bg: #0A1628; --sf-card: #0F2140; --sf-text: #E8F4FF;
+  --sf-subtext: #8BB8D8; --sf-border: #1A3A5C; --sf-tag-bg: #0F2A4A;
+  --sf-tag-text: #5CB8FF; --nav-bg: rgba(10,22,40,0.95);
+  --shadow: 0 4px 32px rgba(0,0,0,0.4); --shadow-card: 0 2px 16px rgba(0,0,0,0.3);
+}
+* { margin:0; padding:0; box-sizing:border-box; }
+body { font-family: 'DM Sans', sans-serif; background: var(--sf-light-bg); color: var(--sf-text); line-height: 1.7; transition: background 0.3s, color 0.3s; }
+nav {
+  position: fixed; top:0; left:0; right:0; z-index:100;
+  background: var(--nav-bg); backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--sf-border);
+  padding: 0 5%; display: flex; align-items: center; justify-content: space-between; height: 68px;
+}
+.nav-logo img { height: 44px; width: 44px; border-radius: 50%; object-fit: cover; }
+.nav-links { display: flex; gap: 32px; align-items: center; }
+.nav-links a { text-decoration: none; color: var(--sf-subtext); font-family: 'Sora', sans-serif; font-size: 0.85rem; font-weight: 500; letter-spacing: 0.04em; text-transform: uppercase; transition: color 0.2s; }
+.nav-links a:hover { color: var(--sf-blue); }
+.theme-toggle { background: var(--sf-card); border: 1.5px solid var(--sf-border); border-radius: 50px; padding: 6px 14px; cursor: pointer; font-size: 0.8rem; font-family: 'Sora', sans-serif; color: var(--sf-subtext); transition: all 0.2s; }
+.theme-toggle:hover { border-color: var(--sf-blue); color: var(--sf-blue); }
+.page-hero { padding: 120px 5% 60px; max-width: 1100px; margin: 0 auto; }
+.page-label { font-family: 'Sora', sans-serif; font-size: 0.72rem; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: var(--sf-blue); margin-bottom: 12px; display: flex; align-items: center; gap: 10px; }
+.page-label::before { content:''; display:block; width: 32px; height: 2px; background: var(--sf-blue); }
+.page-title { font-family: 'Sora', sans-serif; font-size: clamp(2rem, 5vw, 3.2rem); font-weight: 800; letter-spacing: -0.02em; margin-bottom: 12px; }
+.page-desc { color: var(--sf-subtext); font-size: 1.05rem; font-weight: 300; max-width: 600px; margin-bottom: 48px; }
+.section-divider { width: 48px; height: 3px; background: var(--sf-blue); border-radius: 2px; margin-bottom: 40px; }
+.articles-grid { max-width: 1100px; margin: 0 auto; padding: 0 5% 80px; display: grid; gap: 20px; }
+.article-card {
+  background: var(--sf-card); border: 1px solid var(--sf-border);
+  border-radius: 14px; padding: 28px 32px;
+  box-shadow: var(--shadow-card); transition: transform 0.2s, box-shadow 0.2s;
+  display: flex; justify-content: space-between; align-items: center; gap: 20px;
+  text-decoration: none; color: var(--sf-text);
+}
+.article-card:hover { transform: translateY(-3px); box-shadow: var(--shadow); border-color: var(--sf-blue); }
+.article-info { flex: 1; }
+.article-tag { font-family: 'Sora', sans-serif; font-size: 0.72rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--sf-blue); margin-bottom: 8px; }
+.article-title { font-family: 'Sora', sans-serif; font-size: 1.05rem; font-weight: 700; margin-bottom: 8px; color: var(--sf-text); }
+.article-desc { font-size: 0.9rem; color: var(--sf-subtext); font-weight: 300; }
+.article-meta { font-family: 'Sora', sans-serif; font-size: 0.78rem; color: var(--sf-subtext); white-space: nowrap; }
+.article-arrow { color: var(--sf-blue); font-size: 1.2rem; }
+.empty-state { text-align: center; padding: 80px 20px; color: var(--sf-subtext); }
+.empty-icon { font-size: 3rem; margin-bottom: 16px; }
+.empty-title { font-family: 'Sora', sans-serif; font-size: 1.2rem; font-weight: 700; color: var(--sf-text); margin-bottom: 8px; }
+footer { background: #020E1E; padding: 30px 5%; text-align: center; border-top: 1px solid rgba(255,255,255,0.05); }
+footer p { color: rgba(255,255,255,0.3); font-size: 0.8rem; font-family: 'Sora', sans-serif; }
+footer span { color: #1B96FF; }
+@media (max-width: 768px) {
+  .article-card { flex-direction: column; align-items: flex-start; }
+  .nav-links { display: none; }
+}
+</style>
+</head>
+<body>
+<script>
+(function() {
+  const saved = localStorage.getItem('theme');
+  if (saved === 'dark' || (!saved && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+    document.documentElement.setAttribute('data-theme', 'dark');
+  }
+})();
+</script>
+<nav>
+  <div class="nav-logo"><a href="/"><img src="/logo.png" alt="RS Logo"></a></div>
+  <div class="nav-links">
+    <a href="/#about">About</a>
+    <a href="/#experience">Experience</a>
+    <a href="/#skills">Skills</a>
+    <a href="/salesforce.html">Salesforce</a>
+    <a href="/watchit.html">WatchIt</a>
+    <a href="/shiftit.html">ShiftIt</a>
+    <a href="/#connect">Connect</a>
+  </div>
+  <button class="theme-toggle" onclick="toggleTheme()" id="themeBtn">🌙 Dark Mode</button>
+</nav>
+
+<div class="page-hero">
+  <div class="page-label">Thinking Lab · Blog</div>
+  <h1 class="page-title">Salesforce</h1>
+  <p class="page-desc">Perspectives on the Salesforce ecosystem — presales, implementation, strategy, and what actually makes these projects succeed or fail.</p>
+  <div class="section-divider"></div>
+</div>
+
+<div class="articles-grid">
+  <!-- ARTICLES GO HERE -->
+  <!-- To add a new article, copy this block and fill in the details:
+  <a href="YOUR_HASHNODE_LINK" target="_blank" class="article-card">
+    <div class="article-info">
+      <div class="article-tag">CATEGORY · DATE</div>
+      <div class="article-title">Your Article Title</div>
+      <div class="article-desc">A one line description of what the article is about.</div>
+    </div>
+    <div class="article-arrow">→</div>
+  </a>
+  -->
+  <div class="empty-state">
+    <div class="empty-icon">☁️</div>
+    <div class="empty-title">First article coming soon</div>
+    <p>Good writing takes time. Check back shortly — or follow me on <a href="https://www.linkedin.com/in/rishabh0201/" style="color:var(--sf-blue);">LinkedIn</a> to get notified.</p>
+  </div>
+</div>
+
+<footer><p>© 2026 <span>Rishabh Saxena</span> · Thinking Lab</p></footer>
+
+<script>
+function toggleTheme() {
+  const html = document.documentElement;
+  const btn = document.getElementById('themeBtn');
+  if (html.getAttribute('data-theme') === 'light') {
+    html.setAttribute('data-theme', 'dark'); btn.textContent = '☀️ Light Mode';
+    localStorage.setItem('theme', 'dark');
+  } else {
+    html.setAttribute('data-theme', 'light'); btn.textContent = '🌙 Dark Mode';
+    localStorage.setItem('theme', 'light');
+  }
+}
+(function() {
+  const btn = document.getElementById('themeBtn');
+  if (document.documentElement.getAttribute('data-theme') === 'dark') btn.textContent = '☀️ Light Mode';
+})();
+</script>
+</body>
+</html>
