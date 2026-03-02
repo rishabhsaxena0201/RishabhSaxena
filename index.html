@@ -114,7 +114,7 @@ body {
   border-top: 1px solid var(--sf-border);
   rotate: 45deg;
 }
-.nav-item:hover .dropdown { display: block; }
+.nav-item.active .dropdown { display: block; }
 .dropdown a {
   display: block;
   padding: 10px 20px;
@@ -130,6 +130,17 @@ body {
 }
 .dropdown a:hover { background: var(--sf-tag-bg); color: var(--sf-blue) !important; }
 .dropdown-divider { height: 1px; background: var(--sf-border); margin: 4px 0; }
+
+/* Invisible bridge to prevent dropdown from closing */
+.nav-item > a::after {
+  content: '';
+  position: absolute;
+  bottom: -16px;
+  left: -20px; right: -20px;
+  height: 16px;
+}
+.nav-item > a { position: relative; }
+
 .has-dropdown::after {
   content: ' ▾';
   font-size: 0.7rem;
@@ -191,13 +202,19 @@ body {
     display: none;
   }
   .dropdown::before { display: none; }
-  .nav-item.open .dropdown { display: block; }
+  .nav-item.open .dropdown { display: block !important; }
   .dropdown a {
     padding: 8px 12px;
     font-size: 0.82rem;
     color: var(--sf-subtext) !important;
   }
 }
+
+
+/* Watch icon colors */
+:root { --watch-dial: #ffffff; --watch-hand: #0A1F44; }
+[data-theme="dark"] { --watch-dial: #0A1F44; --watch-hand: #E8F4FF; }
+.watchit-icon { filter: drop-shadow(0 2px 6px rgba(0,112,210,0.2)); }
 
 /* NAV */
 nav {
@@ -626,6 +643,138 @@ footer span { color: var(--sf-electric); }
 .fade-in-2 { animation: fadeUp 0.7s 0.15s ease both; }
 .fade-in-3 { animation: fadeUp 0.7s 0.3s ease both; }
 
+
+/* STACKING CARDS - COLLAPSE ON SCROLL */
+.stack-container {
+  position: relative;
+  max-width: 760px;
+  margin: 0 auto;
+  padding-bottom: 40px;
+}
+/* Connecting line through dots */
+.stack-collapsed::before {
+  content: '';
+  position: absolute;
+  left: 32px;
+  top: 100%;
+  width: 2px;
+  height: 12px;
+  background: var(--sf-border);
+  z-index: 0;
+}
+.stack-card:last-child .stack-collapsed::before { display: none; }
+.stack-collapsed { position: relative; }
+.stack-card {
+  background: var(--sf-card);
+  border: 1px solid var(--sf-border);
+  border-radius: 16px;
+  box-shadow: var(--shadow-card);
+  margin-bottom: 12px;
+  position: sticky;
+  overflow: hidden;
+  transition: box-shadow 0.3s;
+}
+.stack-card:nth-child(1) { top: 80px; z-index: 10; }
+.stack-card:nth-child(2) { top: 122px; z-index: 20; }
+.stack-card:nth-child(3) { top: 164px; z-index: 30; }
+.stack-card:nth-child(4) { top: 206px; z-index: 40; }
+.stack-card:last-child { margin-bottom: 0; }
+.stack-card:hover { box-shadow: var(--shadow); }
+
+/* Collapsed header - always visible */
+.stack-collapsed {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 24px;
+  cursor: default;
+  gap: 12px;
+  background: var(--sf-card);
+  border-bottom: 1px solid var(--sf-border);
+  flex-wrap: wrap;
+}
+.stack-collapsed-left {
+  display: flex; align-items: center; gap: 12px; flex-wrap: wrap;
+}
+.stack-dot {
+  width: 10px; height: 10px;
+  border-radius: 50%;
+  background: var(--sf-blue);
+  flex-shrink: 0;
+}
+.stack-collapsed-company {
+  font-family: 'Sora', sans-serif;
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: var(--sf-text);
+}
+.stack-collapsed-role {
+  font-size: 0.78rem;
+  color: var(--sf-subtext);
+  font-weight: 400;
+}
+.stack-collapsed-period {
+  font-family: 'Sora', sans-serif;
+  font-size: 0.72rem;
+  color: var(--sf-subtext);
+  background: var(--sf-tag-bg);
+  padding: 3px 10px;
+  border-radius: 20px;
+  white-space: nowrap;
+}
+
+/* Expanded body */
+.stack-body {
+  padding: 24px 28px 28px;
+}
+.stack-company {
+  font-family: 'Sora', sans-serif;
+  font-size: 1.15rem; font-weight: 800;
+  color: var(--sf-text);
+  margin-bottom: 4px;
+}
+.stack-role {
+  color: var(--sf-blue);
+  font-size: 0.92rem; font-weight: 600;
+  font-family: 'Sora', sans-serif;
+  margin-bottom: 16px;
+}
+.stack-desc {
+  color: var(--sf-subtext);
+  font-size: 0.93rem;
+  font-weight: 300;
+  line-height: 1.7;
+}
+.stack-number {
+  position: absolute;
+  top: 14px; right: 16px;
+  font-family: 'Sora', sans-serif;
+  font-size: 0.65rem;
+  font-weight: 700;
+  color: var(--sf-border);
+  letter-spacing: 0.1em;
+}
+.sabbatical-box {
+  margin-top: 14px;
+  background: var(--sf-tag-bg);
+  border: 1px dashed var(--sf-blue);
+  border-radius: 10px;
+  padding: 16px 20px;
+}
+.sabbatical-label {
+  font-family: 'Sora', sans-serif;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--sf-blue);
+  margin-bottom: 6px;
+}
+@media (max-width: 768px) {
+  .stack-card { position: relative !important; top: 0 !important; margin-bottom: 12px; }
+  .stack-collapsed { display: none; }
+}
+
 /* MOBILE */
 @media (max-width: 768px) {
   .hero-inner { grid-template-columns: 1fr; gap: 40px; }
@@ -689,9 +838,9 @@ footer span { color: var(--sf-electric); }
     <div class="nav-item">
       <a class="has-dropdown" onclick="toggleMobileDropdown(this)">Thinking Lab</a>
       <div class="dropdown">
-        <a href="/salesforce.html"><strong style="font-size:0.72rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--sf-blue);">Blog</strong></a>
+        <div style="font-size:0.68rem;font-family:'Sora',sans-serif;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:var(--sf-blue);padding:8px 20px 4px;cursor:default;">Blog</div>
         <a href="/salesforce.html">☁️ Salesforce</a>
-        <a href="/watchit.html">⌚ WatchIt</a>
+        <a href="/watchit.html"><svg class="watchit-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 80" width="16" height="20" style="vertical-align:middle;margin-right:4px;">  <!-- Strap top -->  <rect x="22" y="0" width="20" height="14" rx="4" fill="var(--sf-subtext)" opacity="0.5"/>  <!-- Strap bottom -->  <rect x="22" y="66" width="20" height="14" rx="4" fill="var(--sf-subtext)" opacity="0.5"/>  <!-- Case -->  <circle cx="32" cy="40" r="22" fill="var(--sf-subtext)" opacity="0.3"/>  <!-- Dial -->  <circle cx="32" cy="40" r="19" fill="var(--watch-dial)"/>  <!-- Hour markers -->  <line x1="32" y1="23" x2="32" y2="26" stroke="var(--watch-hand)" stroke-width="1.5" stroke-linecap="round"/>  <line x1="32" y1="54" x2="32" y2="57" stroke="var(--watch-hand)" stroke-width="1.5" stroke-linecap="round"/>  <line x1="13" y1="40" x2="16" y2="40" stroke="var(--watch-hand)" stroke-width="1.5" stroke-linecap="round"/>  <line x1="48" y1="40" x2="51" y2="40" stroke="var(--watch-hand)" stroke-width="1.5" stroke-linecap="round"/>  <!-- Minor markers -->  <line x1="43.5" y1="24.5" x2="42" y2="27" stroke="var(--watch-hand)" stroke-width="1" stroke-linecap="round" opacity="0.5"/>  <line x1="20.5" y1="24.5" x2="22" y2="27" stroke="var(--watch-hand)" stroke-width="1" stroke-linecap="round" opacity="0.5"/>  <line x1="43.5" y1="55.5" x2="42" y2="53" stroke="var(--watch-hand)" stroke-width="1" stroke-linecap="round" opacity="0.5"/>  <line x1="20.5" y1="55.5" x2="22" y2="53" stroke="var(--watch-hand)" stroke-width="1" stroke-linecap="round" opacity="0.5"/>  <!-- Hour hand - pointing to ~10 -->  <line x1="32" y1="40" x2="24" y2="30" stroke="var(--watch-hand)" stroke-width="2.5" stroke-linecap="round"/>  <!-- Minute hand - pointing to ~2 -->  <line x1="32" y1="40" x2="40" y2="26" stroke="var(--watch-hand)" stroke-width="2" stroke-linecap="round"/>  <!-- Seconds hand -->  <line x1="32" y1="40" x2="34" y2="52" stroke="var(--sf-blue)" stroke-width="1" stroke-linecap="round"/>  <!-- Crown -->  <rect x="51" y="37" width="5" height="6" rx="2" fill="var(--sf-subtext)" opacity="0.6"/>  <!-- Center dot -->  <circle cx="32" cy="40" r="2" fill="var(--sf-blue)"/></svg>WatchIt</a>
         <a href="/shiftit.html">🚗 ShiftIt</a>
         <div class="dropdown-divider"></div>
         <a href="#" onclick="showModal(event)">🔬 In the Making</a>
@@ -797,106 +946,77 @@ footer span { color: var(--sf-electric); }
     <div class="section-label">Career Journey</div>
     <h2 class="section-title">Where I've Been</h2>
     <div class="section-divider"></div>
-    <div class="timeline">
+    <div class="stack-container">
 
-      <div class="timeline-item">
-        <div class="timeline-header">
-          <div>
-            <div class="timeline-company">Salesforce</div>
-            <div class="timeline-role">Associate Engagement Manager — Professional Services</div>
+      <div class="stack-card">
+        <div class="stack-collapsed">
+          <div class="stack-collapsed-left">
+            <div class="stack-dot"></div>
+            <span class="stack-collapsed-company">Salesforce</span>
+            <span class="stack-collapsed-role">Associate Engagement Manager</span>
           </div>
-          <span class="timeline-period">July 2023 – Present</span>
+          <span class="stack-collapsed-period">Jul 2023 – Present</span>
         </div>
-        <p class="timeline-desc">Part of the Salesforce India PS GTM team. Managing pre-sales activities end-to-end — from running customer discovery sessions and building proposals, to SOW writing, staffing plans, and commercial structuring. Solely owned PS India's Data Cloud, Marketing Cloud, and RCG Cloud deal pipeline, collaborated with License and Implementation teams, and helped acquire three new logos for the business. Also served as Adhoc Project Manager for a Financial Services Service Cloud implementation.</p>
+        <div class="stack-body">
+          <div class="stack-company">Salesforce</div>
+          <div class="stack-role">Associate Engagement Manager — Professional Services</div>
+          <p class="stack-desc">Part of the Salesforce India PS GTM team. Managing pre-sales activities end-to-end — from running customer discovery sessions and building proposals, to SOW writing, staffing plans, and commercial structuring. Solely owned PS India's Data Cloud, Marketing Cloud, and RCG Cloud deal pipeline, collaborated with License and Implementation teams, and helped acquire three new logos for the business. Also served as Adhoc Project Manager for a Financial Services Service Cloud implementation.</p>
+        </div>
       </div>
 
-      <div class="timeline-item">
-        <div class="timeline-header">
-          <div>
-            <div class="timeline-company">LTIMindtree</div>
-            <div class="timeline-role">Salesforce Presales Consultant</div>
+      <div class="stack-card">
+        <div class="stack-collapsed">
+          <div class="stack-collapsed-left">
+            <div class="stack-dot"></div>
+            <span class="stack-collapsed-company">LTIMindtree</span>
+            <span class="stack-collapsed-role">Salesforce Presales Consultant</span>
           </div>
-          <span class="timeline-period">Jan 2022 – June 2023</span>
+          <span class="stack-collapsed-period">Jan 2022 – Jun 2023</span>
         </div>
-        <p class="timeline-desc">Managed the full presales cycle — proposals, SOWs, staffing estimates — and showcased LTI's Salesforce capabilities to prospects. Collaborated with Salesforce AEs, global sales leaders, and delivery partners to tailor RFP responses and support oral defenses. Built a reusable content repository that scaled presales efficiency across the team.</p>
+        <div class="stack-body">
+          <div class="stack-company">LTIMindtree</div>
+          <div class="stack-role">Salesforce Presales Consultant</div>
+          <p class="stack-desc">Managed the full presales cycle — proposals, SOWs, staffing estimates — and showcased LTI's Salesforce capabilities to prospects. Collaborated with Salesforce AEs, global sales leaders, and delivery partners to tailor RFP responses and support oral defenses. Built a reusable content repository that scaled presales efficiency across the team.</p>
+        </div>
       </div>
 
-      <div class="timeline-item">
-        <div class="timeline-header">
-          <div>
-            <div class="timeline-company">Brillio Technologies</div>
-            <div class="timeline-role">Customer Experience Presales Consultant</div>
+      <div class="stack-card">
+        <div class="stack-collapsed">
+          <div class="stack-collapsed-left">
+            <div class="stack-dot"></div>
+            <span class="stack-collapsed-company">Brillio Technologies</span>
+            <span class="stack-collapsed-role">Customer Experience Presales Consultant</span>
           </div>
-          <span class="timeline-period">June 2021 – Jan 2022</span>
+          <span class="stack-collapsed-period">Jun 2021 – Jan 2022</span>
         </div>
-        <p class="timeline-desc">Part of Brillio's Customer Experience Platform Practice, demonstrating CX solutions across Salesforce CRM, Microsoft Dynamics, and SAP Hybris for clients across APAC and the US.</p>
+        <div class="stack-body">
+          <div class="stack-company">Brillio Technologies</div>
+          <div class="stack-role">Customer Experience Presales Consultant</div>
+          <p class="stack-desc">Part of Brillio's Customer Experience Platform Practice, demonstrating CX solutions across Salesforce CRM, Microsoft Dynamics, and SAP Hybris for clients across APAC and the US.</p>
+        </div>
       </div>
 
-
-
-      <div class="timeline-item">
-        <div class="timeline-header">
-          <div>
-            <div class="timeline-company">Tata Consultancy Services</div>
-            <div class="timeline-role">Salesforce Developer → Presales Consultant</div>
+      <div class="stack-card">
+        <div class="stack-collapsed">
+          <div class="stack-collapsed-left">
+            <div class="stack-dot"></div>
+            <span class="stack-collapsed-company">Tata Consultancy Services</span>
+            <span class="stack-collapsed-role">Salesforce Developer → Presales Consultant</span>
           </div>
-          <span class="timeline-period">March 2016 – May 2021</span>
+          <span class="stack-collapsed-period">Mar 2016 – May 2021</span>
         </div>
-        <p class="timeline-desc">Joined TCS as an Assistant Software Engineer in 2016, working as a Salesforce Developer — leading a team of three in IT operations, reducing daily incident volume from 100+ to under 30 through root cause analysis, and handling end-to-end Salesforce Sales Cloud development.</p>
-        <div style="margin-top:14px;background:var(--sf-tag-bg);border:1px dashed var(--sf-blue);border-radius:10px;padding:16px 20px;">
-          <div style="font-family:'Sora',sans-serif;font-size:0.72rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--sf-blue);margin-bottom:6px;">📚 Sabbatical · May 2018 – April 2019</div>
-          <p style="font-size:0.92rem;color:var(--sf-text);font-weight:400;margin:0;">Stepped away from TCS for higher studies — completed a one-year <strong>MBA in Marketing, AI & Machine Learning</strong> from Great Lakes Institute of Management, Chennai. Thesis on the effect of nostalgia on consumer buying behaviour across industries.</p>
+        <div class="stack-body">
+          <div class="stack-company">Tata Consultancy Services</div>
+          <div class="stack-role">Salesforce Developer → Presales Consultant</div>
+          <p class="stack-desc">Joined TCS as an Assistant Software Engineer in 2016, working as a Salesforce Developer — leading a team of three in IT operations, reducing daily incident volume from 100+ to under 30 through root cause analysis, and handling end-to-end Salesforce Sales Cloud development.</p>
+          <div class="sabbatical-box">
+            <div class="sabbatical-label">📚 Sabbatical · May 2018 – April 2019</div>
+            <p style="font-size:0.92rem;color:var(--sf-text);font-weight:400;margin:0;">Stepped away from TCS for higher studies — completed a one-year <strong>MBA in Marketing, AI & Machine Learning</strong> from Great Lakes Institute of Management, Chennai. Thesis on the effect of nostalgia on consumer buying behaviour across industries.</p>
+          </div>
+          <p class="stack-desc" style="margin-top:12px;">Returned to TCS post-MBA as a Salesforce Presales Consultant — responding to RFIs/RFPs, crafting solutions, building staffing estimates, and driving expansion of TCS's Salesforce business in the EMEA region across Sales Cloud, Service Cloud, CMS, and Experience Cloud.</p>
         </div>
-        <p class="timeline-desc" style="margin-top:10px;">Returned to TCS post-MBA as a Salesforce Presales Consultant — responding to RFIs/RFPs, crafting solutions, building staffing estimates, and driving expansion of TCS's Salesforce business in the EMEA region across Sales Cloud, Service Cloud, CMS, and Experience Cloud.</p>
       </div>
 
-    </div>
-  </div>
-</section>
-
-
-<!-- CERTIFICATIONS -->
-<section style="background:var(--sf-light-bg);padding:60px 5%;">
-  <div class="section-inner">
-    <div class="section-label">Credentials</div>
-    <h2 class="section-title">Certifications</h2>
-    <div class="section-divider"></div>
-    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px;">
-      <div class="skill-card" style="text-align:center;">
-        <div class="skill-icon" style="margin:0 auto 12px;">☁️</div>
-        <h4>Data Cloud Consultant</h4>
-        <p style="font-size:0.78rem;color:var(--sf-blue);font-weight:500;">Salesforce · Aug 2024</p>
-      </div>
-      <div class="skill-card" style="text-align:center;">
-        <div class="skill-icon" style="margin:0 auto 12px;">🤖</div>
-        <h4>AI Associate</h4>
-        <p style="font-size:0.78rem;color:var(--sf-blue);font-weight:500;">Salesforce · Feb 2024</p>
-      </div>
-      <div class="skill-card" style="text-align:center;">
-        <div class="skill-icon" style="margin:0 auto 12px;">🎯</div>
-        <h4>Sales Cloud Consultant</h4>
-        <p style="font-size:0.78rem;color:var(--sf-blue);font-weight:500;">Salesforce · Aug 2020</p>
-      </div>
-      <div class="skill-card" style="text-align:center;">
-        <div class="skill-icon" style="margin:0 auto 12px;">🛠️</div>
-        <h4>Administrator (SCA)</h4>
-        <p style="font-size:0.78rem;color:var(--sf-blue);font-weight:500;">Salesforce · Jun 2020</p>
-      </div>
-      <div class="skill-card" style="text-align:center;">
-        <div class="skill-icon" style="margin:0 auto 12px;">⚙️</div>
-        <h4>Platform Developer I</h4>
-        <p style="font-size:0.78rem;color:var(--sf-blue);font-weight:500;">Salesforce · Aug 2016</p>
-      </div>
-      <div class="skill-card" style="text-align:center;">
-        <div class="skill-icon" style="margin:0 auto 12px;">🛡️</div>
-        <h4>SAFe Agilist</h4>
-        <p style="font-size:0.78rem;color:var(--sf-blue);font-weight:500;">Scaled Agile · Jan 2022</p>
-      </div>
-      <div class="skill-card" style="text-align:center;">
-        <div class="skill-icon" style="margin:0 auto 12px;">🏢</div>
-        <h4>Microsoft Partner Sales Bootcamp</h4>
-        <p style="font-size:0.78rem;color:var(--sf-blue);font-weight:500;">Microsoft · Apr 2023</p>
-      </div>
     </div>
   </div>
 </section>
@@ -1059,6 +1179,20 @@ function closeModal() {
 function closeModalOutside(e) {
   if (e.target === document.getElementById('inTheMakingModal')) closeModal();
 }
+
+// Dropdown hover with delay
+let dropdownTimer;
+document.querySelectorAll('.nav-item').forEach(item => {
+  item.addEventListener('mouseenter', () => {
+    clearTimeout(dropdownTimer);
+    item.classList.add('active');
+  });
+  item.addEventListener('mouseleave', () => {
+    dropdownTimer = setTimeout(() => {
+      item.classList.remove('active');
+    }, 150);
+  });
+});
 
 // Mobile dropdown toggle
 function toggleMobileDropdown(el) {
