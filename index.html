@@ -1103,41 +1103,100 @@ footer span { color: var(--sf-electric); }
   </div>
 </section>
 
-<!-- CONTACT FORM EMBED SECTION -->
+<!-- CONTACT FORM -->
 <section id="contact-form" style="background:var(--sf-light-bg);padding:60px 5%;">
   <div class="section-inner" style="max-width:700px;">
     <div class="section-label">Quick Form</div>
     <h2 class="section-title">Drop Me a Note</h2>
     <div class="section-divider"></div>
     <p style="color:var(--sf-subtext);margin-bottom:32px;font-weight:300;">Fill in the form below and I'll get back to you. No spam, no cold calls — just a conversation.</p>
-    <div style="border-radius:14px;overflow:hidden;background:#fff;box-shadow:var(--shadow-card);border:1px solid var(--sf-border);">
-      <iframe
-        src="https://docs.google.com/forms/d/e/1FAIpQLSd3MxBeg4Z9d4q8_o0S5dXrm_UrbnQ4zPjdmvrsserR9ZcvcA/viewform?embedded=true"
-        width="100%"
-        height="560"
-        frameborder="0"
-        marginheight="0"
-        marginwidth="0"
-        style="display:block;">
-        Loading…
-      </iframe>
+
+    <div id="formSuccess" style="display:none;background:var(--sf-tag-bg);border:1px solid var(--sf-blue);border-radius:12px;padding:24px;text-align:center;margin-bottom:24px;">
+      <div style="font-size:2rem;margin-bottom:8px;">✅</div>
+      <div style="font-family:'Sora',sans-serif;font-weight:700;color:var(--sf-text);margin-bottom:4px;">Message received!</div>
+      <div style="color:var(--sf-subtext);font-size:0.9rem;">I'll get back to you soon.</div>
     </div>
+
+    <form id="contactForm" style="display:flex;flex-direction:column;gap:16px;">
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;">
+        <div>
+          <label style="font-family:'Sora',sans-serif;font-size:0.75rem;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:var(--sf-subtext);display:block;margin-bottom:6px;">Name *</label>
+          <input type="text" id="f-name" required placeholder="Your name"
+            style="width:100%;padding:12px 16px;background:var(--sf-card);border:1.5px solid var(--sf-border);border-radius:8px;color:var(--sf-text);font-family:'DM Sans',sans-serif;font-size:0.95rem;outline:none;transition:border 0.2s;"
+            onfocus="this.style.borderColor='var(--sf-blue)'" onblur="this.style.borderColor='var(--sf-border)'">
+        </div>
+        <div>
+          <label style="font-family:'Sora',sans-serif;font-size:0.75rem;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:var(--sf-subtext);display:block;margin-bottom:6px;">Company</label>
+          <input type="text" id="f-company" placeholder="Your company"
+            style="width:100%;padding:12px 16px;background:var(--sf-card);border:1.5px solid var(--sf-border);border-radius:8px;color:var(--sf-text);font-family:'DM Sans',sans-serif;font-size:0.95rem;outline:none;transition:border 0.2s;"
+            onfocus="this.style.borderColor='var(--sf-blue)'" onblur="this.style.borderColor='var(--sf-border)'">
+        </div>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;">
+        <div>
+          <label style="font-family:'Sora',sans-serif;font-size:0.75rem;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:var(--sf-subtext);display:block;margin-bottom:6px;">Designation</label>
+          <input type="text" id="f-designation" placeholder="Your role"
+            style="width:100%;padding:12px 16px;background:var(--sf-card);border:1.5px solid var(--sf-border);border-radius:8px;color:var(--sf-text);font-family:'DM Sans',sans-serif;font-size:0.95rem;outline:none;transition:border 0.2s;"
+            onfocus="this.style.borderColor='var(--sf-blue)'" onblur="this.style.borderColor='var(--sf-border)'">
+        </div>
+        <div>
+          <label style="font-family:'Sora',sans-serif;font-size:0.75rem;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:var(--sf-subtext);display:block;margin-bottom:6px;">LinkedIn</label>
+          <input type="text" id="f-linkedin" placeholder="linkedin.com/in/..."
+            style="width:100%;padding:12px 16px;background:var(--sf-card);border:1.5px solid var(--sf-border);border-radius:8px;color:var(--sf-text);font-family:'DM Sans',sans-serif;font-size:0.95rem;outline:none;transition:border 0.2s;"
+            onfocus="this.style.borderColor='var(--sf-blue)'" onblur="this.style.borderColor='var(--sf-border)'">
+        </div>
+      </div>
+      <div>
+        <label style="font-family:'Sora',sans-serif;font-size:0.75rem;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:var(--sf-subtext);display:block;margin-bottom:6px;">Message</label>
+        <textarea id="f-message" rows="4" placeholder="What's on your mind?"
+          style="width:100%;padding:12px 16px;background:var(--sf-card);border:1.5px solid var(--sf-border);border-radius:8px;color:var(--sf-text);font-family:'DM Sans',sans-serif;font-size:0.95rem;outline:none;transition:border 0.2s;resize:vertical;"
+          onfocus="this.style.borderColor='var(--sf-blue)'" onblur="this.style.borderColor='var(--sf-border)'"></textarea>
+      </div>
+      <!-- Honeypot - hidden from real users, bots will fill this -->
+      <div style="position:absolute;left:-9999px;opacity:0;pointer-events:none;" aria-hidden="true">
+        <input type="text" id="f-website" name="website" tabindex="-1" autocomplete="off" placeholder="Leave empty">
+      </div>
+      <button type="submit" id="submitBtn"
+        style="background:var(--sf-blue);color:white;border:none;padding:14px 32px;border-radius:8px;font-family:'Sora',sans-serif;font-weight:700;font-size:0.95rem;cursor:pointer;transition:all 0.2s;align-self:flex-start;">
+        Send Message →
+      </button>
+    </form>
   </div>
 </section>
 
-<!-- IN THE MAKING MODAL -->
-<div class="modal-overlay" id="inTheMakingModal" onclick="closeModalOutside(event)">
-  <div class="modal-box">
-    <button class="modal-close" onclick="closeModal()">✕</button>
-    <div class="modal-icon">🔬</div>
-    <div class="modal-title">In the Making</div>
-    <p class="modal-text">Some ideas are best experienced, not described. I'm working on a few simple tools built around everyday problems — the kind that make you wonder why they don't already exist. Watch this space.</p>
-    <div style="margin-top:24px;">
-      <a href="https://www.linkedin.com/in/rishabh0201/" target="_blank" class="btn-primary" style="display:inline-flex;">Follow the journey on LinkedIn →</a>
-    </div>
-  </div>
-</div>
+<script>
+document.getElementById('contactForm').addEventListener('submit', async function(e) {
+  e.preventDefault();
+  const btn = document.getElementById('submitBtn');
+  btn.textContent = 'Sending...';
+  btn.disabled = true;
 
+  const payload = {
+    name: document.getElementById('f-name').value,
+    company: document.getElementById('f-company').value,
+    designation: document.getElementById('f-designation').value,
+    linkedin: document.getElementById('f-linkedin').value,
+    message: document.getElementById('f-message').value,
+    source: 'Homepage',
+    website: document.getElementById('f-website') ? document.getElementById('f-website').value : ''
+  };
+
+  try {
+    await fetch('https://script.google.com/macros/s/AKfycbwNtyPDWl2dRPmwKRNRx0tMKQoTx5d-vHt4hRVBNMUWwN7jLrjh-xyH7fxuO8T6aP4/exec', {
+      method: 'POST',
+      mode: 'no-cors',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload)
+    });
+    document.getElementById('contactForm').style.display = 'none';
+    document.getElementById('formSuccess').style.display = 'block';
+  } catch(err) {
+    btn.textContent = 'Send Message →';
+    btn.disabled = false;
+    alert('Something went wrong. Please try again.');
+  }
+});
+</script>
 <footer>
   <p>© 2026 <span>Rishabh Saxena</span> · Built with purpose, not code.</p>
 </footer>
