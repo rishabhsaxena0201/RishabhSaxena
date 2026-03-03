@@ -136,7 +136,7 @@ footer span { color: #1B96FF; }
 
 <div class="page-hero">
   <div class="page-label">Thinking Lab · Blog</div>
-  <h1 class="page-title">Salesforce</h1>
+  <div style="display:flex;align-items:center;gap:16px;margin-bottom:0;"><span style="font-size:3.5rem;line-height:1;">☁️</span><h1 class="page-title" style="margin-bottom:0;">Salesforce</h1></div>
   <p class="page-desc">Perspectives on the Salesforce ecosystem — presales, implementation, strategy, and what actually makes these projects succeed or fail.</p>
   <div class="section-divider"></div>
 </div>
@@ -175,21 +175,90 @@ footer span { color: #1B96FF; }
       </a>
     </div>
     <!-- Embedded Google Form -->
-    <div style="font-family:'Sora',sans-serif;font-size:0.72rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--sf-electric);margin-bottom:12px;">Drop a Note</div>
-    <div style="border-radius:14px;overflow:hidden;background:#fff;box-shadow:0 8px 32px rgba(0,0,0,0.3);">
-      <iframe 
-        src="https://docs.google.com/forms/d/e/1FAIpQLSd3MxBeg4Z9d4q8_o0S5dXrm_UrbnQ4zPjdmvrsserR9ZcvcA/viewform?embedded=true" 
-        width="100%" 
-        height="520" 
-        frameborder="0" 
-        marginheight="0" 
-        marginwidth="0"
-        style="display:block;">
-        Loading…
-      </iframe>
+        <!-- Native Form -->
+    <div style="font-family:'Sora',sans-serif;font-size:0.72rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--sf-electric);margin-bottom:16px;">Drop a Note</div>
+
+    <div id="formSuccess-salesforce" style="display:none;background:rgba(27,150,255,0.1);border:1px solid rgba(27,150,255,0.3);border-radius:12px;padding:24px;text-align:center;margin-bottom:24px;">
+      <div style="font-size:2rem;margin-bottom:8px;">✅</div>
+      <div style="font-family:'Sora',sans-serif;font-weight:700;color:#fff;margin-bottom:4px;">Message received!</div>
+      <div style="color:rgba(255,255,255,0.5);font-size:0.9rem;">I'll get back to you soon.</div>
     </div>
-  </div>
-</section>
+
+    <form id="contactForm-salesforce" style="display:flex;flex-direction:column;gap:14px;text-align:left;">
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;">
+        <div>
+          <label style="font-family:'Sora',sans-serif;font-size:0.72rem;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:rgba(255,255,255,0.5);display:block;margin-bottom:6px;">Name *</label>
+          <input type="text" id="salesforce-name" required placeholder="Your name"
+            style="width:100%;padding:11px 14px;background:rgba(255,255,255,0.07);border:1.5px solid rgba(255,255,255,0.15);border-radius:8px;color:#fff;font-family:'DM Sans',sans-serif;font-size:0.92rem;outline:none;"
+            onfocus="this.style.borderColor='var(--sf-electric)'" onblur="this.style.borderColor='rgba(255,255,255,0.15)'">
+        </div>
+        <div>
+          <label style="font-family:'Sora',sans-serif;font-size:0.72rem;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:rgba(255,255,255,0.5);display:block;margin-bottom:6px;">Company</label>
+          <input type="text" id="salesforce-company" placeholder="Your company"
+            style="width:100%;padding:11px 14px;background:rgba(255,255,255,0.07);border:1.5px solid rgba(255,255,255,0.15);border-radius:8px;color:#fff;font-family:'DM Sans',sans-serif;font-size:0.92rem;outline:none;"
+            onfocus="this.style.borderColor='var(--sf-electric)'" onblur="this.style.borderColor='rgba(255,255,255,0.15)'">
+        </div>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;">
+        <div>
+          <label style="font-family:'Sora',sans-serif;font-size:0.72rem;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:rgba(255,255,255,0.5);display:block;margin-bottom:6px;">Designation</label>
+          <input type="text" id="salesforce-designation" placeholder="Your role"
+            style="width:100%;padding:11px 14px;background:rgba(255,255,255,0.07);border:1.5px solid rgba(255,255,255,0.15);border-radius:8px;color:#fff;font-family:'DM Sans',sans-serif;font-size:0.92rem;outline:none;"
+            onfocus="this.style.borderColor='var(--sf-electric)'" onblur="this.style.borderColor='rgba(255,255,255,0.15)'">
+        </div>
+        <div>
+          <label style="font-family:'Sora',sans-serif;font-size:0.72rem;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:rgba(255,255,255,0.5);display:block;margin-bottom:6px;">LinkedIn</label>
+          <input type="text" id="salesforce-linkedin" placeholder="linkedin.com/in/..."
+            style="width:100%;padding:11px 14px;background:rgba(255,255,255,0.07);border:1.5px solid rgba(255,255,255,0.15);border-radius:8px;color:#fff;font-family:'DM Sans',sans-serif;font-size:0.92rem;outline:none;"
+            onfocus="this.style.borderColor='var(--sf-electric)'" onblur="this.style.borderColor='rgba(255,255,255,0.15)'">
+        </div>
+      </div>
+      <div>
+        <label style="font-family:'Sora',sans-serif;font-size:0.72rem;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:rgba(255,255,255,0.5);display:block;margin-bottom:6px;">Message</label>
+        <textarea id="salesforce-message" rows="3" placeholder="What's on your mind?"
+          style="width:100%;padding:11px 14px;background:rgba(255,255,255,0.07);border:1.5px solid rgba(255,255,255,0.15);border-radius:8px;color:#fff;font-family:'DM Sans',sans-serif;font-size:0.92rem;outline:none;resize:vertical;"
+          onfocus="this.style.borderColor='var(--sf-electric)'" onblur="this.style.borderColor='rgba(255,255,255,0.15)'"></textarea>
+      </div>
+      <!-- Honeypot -->
+      <div style="position:absolute;left:-9999px;opacity:0;pointer-events:none;" aria-hidden="true">
+        <input type="text" id="salesforce-website" name="website" tabindex="-1" autocomplete="off">
+      </div>
+      <button type="submit" id="btn-salesforce"
+        style="background:var(--sf-blue);color:white;border:none;padding:13px 28px;border-radius:8px;font-family:'Sora',sans-serif;font-weight:700;font-size:0.92rem;cursor:pointer;align-self:flex-start;">
+        Send Message →
+      </button>
+    </form>
+
+    <script>
+    document.getElementById('contactForm-salesforce').addEventListener('submit', async function(e) {
+      e.preventDefault();
+      const btn = document.getElementById('btn-salesforce');
+      btn.textContent = 'Sending...';
+      btn.disabled = true;
+      const payload = {
+        name: document.getElementById('salesforce-name').value,
+        company: document.getElementById('salesforce-company').value,
+        designation: document.getElementById('salesforce-designation').value,
+        linkedin: document.getElementById('salesforce-linkedin').value,
+        message: document.getElementById('salesforce-message').value,
+        source: 'Salesforce Blog',
+        website: document.getElementById('salesforce-website') ? document.getElementById('salesforce-website').value : ''
+      };
+      try {
+        await fetch('https://script.google.com/macros/s/AKfycbwNtyPDWl2dRPmwKRNRx0tMKQoTx5d-vHt4hRVBNMUWwN7jLrjh-xyH7fxuO8T6aP4/exec', {
+          method: 'POST', mode: 'no-cors',
+          headers: {'Content-Type': 'application/json'},
+          body: JSON.stringify(payload)
+        });
+        document.getElementById('contactForm-salesforce').style.display = 'none';
+        document.getElementById('formSuccess-salesforce').style.display = 'block';
+      } catch(err) {
+        btn.textContent = 'Send Message →';
+        btn.disabled = false;
+      }
+    });
+    </script>
+  </section>
 
 <footer><p>© 2026 <span>Rishabh Saxena</span> · Thinking Lab</p></footer>
 
