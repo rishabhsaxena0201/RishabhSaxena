@@ -67,6 +67,40 @@ footer span { color: #1B96FF; }
   .article-card { flex-direction: column; align-items: flex-start; }
   .nav-links { display: none; }
 }
+
+.hamburger {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 4px;
+}
+.hamburger span {
+  display: block;
+  width: 22px; height: 2px;
+  background: var(--sf-text);
+  border-radius: 2px;
+  transition: all 0.3s;
+}
+@media (max-width: 768px) {
+  .hamburger { display: flex; }
+  .nav-links {
+    display: none;
+    position: absolute;
+    top: 68px; left: 0; right: 0;
+    background: var(--nav-bg);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--sf-border);
+    padding: 16px 5%;
+    flex-direction: column;
+    gap: 16px;
+    z-index: 99;
+  }
+  .nav-links.open { display: flex; }
+  .nav-links span { display: none; }
+}
 </style>
 </head>
 <body>
@@ -80,15 +114,20 @@ footer span { color: #1B96FF; }
 </script>
 <nav>
   <div class="nav-logo"><a href="/"><img src="/logo.png" alt="RS Logo"></a></div>
-  <div class="nav-links">
+  <div class="nav-links" id="navLinks">
     <a href="/" style="font-family:'Sora',sans-serif;font-weight:700;color:var(--sf-text) !important;">Rishabh Saxena</a>
     <span style="color:var(--sf-border);">|</span>
-    <a href="/salesforce.html">Salesforce</a>
-    <a href="/watchit.html">WatchIt</a>
-    <a href="/shiftit.html">ShiftIt</a>
+    <a href="/salesforce.html" style="color:var(--sf-blue)!important;font-weight:700;">☁️ Salesforce</a>
+    <a href="/watchit.html" >⌚ WatchIt</a>
+    <a href="/shiftit.html" >🚗 ShiftIt</a>
     <a href="/#connect">Connect</a>
   </div>
-  <button class="theme-toggle" onclick="toggleTheme()" id="themeBtn">🌙 Dark Mode</button>
+  <div style="display:flex;align-items:center;gap:12px;">
+    <button class="theme-toggle" onclick="toggleTheme()" id="themeBtn">🌙 Dark Mode</button>
+    <button class="hamburger" id="hamburger" onclick="toggleMenu()" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
 </nav>
 
 <div class="page-hero">
@@ -135,6 +174,11 @@ function toggleTheme() {
   const btn = document.getElementById('themeBtn');
   if (document.documentElement.getAttribute('data-theme') === 'dark') btn.textContent = '☀️ Light Mode';
 })();
+
+function toggleMenu() {
+  const links = document.getElementById('navLinks');
+  links.classList.toggle('open');
+}
 </script>
 </body>
 </html>
