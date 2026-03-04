@@ -207,8 +207,8 @@ footer span { color: #1B96FF; }
             onfocus="this.style.borderColor='var(--sf-electric)'" onblur="this.style.borderColor='rgba(255,255,255,0.15)'">
         </div>
         <div>
-          <label style="font-family:'Sora',sans-serif;font-size:0.72rem;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:rgba(255,255,255,0.5);display:block;margin-bottom:6px;">LinkedIn</label>
-          <input type="text" id="salesforce-linkedin" placeholder="linkedin.com/in/..."
+          <label style="font-family:'Sora',sans-serif;font-size:0.72rem;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:rgba(255,255,255,0.5);display:block;margin-bottom:6px;">Email</label>
+          <input type="text" id="salesforce-linkedin" placeholder="your@email.com"
             style="width:100%;padding:11px 14px;background:rgba(255,255,255,0.07);border:1.5px solid rgba(255,255,255,0.15);border-radius:8px;color:#fff;font-family:'DM Sans',sans-serif;font-size:0.92rem;outline:none;"
             onfocus="this.style.borderColor='var(--sf-electric)'" onblur="this.style.borderColor='rgba(255,255,255,0.15)'">
         </div>
@@ -283,6 +283,491 @@ function toggleMenu() {
   const links = document.getElementById('navLinks');
   links.classList.toggle('open');
 }
+</script>
+
+<!-- VIRTUAL EXECUTIVE BOT -->
+<style>
+/* Bot Widget */
+.ve-bubble {
+  position: fixed;
+  bottom: 28px; right: 28px;
+  width: 52px; height: 52px;
+  background: var(--sf-blue);
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  box-shadow: 0 4px 20px rgba(0,112,210,0.4);
+  z-index: 9999;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+.ve-bubble:hover { transform: scale(1.08); box-shadow: 0 6px 28px rgba(0,112,210,0.5); }
+.ve-bubble svg { width: 24px; height: 24px; fill: white; }
+.ve-bubble .ve-close { display: none; font-size: 1.4rem; color: white; line-height: 1; }
+.ve-bubble.open .ve-icon { display: none; }
+.ve-bubble.open .ve-close { display: block; }
+
+.ve-window {
+  position: fixed;
+  bottom: 92px; right: 28px;
+  width: 360px;
+  max-height: 520px;
+  background: var(--sf-card);
+  border: 1px solid var(--sf-border);
+  border-radius: 20px;
+  box-shadow: 0 8px 40px rgba(0,0,0,0.2);
+  display: none;
+  flex-direction: column;
+  overflow: hidden;
+  z-index: 9998;
+  font-family: 'DM Sans', sans-serif;
+}
+.ve-window.open { display: flex; }
+
+.ve-header {
+  background: linear-gradient(135deg, var(--sf-navy), #0a2a5e);
+  padding: 16px 18px;
+  display: flex; align-items: center; gap: 12px;
+}
+.ve-avatar {
+  width: 38px; height: 38px;
+  background: var(--sf-blue);
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'Sora', sans-serif;
+  font-weight: 800; font-size: 0.85rem;
+  color: white; flex-shrink: 0;
+}
+.ve-header-info { flex: 1; }
+.ve-header-name {
+  font-family: 'Sora', sans-serif;
+  font-size: 0.88rem; font-weight: 700;
+  color: white; margin-bottom: 2px;
+}
+.ve-header-status {
+  font-size: 0.72rem; color: rgba(255,255,255,0.5);
+  display: flex; align-items: center; gap: 5px;
+}
+.ve-status-dot {
+  width: 6px; height: 6px;
+  background: #4CAF50; border-radius: 50%;
+}
+
+.ve-messages {
+  flex: 1; overflow-y: auto;
+  padding: 16px;
+  display: flex; flex-direction: column; gap: 10px;
+  scroll-behavior: smooth;
+}
+.ve-messages::-webkit-scrollbar { width: 4px; }
+.ve-messages::-webkit-scrollbar-track { background: transparent; }
+.ve-messages::-webkit-scrollbar-thumb { background: var(--sf-border); border-radius: 4px; }
+
+.ve-msg {
+  max-width: 82%;
+  padding: 10px 14px;
+  border-radius: 14px;
+  font-size: 0.88rem;
+  line-height: 1.55;
+  animation: ve-fadein 0.2s ease;
+}
+@keyframes ve-fadein { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: translateY(0); } }
+
+.ve-msg.bot {
+  background: var(--sf-tag-bg);
+  color: var(--sf-text);
+  border-bottom-left-radius: 4px;
+  align-self: flex-start;
+}
+.ve-msg.user {
+  background: var(--sf-blue);
+  color: white;
+  border-bottom-right-radius: 4px;
+  align-self: flex-end;
+}
+.ve-typing {
+  display: flex; align-items: center; gap: 4px;
+  padding: 12px 14px;
+  background: var(--sf-tag-bg);
+  border-radius: 14px; border-bottom-left-radius: 4px;
+  align-self: flex-start;
+  animation: ve-fadein 0.2s ease;
+}
+.ve-typing span {
+  width: 6px; height: 6px;
+  background: var(--sf-subtext);
+  border-radius: 50%;
+  animation: ve-bounce 1.2s infinite;
+}
+.ve-typing span:nth-child(2) { animation-delay: 0.2s; }
+.ve-typing span:nth-child(3) { animation-delay: 0.4s; }
+@keyframes ve-bounce {
+  0%, 60%, 100% { transform: translateY(0); }
+  30% { transform: translateY(-5px); }
+}
+
+.ve-input-area {
+  padding: 12px 14px;
+  border-top: 1px solid var(--sf-border);
+  display: flex; gap: 8px; align-items: center;
+  background: var(--sf-card);
+}
+.ve-input {
+  flex: 1;
+  background: var(--sf-tag-bg);
+  border: 1.5px solid var(--sf-border);
+  border-radius: 10px;
+  padding: 9px 13px;
+  color: var(--sf-text);
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.88rem;
+  outline: none;
+  transition: border 0.2s;
+  resize: none;
+}
+.ve-input:focus { border-color: var(--sf-blue); }
+.ve-send {
+  width: 36px; height: 36px;
+  background: var(--sf-blue);
+  border: none; border-radius: 10px;
+  cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  transition: background 0.2s, transform 0.1s;
+  flex-shrink: 0;
+}
+.ve-send:hover { background: var(--sf-electric); transform: scale(1.05); }
+.ve-send svg { width: 16px; height: 16px; fill: white; }
+
+.ve-footer {
+  padding: 6px 14px 10px;
+  text-align: center;
+  font-size: 0.68rem;
+  color: var(--sf-subtext);
+  opacity: 0.6;
+}
+
+@media (max-width: 480px) {
+  .ve-window { width: calc(100vw - 32px); right: 16px; bottom: 80px; }
+  .ve-bubble { bottom: 16px; right: 16px; }
+}
+</style>
+
+<!-- Bot HTML -->
+<div class="ve-bubble" id="veBubble" onclick="veToggle()">
+  <svg class="ve-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm0 14H6l-2 2V4h16v12z"/>
+  </svg>
+  <span class="ve-close">✕</span>
+</div>
+
+<div class="ve-window" id="veWindow">
+  <div class="ve-header">
+    <div class="ve-avatar">VE</div>
+    <div class="ve-header-info">
+      <div class="ve-header-name">Virtual Executive</div>
+      <div class="ve-header-status"><span class="ve-status-dot"></span> Rishabh's assistant · Always on</div>
+    </div>
+  </div>
+  <div class="ve-messages" id="veMessages"></div>
+  <div class="ve-input-area">
+    <input class="ve-input" id="veInput" type="text" placeholder="Ask me anything..." maxlength="300" onkeydown="if(event.key==='Enter')veSend()">
+    <button class="ve-send" onclick="veSend()">
+      <svg viewBox="0 0 24 24"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/></svg>
+    </button>
+  </div>
+  <div class="ve-footer">Powered by Rishabh Saxena · rishabhsaxena.co.in</div>
+</div>
+
+<script>
+(function() {
+
+// ── RESPONSE LIBRARY ──────────────────────────────────────────────
+const R = {
+  greeting: [
+    "Hey there! I'm the Virtual Executive — Rishabh's digital assistant. Whether you're here to learn about his work, explore the blog, or just say hello — I've got you. What's on your mind?",
+    "Hello! Good to have you here. I'm the Virtual Executive, and I know quite a bit about Rishabh and his work. What would you like to know?",
+    "Hi! I'm VE — Virtual Executive. Think of me as Rishabh's always-on assistant. Ask me anything."
+  ],
+  who: [
+    "Rishabh Saxena is a Salesforce Consultant with over 9 years in the ecosystem — 5x certified, and currently part of Salesforce's own Professional Services team in India. Before that, he's done presales and consulting at LTIMindtree, Brillio, and TCS. He's also an MBA from Great Lakes, a motorsport enthusiast, and a watch collector. Quite a range, I know.",
+    "Rishabh is a Salesforce Consultant — part of the India PS GTM team. He owns end-to-end presales for Data Cloud, Marketing Cloud, and RCG Cloud. 9+ years in the Salesforce world, 5 certifications, and a genuine belief that most implementations fail not because of bad tech, but because the original problem gets lost. That's the gap he works in."
+  ],
+  salesforce: [
+    "Rishabh has been in the Salesforce ecosystem for over 9 years — across development, presales, consulting, and now engagement management. He's worked across Sales Cloud, Service Cloud, Data Cloud, Marketing Cloud, RCG Cloud, Experience Cloud, and CMS. Currently at Salesforce itself, managing the PS India GTM for Data Cloud, Marketing Cloud, and RCG Cloud.",
+    "Salesforce is Rishabh's core domain. He's 5x certified — Data Cloud Consultant, AI Associate, Sales Cloud Consultant, Administrator, and Platform Developer I. He's been a developer, a presales consultant, and now a Salesforce Consultant. He understands the full lifecycle — from discovery to delivery.",
+    "If you're looking for Salesforce expertise — Rishabh's been living and breathing it since 2016. He's particularly strong in presales, discovery, and making sure the right problem gets solved before a single line of config is written."
+  ],
+  datacloud: [
+    "Data Cloud is one of Rishabh's current focus areas at Salesforce PS India. He's owned the Data Cloud deal pipeline and has a Data Cloud Consultant certification. If you have specific questions about Data Cloud engagements or implementations, he'd be the right person to talk to.",
+  ],
+  marketingcloud: [
+    "Marketing Cloud is another key area Rishabh covers in his current role at Salesforce PS India. He's managed the Marketing Cloud deal pipeline end-to-end — from discovery and proposals to SOW structuring.",
+  ],
+  presales: [
+    "Presales is where Rishabh has spent a significant part of his career — at TCS, Brillio, LTIMindtree, and now Salesforce. He's run RFP/RFI responses, built proposals, written SOWs, created staffing models, and supported oral defenses. He's also built reusable content repositories to scale presales efficiency.",
+    "Rishabh's presales experience spans the full cycle — qualifying opportunities, running discovery, crafting solution narratives, building commercial structures, and closing. He's done this across EMEA and APAC for some of the largest Salesforce partners in India."
+  ],
+  certs: [
+    "Rishabh holds 5 Salesforce certifications: Data Cloud Consultant (2024), AI Associate (2024), Sales Cloud Consultant (2020), Administrator (2020), and Platform Developer I (2016). He also holds SAFe Agilist and a Microsoft Partner Sales Bootcamp certification.",
+    "Five Salesforce certifications — Data Cloud Consultant, AI Associate, Sales Cloud Consultant, Administrator, and Platform Developer I. Plus SAFe Agilist for good measure. He's been collecting them since 2016."
+  ],
+  experience: [
+    "Rishabh's career spans Salesforce PS (current), LTIMindtree, Brillio Technologies, and TCS — with an MBA sabbatical from Great Lakes Institute of Management in between. That's 9+ years across development, presales, consulting, and engagement management.",
+    "The journey: TCS (2016–2021) as a Salesforce Developer turned Presales Consultant, with an MBA break in 2018–19. Then Brillio (2021–2022), LTIMindtree (2022–2023), and now Salesforce Professional Services since July 2023."
+  ],
+  tcs: [
+    "Rishabh started his career at TCS in 2016 as a Salesforce Developer — led a team of three, reduced daily incidents from 100+ to under 30, and then transitioned to Presales. He drove Salesforce business expansion in the EMEA region before leaving in 2021. He also took an MBA sabbatical during his TCS tenure."
+  ],
+  mba: [
+    "Rishabh did his MBA from Great Lakes Institute of Management, Chennai — a one-year intensive in Marketing and AI & Machine Learning. His thesis was on the effect of nostalgia on consumer buying behaviour. He took a sabbatical from TCS for this and returned as a Presales Consultant.",
+  ],
+  watchit: [
+    "WatchIt is Rishabh's horology blog — perspectives on watches, craft, and what it means to appreciate something built to last. It's not a review site. It's more about the stories behind what we wear on our wrists. First article coming soon.",
+    "If you're into watches, WatchIt is worth bookmarking. It's Rishabh's take on horology — the craft, the history, the obsession. He's been collecting and following the watch world seriously. Head over to rishabhsaxena.co.in/watchit.html."
+  ],
+  shiftit: [
+    "ShiftIt is the automobiles and motorsport section of Rishabh's blog. He's been a Track and Flag Marshal with the Indian Motorsport Marshals Club, attended the Formula 1 Indian Grand Prix in 2013 and Bharat MotoGP 2023, and has been following MRF and JK Tyre championships since 2013. Expect passionate writing.",
+    "ShiftIt covers cars, motorsport, and everything in between. Rishabh is deeply into this — not as a casual fan but as someone who's been on the circuit as a marshal. Check it out at rishabhsaxena.co.in/shiftit.html."
+  ],
+  blog: [
+    "The Thinking Lab is Rishabh's blog — three sections: Salesforce (implementations, presales, strategy), WatchIt (horology and watches), and ShiftIt (automobiles and motorsport). Content is coming — follow him on LinkedIn to stay updated.",
+    "Three blogs, one person. Salesforce at rishabhsaxena.co.in/salesforce.html, WatchIt at /watchit.html, and ShiftIt at /shiftit.html. All part of the Thinking Lab."
+  ],
+  motorsport: [
+    "Rishabh has been involved in Indian motorsport since 2013 — attended the F1 Indian Grand Prix, the Bharat MotoGP 2023, and has been a continuous participant in MRF and JK Tyre National Racing Championships as a Track and Flag Marshal with the Indian Motorsport Marshals Club.",
+  ],
+  collaborate: [
+    "If you're thinking about working with Rishabh — whether it's a Salesforce engagement, a presales challenge, or a consulting conversation — the best way to start is by dropping a note via the contact form on this page, or connecting on LinkedIn at linkedin.com/in/rishabh0201.",
+    "Rishabh is open to the right conversations — Salesforce implementations, presales strategy, or just a good professional discussion. Use the contact form below or reach out on LinkedIn."
+  ],
+  contact: [
+    "You can reach Rishabh on LinkedIn at linkedin.com/in/rishabh0201, or drop a note using the contact form at the bottom of this page — just fill in your email and he'll get back to you directly.",
+    "Best way to get in touch — LinkedIn at linkedin.com/in/rishabh0201, or the contact form at the bottom of this page. Leave your email and he'll come back to you."
+  ],
+  compliment: [
+    "That's kind of you to say — I'll pass it along to Rishabh. He'd appreciate hearing that.",
+    "Glad you think so! If you'd like to connect with Rishabh directly, the contact form at the bottom works well.",
+    "Thank you — Rishabh has put a lot of thought into this. If something resonated, he'd love to hear about it."
+  ],
+  linkedin: [
+    "Rishabh is active on LinkedIn at linkedin.com/in/rishabh0201. Best place to follow his professional updates, articles, and to connect directly."
+  ],
+  apps: [
+    "Rishabh is currently working on a few tools under the 'In the Making' section of his site — simple apps built around everyday problems, the kind that make you wonder why they don't already exist. Nothing to announce just yet, but worth watching. You can follow him on LinkedIn at linkedin.com/in/rishabh0201 for updates.",
+    "The 'In the Making' section on this site hints at what's coming — a few tools Rishabh is quietly building. He's not ready to announce specifics yet, but if you have a problem you'd like solved, the contact form below is a good place to share it. It might just influence what he builds next."
+  ],
+  job: [
+    "Rishabh is always open to interesting conversations — but the best way to explore if there's a fit is to share a bit more about the role and what you're looking to solve. Drop the details via the contact form below and he'll reach out if the timing feels right.",
+    "Rishabh isn't actively looking, but the right opportunity has a way of making itself known. If you think there's something worth discussing, share the role details and what makes it interesting — he'll take a look and connect if it resonates.",
+    "Rishabh believes in having the right conversations at the right time. If you have something specific in mind, share the details via the contact form below — company, role, what you're solving for. He'll be in touch if the stars align."
+  ],
+  contentidea: [
+    "That's actually really helpful to know — Rishabh is always thinking about what to write or build next. Could you share a bit more? Is this about a Salesforce challenge, a watch you're curious about, a car or motorsport topic, or something else entirely? Drop it in the contact form below and he'll factor it into what he builds next.",
+    "Ideas from real people are worth more than anything Rishabh could come up with in isolation. If you've got a specific topic, problem, or question you'd love to see covered — share it via the contact form. It might just become his next article or app.",
+    "Noted — and genuinely appreciated. The best content comes from real problems. Share the specifics via the contact form below and Rishabh will keep it in mind for future articles, tools, or apps."
+  ],
+  fallback: [
+    "That's a bit outside my coverage — but I don't want to leave you hanging. ||FORM||",
+    "Hmm, I didn't quite catch that. I cover Rishabh's work, Salesforce, the blog, watches, motorsport, and how to connect. Drop it here and he'll get back to you: ||FORM||",
+    "I want to be helpful, but I'm not sure I have the right answer for this one. Share it directly here and he'll get back to you: ||FORM||"
+  ],
+  returning: [
+    "Welcome back! Good to see you again. What would you like to know this time?",
+    "You're back! Happy to help again. What's on your mind?"
+  ]
+};
+
+// ── KEYWORD MAP ────────────────────────────────────────────────────
+const K = [
+  { keys: ['hi','hello','hey','howdy','sup','good morning','good evening','good afternoon','greetings','hiya','yo'], res: 'greeting' },
+  { keys: ['who is','who are','about rishabh','introduce','tell me about','about you','what do you do','background','yourself'], res: 'who' },
+  { keys: ['salesforce','crm','cloud','sfdc','sf ','lightning','apex','visualforce','flow','lwc'], res: 'salesforce' },
+  { keys: ['data cloud','cdp','customer data'], res: 'datacloud' },
+  { keys: ['marketing cloud','mc ','pardot','email studio','journey builder'], res: 'marketingcloud' },
+  { keys: ['presales','pre-sales','rfp','rfi','proposal','sow','pitch','demo','poc','estimate','staffing'], res: 'presales' },
+  { keys: ['certif','certified','credential','badge','exam','qualification'], res: 'certs' },
+  { keys: ['experience','career','worked','journey','years','professional'], res: 'experience' },
+  { keys: ['tcs','tata','consultancy','ltimindtree','lti','brillio'], res: 'tcs' },
+  { keys: ['mba','great lakes','masters','education','university','degree','college'], res: 'mba' },
+  { keys: ['watchit','watch','horology','timepiece','wristwatch','rolex','omega','seiko','horolog'], res: 'watchit' },
+  { keys: ['shiftit','car','automobile','motorsport','racing','f1','formula','motogp','moto gp','circuit','marshal','track','jk tyre','mrf'], res: 'shiftit' },
+  { keys: ['blog','article','post','write','thinking lab','read','content','publish'], res: 'blog' },
+  { keys: ['hire','collaborate','work together','engage','consulting','freelance','opportunity','project','partnership'], res: 'collaborate' },
+  { keys: ['contact','reach','email','connect','message','talk','meet','call','get in touch','linkedin'], res: 'contact' },
+  { keys: ['linkedin'], res: 'linkedin' },
+  { keys: ['app','apps','tool','tools','build','building','in the making','product','side project'], res: 'apps' },
+  { keys: ['open to work','looking for job','job opportunity','hiring','recruit','position','role','opening','new role','career opportunity','job change','switch job','switching','exploring opportunities'], res: 'job' },
+  { keys: ['write about','cover topic','content idea','suggest topic','what should','next article','next app','build something','problem i face','challenge i have','would love to read','idea for','struggling with','pain point'], res: 'contentidea' },
+  { keys: ['great','impressive','amazing','love','nice','good work','well done','awesome','brilliant','excellent','interesting','cool'], res: 'compliment' },
+];
+
+// ── STATE ──────────────────────────────────────────────────────────
+let veOpen = false;
+let veStarted = false;
+let rIdx = {};
+
+function getRand(key) {
+  const arr = R[key];
+  if (!rIdx[key]) rIdx[key] = 0;
+  const r = arr[rIdx[key] % arr.length];
+  rIdx[key]++;
+  return r;
+}
+
+function match(text) {
+  const t = text.toLowerCase();
+  let best = null, bestScore = 0;
+  for (const entry of K) {
+    for (const kw of entry.keys) {
+      // Use word boundary matching - keyword must appear as whole word
+      const re = new RegExp('(^|[\\s,?.!\'\"-])' + kw.replace(/[.*+?^${}()|[\]\\]/g, '\\$&') + '($|[\\s,?.!\'\"-])', 'i');
+      if (re.test(t) || (kw.length > 4 && t.includes(kw))) {
+        if (kw.length > bestScore) {
+          bestScore = kw.length;
+          best = entry.res;
+        }
+      }
+    }
+  }
+  return best || 'fallback';
+}
+
+// ── UI ──────────────────────────────────────────────────────────────
+function veToggle() {
+  veOpen = !veOpen;
+  document.getElementById('veBubble').classList.toggle('open', veOpen);
+  document.getElementById('veWindow').classList.toggle('open', veOpen);
+  if (veOpen && !veStarted) {
+    veStarted = true;
+    const returning = localStorage.getItem('ve_visited');
+    localStorage.setItem('ve_visited', '1');
+    setTimeout(() => {
+      addMsg(returning ? getRand('returning') : getRand('greeting'), 'bot');
+    }, 400);
+  }
+  if (veOpen) document.getElementById('veInput').focus();
+}
+
+function addMsg(text, who) {
+  const el = document.createElement('div');
+  el.className = 've-msg ' + who;
+  el.textContent = text;
+  document.getElementById('veMessages').appendChild(el);
+  scrollBot();
+}
+
+function showTyping() {
+  const el = document.createElement('div');
+  el.className = 've-typing';
+  el.id = 'veTyping';
+  el.innerHTML = '<span></span><span></span><span></span>';
+  document.getElementById('veMessages').appendChild(el);
+  scrollBot();
+  return el;
+}
+
+function scrollBot() {
+  const m = document.getElementById('veMessages');
+  m.scrollTop = m.scrollHeight;
+}
+
+let fallbackCount = 0;
+
+function typeMsg(text, who) {
+  var hasForm = text.indexOf('||FORM||') !== -1;
+  var cleanText = text.replace('||FORM||', '').trim();
+  var el = document.createElement('div');
+  el.className = 've-msg ' + who;
+  el.textContent = '';
+  document.getElementById('veMessages').appendChild(el);
+  scrollBot();
+  var i = 0;
+  var speed = 18;
+  function tick() {
+    if (i < cleanText.length) {
+      el.textContent += cleanText[i++];
+      scrollBot();
+      setTimeout(tick, speed);
+    } else if (hasForm) {
+      var formDiv = document.createElement('div');
+      formDiv.innerHTML = '<div style="margin-top:10px;"><div style="font-size:0.82rem;margin-bottom:8px;color:var(--sf-text);font-weight:600;">Drop your details and Rishabh will get back to you:</div><input id="vfName2" placeholder="Your name" style="width:100%;margin-bottom:6px;padding:7px 10px;border-radius:7px;border:1.5px solid var(--sf-border);background:var(--sf-tag-bg);color:var(--sf-text);font-size:0.82rem;outline:none;font-family:DM Sans,sans-serif;"><input id="vfEmail2" type="email" placeholder="your@email.com" style="width:100%;margin-bottom:6px;padding:7px 10px;border-radius:7px;border:1.5px solid var(--sf-border);background:var(--sf-tag-bg);color:var(--sf-text);font-size:0.82rem;outline:none;font-family:DM Sans,sans-serif;"><input id="vfMsg2" placeholder="Your question or message" style="width:100%;margin-bottom:7px;padding:7px 10px;border-radius:7px;border:1.5px solid var(--sf-border);background:var(--sf-tag-bg);color:var(--sf-text);font-size:0.82rem;outline:none;font-family:DM Sans,sans-serif;"><button onclick="submitInlineForm()" style="background:var(--sf-blue);color:white;border:none;padding:7px 16px;border-radius:7px;font-family:Sora,sans-serif;font-weight:700;font-size:0.8rem;cursor:pointer;width:100%;">Send to Rishabh →</button></div>';
+      el.appendChild(formDiv);
+      scrollBot();
+    }
+  }
+  tick();
+}
+
+function showMiniForm() {
+  const existing = document.getElementById('veMiniForm');
+  if (existing) return;
+  const el = document.createElement('div');
+  el.id = 'veMiniForm';
+  el.className = 've-msg bot';
+  el.style.maxWidth = '100%';
+  el.innerHTML = '<div style="font-size:0.82rem;margin-bottom:10px;color:var(--sf-text);">Leave your details and Rishabh will get back to you directly:</div>' +
+    '<input id="vfName" placeholder="Your name" style="width:100%;margin-bottom:7px;padding:7px 10px;border-radius:7px;border:1.5px solid var(--sf-border);background:var(--sf-tag-bg);color:var(--sf-text);font-size:0.82rem;outline:none;font-family:DM Sans,sans-serif;">' +
+    '<input id="vfMsg" placeholder="Your question or message" style="width:100%;margin-bottom:7px;padding:7px 10px;border-radius:7px;border:1.5px solid var(--sf-border);background:var(--sf-tag-bg);color:var(--sf-text);font-size:0.82rem;outline:none;font-family:DM Sans,sans-serif;">' +
+    '<button onclick="submitMiniForm()" style="background:var(--sf-blue);color:white;border:none;padding:7px 16px;border-radius:7px;font-family:Sora,sans-serif;font-weight:700;font-size:0.8rem;cursor:pointer;width:100%;">Send to Rishabh →</button>';
+  document.getElementById('veMessages').appendChild(el);
+  scrollBot();
+}
+
+function submitMiniForm() {
+  const name = document.getElementById('vfName').value.trim();
+  const msg = document.getElementById('vfMsg').value.trim();
+  if (!name || !msg) { return; }
+  const payload = { name, message: msg, source: 'Virtual Executive Bot', company: '', designation: '', linkedin: '' };
+  fetch('https://script.google.com/macros/s/AKfycbwNtyPDWl2dRPmwKRNRx0tMKQoTx5d-vHt4hRVBNMUWwN7jLrjh-xyH7fxuO8T6aP4/exec', {
+    method: 'POST', mode: 'no-cors',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(payload)
+  });
+  document.getElementById('veMiniForm').innerHTML = '<div style="text-align:center;padding:8px 0;">✅ Sent! Rishabh will be in touch.</div>';
+  fallbackCount = 0;
+}
+
+function veSend() {
+  const input = document.getElementById('veInput');
+  const text = input.value.trim();
+  if (!text) return;
+  input.value = '';
+  addMsg(text, 'user');
+  const typing = showTyping();
+  const key = match(text);
+  if (key === 'fallback') fallbackCount++;
+  // Thinking delay: 600-900ms feels natural
+  const delay = 600 + Math.random() * 300;
+  setTimeout(() => {
+    typing.remove();
+    typeMsg(getRand(key), 'bot');
+    if (fallbackCount >= 2) {
+      setTimeout(showMiniForm, 800);
+      fallbackCount = 0;
+    }
+  }, delay);
+}
+
+window.veToggle = veToggle;
+window.veSend = veSend;
+window.submitMiniForm = submitMiniForm;
+
+function submitInlineForm() {
+  var n = document.getElementById('vfName2');
+  var e = document.getElementById('vfEmail2');
+  var m = document.getElementById('vfMsg2');
+  if (!n || !m || !n.value.trim() || !m.value.trim()) return;
+  fetch('https://script.google.com/macros/s/AKfycbwNtyPDWl2dRPmwKRNRx0tMKQoTx5d-vHt4hRVBNMUWwN7jLrjh-xyH7fxuO8T6aP4/exec', {
+    method: 'POST', mode: 'no-cors',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ name: n.value.trim(), linkedin: e ? e.value.trim() : '', message: m.value.trim(), source: 'VE Fallback Inline', company: '', designation: '' })
+  });
+  var btn = document.querySelector('[onclick="submitInlineForm()"]');
+  if (btn) btn.closest('div').innerHTML = '<div style="text-align:center;padding:6px 0;">✅ Sent! Rishabh will be in touch.</div>';
+}
+window.submitInlineForm = submitInlineForm;
+
+
+})();
 </script>
 </body>
 </html>
