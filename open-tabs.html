@@ -1,0 +1,774 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Open Tabs | Rishabh Saxena</title>
+<meta name="description" content="Open Tabs — Rishabh Saxena's personal space. Observations, thoughts, and things worth writing about that don't fit anywhere else.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+<style>
+:root {
+  --sf-blue: #0070D2; --sf-navy: #032D60; --sf-electric: #1B96FF;
+  --sf-light-bg: #F3F6FB; --sf-card: #FFFFFF; --sf-text: #0A1F44;
+  --sf-subtext: #3E5771; --sf-border: #D8E6F3; --sf-tag-bg: #E8F4FF;
+  --sf-tag-text: #0070D2; --nav-bg: rgba(243,246,251,0.92);
+  --shadow: 0 4px 32px rgba(0,112,210,0.10); --shadow-card: 0 2px 16px rgba(0,112,210,0.08);
+}
+[data-theme="dark"] {
+  --sf-blue: #1B96FF; --sf-navy: #0A1F44; --sf-electric: #5CB8FF;
+  --sf-light-bg: #0A1628; --sf-card: #0F2140; --sf-text: #E8F4FF;
+  --sf-subtext: #8BB8D8; --sf-border: #1A3A5C; --sf-tag-bg: #0F2A4A;
+  --sf-tag-text: #5CB8FF; --nav-bg: rgba(10,22,40,0.95);
+  --shadow: 0 4px 32px rgba(0,0,0,0.4); --shadow-card: 0 2px 16px rgba(0,0,0,0.3);
+}
+* { margin:0; padding:0; box-sizing:border-box; }
+body { font-family: 'DM Sans', sans-serif; background: var(--sf-light-bg); color: var(--sf-text); line-height: 1.7; transition: background 0.3s, color 0.3s; }
+nav {
+  position: fixed; top:0; left:0; right:0; z-index:100;
+  background: var(--nav-bg); backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--sf-border);
+  padding: 0 5%; display: flex; align-items: center; justify-content: space-between; height: 68px;
+}
+.nav-logo img { height: 44px; width: 44px; border-radius: 50%; object-fit: cover; }
+.nav-links { display: flex; gap: 32px; align-items: center; }
+.nav-links a { text-decoration: none; color: var(--sf-subtext); font-family: 'Sora', sans-serif; font-size: 0.85rem; font-weight: 500; letter-spacing: 0.04em; text-transform: uppercase; transition: color 0.2s; }
+.nav-links a:hover { color: var(--sf-blue); }
+.theme-toggle { background: var(--sf-card); border: 1.5px solid var(--sf-border); border-radius: 50px; padding: 6px 14px; cursor: pointer; font-size: 0.8rem; font-family: 'Sora', sans-serif; color: var(--sf-subtext); transition: all 0.2s; }
+.theme-toggle:hover { border-color: var(--sf-blue); color: var(--sf-blue); }
+.page-hero { padding: 120px 5% 60px; max-width: 1100px; margin: 0 auto; }
+.page-label { font-family: 'Sora', sans-serif; font-size: 0.72rem; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: var(--sf-blue); margin-bottom: 12px; display: flex; align-items: center; gap: 10px; }
+.page-label::before { content:''; display:block; width: 32px; height: 2px; background: var(--sf-blue); }
+.page-title { font-family: 'Sora', sans-serif; font-size: clamp(2rem, 5vw, 3.2rem); font-weight: 800; letter-spacing: -0.02em; margin-bottom: 12px; }
+.page-desc { color: var(--sf-subtext); font-size: 1.05rem; font-weight: 300; max-width: 600px; margin-bottom: 48px; }
+.section-divider { width: 48px; height: 3px; background: var(--sf-blue); border-radius: 2px; margin-bottom: 40px; }
+.articles-grid { max-width: 1100px; margin: 0 auto; padding: 0 5% 80px; display: grid; gap: 20px; }
+.article-card {
+  background: var(--sf-card); border: 1px solid var(--sf-border);
+  border-radius: 14px; padding: 28px 32px;
+  box-shadow: var(--shadow-card); transition: transform 0.2s, box-shadow 0.2s;
+  display: flex; justify-content: space-between; align-items: center; gap: 20px;
+  text-decoration: none; color: var(--sf-text);
+}
+.article-card:hover { transform: translateY(-3px); box-shadow: var(--shadow); border-color: var(--sf-blue); }
+.article-info { flex: 1; }
+.article-tag { font-family: 'Sora', sans-serif; font-size: 0.72rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--sf-blue); margin-bottom: 8px; }
+.article-title { font-family: 'Sora', sans-serif; font-size: 1.05rem; font-weight: 700; margin-bottom: 8px; color: var(--sf-text); }
+.article-desc { font-size: 0.9rem; color: var(--sf-subtext); font-weight: 300; }
+.article-meta { font-family: 'Sora', sans-serif; font-size: 0.78rem; color: var(--sf-subtext); white-space: nowrap; }
+.article-arrow { color: var(--sf-blue); font-size: 1.2rem; }
+.empty-state { text-align: center; padding: 80px 20px; color: var(--sf-subtext); }
+.empty-icon { font-size: 3rem; margin-bottom: 16px; }
+.empty-title { font-family: 'Sora', sans-serif; font-size: 1.2rem; font-weight: 700; color: var(--sf-text); margin-bottom: 8px; }
+footer { background: #020E1E; padding: 30px 5%; text-align: center; border-top: 1px solid rgba(255,255,255,0.05); }
+footer p { color: rgba(255,255,255,0.3); font-size: 0.8rem; font-family: 'Sora', sans-serif; }
+footer span { color: #1B96FF; }
+@media (max-width: 768px) {
+  .article-card { flex-direction: column; align-items: flex-start; }
+  .nav-links { display: none; }
+}
+
+.hamburger {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 4px;
+}
+.hamburger span {
+  display: block;
+  width: 22px; height: 2px;
+  background: var(--sf-text);
+  border-radius: 2px;
+  transition: all 0.3s;
+}
+@media (max-width: 768px) {
+  .hamburger { display: flex; }
+  .nav-links {
+    display: none;
+    position: absolute;
+    top: 68px; left: 0; right: 0;
+    background: var(--nav-bg);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--sf-border);
+    padding: 16px 5%;
+    flex-direction: column;
+    gap: 16px;
+    z-index: 99;
+  }
+  .nav-links.open { display: flex; }
+  .nav-links span { display: none; }
+}
+
+@media (max-width: 768px) {
+  .contact-grid { grid-template-columns: 1fr !important; }
+}
+</style>
+</head>
+<body>
+<script>
+(function() {
+  const saved = localStorage.getItem('theme');
+  if (saved === 'dark' || (!saved && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+    document.documentElement.setAttribute('data-theme', 'dark');
+  }
+})();
+</script>
+<nav>
+  <div class="nav-logo"><a href="/"><img src="/logo.png" alt="RS Logo"></a></div>
+  <div class="nav-links" id="navLinks">
+    <a href="/" style="font-family:'Sora',sans-serif;font-weight:700;color:var(--sf-text) !important;">Rishabh Saxena</a>
+    <span style="color:var(--sf-border);">|</span>
+    <a href="/salesforce.html" >☁️ Salesforce</a>
+    <a href="/hands-on-wrist.html" >⌚ Hands on Wrist</a>
+    <a href="/hands-on-wheels.html" >🚗 Hands on Wheels</a>
+    <a href="/open-tabs.html" style="color:var(--sf-blue)!important;font-weight:700;">📌 Open Tabs</a>
+    <a href="#connect">Connect</a>
+  </div>
+  <div style="display:flex;align-items:center;gap:12px;">
+    <button class="theme-toggle" onclick="toggleTheme()" id="themeBtn">🌙 Dark Mode</button>
+    <button class="hamburger" id="hamburger" onclick="toggleMenu()" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<div class="page-hero">
+  <div class="page-label">Thinking Lab · Personal</div>
+  <div style="display:flex;align-items:center;gap:16px;margin-bottom:0;"><span style="font-size:3.5rem;line-height:1;">📌</span><h1 class="page-title" style="margin-bottom:0;">Open Tabs</h1></div>
+  <p class="page-desc">A personal space for things that don't fit anywhere else — observations, half-formed thoughts, things I'm learning, and anything worth writing about.</p>
+  <div class="section-divider"></div>
+</div>
+
+<div class="articles-grid">
+  <!-- ARTICLES GO HERE -->
+  <!-- To add a new article, copy this block and fill in the details:
+  <a href="YOUR_HASHNODE_LINK" target="_blank" class="article-card">
+    <div class="article-info">
+      <div class="article-tag">CATEGORY · DATE</div>
+      <div class="article-title">Your Article Title</div>
+      <div class="article-desc">A one line description of what the article is about.</div>
+    </div>
+    <div class="article-arrow">→</div>
+  </a>
+  -->
+  <div class="empty-state">
+    <div class="empty-icon">📌</div>
+    <div class="empty-title">First article coming soon</div>
+    <p>Good writing takes time. Check back shortly — or follow me on <a href="https://www.linkedin.com/in/rishabh0201/" style="color:var(--sf-blue);">LinkedIn</a> to get notified.</p>
+  </div>
+</div>
+
+
+<!-- CONTACT STRIP -->
+<section id="connect" style="background:var(--sf-navy);padding:60px 5%;">
+  <div style="max-width:700px;margin:0 auto;text-align:center;">
+    <div style="font-family:'Sora',sans-serif;font-size:0.72rem;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:var(--sf-electric);margin-bottom:12px;">Get In Touch</div>
+    <h2 style="font-family:'Sora',sans-serif;font-size:clamp(1.8rem,4vw,2.6rem);font-weight:800;color:#fff;margin-bottom:12px;">Enjoyed this? Let's talk.</h2>
+    <div style="width:48px;height:3px;background:var(--sf-electric);border-radius:2px;margin:0 auto 20px;"></div>
+    <p style="color:rgba(255,255,255,0.5);font-size:0.95rem;font-weight:300;max-width:480px;margin:0 auto 32px;">Whether it's about what you just read, Salesforce, or something else entirely — I'm always up for a good conversation.</p>
+    <div style="display:flex;gap:16px;justify-content:center;flex-wrap:wrap;margin-bottom:40px;">
+      <a href="https://www.linkedin.com/in/rishabh0201/" target="_blank" style="display:inline-flex;align-items:center;gap:10px;background:var(--sf-blue);color:white;padding:16px 32px;border-radius:10px;text-decoration:none;font-family:'Sora',sans-serif;font-weight:700;font-size:0.95rem;min-width:220px;justify-content:center;">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+        Connect on LinkedIn
+      </a>
+    </div>
+    <!-- Embedded Google Form -->
+        <!-- Native Form -->
+    <div style="font-family:'Sora',sans-serif;font-size:0.72rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--sf-electric);margin-bottom:16px;">Drop a Note</div>
+
+    <div id="formSuccess-opentabs" style="display:none;background:rgba(27,150,255,0.1);border:1px solid rgba(27,150,255,0.3);border-radius:12px;padding:24px;text-align:center;margin-bottom:24px;">
+      <div style="font-size:2rem;margin-bottom:8px;">✅</div>
+      <div style="font-family:'Sora',sans-serif;font-weight:700;color:#fff;margin-bottom:4px;">Message received!</div>
+      <div style="color:rgba(255,255,255,0.5);font-size:0.9rem;">I'll get back to you soon.</div>
+    </div>
+
+    <form id="contactForm-opentabs" style="display:flex;flex-direction:column;gap:14px;text-align:left;">
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;">
+        <div>
+          <label style="font-family:'Sora',sans-serif;font-size:0.72rem;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:rgba(255,255,255,0.5);display:block;margin-bottom:6px;">Name *</label>
+          <input type="text" id="opentabs-name" required placeholder="Your name"
+            style="width:100%;padding:11px 14px;background:rgba(255,255,255,0.07);border:1.5px solid rgba(255,255,255,0.15);border-radius:8px;color:#fff;font-family:'DM Sans',sans-serif;font-size:0.92rem;outline:none;"
+            onfocus="this.style.borderColor='var(--sf-electric)'" onblur="this.style.borderColor='rgba(255,255,255,0.15)'">
+        </div>
+        <div>
+          <label style="font-family:'Sora',sans-serif;font-size:0.72rem;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:rgba(255,255,255,0.5);display:block;margin-bottom:6px;">Company</label>
+          <input type="text" id="opentabs-company" placeholder="Your company"
+            style="width:100%;padding:11px 14px;background:rgba(255,255,255,0.07);border:1.5px solid rgba(255,255,255,0.15);border-radius:8px;color:#fff;font-family:'DM Sans',sans-serif;font-size:0.92rem;outline:none;"
+            onfocus="this.style.borderColor='var(--sf-electric)'" onblur="this.style.borderColor='rgba(255,255,255,0.15)'">
+        </div>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;">
+        <div>
+          <label style="font-family:'Sora',sans-serif;font-size:0.72rem;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:rgba(255,255,255,0.5);display:block;margin-bottom:6px;">Designation</label>
+          <input type="text" id="opentabs-designation" placeholder="Your role"
+            style="width:100%;padding:11px 14px;background:rgba(255,255,255,0.07);border:1.5px solid rgba(255,255,255,0.15);border-radius:8px;color:#fff;font-family:'DM Sans',sans-serif;font-size:0.92rem;outline:none;"
+            onfocus="this.style.borderColor='var(--sf-electric)'" onblur="this.style.borderColor='rgba(255,255,255,0.15)'">
+        </div>
+        <div>
+          <label style="font-family:'Sora',sans-serif;font-size:0.72rem;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:rgba(255,255,255,0.5);display:block;margin-bottom:6px;">Email</label>
+          <input type="text" id="opentabs-linkedin" placeholder="your@email.com"
+            style="width:100%;padding:11px 14px;background:rgba(255,255,255,0.07);border:1.5px solid rgba(255,255,255,0.15);border-radius:8px;color:#fff;font-family:'DM Sans',sans-serif;font-size:0.92rem;outline:none;"
+            onfocus="this.style.borderColor='var(--sf-electric)'" onblur="this.style.borderColor='rgba(255,255,255,0.15)'">
+        </div>
+      </div>
+      <div>
+        <label style="font-family:'Sora',sans-serif;font-size:0.72rem;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:rgba(255,255,255,0.5);display:block;margin-bottom:6px;">Message</label>
+        <textarea id="opentabs-message" rows="3" placeholder="What's on your mind?"
+          style="width:100%;padding:11px 14px;background:rgba(255,255,255,0.07);border:1.5px solid rgba(255,255,255,0.15);border-radius:8px;color:#fff;font-family:'DM Sans',sans-serif;font-size:0.92rem;outline:none;resize:vertical;"
+          onfocus="this.style.borderColor='var(--sf-electric)'" onblur="this.style.borderColor='rgba(255,255,255,0.15)'"></textarea>
+      </div>
+      <!-- Honeypot -->
+      <div style="position:absolute;left:-9999px;opacity:0;pointer-events:none;" aria-hidden="true">
+        <input type="text" id="salesforce-website" name="website" tabindex="-1" autocomplete="off">
+      </div>
+      <button type="submit" id="btn-opentabs"
+        style="background:var(--sf-blue);color:white;border:none;padding:13px 28px;border-radius:8px;font-family:'Sora',sans-serif;font-weight:700;font-size:0.92rem;cursor:pointer;align-self:flex-start;">
+        Send Message →
+      </button>
+    </form>
+
+    <script>
+    document.getElementById('contactForm-salesforce').addEventListener('submit', async function(e) {
+      e.preventDefault();
+      const btn = document.getElementById('btn-salesforce');
+      btn.textContent = 'Sending...';
+      btn.disabled = true;
+      const payload = {
+        name: document.getElementById('opentabs-name').value,
+        company: document.getElementById('opentabs-company').value,
+        designation: document.getElementById('opentabs-designation').value,
+        linkedin: document.getElementById('opentabs-linkedin').value,
+        message: document.getElementById('opentabs-message').value,
+        source: 'Open Tabs',
+        website: document.getElementById('salesforce-website') ? document.getElementById('salesforce-website').value : ''
+      };
+      try {
+        await fetch('https://script.google.com/macros/s/AKfycbwNtyPDWl2dRPmwKRNRx0tMKQoTx5d-vHt4hRVBNMUWwN7jLrjh-xyH7fxuO8T6aP4/exec', {
+          method: 'POST', mode: 'no-cors',
+          headers: {'Content-Type': 'application/json'},
+          body: JSON.stringify(payload)
+        });
+        document.getElementById('contactForm-salesforce').style.display = 'none';
+        document.getElementById('formSuccess-salesforce').style.display = 'block';
+      } catch(err) {
+        btn.textContent = 'Send Message →';
+        btn.disabled = false;
+      }
+    });
+    </script>
+  </section>
+
+<footer><p>© 2026 <span>Rishabh Saxena</span> · Thinking Lab</p></footer>
+
+<script>
+function toggleTheme() {
+  const html = document.documentElement;
+  const btn = document.getElementById('themeBtn');
+  if (html.getAttribute('data-theme') === 'light') {
+    html.setAttribute('data-theme', 'dark'); btn.textContent = '☀️ Light Mode';
+    localStorage.setItem('theme', 'dark');
+  } else {
+    html.setAttribute('data-theme', 'light'); btn.textContent = '🌙 Dark Mode';
+    localStorage.setItem('theme', 'light');
+  }
+}
+(function() {
+  const btn = document.getElementById('themeBtn');
+  if (document.documentElement.getAttribute('data-theme') === 'dark') btn.textContent = '☀️ Light Mode';
+})();
+
+function toggleMenu() {
+  const links = document.getElementById('navLinks');
+  links.classList.toggle('open');
+}
+</script>
+
+<!-- VIRTUAL EXECUTIVE BOT -->
+<style>
+/* Bot Widget */
+.ve-bubble {
+  position: fixed;
+  bottom: 28px; right: 28px;
+  width: 52px; height: 52px;
+  background: var(--sf-blue);
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  box-shadow: 0 4px 20px rgba(0,112,210,0.4);
+  z-index: 9999;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+.ve-bubble:hover { transform: scale(1.08); box-shadow: 0 6px 28px rgba(0,112,210,0.5); }
+.ve-bubble svg { width: 24px; height: 24px; fill: white; }
+.ve-bubble .ve-close { display: none; font-size: 1.4rem; color: white; line-height: 1; }
+.ve-bubble.open .ve-icon { display: none; }
+.ve-bubble.open .ve-close { display: block; }
+
+.ve-window {
+  position: fixed;
+  bottom: 92px; right: 28px;
+  width: 360px;
+  max-height: 520px;
+  background: var(--sf-card);
+  border: 1px solid var(--sf-border);
+  border-radius: 20px;
+  box-shadow: 0 8px 40px rgba(0,0,0,0.2);
+  display: none;
+  flex-direction: column;
+  overflow: hidden;
+  z-index: 9998;
+  font-family: 'DM Sans', sans-serif;
+}
+.ve-window.open { display: flex; }
+
+.ve-header {
+  background: linear-gradient(135deg, var(--sf-navy), #0a2a5e);
+  padding: 16px 18px;
+  display: flex; align-items: center; gap: 12px;
+}
+.ve-avatar {
+  width: 38px; height: 38px;
+  background: var(--sf-blue);
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'Sora', sans-serif;
+  font-weight: 800; font-size: 0.85rem;
+  color: white; flex-shrink: 0;
+}
+.ve-header-info { flex: 1; }
+.ve-header-name {
+  font-family: 'Sora', sans-serif;
+  font-size: 0.88rem; font-weight: 700;
+  color: white; margin-bottom: 2px;
+}
+.ve-header-status {
+  font-size: 0.72rem; color: rgba(255,255,255,0.5);
+  display: flex; align-items: center; gap: 5px;
+}
+.ve-status-dot {
+  width: 6px; height: 6px;
+  background: #4CAF50; border-radius: 50%;
+}
+
+.ve-messages {
+  flex: 1; overflow-y: auto;
+  padding: 16px;
+  display: flex; flex-direction: column; gap: 10px;
+  scroll-behavior: smooth;
+}
+.ve-messages::-webkit-scrollbar { width: 4px; }
+.ve-messages::-webkit-scrollbar-track { background: transparent; }
+.ve-messages::-webkit-scrollbar-thumb { background: var(--sf-border); border-radius: 4px; }
+
+.ve-msg {
+  max-width: 82%;
+  padding: 10px 14px;
+  border-radius: 14px;
+  font-size: 0.88rem;
+  line-height: 1.55;
+  animation: ve-fadein 0.2s ease;
+}
+@keyframes ve-fadein { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: translateY(0); } }
+
+.ve-msg.bot {
+  background: var(--sf-tag-bg);
+  color: var(--sf-text);
+  border-bottom-left-radius: 4px;
+  align-self: flex-start;
+}
+.ve-msg.user {
+  background: var(--sf-blue);
+  color: white;
+  border-bottom-right-radius: 4px;
+  align-self: flex-end;
+}
+.ve-typing {
+  display: flex; align-items: center; gap: 4px;
+  padding: 12px 14px;
+  background: var(--sf-tag-bg);
+  border-radius: 14px; border-bottom-left-radius: 4px;
+  align-self: flex-start;
+  animation: ve-fadein 0.2s ease;
+}
+.ve-typing span {
+  width: 6px; height: 6px;
+  background: var(--sf-subtext);
+  border-radius: 50%;
+  animation: ve-bounce 1.2s infinite;
+}
+.ve-typing span:nth-child(2) { animation-delay: 0.2s; }
+.ve-typing span:nth-child(3) { animation-delay: 0.4s; }
+@keyframes ve-bounce {
+  0%, 60%, 100% { transform: translateY(0); }
+  30% { transform: translateY(-5px); }
+}
+
+.ve-input-area {
+  padding: 12px 14px;
+  border-top: 1px solid var(--sf-border);
+  display: flex; gap: 8px; align-items: center;
+  background: var(--sf-card);
+}
+.ve-input {
+  flex: 1;
+  background: var(--sf-tag-bg);
+  border: 1.5px solid var(--sf-border);
+  border-radius: 10px;
+  padding: 9px 13px;
+  color: var(--sf-text);
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.88rem;
+  outline: none;
+  transition: border 0.2s;
+  resize: none;
+}
+.ve-input:focus { border-color: var(--sf-blue); }
+.ve-send {
+  width: 36px; height: 36px;
+  background: var(--sf-blue);
+  border: none; border-radius: 10px;
+  cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  transition: background 0.2s, transform 0.1s;
+  flex-shrink: 0;
+}
+.ve-send:hover { background: var(--sf-electric); transform: scale(1.05); }
+.ve-send svg { width: 16px; height: 16px; fill: white; }
+
+.ve-footer {
+  padding: 6px 14px 10px;
+  text-align: center;
+  font-size: 0.68rem;
+  color: var(--sf-subtext);
+  opacity: 0.6;
+}
+
+@media (max-width: 480px) {
+  .ve-window { width: calc(100vw - 32px); right: 16px; bottom: 80px; }
+  .ve-bubble { bottom: 16px; right: 16px; }
+}
+</style>
+
+<!-- Bot HTML -->
+<div class="ve-bubble" id="veBubble" onclick="veToggle()">
+  <svg class="ve-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm0 14H6l-2 2V4h16v12z"/>
+  </svg>
+  <span class="ve-close">✕</span>
+</div>
+
+<div class="ve-window" id="veWindow">
+  <div class="ve-header">
+    <div class="ve-avatar">VE</div>
+    <div class="ve-header-info">
+      <div class="ve-header-name">Virtual Executive</div>
+      <div class="ve-header-status"><span class="ve-status-dot"></span> Rishabh's assistant · Always on</div>
+    </div>
+  </div>
+  <div class="ve-messages" id="veMessages"></div>
+  <div class="ve-input-area">
+    <input class="ve-input" id="veInput" type="text" placeholder="Ask me anything..." maxlength="300" onkeydown="if(event.key==='Enter')veSend()">
+    <button class="ve-send" onclick="veSend()">
+      <svg viewBox="0 0 24 24"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/></svg>
+    </button>
+  </div>
+  <div class="ve-footer">Powered by Rishabh Saxena · rishabhsaxena.co.in</div>
+</div>
+
+<script>
+(function() {
+
+// ── RESPONSE LIBRARY ──────────────────────────────────────────────
+const R = {
+  greeting: [
+    "Hey there! I'm the Virtual Executive — Rishabh's digital assistant. Whether you're here to learn about his work, explore the blog, or just say hello — I've got you. What's on your mind?",
+    "Hello! Good to have you here. I'm the Virtual Executive, and I know quite a bit about Rishabh and his work. What would you like to know?",
+    "Hi! I'm VE — Virtual Executive. Think of me as Rishabh's always-on assistant. Ask me anything."
+  ],
+  who: [
+    "Rishabh Saxena is a Salesforce Consultant with over 9 years in the ecosystem — 5x certified, and currently part of Salesforce's own Professional Services team in India. Before that, he's done presales and consulting at LTIMindtree, Brillio, and TCS. He's also an MBA from Great Lakes, a motorsport enthusiast, and a watch collector. Quite a range, I know.",
+    "Rishabh is a Salesforce Consultant — part of the India PS GTM team. He owns end-to-end presales for Data Cloud, Marketing Cloud, and RCG Cloud. 9+ years in the Salesforce ecosystem world, 5 certifications, and a genuine belief that most implementations fail not because of bad tech, but because the original problem gets lost. That's the gap he works in."
+  ],
+  salesforce: [
+    "Rishabh has been in the Salesforce ecosystem for over 9 years — across development, presales, consulting, and now engagement management. He's worked across Sales Cloud, Service Cloud, Data Cloud, Marketing Cloud, RCG Cloud, Experience Cloud, and CMS. Currently at Salesforce itself, managing the PS India GTM for Data Cloud, Marketing Cloud, and RCG Cloud.",
+    "Salesforce is Rishabh's core domain. He's 5x certified — Data Cloud Consultant, AI Associate, Sales Cloud Consultant, Administrator, and Platform Developer I. He's been a developer, a presales consultant, and now a Salesforce Consultant. He understands the full lifecycle — from discovery to delivery.",
+    "If you're looking for Salesforce expertise — Rishabh's been living and breathing it since 2016. He's particularly strong in presales, discovery, and making sure the right problem gets solved before a single line of config is written."
+  ],
+  datacloud: [
+    "Data Cloud is one of Rishabh's current focus areas at Salesforce PS India. He's owned the Data Cloud deal pipeline and has a Data Cloud Consultant certification. If you have specific questions about Data Cloud engagements or implementations, he'd be the right person to talk to.",
+  ],
+  marketingcloud: [
+    "Marketing Cloud is another key area Rishabh covers in his current role at Salesforce PS India. He's managed the Marketing Cloud deal pipeline end-to-end — from discovery and proposals to SOW structuring.",
+  ],
+  presales: [
+    "Presales is where Rishabh has spent a significant part of his career — at TCS, Brillio, LTIMindtree, and now Salesforce. He's run RFP/RFI responses, built proposals, written SOWs, created staffing models, and supported oral defenses. He's also built reusable content repositories to scale presales efficiency.",
+    "Rishabh's presales experience spans the full cycle — qualifying opportunities, running discovery, crafting solution narratives, building commercial structures, and closing. He's done this across EMEA and APAC for some of the largest Salesforce partners in India."
+  ],
+  certs: [
+    "Rishabh holds 5 Salesforce certifications: Data Cloud Consultant (2024), AI Associate (2024), Sales Cloud Consultant (2020), Administrator (2020), and Platform Developer I (2016). He also holds SAFe Agilist and a Microsoft Partner Sales Bootcamp certification.",
+    "Five Salesforce certifications — Data Cloud Consultant, AI Associate, Sales Cloud Consultant, Administrator, and Platform Developer I. Plus SAFe Agilist for good measure. He's been collecting them since 2016."
+  ],
+  experience: [
+    "Rishabh's career spans Salesforce PS (current), LTIMindtree, Brillio Technologies, and TCS — with an MBA sabbatical from Great Lakes Institute of Management in between. That's 9+ years across development, presales, consulting, and engagement management.",
+    "The journey: TCS (2016–2021) as a Salesforce Developer turned Presales Consultant, with an MBA break in 2018–19. Then Brillio (2021–2022), LTIMindtree (2022–2023), and now Salesforce Professional Services since July 2023."
+  ],
+  tcs: [
+    "Rishabh started his career at TCS in 2016 as a Salesforce Developer — led a team of three, reduced daily incidents from 100+ to under 30, and then transitioned to Presales. He drove Salesforce business expansion in the EMEA region before leaving in 2021. He also took an MBA sabbatical during his TCS tenure."
+  ],
+  mba: [
+    "Rishabh did his MBA from Great Lakes Institute of Management, Chennai — a one-year intensive in Marketing and AI & Machine Learning. His thesis was on the effect of nostalgia on consumer buying behaviour. He took a sabbatical from TCS for this and returned as a Presales Consultant.",
+  ],
+  watchit: [
+    "WatchIt is Rishabh's horology blog — perspectives on watches, craft, and what it means to appreciate something built to last. It's not a review site. It's more about the stories behind what we wear on our wrists. First article coming soon.",
+    "If you're into watches, Hands on Wrist is worth bookmarking. It's Rishabh's take on horology — the craft, the history, the obsession. He's been collecting and following the watch world seriously. Head over to rishabhsaxena.co.in/hands-on-wrist.html."
+  ],
+  shiftit: [
+    "Hands on Wheels is the automobiles and motorsport section of Rishabh's blog. He's been a Track and Flag Marshal with the Indian Motorsport Marshals Club, attended the Formula 1 Indian Grand Prix in 2013 and Bharat MotoGP 2023, and has been following MRF and JK Tyre championships since 2013. Expect passionate writing.",
+    "Hands on Wheels covers cars, motorsport, and everything in between. Rishabh is deeply into this — not as a casual fan but as someone who's been on the circuit as a marshal. Check it out at rishabhsaxena.co.in/hands-on-wheels.html."
+  ],
+  blog: [
+    "The Thinking Lab is Rishabh's blog — three sections: Salesforce (implementations, presales, strategy), WatchIt (horology and watches), and ShiftIt (automobiles and motorsport). Content is coming — follow him on LinkedIn to stay updated.",
+    "Three blogs, one person. Salesforce at rishabhsaxena.co.in/salesforce.html, WatchIt at /hands-on-wrist.html, and ShiftIt at /hands-on-wheels.html. All part of the Thinking Lab."
+  ],
+  motorsport: [
+    "Rishabh has been involved in Indian motorsport since 2013 — attended the F1 Indian Grand Prix, the Bharat MotoGP 2023, and has been a continuous participant in MRF and JK Tyre National Racing Championships as a Track and Flag Marshal with the Indian Motorsport Marshals Club.",
+  ],
+  collaborate: [
+    "If you're thinking about working with Rishabh — whether it's a Salesforce engagement, a presales challenge, or a consulting conversation — the best way to start is by dropping a note via the contact form on this page, or connecting on LinkedIn at linkedin.com/in/rishabh0201.",
+    "Rishabh is open to the right conversations — Salesforce implementations, presales strategy, or just a good professional discussion. Use the contact form below or reach out on LinkedIn."
+  ],
+  contact: [
+    "You can reach Rishabh on LinkedIn at linkedin.com/in/rishabh0201, or drop a note using the contact form at the bottom of this page — just fill in your email and he'll get back to you directly.",
+    "Best way to get in touch — LinkedIn at linkedin.com/in/rishabh0201, or the contact form at the bottom of this page. Leave your email and he'll come back to you."
+  ],
+  compliment: [
+    "That's kind of you to say — I'll pass it along to Rishabh. He'd appreciate hearing that.",
+    "Glad you think so! If you'd like to connect with Rishabh directly, the contact form at the bottom works well.",
+    "Thank you — Rishabh has put a lot of thought into this. If something resonated, he'd love to hear about it."
+  ],
+  linkedin: [
+    "Rishabh is active on LinkedIn at linkedin.com/in/rishabh0201. Best place to follow his professional updates, articles, and to connect directly."
+  ],
+  apps: [
+    "Rishabh is currently working on a few tools under the 'In the Making' section of his site — simple apps built around everyday problems, the kind that make you wonder why they don't already exist. Nothing to announce just yet, but worth watching. You can follow him on LinkedIn at linkedin.com/in/rishabh0201 for updates.",
+    "The 'In the Making' section on this site hints at what's coming — a few tools Rishabh is quietly building. He's not ready to announce specifics yet, but if you have a problem you'd like solved, the contact form below is a good place to share it. It might just influence what he builds next."
+  ],
+  job: [
+    "Rishabh is always open to interesting conversations — but the best way to explore if there's a fit is to share a bit more about the role and what you're looking to solve. Drop the details via the contact form below and he'll reach out if the timing feels right.",
+    "Rishabh isn't actively looking, but the right opportunity has a way of making itself known. If you think there's something worth discussing, share the role details and what makes it interesting — he'll take a look and connect if it resonates.",
+    "Rishabh believes in having the right conversations at the right time. If you have something specific in mind, share the details via the contact form below — company, role, what you're solving for. He'll be in touch if the stars align."
+  ],
+  contentidea: [
+    "That's actually really helpful to know — Rishabh is always thinking about what to write or build next. Could you share a bit more? Is this about a Salesforce challenge, a watch you're curious about, a car or motorsport topic, or something else entirely? Drop it in the contact form below and he'll factor it into what he builds next.",
+    "Ideas from real people are worth more than anything Rishabh could come up with in isolation. If you've got a specific topic, problem, or question you'd love to see covered — share it via the contact form. It might just become his next article or app.",
+    "Noted — and genuinely appreciated. The best content comes from real problems. Share the specifics via the contact form below and Rishabh will keep it in mind for future articles, tools, or apps."
+  ],
+  fallback: [
+    "That's a bit outside my coverage — but I don't want to leave you hanging. ||FORM||",
+    "Hmm, I didn't quite catch that. I cover Rishabh's work, Salesforce, the blog, watches, motorsport, and how to connect. Drop it here and he'll get back to you: ||FORM||",
+    "I want to be helpful, but I'm not sure I have the right answer for this one. Share it directly here and he'll get back to you: ||FORM||"
+  ],
+  returning: [
+    "Welcome back! Good to see you again. What would you like to know this time?",
+    "You're back! Happy to help again. What's on your mind?"
+  ]
+};
+
+// ── KEYWORD MAP ────────────────────────────────────────────────────
+const K = [
+  { keys: ['hi','hello','hey','howdy','sup','good morning','good evening','good afternoon','greetings','hiya','yo'], res: 'greeting' },
+  { keys: ['who is','who are','about rishabh','introduce','tell me about','about you','what do you do','background','yourself'], res: 'who' },
+  { keys: ['salesforce','crm','cloud','sfdc','sf ','lightning','apex','visualforce','flow','lwc'], res: 'salesforce' },
+  { keys: ['data cloud','cdp','customer data'], res: 'datacloud' },
+  { keys: ['marketing cloud','mc ','pardot','email studio','journey builder'], res: 'marketingcloud' },
+  { keys: ['presales','pre-sales','rfp','rfi','proposal','sow','pitch','demo','poc','estimate','staffing'], res: 'presales' },
+  { keys: ['certif','certified','credential','badge','exam','qualification'], res: 'certs' },
+  { keys: ['experience','career','worked','journey','years','professional'], res: 'experience' },
+  { keys: ['tcs','tata','consultancy','ltimindtree','lti','brillio'], res: 'tcs' },
+  { keys: ['mba','great lakes','masters','education','university','degree','college'], res: 'mba' },
+  { keys: ['hands on wrist','watch','horology','timepiece','wristwatch','rolex','omega','seiko','horolog'], res: 'watchit' },
+  { keys: ['hands on wheels','car','automobile','motorsport','racing','f1','formula','motogp','moto gp','circuit','marshal','track','jk tyre','mrf'], res: 'shiftit' },
+  { keys: ['blog','article','post','write','thinking lab','read','content','publish'], res: 'blog' },
+  { keys: ['hire','collaborate','work together','engage','consulting','freelance','opportunity','project','partnership'], res: 'collaborate' },
+  { keys: ['contact','reach','email','connect','message','talk','meet','call','get in touch','linkedin'], res: 'contact' },
+  { keys: ['linkedin'], res: 'linkedin' },
+  { keys: ['app','apps','tool','tools','build','building','in the making','product','side project'], res: 'apps' },
+  { keys: ['open to work','looking for job','job opportunity','hiring','recruit','position','role','opening','new role','career opportunity','job change','switch job','switching','exploring opportunities'], res: 'job' },
+  { keys: ['write about','cover topic','content idea','suggest topic','what should','next article','next app','build something','problem i face','challenge i have','would love to read','idea for','struggling with','pain point'], res: 'contentidea' },
+  { keys: ['great','impressive','amazing','love','nice','good work','well done','awesome','brilliant','excellent','interesting','cool'], res: 'compliment' },
+];
+
+// ── STATE ──────────────────────────────────────────────────────────
+let veOpen = false;
+let veStarted = false;
+let rIdx = {};
+
+function getRand(key) {
+  const arr = R[key];
+  if (!rIdx[key]) rIdx[key] = 0;
+  const r = arr[rIdx[key] % arr.length];
+  rIdx[key]++;
+  return r;
+}
+
+function match(text) {
+  const t = text.toLowerCase();
+  let best = null, bestScore = 0;
+  for (const entry of K) {
+    for (const kw of entry.keys) {
+      // Use word boundary matching - keyword must appear as whole word
+      const re = new RegExp('(^|[\\s,?.!\'\"-])' + kw.replace(/[.*+?^${}()|[\]\\]/g, '\\$&') + '($|[\\s,?.!\'\"-])', 'i');
+      if (re.test(t) || (kw.length > 4 && t.includes(kw))) {
+        if (kw.length > bestScore) {
+          bestScore = kw.length;
+          best = entry.res;
+        }
+      }
+    }
+  }
+  return best || 'fallback';
+}
+
+// ── UI ──────────────────────────────────────────────────────────────
+function veToggle() {
+  veOpen = !veOpen;
+  document.getElementById('veBubble').classList.toggle('open', veOpen);
+  document.getElementById('veWindow').classList.toggle('open', veOpen);
+  if (veOpen && !veStarted) {
+    veStarted = true;
+    const returning = localStorage.getItem('ve_visited');
+    localStorage.setItem('ve_visited', '1');
+    setTimeout(() => {
+      addMsg(returning ? getRand('returning') : getRand('greeting'), 'bot');
+    }, 400);
+  }
+  if (veOpen) document.getElementById('veInput').focus();
+}
+
+function addMsg(text, who) {
+  const el = document.createElement('div');
+  el.className = 've-msg ' + who;
+  el.textContent = text;
+  document.getElementById('veMessages').appendChild(el);
+  scrollBot();
+}
+
+function showTyping() {
+  const el = document.createElement('div');
+  el.className = 've-typing';
+  el.id = 'veTyping';
+  el.innerHTML = '<span></span><span></span><span></span>';
+  document.getElementById('veMessages').appendChild(el);
+  scrollBot();
+  return el;
+}
+
+function scrollBot() {
+  const m = document.getElementById('veMessages');
+  m.scrollTop = m.scrollHeight;
+}
+
+let fallbackCount = 0;
+
+function typeMsg(text, who) {
+  var hasForm = text.indexOf('||FORM||') !== -1;
+  var cleanText = text.replace('||FORM||', '').trim();
+  var el = document.createElement('div');
+  el.className = 've-msg ' + who;
+  el.textContent = '';
+  document.getElementById('veMessages').appendChild(el);
+  scrollBot();
+  var i = 0;
+  var speed = 18;
+  function tick() {
+    if (i < cleanText.length) {
+      el.textContent += cleanText[i++];
+      scrollBot();
+      setTimeout(tick, speed);
+    } else if (hasForm) {
+      var formDiv = document.createElement('div');
+      formDiv.innerHTML = '<div style="margin-top:10px;"><div style="font-size:0.82rem;margin-bottom:8px;color:var(--sf-text);font-weight:600;">Drop your details and Rishabh will get back to you:</div><input id="vfName2" placeholder="Your name" style="width:100%;margin-bottom:6px;padding:7px 10px;border-radius:7px;border:1.5px solid var(--sf-border);background:var(--sf-tag-bg);color:var(--sf-text);font-size:0.82rem;outline:none;font-family:DM Sans,sans-serif;"><input id="vfEmail2" type="email" placeholder="your@email.com" style="width:100%;margin-bottom:6px;padding:7px 10px;border-radius:7px;border:1.5px solid var(--sf-border);background:var(--sf-tag-bg);color:var(--sf-text);font-size:0.82rem;outline:none;font-family:DM Sans,sans-serif;"><input id="vfMsg2" placeholder="Your question or message" style="width:100%;margin-bottom:7px;padding:7px 10px;border-radius:7px;border:1.5px solid var(--sf-border);background:var(--sf-tag-bg);color:var(--sf-text);font-size:0.82rem;outline:none;font-family:DM Sans,sans-serif;"><button onclick="submitInlineForm()" style="background:var(--sf-blue);color:white;border:none;padding:7px 16px;border-radius:7px;font-family:Sora,sans-serif;font-weight:700;font-size:0.8rem;cursor:pointer;width:100%;">Send to Rishabh →</button></div>';
+      el.appendChild(formDiv);
+      scrollBot();
+    }
+  }
+  tick();
+}
+
+function showMiniForm() {
+  const existing = document.getElementById('veMiniForm');
+  if (existing) return;
+  const el = document.createElement('div');
+  el.id = 'veMiniForm';
+  el.className = 've-msg bot';
+  el.style.maxWidth = '100%';
+  el.innerHTML = '<div style="font-size:0.82rem;margin-bottom:10px;color:var(--sf-text);">Leave your details and Rishabh will get back to you directly:</div>' +
+    '<input id="vfName" placeholder="Your name" style="width:100%;margin-bottom:7px;padding:7px 10px;border-radius:7px;border:1.5px solid var(--sf-border);background:var(--sf-tag-bg);color:var(--sf-text);font-size:0.82rem;outline:none;font-family:DM Sans,sans-serif;">' +
+    '<input id="vfMsg" placeholder="Your question or message" style="width:100%;margin-bottom:7px;padding:7px 10px;border-radius:7px;border:1.5px solid var(--sf-border);background:var(--sf-tag-bg);color:var(--sf-text);font-size:0.82rem;outline:none;font-family:DM Sans,sans-serif;">' +
+    '<button onclick="submitMiniForm()" style="background:var(--sf-blue);color:white;border:none;padding:7px 16px;border-radius:7px;font-family:Sora,sans-serif;font-weight:700;font-size:0.8rem;cursor:pointer;width:100%;">Send to Rishabh →</button>';
+  document.getElementById('veMessages').appendChild(el);
+  scrollBot();
+}
+
+function submitMiniForm() {
+  const name = document.getElementById('vfName').value.trim();
+  const msg = document.getElementById('vfMsg').value.trim();
+  if (!name || !msg) { return; }
+  const payload = { name, message: msg, source: 'Virtual Executive Bot', company: '', designation: '', linkedin: '' };
+  fetch('https://script.google.com/macros/s/AKfycbwNtyPDWl2dRPmwKRNRx0tMKQoTx5d-vHt4hRVBNMUWwN7jLrjh-xyH7fxuO8T6aP4/exec', {
+    method: 'POST', mode: 'no-cors',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(payload)
+  });
+  document.getElementById('veMiniForm').innerHTML = '<div style="text-align:center;padding:8px 0;">✅ Sent! Rishabh will be in touch.</div>';
+  fallbackCount = 0;
+}
+
+function veSend() {
+  const input = document.getElementById('veInput');
+  const text = input.value.trim();
+  if (!text) return;
+  input.value = '';
+  addMsg(text, 'user');
+  const typing = showTyping();
+  const key = match(text);
+  if (key === 'fallback') fallbackCount++;
+  // Thinking delay: 600-900ms feels natural
+  const delay = 600 + Math.random() * 300;
+  setTimeout(() => {
+    typing.remove();
+    typeMsg(getRand(key), 'bot');
+    if (fallbackCount >= 2) {
+      setTimeout(showMiniForm, 800);
+      fallbackCount = 0;
+    }
+  }, delay);
+}
+
+window.veToggle = veToggle;
+window.veSend = veSend;
+window.submitMiniForm = submitMiniForm;
+
+function submitInlineForm() {
+  var n = document.getElementById('vfName2');
+  var e = document.getElementById('vfEmail2');
+  var m = document.getElementById('vfMsg2');
+  if (!n || !m || !n.value.trim() || !m.value.trim()) return;
+  fetch('https://script.google.com/macros/s/AKfycbwNtyPDWl2dRPmwKRNRx0tMKQoTx5d-vHt4hRVBNMUWwN7jLrjh-xyH7fxuO8T6aP4/exec', {
+    method: 'POST', mode: 'no-cors',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ name: n.value.trim(), linkedin: e ? e.value.trim() : '', message: m.value.trim(), source: 'VE Fallback Inline', company: '', designation: '' })
+  });
+  var btn = document.querySelector('[onclick="submitInlineForm()"]');
+  if (btn) btn.closest('div').innerHTML = '<div style="text-align:center;padding:6px 0;">✅ Sent! Rishabh will be in touch.</div>';
+}
+window.submitInlineForm = submitInlineForm;
+
+
+})();
+</script>
+</body>
+</html>
