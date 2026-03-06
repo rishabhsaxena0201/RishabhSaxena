@@ -89,35 +89,34 @@ nav {
 .nav-links a {
   text-decoration: none; color: var(--sf-text);
   font-size: 0.88rem; font-weight: 400;
+  text-transform: none !important;
+  letter-spacing: normal !important;
   transition: color 0.2s;
 }
 .nav-links a:hover { color: var(--sf-blue); }
-.nav-item { position: relative; }
+.nav-item { position: relative; padding-bottom: 16px; margin-bottom: -16px; }
 .nav-item .has-dropdown {
   cursor: pointer; display: flex; align-items: center; gap: 4px;
-  font-size: 0.88rem;
+  font-size: 0.88rem; color: var(--sf-text);
 }
 .nav-item .has-dropdown::after {
   content: '▾'; font-size: 0.7rem; opacity: 0.5;
 }
 .dropdown {
-  display: none; position: absolute; top: calc(100% + 16px); left: -16px;
+  display: none; position: absolute; top: 100%; left: -16px;
   background: var(--sf-card); border: 1px solid var(--sf-border);
-  border-radius: 12px; padding: 8px 0; min-width: 200px;
-  box-shadow: 0 8px 30px rgba(0,0,0,0.12); z-index: 100;
+  border-radius: 12px; padding: 8px 0; min-width: 210px;
+  box-shadow: 0 8px 30px rgba(0,0,0,0.12); z-index: 2000;
 }
 .dropdown a {
-  display: block; padding: 9px 20px;
+  display: flex !important; align-items: center; padding: 9px 20px;
   font-size: 0.88rem; color: var(--sf-text);
   text-decoration: none; transition: background 0.15s;
 }
 .dropdown a:hover { background: var(--sf-tag-bg); }
-.dropdown-divider { height: 1px; background: var(--sf-border); margin: 6px 0; }
 .nav-item:hover .dropdown,
 .nav-item .dropdown.open { display: block; }
-.nav-bridge {
-  position: absolute; top: 100%; left: 0; right: 0; height: 16px;
-}
+
 .theme-toggle {
   background: var(--sf-tag-bg); border: 1px solid var(--sf-border);
   color: var(--sf-text); padding: 6px 14px; border-radius: 20px;
@@ -458,43 +457,43 @@ footer {
 <!-- NAV -->
 <nav>
   <div class="nav-logo">
-    <a href="/"><img src="logo.png" alt="RS Logo"></a>
+    <a href="/"><img src="/logo.png" alt="RS Logo"></a>
   </div>
   <div class="nav-links" id="navLinks">
     <a href="/about.html">About</a>
     <div class="nav-item" id="navThinkingLab">
       <a class="has-dropdown" onclick="toggleMobileDropdown(this)">Thinking Lab</a>
       <div class="dropdown" id="thinkingLabDropdown">
-        <div class="nav-bridge"></div>
         <div style="font-size:0.68rem;font-family:'Sora',sans-serif;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:var(--sf-blue);padding:8px 20px 4px;cursor:default;">Blog</div>
-        <a href="/salesforce.html">☁️ Salesforce</a>
-        <a href="/hands-on-wrist.html"><svg id="watch-index_card" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 80" width="36" height="45" style="display:block;"><rect x="23" y="2" width="18" height="13" rx="3" fill="var(--sf-subtext)" opacity="0.6"/><rect x="23" y="65" width="18" height="13" rx="3" fill="var(--sf-subtext)" opacity="0.6"/><circle cx="32" cy="40" r="21" fill="var(--sf-subtext)" opacity="0.35"/><circle cx="32" cy="40" r="18" fill="var(--watch-dial,#0A1F44)"/><line x1="32" y1="24" x2="32" y2="27" stroke="var(--watch-hand)" stroke-width="1.5" stroke-linecap="round"/><line x1="32" y1="53" x2="32" y2="56" stroke="var(--watch-hand)" stroke-width="1.5" stroke-linecap="round"/><line x1="15" y1="40" x2="18" y2="40" stroke="var(--watch-hand)" stroke-width="1.5" stroke-linecap="round"/><line x1="46" y1="40" x2="49" y2="40" stroke="var(--watch-hand)" stroke-width="1.5" stroke-linecap="round"/><line x1="43" y1="26" x2="41.5" y2="28.5" stroke="var(--watch-hand)" stroke-width="1" stroke-linecap="round" opacity="0.5"/><line x1="21" y1="26" x2="22.5" y2="28.5" stroke="var(--watch-hand)" stroke-width="1" stroke-linecap="round" opacity="0.5"/><line x1="43" y1="54" x2="41.5" y2="51.5" stroke="var(--watch-hand)" stroke-width="1" stroke-linecap="round" opacity="0.5"/><line x1="21" y1="54" x2="22.5" y2="51.5" stroke="var(--watch-hand)" stroke-width="1" stroke-linecap="round" opacity="0.5"/><g id="watch-index_card-hour"><line x1="32" y1="40" x2="32" y2="31" stroke="var(--watch-hand)" stroke-width="2.5" stroke-linecap="round"/></g><g id="watch-index_card-min"><line x1="32" y1="40" x2="32" y2="25" stroke="var(--watch-hand)" stroke-width="2" stroke-linecap="round"/></g><g id="watch-index_card-sec"><line x1="32" y1="40" x2="32" y2="23" stroke="#E74C3C" stroke-width="1" stroke-linecap="round"/></g><circle cx="32" cy="40" r="2" fill="var(--sf-blue,#1B96FF)"/><rect x="51" y="37" width="5" height="6" rx="2" fill="var(--sf-subtext)" opacity="0.8"/></svg>Hands on Wrist</a>
-        <a href="/hands-on-wheels.html">🚗 Hands on Wheels</a>
-        <a href="/open-tabs.html"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="40" height="40" style="display:block;">
-  <rect x="8" y="10" width="38" height="48" rx="3" fill="var(--sf-card,#0F2847)" stroke="var(--sf-subtext)" stroke-width="2.5"/>
-  <rect x="5" y="16" width="6" height="4" rx="2" fill="none" stroke="var(--sf-subtext)" stroke-width="1.8"/>
-  <rect x="5" y="26" width="6" height="4" rx="2" fill="none" stroke="var(--sf-subtext)" stroke-width="1.8"/>
-  <rect x="5" y="36" width="6" height="4" rx="2" fill="none" stroke="var(--sf-subtext)" stroke-width="1.8"/>
-  <rect x="5" y="46" width="6" height="4" rx="2" fill="none" stroke="var(--sf-subtext)" stroke-width="1.8"/>
-  <line x1="16" y1="22" x2="40" y2="22" stroke="var(--sf-subtext)" stroke-width="1.2" stroke-linecap="round" opacity="0.5"/>
-  <line x1="16" y1="30" x2="40" y2="30" stroke="var(--sf-subtext)" stroke-width="1.2" stroke-linecap="round" opacity="0.5"/>
-  <line x1="16" y1="38" x2="34" y2="38" stroke="var(--sf-subtext)" stroke-width="1.2" stroke-linecap="round" opacity="0.5"/>
-  <rect x="34" y="36" width="6" height="22" rx="2" fill="var(--sf-blue,#1B96FF)" transform="rotate(-35 37 47)"/>
-  <rect x="36" y="36" width="1.5" height="14" rx="0.5" fill="var(--sf-subtext)" opacity="0.7" transform="rotate(-35 37 47)"/>
-  <polygon points="0,0 4,0 2,6" fill="var(--sf-subtext)" transform="translate(43,54) rotate(-35)"/>
-  <rect x="33" y="34" width="6" height="3" rx="1.5" fill="var(--sf-subtext)" opacity="0.6" transform="rotate(-35 36 36)"/>
-</svg> Open Tabs</a>
-        <div class="dropdown-divider"></div>
-        <a href="#" onclick="showModal(event)">🔬 In the Making</a>
+        <a href="/salesforce.html" style="display:flex;align-items:center;">☁️&nbsp; Salesforce</a>
+        <a href="/hands-on-wrist.html" style="display:flex;align-items:center;"><svg id="watch-navindex" viewBox="0 0 44 56" width="18" height="22" xmlns="http://www.w3.org/2000/svg" style="display:inline-block;vertical-align:middle;margin-right:8px;flex-shrink:0;">
+  <rect x="13" y="0" width="18" height="10" rx="3" fill="var(--sf-subtext)" opacity="0.7"/>
+  <rect x="13" y="46" width="18" height="10" rx="3" fill="var(--sf-subtext)" opacity="0.7"/>
+  <circle cx="22" cy="28" r="18" fill="var(--sf-subtext)" opacity="0.4"/>
+  <circle cx="22" cy="28" r="15" fill="var(--watch-dial,#E8EEF4)"/>
+  <line x1="22" y1="14" x2="22" y2="17" stroke="var(--sf-subtext)" stroke-width="1.5" stroke-linecap="round"/>
+  <line x1="22" y1="39" x2="22" y2="42" stroke="var(--sf-subtext)" stroke-width="1.5" stroke-linecap="round"/>
+  <line x1="8"  y1="28" x2="11" y2="28" stroke="var(--sf-subtext)" stroke-width="1.5" stroke-linecap="round"/>
+  <line x1="33" y1="28" x2="36" y2="28" stroke="var(--sf-subtext)" stroke-width="1.5" stroke-linecap="round"/>
+  <g id="watch-navindex-hour"><line x1="22" y1="28" x2="22" y2="20" stroke="var(--sf-text,#1A3A5C)" stroke-width="2" stroke-linecap="round"/></g>
+  <g id="watch-navindex-min"><line x1="22" y1="28" x2="22" y2="16" stroke="var(--sf-text,#1A3A5C)" stroke-width="1.5" stroke-linecap="round"/></g>
+  <circle cx="22" cy="28" r="1.5" fill="var(--sf-blue,#1B96FF)"/>
+  <rect x="38" y="25.5" width="4" height="5" rx="1.5" fill="var(--sf-subtext)" opacity="0.8"/>
+</svg> Hands on Wrist</a>
+        <a href="/hands-on-wheels.html" style="display:flex;align-items:center;"><svg viewBox="10 10 80 80" width="18" height="18" xmlns="http://www.w3.org/2000/svg" style="display:inline-block;vertical-align:middle;margin-right:8px;flex-shrink:0;"><circle cx="50" cy="50" r="38" fill="none" stroke="var(--sf-subtext)" stroke-width="7"/><line x1="50" y1="50" x2="17" y2="31" stroke="var(--sf-subtext)" stroke-width="5" stroke-linecap="round"/><line x1="50" y1="50" x2="83" y2="31" stroke="var(--sf-subtext)" stroke-width="5" stroke-linecap="round"/><line x1="50" y1="50" x2="50" y2="88" stroke="var(--sf-subtext)" stroke-width="5" stroke-linecap="round"/><circle cx="50" cy="50" r="9" fill="var(--sf-card,#fff)" stroke="var(--sf-subtext)" stroke-width="2.5"/><circle cx="50" cy="50" r="5.5" fill="#C0392B"/><circle cx="50" cy="50" r="3.5" fill="#E74C3C"/><path d="M10 38 Q7 30 12 24 Q17 19 23 23 Q26 26 24 32 Q22 37 17 39 Q13 40 10 38Z" fill="var(--sf-subtext)" opacity="0.85"/><path d="M90 38 Q93 30 88 24 Q83 19 77 23 Q74 26 76 32 Q78 37 83 39 Q87 40 90 38Z" fill="var(--sf-subtext)" opacity="0.85"/></svg> Hands on Wheels</a>
+        <a href="/open-tabs.html" style="display:flex;align-items:center;"><svg viewBox="7 9 47 54" width="18" height="18" xmlns="http://www.w3.org/2000/svg" style="display:inline-block;vertical-align:middle;margin-right:8px;flex-shrink:0;"><rect x="8" y="10" width="38" height="48" rx="3" fill="var(--sf-tag-bg,#E8EEF4)" stroke="var(--sf-subtext)" stroke-width="2.5"/><rect x="5" y="16" width="6" height="4" rx="2" fill="none" stroke="var(--sf-subtext)" stroke-width="1.8"/><rect x="5" y="26" width="6" height="4" rx="2" fill="none" stroke="var(--sf-subtext)" stroke-width="1.8"/><rect x="5" y="36" width="6" height="4" rx="2" fill="none" stroke="var(--sf-subtext)" stroke-width="1.8"/><line x1="16" y1="22" x2="40" y2="22" stroke="var(--sf-subtext)" stroke-width="1.2" stroke-linecap="round" opacity="0.5"/><line x1="16" y1="30" x2="40" y2="30" stroke="var(--sf-subtext)" stroke-width="1.2" stroke-linecap="round" opacity="0.5"/><line x1="16" y1="38" x2="34" y2="38" stroke="var(--sf-subtext)" stroke-width="1.2" stroke-linecap="round" opacity="0.5"/><rect x="30" y="38" width="5" height="18" rx="2" fill="var(--sf-blue,#1B96FF)" transform="rotate(-35 32 46)"/><polygon points="0,0 4,0 2,5" fill="var(--sf-subtext)" transform="translate(37,51) rotate(-35)"/></svg> Open Tabs</a>
+        <div style="height:1px;background:var(--sf-border);margin:6px 0;"></div>
+        <div style="font-size:0.68rem;font-family:'Sora',sans-serif;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:var(--sf-blue);padding:8px 20px 4px;cursor:default;">Projects</div>
+        <a href="#in-the-making" style="display:flex;align-items:center;">🛠️&nbsp; In the Making</a>
       </div>
     </div>
     <a href="#connect">Connect</a>
   </div>
   <div style="display:flex;align-items:center;gap:12px;">
     <button class="theme-toggle" onclick="toggleTheme()" id="themeBtn">🌙 Dark Mode</button>
-    <div class="hamburger" onclick="toggleMenu()" id="hamburger">
+    <button class="hamburger" id="hamburger" onclick="toggleMenu()" aria-label="Menu">
       <span></span><span></span><span></span>
-    </div>
+    </button>
   </div>
 </nav>
 
@@ -554,7 +553,25 @@ footer {
       </a>
 
       <a href="/hands-on-wrist.html" class="interest-card" style="--card-accent:#8B6914;">
-        <span class="interest-icon"><svg id="watch-index_lab" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 80" width="36" height="45" style="display:block;"><rect x="23" y="2" width="18" height="13" rx="3" fill="var(--sf-subtext)" opacity="0.6"/><rect x="23" y="65" width="18" height="13" rx="3" fill="var(--sf-subtext)" opacity="0.6"/><circle cx="32" cy="40" r="21" fill="var(--sf-subtext)" opacity="0.35"/><circle cx="32" cy="40" r="18" fill="var(--watch-dial,#0A1F44)"/><line x1="32" y1="24" x2="32" y2="27" stroke="var(--watch-hand)" stroke-width="1.5" stroke-linecap="round"/><line x1="32" y1="53" x2="32" y2="56" stroke="var(--watch-hand)" stroke-width="1.5" stroke-linecap="round"/><line x1="15" y1="40" x2="18" y2="40" stroke="var(--watch-hand)" stroke-width="1.5" stroke-linecap="round"/><line x1="46" y1="40" x2="49" y2="40" stroke="var(--watch-hand)" stroke-width="1.5" stroke-linecap="round"/><line x1="43" y1="26" x2="41.5" y2="28.5" stroke="var(--watch-hand)" stroke-width="1" stroke-linecap="round" opacity="0.5"/><line x1="21" y1="26" x2="22.5" y2="28.5" stroke="var(--watch-hand)" stroke-width="1" stroke-linecap="round" opacity="0.5"/><line x1="43" y1="54" x2="41.5" y2="51.5" stroke="var(--watch-hand)" stroke-width="1" stroke-linecap="round" opacity="0.5"/><line x1="21" y1="54" x2="22.5" y2="51.5" stroke="var(--watch-hand)" stroke-width="1" stroke-linecap="round" opacity="0.5"/><g id="watch-index_lab-hour"><line x1="32" y1="40" x2="32" y2="31" stroke="var(--watch-hand)" stroke-width="2.5" stroke-linecap="round"/></g><g id="watch-index_lab-min"><line x1="32" y1="40" x2="32" y2="25" stroke="var(--watch-hand)" stroke-width="2" stroke-linecap="round"/></g><g id="watch-index_lab-sec"><line x1="32" y1="40" x2="32" y2="23" stroke="#E74C3C" stroke-width="1" stroke-linecap="round"/></g><circle cx="32" cy="40" r="2" fill="var(--sf-blue,#1B96FF)"/><rect x="51" y="37" width="5" height="6" rx="2" fill="var(--sf-subtext)" opacity="0.8"/></svg></span>
+        <span class="interest-icon"><svg id="watch-index_lab" viewBox="0 0 44 56" width="36" height="45" xmlns="http://www.w3.org/2000/svg" style="display:block;">
+  <rect x="13" y="0" width="18" height="10" rx="3" fill="var(--sf-subtext)" opacity="0.7"/>
+  <rect x="13" y="46" width="18" height="10" rx="3" fill="var(--sf-subtext)" opacity="0.7"/>
+  <circle cx="22" cy="28" r="18" fill="var(--sf-subtext)" opacity="0.4"/>
+  <circle cx="22" cy="28" r="15" fill="var(--watch-dial,#E8EEF4)"/>
+  <line x1="22" y1="14" x2="22" y2="17" stroke="var(--sf-subtext)" stroke-width="1.5" stroke-linecap="round"/>
+  <line x1="22" y1="39" x2="22" y2="42" stroke="var(--sf-subtext)" stroke-width="1.5" stroke-linecap="round"/>
+  <line x1="8"  y1="28" x2="11" y2="28" stroke="var(--sf-subtext)" stroke-width="1.5" stroke-linecap="round"/>
+  <line x1="33" y1="28" x2="36" y2="28" stroke="var(--sf-subtext)" stroke-width="1.5" stroke-linecap="round"/>
+  <line x1="28" y1="14" x2="27" y2="17" stroke="var(--sf-subtext)" stroke-width="1" stroke-linecap="round" opacity="0.5"/>
+  <line x1="16" y1="14" x2="17" y2="17" stroke="var(--sf-subtext)" stroke-width="1" stroke-linecap="round" opacity="0.5"/>
+  <line x1="33" y1="22" x2="30.5" y2="23.5" stroke="var(--sf-subtext)" stroke-width="1" stroke-linecap="round" opacity="0.5"/>
+  <line x1="11" y1="22" x2="13.5" y2="23.5" stroke="var(--sf-subtext)" stroke-width="1" stroke-linecap="round" opacity="0.5"/>
+  <g id="watch-index_lab-hour"><line x1="22" y1="28" x2="22" y2="20" stroke="var(--sf-text,#1A3A5C)" stroke-width="2" stroke-linecap="round"/></g>
+  <g id="watch-index_lab-min"><line x1="22" y1="28" x2="22" y2="16" stroke="var(--sf-text,#1A3A5C)" stroke-width="1.5" stroke-linecap="round"/></g>
+  <g id="watch-index_lab-sec"><line x1="22" y1="28" x2="22" y2="15" stroke="#E74C3C" stroke-width="1" stroke-linecap="round"/></g>
+  <circle cx="22" cy="28" r="1.5" fill="var(--sf-blue,#1B96FF)"/>
+  <rect x="38" y="25.5" width="4" height="5" rx="1.5" fill="var(--sf-subtext)" opacity="0.8"/>
+</svg></span>
         <div class="interest-title">Hands on Wrist</div>
         <p class="interest-desc">Horology through the eyes of someone who appreciates craft. Not reviews — the stories, the movements, the obsession with things built to outlast everything around them.</p>
         <div class="interest-tag">Read the blog</div>
@@ -622,7 +639,7 @@ footer {
 
 
 <!-- IN THE MAKING -->
-<section style="background:var(--sf-card);padding:80px 5%;">
+<section id="in-the-making" style="background:var(--sf-card);padding:80px 5%;">
   <div style="max-width:1100px;margin:0 auto;">
     <div class="section-label">Side Projects</div>
     <h2 class="section-title">In the Making</h2>
@@ -747,16 +764,24 @@ function toggleMenu() {
   document.getElementById('navLinks').classList.toggle('open');
 }
 
-// Dropdown hover with delay
+// Dropdown — persistent hover on entire nav-item
 (function() {
-  const item = document.getElementById('navThinkingLab');
-  const dropdown = document.getElementById('thinkingLabDropdown');
+  var item = document.getElementById('navThinkingLab');
+  var dropdown = document.getElementById('thinkingLabDropdown');
   if (!item || !dropdown) return;
-  let timer;
-  item.addEventListener('mouseenter', () => { clearTimeout(timer); dropdown.classList.add('open'); });
-  item.addEventListener('mouseleave', () => { timer = setTimeout(() => dropdown.classList.remove('open'), 150); });
-  dropdown.addEventListener('mouseenter', () => clearTimeout(timer));
-  dropdown.addEventListener('mouseleave', () => { timer = setTimeout(() => dropdown.classList.remove('open'), 150); });
+  var timer;
+  item.addEventListener('mouseenter', function() {
+    clearTimeout(timer);
+    dropdown.classList.add('open');
+    if (window.updateClocks) window.updateClocks();
+  });
+  item.addEventListener('mouseleave', function() {
+    timer = setTimeout(function() { dropdown.classList.remove('open'); }, 600);
+  });
+  dropdown.addEventListener('mouseenter', function() { clearTimeout(timer); });
+  dropdown.addEventListener('mouseleave', function() {
+    timer = setTimeout(function() { dropdown.classList.remove('open'); }, 600);
+  });
 })();
 
 function toggleMobileDropdown(el) {
@@ -1289,12 +1314,16 @@ window.submitInlineForm = submitInlineForm;
 
 
 
+
 <script>
 (function() {
-  function updateClocks() {
+  function getIST() {
     var now = new Date();
     var utc = now.getTime() + now.getTimezoneOffset() * 60000;
-    var ist = new Date(utc + (5.5 * 3600000));
+    return new Date(utc + 19800000);
+  }
+  function updateClocks() {
+    var ist = getIST();
     var h = ist.getHours() % 12;
     var m = ist.getMinutes();
     var s = ist.getSeconds();
@@ -1302,35 +1331,20 @@ window.submitInlineForm = submitInlineForm;
     var minuteDeg = (m * 6) + (s * 0.1);
     var secDeg    = s * 6;
     document.querySelectorAll('[id$="-hour"]').forEach(function(el) {
-      el.setAttribute('transform', 'rotate(' + hourDeg + ' 32 40)');
+      el.setAttribute('transform', 'rotate(' + hourDeg + ' 22 28)');
     });
     document.querySelectorAll('[id$="-min"]').forEach(function(el) {
-      el.setAttribute('transform', 'rotate(' + minuteDeg + ' 32 40)');
+      el.setAttribute('transform', 'rotate(' + minuteDeg + ' 22 28)');
     });
     document.querySelectorAll('[id$="-sec"]').forEach(function(el) {
-      el.setAttribute('transform', 'rotate(' + secDeg + ' 32 40)');
+      el.setAttribute('transform', 'rotate(' + secDeg + ' 22 28)');
     });
   }
+  window.updateClocks = updateClocks;
   updateClocks();
   setInterval(updateClocks, 1000);
 })();
 </script>
-<script>
-(function(){
-  function ist(){
-    var n=new Date();
-    return new Date(n.getTime()+n.getTimezoneOffset()*60000+19800000);
-  }
-  function tick(){
-    var t=ist(), h=t.getHours()%12, m=t.getMinutes(), s=t.getSeconds();
-    var hd=(h*30)+(m*0.5), md=(m*6)+(s*0.1), sd=s*6;
-    document.querySelectorAll('[id$="-hour"]').forEach(function(g){g.setAttribute('transform','rotate('+hd+',32,40)');});
-    document.querySelectorAll('[id$="-min"]').forEach(function(g){g.setAttribute('transform','rotate('+md+',32,40)');});
-    document.querySelectorAll('[id$="-sec"]').forEach(function(g){g.setAttribute('transform','rotate('+sd+',32,40)');});
-  }
-  tick();
-  setInterval(tick,1000);
-})();
-</script>
+
 </body>
 </html>
