@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Rishabh Saxena</title>
-<meta name="description" content="Most people come with a solution already in mind. I'm the one who asks if it's solving the right problem. Salesforce Consultant, problem solver, watch enthusiast, motorsport marshal.">
+<meta name="description" content="Problem solver. Salesforce Consultant, problem solver, watch enthusiast, motorsport marshal.">
 <meta name="keywords" content="Rishabh Saxena, Salesforce, Problem Solver, Consultant, Watches, Motorsport, Piano, Vibe Coding">
 <meta property="og:title" content="Rishabh Saxena">
 <meta property="og:description" content="Most people come with a solution already in mind. I'm the one who asks if it's solving the right problem.">
@@ -68,7 +68,8 @@ body {
 
 /* ── NAV ── */
 nav {
-  position: fixed; top: 0; left: 0; right: 0;
+  position: fixed;
+  justify-content: space-between; top: 0; left: 0; right: 0;
   height: 68px;
   background: rgba(var(--bg-rgb, 244,246,249), 0.9);
   backdrop-filter: blur(12px);
@@ -83,7 +84,7 @@ nav {
 .nav-logo img { height: 44px; width: 44px; border-radius: 50%; object-fit: cover; }
 .nav-links {
   display: flex; align-items: center; gap: 28px;
-  margin-left: auto; margin-right: 20px;
+  position: absolute; left: 50%; transform: translateX(-50%);
 }
 .nav-links a {
   text-decoration: none; color: var(--sf-text);
@@ -212,12 +213,14 @@ nav {
 
 /* ── WHO I AM ── */
 .who-section {
+  background: var(--sf-navy);
   padding: 80px 5%;
-  background: var(--sf-card);
 }
 .who-inner {
   max-width: 800px; margin: 0 auto; text-align: center;
 }
+.who-section .section-title { color: var(--sf-electric); }
+.who-section .section-divider { margin: 0 auto 28px; }
 .section-label {
   font-family: 'Sora', sans-serif;
   font-size: 0.72rem; font-weight: 700;
@@ -237,19 +240,23 @@ nav {
 }
 .who-text {
   font-size: 1.05rem; line-height: 1.85;
-  color: var(--sf-subtext); font-weight: 300;
+  color: rgba(255,255,255,0.65); font-weight: 300;
 }
-.who-text strong { color: var(--sf-text); font-weight: 500; }
+.who-text strong { color: #ffffff; font-weight: 600; }
 
 /* ── INTERESTS GRID ── */
 .interests-section {
   padding: 80px 5%;
+  background: var(--sf-light-bg);
 }
 .interests-inner { max-width: 1100px; margin: 0 auto; }
 .interests-header { margin-bottom: 48px; }
+.interests-section .section-label { color: var(--sf-blue); }
+.interests-section .section-title { color: var(--sf-text); }
+.interests-section .section-divider { margin-bottom: 32px; }
 .interests-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   gap: 20px;
 }
 .interest-card {
@@ -304,6 +311,9 @@ nav {
   background: var(--sf-navy);
   text-align: center;
 }
+.about-cta .section-label { color: var(--sf-electric); }
+.about-cta .section-title { color: #ffffff; }
+.about-cta p { color: rgba(255,255,255,0.65); }
 .about-cta-inner { max-width: 600px; margin: 0 auto; }
 .about-cta h2 {
   font-family: 'Sora', sans-serif;
@@ -326,7 +336,7 @@ nav {
 .about-cta a:hover { background: var(--sf-electric); color: white; }
 
 /* ── THINKING LAB PREVIEW ── */
-.lab-section { padding: 80px 5%; }
+.lab-section { padding: 80px 5%; background: var(--sf-light-bg); }
 .lab-inner { max-width: 1100px; margin: 0 auto; }
 .lab-grid {
   display: grid;
@@ -458,9 +468,22 @@ footer {
         <div class="nav-bridge"></div>
         <div style="font-size:0.68rem;font-family:'Sora',sans-serif;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:var(--sf-blue);padding:8px 20px 4px;cursor:default;">Blog</div>
         <a href="/salesforce.html">☁️ Salesforce</a>
-        <a href="/hands-on-wrist.html"><svg class="watchit-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 80" width="16" height="20" style="vertical-align:middle;margin-right:4px;"><rect x="22" y="0" width="20" height="14" rx="4" fill="var(--sf-subtext)" opacity="0.5"/><rect x="22" y="66" width="20" height="14" rx="4" fill="var(--sf-subtext)" opacity="0.5"/><circle cx="32" cy="40" r="22" fill="var(--sf-subtext)" opacity="0.3"/><circle cx="32" cy="40" r="19" fill="var(--watch-dial)"/><line x1="32" y1="23" x2="32" y2="26" stroke="var(--watch-hand)" stroke-width="1.5" stroke-linecap="round"/><line x1="32" y1="54" x2="32" y2="57" stroke="var(--watch-hand)" stroke-width="1.5" stroke-linecap="round"/><line x1="13" y1="40" x2="16" y2="40" stroke="var(--watch-hand)" stroke-width="1.5" stroke-linecap="round"/><line x1="48" y1="40" x2="51" y2="40" stroke="var(--watch-hand)" stroke-width="1.5" stroke-linecap="round"/><line x1="32" y1="40" x2="24" y2="30" stroke="var(--watch-hand)" stroke-width="2.5" stroke-linecap="round"/><line x1="32" y1="40" x2="40" y2="26" stroke="var(--watch-hand)" stroke-width="2" stroke-linecap="round"/><line x1="32" y1="40" x2="34" y2="52" stroke="var(--sf-blue)" stroke-width="1" stroke-linecap="round"/><rect x="51" y="37" width="5" height="6" rx="2" fill="var(--sf-subtext)" opacity="0.6"/><circle cx="32" cy="40" r="2" fill="var(--sf-blue)"/></svg>Hands on Wrist</a>
+        <a href="/hands-on-wrist.html"><svg id="watch-index_card" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 80" width="36" height="45" style="display:block;"><rect x="23" y="2" width="18" height="13" rx="3" fill="var(--sf-subtext)" opacity="0.6"/><rect x="23" y="65" width="18" height="13" rx="3" fill="var(--sf-subtext)" opacity="0.6"/><circle cx="32" cy="40" r="21" fill="var(--sf-subtext)" opacity="0.35"/><circle cx="32" cy="40" r="18" fill="var(--watch-dial,#0A1F44)"/><line x1="32" y1="24" x2="32" y2="27" stroke="var(--watch-hand)" stroke-width="1.5" stroke-linecap="round"/><line x1="32" y1="53" x2="32" y2="56" stroke="var(--watch-hand)" stroke-width="1.5" stroke-linecap="round"/><line x1="15" y1="40" x2="18" y2="40" stroke="var(--watch-hand)" stroke-width="1.5" stroke-linecap="round"/><line x1="46" y1="40" x2="49" y2="40" stroke="var(--watch-hand)" stroke-width="1.5" stroke-linecap="round"/><line x1="43" y1="26" x2="41.5" y2="28.5" stroke="var(--watch-hand)" stroke-width="1" stroke-linecap="round" opacity="0.5"/><line x1="21" y1="26" x2="22.5" y2="28.5" stroke="var(--watch-hand)" stroke-width="1" stroke-linecap="round" opacity="0.5"/><line x1="43" y1="54" x2="41.5" y2="51.5" stroke="var(--watch-hand)" stroke-width="1" stroke-linecap="round" opacity="0.5"/><line x1="21" y1="54" x2="22.5" y2="51.5" stroke="var(--watch-hand)" stroke-width="1" stroke-linecap="round" opacity="0.5"/><g id="watch-index_card-hour"><line x1="32" y1="40" x2="32" y2="31" stroke="var(--watch-hand)" stroke-width="2.5" stroke-linecap="round"/></g><g id="watch-index_card-min"><line x1="32" y1="40" x2="32" y2="25" stroke="var(--watch-hand)" stroke-width="2" stroke-linecap="round"/></g><g id="watch-index_card-sec"><line x1="32" y1="40" x2="32" y2="23" stroke="#E74C3C" stroke-width="1" stroke-linecap="round"/></g><circle cx="32" cy="40" r="2" fill="var(--sf-blue,#1B96FF)"/><rect x="51" y="37" width="5" height="6" rx="2" fill="var(--sf-subtext)" opacity="0.8"/></svg>Hands on Wrist</a>
         <a href="/hands-on-wheels.html">🚗 Hands on Wheels</a>
-        <a href="/open-tabs.html">📌 Open Tabs</a>
+        <a href="/open-tabs.html"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="40" height="40" style="display:block;">
+  <rect x="8" y="10" width="38" height="48" rx="3" fill="var(--sf-card,#0F2847)" stroke="var(--sf-subtext)" stroke-width="2.5"/>
+  <rect x="5" y="16" width="6" height="4" rx="2" fill="none" stroke="var(--sf-subtext)" stroke-width="1.8"/>
+  <rect x="5" y="26" width="6" height="4" rx="2" fill="none" stroke="var(--sf-subtext)" stroke-width="1.8"/>
+  <rect x="5" y="36" width="6" height="4" rx="2" fill="none" stroke="var(--sf-subtext)" stroke-width="1.8"/>
+  <rect x="5" y="46" width="6" height="4" rx="2" fill="none" stroke="var(--sf-subtext)" stroke-width="1.8"/>
+  <line x1="16" y1="22" x2="40" y2="22" stroke="var(--sf-subtext)" stroke-width="1.2" stroke-linecap="round" opacity="0.5"/>
+  <line x1="16" y1="30" x2="40" y2="30" stroke="var(--sf-subtext)" stroke-width="1.2" stroke-linecap="round" opacity="0.5"/>
+  <line x1="16" y1="38" x2="34" y2="38" stroke="var(--sf-subtext)" stroke-width="1.2" stroke-linecap="round" opacity="0.5"/>
+  <rect x="34" y="36" width="6" height="22" rx="2" fill="var(--sf-blue,#1B96FF)" transform="rotate(-35 37 47)"/>
+  <rect x="36" y="36" width="1.5" height="14" rx="0.5" fill="var(--sf-subtext)" opacity="0.7" transform="rotate(-35 37 47)"/>
+  <polygon points="0,0 4,0 2,6" fill="var(--sf-subtext)" transform="translate(43,54) rotate(-35)"/>
+  <rect x="33" y="34" width="6" height="3" rx="1.5" fill="var(--sf-subtext)" opacity="0.6" transform="rotate(-35 36 36)"/>
+</svg> Open Tabs</a>
         <div class="dropdown-divider"></div>
         <a href="#" onclick="showModal(event)">🔬 In the Making</a>
       </div>
@@ -484,7 +507,7 @@ footer {
       <p class="hero-tagline">Most people come with a solution already in mind. I'm the one who asks if it's solving the right problem.</p>
       <p class="hero-intro">
         Salesforce consultant by profession. Problem solver by instinct.<br>
-        Also: watches, motorsport, piano, and whatever I'm building next.
+        Also: watches, motorsport, piano, and whatever he's building next.
       </p>
       <div class="hero-actions">
         <a href="/about.html" class="btn-primary">Full Profile →</a>
@@ -495,7 +518,7 @@ footer {
       <img src="photo.png" alt="Rishabh Saxena">
       <div class="hero-photo-badge">
         <strong>Rishabh Saxena</strong>
-        <span>Salesforce Consultant · Mumbai</span>
+        <span>Salesforce Consultant</span>
       </div>
     </div>
   </div>
@@ -504,11 +527,11 @@ footer {
 <!-- WHO I AM -->
 <section class="who-section">
   <div class="who-inner">
-    <div class="section-label">Who I Am</div>
+    <div class="section-label">About Rishabh</div>
     <h2 class="section-title">More Than a Job Title</h2>
     <div class="section-divider"></div>
     <p class="who-text">
-      Nine years in the <strong>Salesforce ecosystem</strong>. An <strong>MBA</strong> that taught me why decisions are emotional before they're rational. A <strong>motorsport marshal</strong> who's been on the circuit at F1 and MotoGP. A <strong>watch enthusiast</strong> who believes craft is a form of respect. Someone quietly teaching himself <strong>piano</strong>, building <strong>small apps</strong> to solve real annoyances, and recently caught the <strong>vibe coding</strong> bug. The common thread? An inability to leave things the way they are.
+      Nine years in the <strong>Salesforce ecosystem</strong>. An <strong>MBA</strong> that taught him why decisions are emotional before they're rational. A <strong>motorsport marshal</strong> who's been on the circuit at F1 and MotoGP. A <strong>watch enthusiast</strong> who believes craft is a form of respect. Someone quietly teaching himself <strong>piano</strong>, building small apps by describing problems clearly and iterating fast — and completely unable to leave things the way they are.
     </p>
   </div>
 </section>
@@ -517,8 +540,8 @@ footer {
 <section class="interests-section" id="interests">
   <div class="interests-inner">
     <div class="interests-header">
-      <div class="section-label">What I'm Into</div>
-      <h2 class="section-title">The Worlds I Live In</h2>
+      <div class="section-label">Interests</div>
+      <h2 class="section-title">The Worlds He Lives In</h2>
       <div class="section-divider" style="margin:0 0 0 0;"></div>
     </div>
     <div class="interests-grid">
@@ -526,43 +549,60 @@ footer {
       <a href="/salesforce.html" class="interest-card" style="--card-accent:#0070D2;">
         <span class="interest-icon">☁️</span>
         <div class="interest-title">Salesforce & Problem Solving</div>
-        <p class="interest-desc">Nine years across the Salesforce ecosystem — from writing code to closing deals. I care most about making sure the right problem gets solved before anything gets built.</p>
+        <p class="interest-desc">Nearly a decade across the Salesforce ecosystem — from writing code to closing deals. Most focused on making sure the right problem gets solved before anything gets built.</p>
         <div class="interest-tag">Read the blog</div>
       </a>
 
       <a href="/hands-on-wrist.html" class="interest-card" style="--card-accent:#8B6914;">
-        <span class="interest-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 80" width="36" height="45" style="display:block;"><rect x="22" y="0" width="20" height="14" rx="4" fill="var(--sf-subtext)" opacity="0.5"/><rect x="22" y="66" width="20" height="14" rx="4" fill="var(--sf-subtext)" opacity="0.5"/><circle cx="32" cy="40" r="22" fill="var(--sf-subtext)" opacity="0.3"/><circle cx="32" cy="40" r="19" fill="var(--watch-dial)"/><line x1="32" y1="23" x2="32" y2="26" stroke="var(--watch-hand)" stroke-width="1.5" stroke-linecap="round"/><line x1="32" y1="54" x2="32" y2="57" stroke="var(--watch-hand)" stroke-width="1.5" stroke-linecap="round"/><line x1="13" y1="40" x2="16" y2="40" stroke="var(--watch-hand)" stroke-width="1.5" stroke-linecap="round"/><line x1="48" y1="40" x2="51" y2="40" stroke="var(--watch-hand)" stroke-width="1.5" stroke-linecap="round"/><line x1="32" y1="40" x2="24" y2="30" stroke="var(--watch-hand)" stroke-width="2.5" stroke-linecap="round"/><line x1="32" y1="40" x2="40" y2="26" stroke="var(--watch-hand)" stroke-width="2" stroke-linecap="round"/><line x1="32" y1="40" x2="34" y2="52" stroke="var(--sf-blue)" stroke-width="1" stroke-linecap="round"/><circle cx="32" cy="40" r="2" fill="var(--sf-blue)"/></svg></span>
+        <span class="interest-icon"><svg id="watch-index_lab" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 80" width="36" height="45" style="display:block;"><rect x="23" y="2" width="18" height="13" rx="3" fill="var(--sf-subtext)" opacity="0.6"/><rect x="23" y="65" width="18" height="13" rx="3" fill="var(--sf-subtext)" opacity="0.6"/><circle cx="32" cy="40" r="21" fill="var(--sf-subtext)" opacity="0.35"/><circle cx="32" cy="40" r="18" fill="var(--watch-dial,#0A1F44)"/><line x1="32" y1="24" x2="32" y2="27" stroke="var(--watch-hand)" stroke-width="1.5" stroke-linecap="round"/><line x1="32" y1="53" x2="32" y2="56" stroke="var(--watch-hand)" stroke-width="1.5" stroke-linecap="round"/><line x1="15" y1="40" x2="18" y2="40" stroke="var(--watch-hand)" stroke-width="1.5" stroke-linecap="round"/><line x1="46" y1="40" x2="49" y2="40" stroke="var(--watch-hand)" stroke-width="1.5" stroke-linecap="round"/><line x1="43" y1="26" x2="41.5" y2="28.5" stroke="var(--watch-hand)" stroke-width="1" stroke-linecap="round" opacity="0.5"/><line x1="21" y1="26" x2="22.5" y2="28.5" stroke="var(--watch-hand)" stroke-width="1" stroke-linecap="round" opacity="0.5"/><line x1="43" y1="54" x2="41.5" y2="51.5" stroke="var(--watch-hand)" stroke-width="1" stroke-linecap="round" opacity="0.5"/><line x1="21" y1="54" x2="22.5" y2="51.5" stroke="var(--watch-hand)" stroke-width="1" stroke-linecap="round" opacity="0.5"/><g id="watch-index_lab-hour"><line x1="32" y1="40" x2="32" y2="31" stroke="var(--watch-hand)" stroke-width="2.5" stroke-linecap="round"/></g><g id="watch-index_lab-min"><line x1="32" y1="40" x2="32" y2="25" stroke="var(--watch-hand)" stroke-width="2" stroke-linecap="round"/></g><g id="watch-index_lab-sec"><line x1="32" y1="40" x2="32" y2="23" stroke="#E74C3C" stroke-width="1" stroke-linecap="round"/></g><circle cx="32" cy="40" r="2" fill="var(--sf-blue,#1B96FF)"/><rect x="51" y="37" width="5" height="6" rx="2" fill="var(--sf-subtext)" opacity="0.8"/></svg></span>
         <div class="interest-title">Hands on Wrist</div>
         <p class="interest-desc">Horology through the eyes of someone who appreciates craft. Not reviews — the stories, the movements, the obsession with things built to outlast everything around them.</p>
         <div class="interest-tag">Read the blog</div>
       </a>
 
       <a href="/hands-on-wheels.html" class="interest-card" style="--card-accent:#C0392B;">
-        <span class="interest-icon">🏎️</span>
+        <span class="interest-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="40" height="40" style="display:block;">
+  <circle cx="50" cy="50" r="38" fill="none" stroke="var(--sf-subtext)" stroke-width="7" stroke-linecap="round"/>
+  <line x1="50" y1="50" x2="17" y2="31" stroke="var(--sf-subtext)" stroke-width="5" stroke-linecap="round"/>
+  <line x1="50" y1="50" x2="83" y2="31" stroke="var(--sf-subtext)" stroke-width="5" stroke-linecap="round"/>
+  <line x1="50" y1="50" x2="50" y2="88" stroke="var(--sf-subtext)" stroke-width="5" stroke-linecap="round"/>
+  <circle cx="50" cy="50" r="9" fill="var(--sf-card,#0F2847)" stroke="var(--sf-subtext)" stroke-width="2.5"/>
+  <circle cx="50" cy="50" r="5.5" fill="#C0392B"/>
+  <circle cx="50" cy="50" r="3.5" fill="#E74C3C"/>
+  <circle cx="48.5" cy="48.5" r="1.2" fill="rgba(255,255,255,0.5)"/>
+  <path d="M10 38 Q7 30 12 24 Q17 19 23 23 Q26 26 24 32 Q22 37 17 39 Q13 40 10 38Z" fill="var(--sf-subtext)" opacity="0.85"/>
+  <path d="M90 38 Q93 30 88 24 Q83 19 77 23 Q74 26 76 32 Q78 37 83 39 Q87 40 90 38Z" fill="var(--sf-subtext)" opacity="0.85"/>
+</svg></span>
         <div class="interest-title">Hands on Wheels</div>
         <p class="interest-desc">Automobiles, motorsport, and everything in between. Track marshal at F1 India 2013 and Bharat MotoGP 2023. Been following circuits since before it was cool.</p>
         <div class="interest-tag">Read the blog</div>
       </a>
 
       <a href="/open-tabs.html" class="interest-card" style="--card-accent:#6C3483;">
-        <span class="interest-icon">📌</span>
+        <span class="interest-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="40" height="40" style="display:block;">
+  <rect x="8" y="10" width="38" height="48" rx="3" fill="var(--sf-card,#0F2847)" stroke="var(--sf-subtext)" stroke-width="2.5"/>
+  <rect x="5" y="16" width="6" height="4" rx="2" fill="none" stroke="var(--sf-subtext)" stroke-width="1.8"/>
+  <rect x="5" y="26" width="6" height="4" rx="2" fill="none" stroke="var(--sf-subtext)" stroke-width="1.8"/>
+  <rect x="5" y="36" width="6" height="4" rx="2" fill="none" stroke="var(--sf-subtext)" stroke-width="1.8"/>
+  <rect x="5" y="46" width="6" height="4" rx="2" fill="none" stroke="var(--sf-subtext)" stroke-width="1.8"/>
+  <line x1="16" y1="22" x2="40" y2="22" stroke="var(--sf-subtext)" stroke-width="1.2" stroke-linecap="round" opacity="0.5"/>
+  <line x1="16" y1="30" x2="40" y2="30" stroke="var(--sf-subtext)" stroke-width="1.2" stroke-linecap="round" opacity="0.5"/>
+  <line x1="16" y1="38" x2="34" y2="38" stroke="var(--sf-subtext)" stroke-width="1.2" stroke-linecap="round" opacity="0.5"/>
+  <rect x="34" y="36" width="6" height="22" rx="2" fill="var(--sf-blue,#1B96FF)" transform="rotate(-35 37 47)"/>
+  <rect x="36" y="36" width="1.5" height="14" rx="0.5" fill="var(--sf-subtext)" opacity="0.7" transform="rotate(-35 37 47)"/>
+  <polygon points="0,0 4,0 2,6" fill="var(--sf-subtext)" transform="translate(43,54) rotate(-35)"/>
+  <rect x="33" y="34" width="6" height="3" rx="1.5" fill="var(--sf-subtext)" opacity="0.6" transform="rotate(-35 36 36)"/>
+</svg></span>
         <div class="interest-title">Open Tabs</div>
-        <p class="interest-desc">A personal space for things that don't fit anywhere else. Observations, half-formed thoughts, and anything worth writing about — including what it's like to learn piano as an adult.</p>
+        <p class="interest-desc">A personal space for things that don't fit neatly anywhere — observations, half-formed thoughts, and whatever's currently taking up too much mental RAM.</p>
         <div class="interest-tag">Read the blog</div>
       </a>
 
       <div class="interest-card" style="--card-accent:#27AE60;cursor:default;">
         <span class="interest-icon">📱</span>
         <div class="interest-title">Building Apps</div>
-        <p class="interest-desc">I build small tools to solve real annoyances — the kind that make you wonder why no one's done this yet. Nothing grand. Just useful. See what's in the works.</p>
+        <p class="interest-desc">When something in daily life is needlessly annoying, the fix tends to be an app. The way these get built has changed a lot recently — turns out describing what you want clearly is a skill too.</p>
         <div class="interest-tag" style="cursor:pointer;" onclick="showModal(event)">In the Making</div>
-      </div>
-
-      <div class="interest-card" style="--card-accent:#1ABC9C;cursor:default;">
-        <span class="interest-icon">💻</span>
-        <div class="interest-title">Vibe Coding</div>
-        <p class="interest-desc">Recently caught the bug. There's something genuinely exciting about describing a problem and watching it become a working thing — rapidly. Still figuring out the edges.</p>
-        <div class="interest-tag" style="opacity:0.5;">Coming soon</div>
       </div>
 
     </div>
@@ -573,42 +613,35 @@ footer {
 <section class="about-cta">
   <div class="about-cta-inner">
     <h2>Want the full professional story?</h2>
-    <p>Nine years in the Salesforce ecosystem, five certifications, an MBA, presales across three continents, and a few strong opinions about what makes projects actually succeed.</p>
+    <p>Nearly a decade in the Salesforce ecosystem, five certifications, an MBA, presales across three continents, and a few strong opinions about what makes projects actually succeed.</p>
     <a href="/about.html">View Full Profile →</a>
   </div>
 </section>
 
-<!-- THINKING LAB -->
-<section class="lab-section" id="thinking-lab">
-  <div class="lab-inner">
-    <div class="section-label">Thinking Lab</div>
-    <h2 class="section-title">What I'm Writing About</h2>
-    <div class="section-divider" style="margin:0 0 0 0;"></div>
-    <div class="lab-grid">
-      <a href="/salesforce.html" class="lab-card">
-        <span class="lab-card-icon">☁️</span>
-        <div class="lab-card-title">Salesforce</div>
-        <p class="lab-card-desc">Implementations, presales strategy, and what actually makes these projects succeed or fail.</p>
-        <div class="lab-card-link">Explore →</div>
-      </a>
-      <a href="/hands-on-wrist.html" class="lab-card">
-        <span class="lab-card-icon">⌚</span>
-        <div class="lab-card-title">Hands on Wrist</div>
-        <p class="lab-card-desc">Horology, craft, and the stories behind what we wear on our wrists.</p>
-        <div class="lab-card-link">Explore →</div>
-      </a>
-      <a href="/hands-on-wheels.html" class="lab-card">
-        <span class="lab-card-icon">🏎️</span>
-        <div class="lab-card-title">Hands on Wheels</div>
-        <p class="lab-card-desc">Automobiles, motorsport, and everything in between — from the circuit to the street.</p>
-        <div class="lab-card-link">Explore →</div>
-      </a>
-      <a href="/open-tabs.html" class="lab-card">
-        <span class="lab-card-icon">📌</span>
-        <div class="lab-card-title">Open Tabs</div>
-        <p class="lab-card-desc">Personal space. Thoughts, observations, and things worth writing about that don't fit elsewhere.</p>
-        <div class="lab-card-link">Explore →</div>
-      </a>
+
+
+
+<!-- IN THE MAKING -->
+<section style="background:var(--sf-card);padding:80px 5%;">
+  <div style="max-width:1100px;margin:0 auto;">
+    <div class="section-label">Side Projects</div>
+    <h2 class="section-title">In the Making</h2>
+    <div class="section-divider" style="margin:0 0 32px;"></div>
+    <div style="background:var(--sf-light-bg);border:1px solid var(--sf-border);border-radius:20px;padding:40px;display:flex;align-items:center;gap:40px;flex-wrap:wrap;">
+      <div style="flex:1;min-width:260px;">
+        <div style="font-family:'Sora',sans-serif;font-size:1.3rem;font-weight:800;color:var(--sf-text);margin-bottom:10px;">Building things that scratch a real itch</div>
+        <p style="color:var(--sf-subtext);font-weight:300;line-height:1.7;margin-bottom:20px;">A few small apps in various stages of being built. The common thread — each one started because something in daily life was needlessly annoying. If you have a problem you'd love to see solved, Rishabh is genuinely interested.</p>
+        <div style="display:flex;flex-wrap:wrap;gap:8px;">
+          <span style="background:var(--sf-tag-bg);border:1px solid var(--sf-border);border-radius:20px;padding:5px 14px;font-family:'Sora',sans-serif;font-size:0.75rem;font-weight:700;color:var(--sf-subtext);">📱 Mobile Apps</span>
+          <span style="background:var(--sf-tag-bg);border:1px solid var(--sf-border);border-radius:20px;padding:5px 14px;font-family:'Sora',sans-serif;font-size:0.75rem;font-weight:700;color:var(--sf-subtext);">💻 Vibe Coding</span>
+          <span style="background:var(--sf-tag-bg);border:1px solid var(--sf-border);border-radius:20px;padding:5px 14px;font-family:'Sora',sans-serif;font-size:0.75rem;font-weight:700;color:var(--sf-subtext);">🔧 Problem-First</span>
+          <span style="background:var(--sf-tag-bg);border:1px solid var(--sf-border);border-radius:20px;padding:5px 14px;font-family:'Sora',sans-serif;font-size:0.75rem;font-weight:700;color:var(--sf-subtext);">🚧 Work in Progress</span>
+        </div>
+      </div>
+      <div style="text-align:center;padding:20px;">
+        <div style="font-size:4rem;margin-bottom:12px;">🛠️</div>
+        <div style="font-family:'Sora',sans-serif;font-size:0.8rem;font-weight:700;color:var(--sf-subtext);letter-spacing:0.1em;text-transform:uppercase;">Something's cooking</div>
+      </div>
     </div>
   </div>
 </section>
@@ -619,7 +652,7 @@ footer {
     <div class="section-label">Get In Touch</div>
     <h2 class="section-title" style="color:white;">Let's Start a Conversation</h2>
     <div class="section-divider" style="margin:16px auto 24px;"></div>
-    <p>Whether you're exploring Salesforce, want to talk watches, or have a problem worth solving — I'm always up for a good conversation.</p>
+    <p>Whether you're exploring Salesforce, want to talk watches, or have a problem worth solving — Rishabh is always up for a good conversation.</p>
     <div>
       <a href="https://linkedin.com/in/rishabh0201" target="_blank" class="connect-btn primary">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="white"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
@@ -971,11 +1004,11 @@ const R = {
     "Hi! I'm VE — Virtual Executive. Think of me as Rishabh's always-on assistant. Ask me anything."
   ],
   who: [
-    "Rishabh Saxena is a Salesforce Consultant with over 9 years in the ecosystem — 5x certified, and currently part of Salesforce's own Professional Services team in India. Before that, he's done presales and consulting at LTIMindtree, Brillio, and TCS. He's also an MBA from Great Lakes, a motorsport enthusiast, and a watch collector. Quite a range, I know.",
-    "Rishabh is a Salesforce Consultant — part of the India PS GTM team. He owns end-to-end presales for Data Cloud, Marketing Cloud, and RCG Cloud. 9+ years in the Salesforce ecosystem, 5 certifications, and a genuine belief that most implementations fail not because of bad tech, but because the original problem gets lost. That's the gap he works in."
+    "Rishabh Saxena is a Salesforce Consultant with nearly a decade in the ecosystem — 5x certified, and currently part of Salesforce's own Professional Services team in India. Before that, he's done presales and consulting at LTIMindtree, Brillio, and TCS. He's also an MBA from Great Lakes, a motorsport enthusiast, and a watch collector. Quite a range, I know.",
+    "Rishabh is a Salesforce Consultant — part of the India PS GTM team. He owns end-to-end presales for Data Cloud, Marketing Cloud, and RCG Cloud. Nearly a decade in the Salesforce ecosystem, 5 certifications, and a genuine belief that most implementations fail not because of bad tech, but because the original problem gets lost. That's the gap he works in."
   ],
   salesforce: [
-    "Rishabh has been in the Salesforce ecosystem for over 9 years — across development, presales, consulting, and now engagement management. He's worked across Sales Cloud, Service Cloud, Data Cloud, Marketing Cloud, RCG Cloud, Experience Cloud, and CMS. Currently at Salesforce itself, managing the PS India GTM for Data Cloud, Marketing Cloud, and RCG Cloud.",
+    "Rishabh has been in the Salesforce ecosystem for nearly a decade — across development, presales, consulting, and now engagement management. He's worked across Sales Cloud, Service Cloud, Data Cloud, Marketing Cloud, RCG Cloud, Experience Cloud, and CMS. Currently at Salesforce itself, managing the PS India GTM for Data Cloud, Marketing Cloud, and RCG Cloud.",
     "Salesforce is Rishabh's core domain. He's 5x certified — Data Cloud Consultant, AI Associate, Sales Cloud Consultant, Administrator, and Platform Developer I. He's been a developer, a presales consultant, and now a Salesforce Consultant. He understands the full lifecycle — from discovery to delivery.",
     "If you're looking for Salesforce expertise — Rishabh's been living and breathing it since 2016. He's particularly strong in presales, discovery, and making sure the right problem gets solved before a single line of config is written."
   ],
@@ -1254,5 +1287,50 @@ window.submitInlineForm = submitInlineForm;
 </script>
 
 
+
+
+<script>
+(function() {
+  function updateClocks() {
+    var now = new Date();
+    var utc = now.getTime() + now.getTimezoneOffset() * 60000;
+    var ist = new Date(utc + (5.5 * 3600000));
+    var h = ist.getHours() % 12;
+    var m = ist.getMinutes();
+    var s = ist.getSeconds();
+    var hourDeg   = (h * 30) + (m * 0.5);
+    var minuteDeg = (m * 6) + (s * 0.1);
+    var secDeg    = s * 6;
+    document.querySelectorAll('[id$="-hour"]').forEach(function(el) {
+      el.setAttribute('transform', 'rotate(' + hourDeg + ' 32 40)');
+    });
+    document.querySelectorAll('[id$="-min"]').forEach(function(el) {
+      el.setAttribute('transform', 'rotate(' + minuteDeg + ' 32 40)');
+    });
+    document.querySelectorAll('[id$="-sec"]').forEach(function(el) {
+      el.setAttribute('transform', 'rotate(' + secDeg + ' 32 40)');
+    });
+  }
+  updateClocks();
+  setInterval(updateClocks, 1000);
+})();
+</script>
+<script>
+(function(){
+  function ist(){
+    var n=new Date();
+    return new Date(n.getTime()+n.getTimezoneOffset()*60000+19800000);
+  }
+  function tick(){
+    var t=ist(), h=t.getHours()%12, m=t.getMinutes(), s=t.getSeconds();
+    var hd=(h*30)+(m*0.5), md=(m*6)+(s*0.1), sd=s*6;
+    document.querySelectorAll('[id$="-hour"]').forEach(function(g){g.setAttribute('transform','rotate('+hd+',32,40)');});
+    document.querySelectorAll('[id$="-min"]').forEach(function(g){g.setAttribute('transform','rotate('+md+',32,40)');});
+    document.querySelectorAll('[id$="-sec"]').forEach(function(g){g.setAttribute('transform','rotate('+sd+',32,40)');});
+  }
+  tick();
+  setInterval(tick,1000);
+})();
+</script>
 </body>
 </html>
