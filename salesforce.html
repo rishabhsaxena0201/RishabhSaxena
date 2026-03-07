@@ -9,20 +9,31 @@
 <link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
 <style>
 :root {
-  --sf-blue: #0070D2; --sf-navy: #0A1F44; --sf-electric: #1B96FF;
+  --sf-navy: #0A1F44;
+  --sf-blue: #0070D2;
+  --sf-electric: #1B96FF;
+  --sf-text: #0A1F44;
+  --sf-subtext: #5C6B7A;
+  --sf-card: #FFFFFF;
+  --sf-border: #E0E5EB;
+  --sf-light-bg: #F4F6F9;
+  --sf-tag-bg: #EEF4FF;
   --bg: #F4F6F9;
-  --sf-light-bg: #F3F6FB; --sf-card: #FFFFFF; --sf-text: #0A1F44;
-  --sf-subtext: #3E5771; --sf-border: #D8E6F3; --sf-tag-bg: #E8F4FF;
-  --sf-tag-text: #0070D2; --nav-bg: rgba(243,246,251,0.92);
-  --shadow: 0 4px 32px rgba(0,112,210,0.10); --shadow-card: 0 2px 16px rgba(0,112,210,0.08);
+  --shadow-card: 0 2px 20px rgba(0,0,0,0.07);
+  --watch-dial: #ffffff;
+  --watch-hand: #0A1F44;
 }
 [data-theme="dark"] {
-  --sf-blue: #1B96FF; --sf-navy: #0A1F44; --sf-electric: #5CB8FF;
-  --bg: #F4F6F9;
-  --sf-light-bg: #0A1628; --sf-card: #0F2140; --sf-text: #E8F4FF;
-  --sf-subtext: #8BB8D8; --sf-border: #1A3A5C; --sf-tag-bg: #0F2A4A;
-  --sf-tag-text: #5CB8FF; --nav-bg: rgba(10,22,40,0.95);
-  --shadow: 0 4px 32px rgba(0,0,0,0.4); --shadow-card: 0 2px 16px rgba(0,0,0,0.3);
+  --sf-text: #E8F4FF;
+  --sf-subtext: #8CA0B8;
+  --sf-card: #0F2847;
+  --sf-border: #1A3A5C;
+  --sf-light-bg: #081830;
+  --sf-tag-bg: #0D2240;
+  --bg: #060F1E;
+  --shadow-card: 0 2px 20px rgba(0,0,0,0.3);
+  --watch-dial: #0A1F44;
+  --watch-hand: #E8F4FF;
 }
 * { margin:0; padding:0; box-sizing:border-box; }
 body { font-family: 'DM Sans', sans-serif; background: var(--sf-light-bg); color: var(--sf-text); line-height: 1.7; transition: background 0.3s, color 0.3s; }
@@ -68,16 +79,20 @@ nav {
   background: rgba(244,246,249,0.92);
   backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
   border-bottom: 1px solid var(--sf-border);
-  display: flex; flex-direction: row; align-items: center;
-  flex-wrap: nowrap;
+  display: flex; align-items: center; justify-content: space-between;
   padding: 0 5%; z-index: 1000;
-  box-sizing: border-box;
   transition: background 0.3s;
+}
+[data-theme="dark"] nav { background: rgba(6,15,30,0.92); }
+.nav-logo a { display: flex; align-items: center; text-decoration: none; }
+.nav-logo img { height: 44px; width: 44px; border-radius: 50%; object-fit: cover; }
+.nav-center {
+  position: absolute; left: 50%; transform: translateX(-50%);
+  display: flex; align-items: center; gap: 28px;
 }
 .nav-center a {
   text-decoration: none; color: var(--sf-text);
   font-size: 0.88rem; font-weight: 400;
-  text-transform: none; letter-spacing: normal;
   transition: color 0.2s; white-space: nowrap;
 }
 .nav-center a:hover { color: var(--sf-blue); }
@@ -85,7 +100,6 @@ nav {
 .nav-item .has-dropdown {
   cursor: pointer; display: flex; align-items: center; gap: 4px;
   font-size: 0.88rem; font-weight: 400; color: var(--sf-text);
-  text-transform: none; letter-spacing: normal;
   text-decoration: none; white-space: nowrap;
 }
 .nav-item .has-dropdown::after { content: "▾"; font-size: 0.7rem; opacity: 0.5; margin-left: 2px; }
@@ -97,80 +111,11 @@ nav {
 }
 .dropdown a {
   display: flex; align-items: center; padding: 9px 20px;
-  font-size: 0.88rem; color: var(--sf-text);
-  text-decoration: none; transition: background 0.15s;
-  text-transform: none; letter-spacing: normal;
-}
-.dropdown a:hover { background: var(--sf-tag-bg); }
-.nav-item:hover .dropdown,
-.nav-item .dropdown.open { display: block; }
-@media (max-width: 768px) {
-  .nav-center {
-    display: none;
-    position: fixed; top: 68px; left: 0; right: 0; bottom: 0;
-    flex-direction: column; align-items: stretch; justify-content: flex-start;
-    background: var(--sf-card); border-top: 1px solid var(--sf-border);
-    padding: 0; gap: 0; z-index: 999;
-    overflow-y: auto; box-shadow: 0 8px 24px rgba(0,0,0,0.15);
-  }
-  .nav-center.open { display: flex; }
-  .nav-center > a { padding: 14px 24px; border-bottom: 1px solid var(--sf-border); font-size: 1rem; }
-  .nav-item { padding-bottom: 0; margin-bottom: 0; border-bottom: 1px solid var(--sf-border); }
-  .nav-item .has-dropdown { padding: 14px 24px; font-size: 1rem; justify-content: space-between; width: 100%; }
-  .nav-item:hover .dropdown { display: none; }
-  .dropdown { position: static; box-shadow: none; border: none; border-radius: 0; padding: 0; min-width: unset; background: var(--sf-light-bg); display: none; }
-  .dropdown.open { display: block; }
-  .dropdown a { padding: 12px 24px 12px 40px; border-bottom: 1px solid var(--sf-border); font-size: 0.9rem; }
-  .hamburger { display: flex; }
-  .theme-toggle { font-size: 0.72rem; padding: 5px 10px; }
-}
-
-/* ── NAV ── */
-nav {
-  position: fixed; top: 0; left: 0; right: 0;
-  height: 68px;
-  background: rgba(244,246,249,0.92);
-  backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
-  border-bottom: 1px solid var(--sf-border);
-  display: flex; flex-direction: row; align-items: center; flex-wrap: nowrap;
-  padding: 0 5%; z-index: 1000; box-sizing: border-box;
-  transition: background 0.3s;
-}
-[data-theme="dark"] nav { background: rgba(6,15,30,0.92); }
-.nav-logo { flex: 0 0 44px; width: 44px; height: 44px; overflow: hidden; font-size: 0; line-height: 0; }
-.nav-logo a { display: block; width: 44px; height: 44px; line-height: 0; }
-.nav-logo img { width: 44px; height: 44px; min-width: 44px; min-height: 44px; max-width: 44px; max-height: 44px; border-radius: 50%; object-fit: cover; display: block; }
-.nav-center {
-  flex: 1 1 auto; display: flex; align-items: center;
-  justify-content: center; gap: 28px; min-width: 0;
-}
-.nav-center a {
-  text-decoration: none; color: var(--sf-text); font-size: 0.88rem;
-  font-weight: 400; text-transform: none; letter-spacing: normal;
-  transition: color 0.2s; white-space: nowrap;
-}
-.nav-center a:hover { color: var(--sf-blue); }
-.nav-item { position: relative; padding-bottom: 16px; margin-bottom: -16px; }
-.nav-item .has-dropdown {
-  cursor: pointer; display: flex; align-items: center; gap: 4px;
-  font-size: 0.88rem; font-weight: 400; color: var(--sf-text);
-  text-transform: none; letter-spacing: normal; text-decoration: none; white-space: nowrap;
-}
-.nav-item .has-dropdown::after { content: "▾"; font-size: 0.7rem; opacity: 0.5; margin-left: 2px; }
-.dropdown {
-  display: none; position: absolute; top: 100%; left: -16px;
-  background: var(--sf-card); border: 1px solid var(--sf-border);
-  border-radius: 12px; padding: 8px 0; min-width: 220px;
-  box-shadow: 0 8px 30px rgba(0,0,0,0.12); z-index: 2000;
-}
-.dropdown a {
-  display: flex; align-items: center; padding: 9px 20px;
-  font-size: 0.88rem; color: var(--sf-text); text-decoration: none;
-  transition: background 0.15s; text-transform: none; letter-spacing: normal;
+  font-size: 0.88rem; color: var(--sf-text); text-decoration: none; transition: background 0.15s;
 }
 .dropdown a:hover { background: var(--sf-tag-bg); }
 .nav-item:hover .dropdown, .nav-item .dropdown.open { display: block; }
-.nav-right { flex: 0 0 auto; display: flex; align-items: center; gap: 12px; margin-left: auto; }
+.nav-right { display: flex; align-items: center; gap: 12px; }
 .theme-toggle {
   background: var(--sf-tag-bg); border: 1px solid var(--sf-border);
   color: var(--sf-text); padding: 6px 14px; border-radius: 20px;
@@ -185,23 +130,65 @@ nav {
 .hamburger span { display: block; width: 22px; height: 2px; background: var(--sf-text); border-radius: 2px; transition: 0.3s; }
 @media (max-width: 768px) {
   .nav-center {
-    display: none; position: fixed; top: 68px; left: 0; right: 0; bottom: 0;
-    flex-direction: column; align-items: stretch; justify-content: flex-start;
-    background: var(--sf-card); border-top: 1px solid var(--sf-border);
-    padding: 0; gap: 0; z-index: 999; overflow-y: auto;
-    box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+    display: none;
+    position: fixed;
+    top: 68px; left: 0; right: 0; bottom: 0;
+    transform: none;
+    background: var(--sf-card);
+    box-shadow: 0 8px 40px rgba(0,0,0,0.5);
+    border-top: 1px solid var(--sf-border);
+    flex-direction: column;
+    align-items: stretch;
+    padding: 8px 0;
+    gap: 0;
+    z-index: 999;
+    overflow-y: auto;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.1);
   }
   .nav-center.open { display: flex; }
-  .nav-center > a { padding: 14px 24px; border-bottom: 1px solid var(--sf-border); font-size: 1rem; }
-  .nav-item { padding-bottom: 0; margin-bottom: 0; border-bottom: 1px solid var(--sf-border); }
-  .nav-item .has-dropdown { padding: 14px 24px; font-size: 1rem; justify-content: space-between; width: 100%; }
+  .nav-center > a {
+    padding: 14px 24px;
+    width: 100%;
+    border-bottom: 1px solid var(--sf-border);
+    font-size: 1rem !important;
+    color: var(--sf-text) !important;
+    display: block;
+  }
+  .nav-item {
+    width: 100%;
+    padding-bottom: 0 !important;
+    margin-bottom: 0 !important;
+    border-bottom: 1px solid var(--sf-border);
+  }
+  .nav-item .has-dropdown {
+    padding: 14px 24px;
+    width: 100%;
+    font-size: 1rem !important;
+    display: flex;
+    justify-content: space-between;
+  }
   .nav-item:hover .dropdown { display: none; }
-  .dropdown { position: static; box-shadow: none; border: none; border-radius: 0; padding: 0; min-width: unset; background: var(--sf-light-bg); display: none; }
-  .dropdown.open { display: block; }
-  .dropdown a { padding: 12px 24px 12px 40px; border-bottom: 1px solid var(--sf-border); font-size: 0.9rem; }
-  .hamburger { display: flex; }
+  .dropdown {
+    position: static !important;
+    box-shadow: none !important;
+    border: none !important;
+    border-radius: 0 !important;
+    padding: 0 !important;
+    background: var(--sf-light-bg) !important;
+    min-width: unset !important;
+    display: none;
+  }
+  .dropdown.open { display: block !important; }
+  .dropdown a {
+    padding: 12px 24px 12px 40px !important;
+    border-bottom: 1px solid var(--sf-border) !important;
+    font-size: 0.9rem !important;
+  }
+  .hamburger { display: flex !important; background: none; border: none; }
   .theme-toggle { font-size: 0.72rem; padding: 5px 10px; }
 }
+[data-theme="dark"] .nav-center.open { background: #132d56 !important; }
+[data-theme="light"] .nav-center.open { background: #ffffff !important; }
 /* ── END NAV ── */
 </style>
 </head>
@@ -219,20 +206,7 @@ nav {
       <div class="dropdown" id="thinkingLabDropdown">
         <div style="font-size:0.68rem;font-family:'Sora',sans-serif;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:var(--sf-blue);padding:8px 20px 4px;cursor:default;">Blog</div>
         <a href="/salesforce.html" style="color:var(--sf-blue);font-weight:700;">☁️&nbsp; Salesforce</a>
-        <a href="/hands-on-wrist.html"><svg id="watch-navsf" viewBox="0 0 44 56" width="18" height="22" xmlns="http://www.w3.org/2000/svg" style="display:inline-block;vertical-align:middle;margin-right:8px;flex-shrink:0;">
-  <rect x="13" y="0" width="18" height="10" rx="3" fill="var(--sf-subtext)" opacity="0.7"/>
-  <rect x="13" y="46" width="18" height="10" rx="3" fill="var(--sf-subtext)" opacity="0.7"/>
-  <circle cx="22" cy="28" r="18" fill="var(--sf-subtext)" opacity="0.4"/>
-  <circle cx="22" cy="28" r="15" fill="var(--watch-dial,#E8EEF4)"/>
-  <line x1="22" y1="14" x2="22" y2="17" stroke="var(--sf-subtext)" stroke-width="1.5" stroke-linecap="round"/>
-  <line x1="22" y1="39" x2="22" y2="42" stroke="var(--sf-subtext)" stroke-width="1.5" stroke-linecap="round"/>
-  <line x1="8"  y1="28" x2="11" y2="28" stroke="var(--sf-subtext)" stroke-width="1.5" stroke-linecap="round"/>
-  <line x1="33" y1="28" x2="36" y2="28" stroke="var(--sf-subtext)" stroke-width="1.5" stroke-linecap="round"/>
-  <g id="watch-navsf-hour"><line x1="22" y1="28" x2="22" y2="20" stroke="var(--sf-text,#1A3A5C)" stroke-width="2" stroke-linecap="round"/></g>
-  <g id="watch-navsf-min"><line x1="22" y1="28" x2="22" y2="16" stroke="var(--sf-text,#1A3A5C)" stroke-width="1.5" stroke-linecap="round"/></g>
-  <circle cx="22" cy="28" r="1.5" fill="var(--sf-blue,#1B96FF)"/>
-  <rect x="38" y="25.5" width="4" height="5" rx="1.5" fill="var(--sf-subtext)" opacity="0.8"/>
-</svg> Hands on Wrist</a>
+        <a href="/hands-on-wrist.html"><svg id="watch-navsf" viewBox="0 0 44 56" width="18" height="22" xmlns="http://www.w3.org/2000/svg" style="display:inline-block;vertical-align:middle;margin-right:8px;flex-shrink:0;"><rect x="14" y="1" width="16" height="9" rx="3" fill="var(--sf-subtext)" opacity="0.6"/><rect x="14" y="46" width="16" height="9" rx="3" fill="var(--sf-subtext)" opacity="0.6"/><circle cx="22" cy="28" r="17" fill="var(--sf-subtext)" opacity="0.25"/><circle cx="22" cy="28" r="14" fill="var(--watch-dial,#ffffff)"/><g id="watch-navsf-hour"><line x1="22" y1="28" x2="22" y2="22" stroke="var(--sf-text,#0A1F44)" stroke-width="2.5" stroke-linecap="round"/></g><g id="watch-navsf-min"><line x1="22" y1="28" x2="22" y2="17" stroke="var(--sf-text,#0A1F44)" stroke-width="1.5" stroke-linecap="round"/></g><circle cx="22" cy="28" r="1.8" fill="var(--sf-blue,#1B96FF)"/></svg> Hands on Wrist</a>
         <a href="/hands-on-wheels.html"><svg viewBox="10 10 80 80" width="18" height="18" xmlns="http://www.w3.org/2000/svg" style="display:inline-block;vertical-align:middle;margin-right:8px;flex-shrink:0;"><circle cx="50" cy="50" r="38" fill="none" stroke="var(--sf-subtext)" stroke-width="7"/><line x1="50" y1="50" x2="17" y2="31" stroke="var(--sf-subtext)" stroke-width="5" stroke-linecap="round"/><line x1="50" y1="50" x2="83" y2="31" stroke="var(--sf-subtext)" stroke-width="5" stroke-linecap="round"/><line x1="50" y1="50" x2="50" y2="88" stroke="var(--sf-subtext)" stroke-width="5" stroke-linecap="round"/><circle cx="50" cy="50" r="9" fill="var(--sf-card,#fff)" stroke="var(--sf-subtext)" stroke-width="2.5"/><circle cx="50" cy="50" r="5.5" fill="#C0392B"/><circle cx="50" cy="50" r="3.5" fill="#E74C3C"/><path d="M10 38 Q7 30 12 24 Q17 19 23 23 Q26 26 24 32 Q22 37 17 39 Q13 40 10 38Z" fill="var(--sf-subtext)" opacity="0.85"/><path d="M90 38 Q93 30 88 24 Q83 19 77 23 Q74 26 76 32 Q78 37 83 39 Q87 40 90 38Z" fill="var(--sf-subtext)" opacity="0.85"/></svg> Hands on Wheels</a>
         <a href="/open-tabs.html"><svg viewBox="7 9 47 54" width="18" height="18" xmlns="http://www.w3.org/2000/svg" style="display:inline-block;vertical-align:middle;margin-right:8px;flex-shrink:0;"><rect x="8" y="10" width="38" height="48" rx="3" fill="var(--sf-tag-bg,#E8EEF4)" stroke="var(--sf-subtext)" stroke-width="2.5"/><rect x="5" y="16" width="6" height="4" rx="2" fill="none" stroke="var(--sf-subtext)" stroke-width="1.8"/><rect x="5" y="26" width="6" height="4" rx="2" fill="none" stroke="var(--sf-subtext)" stroke-width="1.8"/><rect x="5" y="36" width="6" height="4" rx="2" fill="none" stroke="var(--sf-subtext)" stroke-width="1.8"/><line x1="16" y1="22" x2="40" y2="22" stroke="var(--sf-subtext)" stroke-width="1.2" stroke-linecap="round" opacity="0.5"/><line x1="16" y1="30" x2="40" y2="30" stroke="var(--sf-subtext)" stroke-width="1.2" stroke-linecap="round" opacity="0.5"/><line x1="16" y1="38" x2="34" y2="38" stroke="var(--sf-subtext)" stroke-width="1.2" stroke-linecap="round" opacity="0.5"/><rect x="30" y="38" width="5" height="18" rx="2" fill="var(--sf-blue,#1B96FF)" transform="rotate(-35 32 46)"/><polygon points="0,0 4,0 2,5" fill="var(--sf-subtext)" transform="translate(37,51) rotate(-35)"/></svg> Open Tabs</a>
         <div style="height:1px;background:var(--sf-border);margin:6px 0;"></div>
@@ -249,6 +223,26 @@ nav {
     </button>
   </div>
 </nav>
+
+<!-- MOBILE MENU -->
+<div id="mobileMenuOverlay" style="display:none;position:fixed;top:68px;left:0;right:0;bottom:0;z-index:9998;background:var(--sf-card);border-top:1px solid var(--sf-border);overflow-y:auto;flex-direction:column;">
+  <a href="/" style="display:block;padding:16px 24px;border-bottom:1px solid var(--sf-border);color:var(--sf-text);text-decoration:none;font-size:1rem;">Home</a>
+  <a href="/about.html" style="display:block;padding:16px 24px;border-bottom:1px solid var(--sf-border);color:var(--sf-text);text-decoration:none;font-size:1rem;">About</a>
+  <button onclick="toggleLabMenu()" style="width:100%;padding:16px 24px;border:none;border-bottom:1px solid var(--sf-border);background:none;color:var(--sf-text);font-size:1rem;text-align:left;cursor:pointer;display:flex;justify-content:space-between;align-items:center;font-family:inherit;">Thinking Lab <span>&#9662;</span></button>
+  <div id="mobileLabMenu" style="display:none;background:var(--sf-light-bg);">
+    <div style="font-size:0.68rem;font-family:'Sora',sans-serif;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:var(--sf-blue);padding:10px 24px 4px 40px;">Blog</div>
+    <a href="/salesforce.html" style="display:block;padding:12px 24px 12px 40px;border-bottom:1px solid var(--sf-border);color:var(--sf-blue);font-weight:700;text-decoration:none;font-size:0.9rem;">&#9729;&#65039;&nbsp; Salesforce</a>
+    <a href="/hands-on-wrist.html" style="display:block;padding:12px 24px 12px 40px;border-bottom:1px solid var(--sf-border);color:var(--sf-text);text-decoration:none;font-size:0.9rem;"><svg id="watch-navsf-mob" viewBox="0 0 44 56" width="18" height="22" xmlns="http://www.w3.org/2000/svg" style="display:inline-block;vertical-align:middle;margin-right:8px;flex-shrink:0;"><rect x="14" y="1" width="16" height="9" rx="3" fill="var(--sf-subtext)" opacity="0.6"/><rect x="14" y="46" width="16" height="9" rx="3" fill="var(--sf-subtext)" opacity="0.6"/><circle cx="22" cy="28" r="17" fill="var(--sf-subtext)" opacity="0.25"/><circle cx="22" cy="28" r="14" fill="var(--watch-dial,#ffffff)"/><g id="watch-navsf-mob-hour"><line x1="22" y1="28" x2="22" y2="22" stroke="var(--sf-text,#0A1F44)" stroke-width="2.5" stroke-linecap="round"/></g><g id="watch-navsf-mob-min"><line x1="22" y1="28" x2="22" y2="17" stroke="var(--sf-text,#0A1F44)" stroke-width="1.5" stroke-linecap="round"/></g><circle cx="22" cy="28" r="1.8" fill="var(--sf-blue,#1B96FF)"/></svg> Hands on Wrist</a>
+    <a href="/hands-on-wheels.html" style="display:block;padding:12px 24px 12px 40px;border-bottom:1px solid var(--sf-border);color:var(--sf-text);text-decoration:none;font-size:0.9rem;"><svg viewBox="10 10 80 80" width="18" height="18" xmlns="http://www.w3.org/2000/svg" style="display:inline-block;vertical-align:middle;margin-right:8px;flex-shrink:0;"><circle cx="50" cy="50" r="38" fill="none" stroke="var(--sf-subtext)" stroke-width="7"/><line x1="50" y1="50" x2="17" y2="31" stroke="var(--sf-subtext)" stroke-width="5" stroke-linecap="round"/><line x1="50" y1="50" x2="83" y2="31" stroke="var(--sf-subtext)" stroke-width="5" stroke-linecap="round"/><line x1="50" y1="50" x2="50" y2="88" stroke="var(--sf-subtext)" stroke-width="5" stroke-linecap="round"/><circle cx="50" cy="50" r="9" fill="var(--sf-card,#fff)" stroke="var(--sf-subtext)" stroke-width="2.5"/><circle cx="50" cy="50" r="5.5" fill="#C0392B"/><circle cx="50" cy="50" r="3.5" fill="#E74C3C"/><path d="M10 38 Q7 30 12 24 Q17 19 23 23 Q26 26 24 32 Q22 37 17 39 Q13 40 10 38Z" fill="var(--sf-subtext)" opacity="0.85"/><path d="M90 38 Q93 30 88 24 Q83 19 77 23 Q74 26 76 32 Q78 37 83 39 Q87 40 90 38Z" fill="var(--sf-subtext)" opacity="0.85"/></svg> Hands on Wheels</a>
+    <a href="/open-tabs.html" style="display:block;padding:12px 24px 12px 40px;border-bottom:1px solid var(--sf-border);color:var(--sf-text);text-decoration:none;font-size:0.9rem;"><svg viewBox="7 9 47 54" width="18" height="18" xmlns="http://www.w3.org/2000/svg" style="display:inline-block;vertical-align:middle;margin-right:8px;flex-shrink:0;"><rect x="8" y="10" width="38" height="48" rx="3" fill="var(--sf-tag-bg,#E8EEF4)" stroke="var(--sf-subtext)" stroke-width="2.5"/><rect x="5" y="16" width="6" height="4" rx="2" fill="none" stroke="var(--sf-subtext)" stroke-width="1.8"/><rect x="5" y="26" width="6" height="4" rx="2" fill="none" stroke="var(--sf-subtext)" stroke-width="1.8"/><rect x="5" y="36" width="6" height="4" rx="2" fill="none" stroke="var(--sf-subtext)" stroke-width="1.8"/><line x1="16" y1="22" x2="40" y2="22" stroke="var(--sf-subtext)" stroke-width="1.2" stroke-linecap="round" opacity="0.5"/><line x1="16" y1="30" x2="40" y2="30" stroke="var(--sf-subtext)" stroke-width="1.2" stroke-linecap="round" opacity="0.5"/><line x1="16" y1="38" x2="34" y2="38" stroke="var(--sf-subtext)" stroke-width="1.2" stroke-linecap="round" opacity="0.5"/><rect x="30" y="38" width="5" height="18" rx="2" fill="var(--sf-blue,#1B96FF)" transform="rotate(-35 32 46)"/><polygon points="0,0 4,0 2,5" fill="var(--sf-subtext)" transform="translate(37,51) rotate(-35)"/></svg> Open Tabs</a>
+    <div style="height:1px;background:var(--sf-border);margin:4px 0;"></div>
+    <div style="font-size:0.68rem;font-family:'Sora',sans-serif;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:var(--sf-blue);padding:10px 24px 4px 40px;">Projects</div>
+    <a href="/in-the-making.html" style="display:block;padding:12px 24px 12px 40px;border-bottom:1px solid var(--sf-border);color:var(--sf-text);text-decoration:none;font-size:0.9rem;">&#128736;&#65039;&nbsp; In the Making</a>
+  </div>
+  <a href="/#connect" style="display:block;padding:16px 24px;border-bottom:1px solid var(--sf-border);color:var(--sf-text);text-decoration:none;font-size:1rem;">Connect</a>
+</div>
+
+
 
 <div class="page-hero">
   <div class="page-label">Thinking Lab · Blog</div>
@@ -346,7 +340,10 @@ nav {
     </form>
 
     <script>
-    document.getElementById('contactForm-salesforce').addEventListener('submit', async function(e) {
+document.addEventListener('DOMContentLoaded', function() {
+  var _el = document.getElementById('contactForm-salesforce');
+  if (!_el) return;
+  document.getElementById('contactForm-salesforce').addEventListener('submit', async function(e) {
       e.preventDefault();
       const btn = document.getElementById('btn-salesforce');
       btn.textContent = 'Sending...';
@@ -373,7 +370,8 @@ nav {
         btn.disabled = false;
       }
     });
-    </script>
+});
+</script>
   </section>
 
 <footer><p>© 2026 <span>Rishabh Saxena</span> · Thinking Lab</p></footer>
@@ -541,7 +539,7 @@ function submitInlineForm() {
 window.submitInlineForm = submitInlineForm;
 
 
-})();
+
 </script>
 
 <script>
@@ -574,22 +572,32 @@ window.submitInlineForm = submitInlineForm;
   setInterval(updateClocks, 1000);
 })();
 </script>
+
+
+
 <script>
 function toggleTheme() {
   var html = document.documentElement;
   var isDark = html.getAttribute("data-theme") === "dark";
   html.setAttribute("data-theme", isDark ? "light" : "dark");
-  document.getElementById("themeBtn").textContent = isDark ? "🌙 Dark Mode" : "☀️ Light Mode";
+  var _tb1 = document.getElementById("themeBtn"); if(_tb1) _tb1.textContent = isDark ? "🌙 Dark Mode" : "☀️ Light Mode";
   localStorage.setItem("theme", isDark ? "light" : "dark");
 }
 (function() {
   var saved = localStorage.getItem("theme") || "dark";
   document.documentElement.setAttribute("data-theme", saved);
   var btn = document.getElementById("themeBtn");
-  if (btn) btn.textContent = saved === "dark" ? "☀️ Light Mode" : "🌙 Dark Mode";
+  if (btn) btn.textContent = saved === "dark" ? "☀️ Light Mode" : "🌙 Dark Mode"; 
 })();
 function toggleMenu() {
-  document.getElementById("navCenter").classList.toggle("open");
+  var m = document.getElementById('mobileMenuOverlay');
+  if (!m) return;
+  var isOpen = m.style.display === 'flex';
+  m.style.display = isOpen ? 'none' : 'flex';
+}
+function toggleLabMenu() {
+  var m = document.getElementById('mobileLabMenu');
+  if (m) m.style.display = m.style.display === 'block' ? 'none' : 'block';
 }
 function toggleMobileDropdown(el) {
   if (window.innerWidth <= 768) {
@@ -604,8 +612,7 @@ function toggleMobileDropdown(el) {
   if (!item || !dropdown) return;
   var timer;
   item.addEventListener("mouseenter", function() {
-    clearTimeout(timer);
-    dropdown.classList.add("open");
+    clearTimeout(timer); dropdown.classList.add("open");
     if (window.updateClocks) window.updateClocks();
   });
   item.addEventListener("mouseleave", function() {
@@ -619,7 +626,7 @@ function toggleMobileDropdown(el) {
 document.addEventListener("DOMContentLoaded", function() {
   document.querySelectorAll(".nav-center > a, .dropdown a").forEach(function(a) {
     a.addEventListener("click", function() {
-      document.getElementById("navCenter").classList.remove("open");
+      var _m=document.getElementById("mobileMenuOverlay"); if(_m) _m.style.display="none";
     });
   });
 });
