@@ -1,0 +1,707 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>How It All Started · Hands on Wrist · Rishabh Saxena</title>
+<meta name="description" content="Watches mean different things at different times. A personal introduction to the stories strapped to our wrists.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
+<link rel="icon" href="/logo.png" type="image/png">
+<style>
+:root {
+  --sf-navy: #0A1F44;
+  --sf-blue: #0070D2;
+  --sf-electric: #1B96FF;
+  --sf-text: #0A1F44;
+  --sf-subtext: #5C6B7A;
+  --sf-card: #FFFFFF;
+  --sf-border: #E0E5EB;
+  --sf-light-bg: #F4F6F9;
+  --sf-tag-bg: #EEF4FF;
+  --shadow-card: 0 2px 20px rgba(0,0,0,0.07);
+  --watch-dial: #ffffff;
+  --watch-hand: #0A1F44;
+}
+[data-theme="dark"] {
+  --sf-text: #E8F4FF;
+  --sf-subtext: #8CA0B8;
+  --sf-card: #0F2847;
+  --sf-border: #1A3A5C;
+  --sf-light-bg: #081830;
+  --sf-tag-bg: #0D2240;
+  --bg: #060F1E;
+  --shadow-card: 0 2px 20px rgba(0,0,0,0.3);
+  --watch-dial: #0A1F44;
+  --watch-hand: #E8F4FF;
+}
+* { margin:0; padding:0; box-sizing:border-box; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'DM Sans', sans-serif;
+  background: var(--sf-light-bg);
+  color: var(--sf-text);
+  transition: background 0.3s, color 0.3s;
+  line-height: 1.7;
+  padding-top: 68px;
+}
+
+/* ── NAV ── */
+nav {
+  position: fixed; top: 0; left: 0; right: 0;
+  height: 68px;
+  background: rgba(244,246,249,0.92);
+  backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--sf-border);
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 5%; z-index: 1000;
+  transition: background 0.3s;
+}
+[data-theme="dark"] nav { background: rgba(6,15,30,0.92); }
+.nav-logo a { display: flex; align-items: center; text-decoration: none; }
+.nav-logo img { height: 44px; width: 44px; border-radius: 50%; object-fit: cover; }
+.nav-center {
+  position: absolute; left: 50%; transform: translateX(-50%);
+  display: flex; align-items: center; gap: 28px;
+}
+.nav-center a {
+  text-decoration: none; color: var(--sf-text);
+  font-size: 0.88rem; font-weight: 400;
+  transition: color 0.2s; white-space: nowrap;
+}
+.nav-center a:hover { color: var(--sf-blue); }
+.nav-item { position: relative; padding-bottom: 16px; margin-bottom: -16px; }
+.nav-item .has-dropdown {
+  cursor: pointer; display: flex; align-items: center; gap: 4px;
+  font-size: 0.88rem; font-weight: 400; color: var(--sf-text);
+  text-decoration: none; white-space: nowrap;
+}
+.nav-item .has-dropdown::after { content: "▾"; font-size: 0.7rem; opacity: 0.5; margin-left: 2px; }
+.dropdown {
+  display: none; position: absolute; top: 100%; left: -16px;
+  background: var(--sf-card); border: 1px solid var(--sf-border);
+  border-radius: 12px; padding: 8px 0; min-width: 220px;
+  box-shadow: 0 8px 30px rgba(0,0,0,0.12); z-index: 2000;
+}
+.dropdown a {
+  display: flex; align-items: center; padding: 9px 20px;
+  font-size: 0.88rem; color: var(--sf-text); text-decoration: none; transition: background 0.15s;
+}
+.dropdown a:hover { background: var(--sf-tag-bg); }
+.nav-item:hover .dropdown, .nav-item .dropdown.open { display: block; }
+.nav-right { display: flex; align-items: center; gap: 12px; }
+.theme-toggle {
+  background: var(--sf-tag-bg); border: 1px solid var(--sf-border);
+  color: var(--sf-text); padding: 6px 14px; border-radius: 20px;
+  cursor: pointer; font-size: 0.78rem; font-family: "Sora", sans-serif;
+  font-weight: 600; transition: all 0.2s; white-space: nowrap;
+}
+.theme-toggle:hover { border-color: var(--sf-blue); color: var(--sf-blue); }
+.hamburger {
+  display: none; flex-direction: column; gap: 5px;
+  background: none; border: none; cursor: pointer; padding: 4px;
+}
+.hamburger span { display: block; width: 22px; height: 2px; background: var(--sf-text); border-radius: 2px; transition: 0.3s; }
+@media (max-width: 768px) {
+  .nav-center {
+    display: none; position: fixed;
+    top: 68px; left: 0; right: 0; bottom: 0;
+    transform: none; background: var(--sf-card);
+    border-top: 1px solid var(--sf-border);
+    flex-direction: column; align-items: stretch;
+    padding: 8px 0; gap: 0; z-index: 999; overflow-y: auto;
+  }
+  .nav-center.open { display: flex; }
+  .nav-center > a { padding: 14px 24px; width: 100%; border-bottom: 1px solid var(--sf-border); font-size: 1rem !important; color: var(--sf-text) !important; display: block; }
+  .nav-item { width: 100%; padding-bottom: 0 !important; margin-bottom: 0 !important; border-bottom: 1px solid var(--sf-border); }
+  .nav-item .has-dropdown { padding: 14px 24px; width: 100%; font-size: 1rem !important; display: flex; justify-content: space-between; }
+  .nav-item:hover .dropdown { display: none; }
+  .dropdown { position: static !important; box-shadow: none !important; border: none !important; border-radius: 0 !important; padding: 0 !important; background: var(--sf-light-bg) !important; min-width: unset !important; display: none; }
+  .dropdown.open { display: block !important; }
+  .dropdown a { padding: 12px 24px 12px 40px !important; border-bottom: 1px solid var(--sf-border) !important; font-size: 0.9rem !important; }
+  .hamburger { display: flex !important; background: none; border: none; }
+  .theme-toggle { font-size: 0.72rem; padding: 5px 10px; }
+}
+[data-theme="dark"] .nav-center.open { background: #132d56 !important; }
+[data-theme="light"] .nav-center.open { background: #ffffff !important; }
+
+/* ── ARTICLE HERO ── */
+.article-hero {
+  background: var(--sf-navy);
+  padding: 60px 5% 70px;
+  position: relative;
+  overflow: hidden;
+}
+.article-hero::before {
+  content: '';
+  position: absolute; inset: 0;
+  background: radial-gradient(ellipse at 70% 50%, rgba(27,150,255,0.12) 0%, transparent 70%);
+  pointer-events: none;
+}
+.article-hero-inner {
+  max-width: 760px;
+  margin: 0 auto;
+  position: relative;
+}
+.back-link {
+  display: inline-flex; align-items: center; gap: 8px;
+  font-family: 'Sora', sans-serif; font-size: 0.75rem; font-weight: 700;
+  letter-spacing: 0.12em; text-transform: uppercase;
+  color: rgba(255,255,255,0.5); text-decoration: none;
+  margin-bottom: 32px; transition: color 0.2s;
+}
+.back-link:hover { color: var(--sf-electric); }
+.back-link::before { content: '←'; font-size: 0.9rem; }
+.article-section-label {
+  font-family: 'Sora', sans-serif; font-size: 0.72rem; font-weight: 700;
+  letter-spacing: 0.18em; text-transform: uppercase; color: var(--sf-electric);
+  margin-bottom: 20px; display: flex; align-items: center; gap: 10px;
+}
+.article-section-label::before { content: ''; display: block; width: 32px; height: 2px; background: var(--sf-electric); }
+.article-title {
+  font-family: 'DM Serif Display', serif;
+  font-size: clamp(2.2rem, 5vw, 3.6rem);
+  font-weight: 400;
+  color: #ffffff;
+  line-height: 1.15;
+  letter-spacing: -0.01em;
+  margin-bottom: 20px;
+}
+.article-subtitle {
+  font-size: 1.1rem;
+  font-weight: 300;
+  color: rgba(255,255,255,0.65);
+  max-width: 560px;
+  line-height: 1.7;
+  margin-bottom: 32px;
+}
+.article-meta-row {
+  display: flex; align-items: center; gap: 20px; flex-wrap: wrap;
+}
+.article-meta-item {
+  font-family: 'Sora', sans-serif; font-size: 0.78rem;
+  color: rgba(255,255,255,0.45); display: flex; align-items: center; gap: 6px;
+}
+.meta-dot { width: 3px; height: 3px; border-radius: 50%; background: rgba(255,255,255,0.3); }
+
+/* ── ARTICLE BODY ── */
+.article-body-wrap {
+  max-width: 760px;
+  margin: 0 auto;
+  padding: 60px 5% 80px;
+}
+
+/* Pull quote / intro ── */
+.article-intro {
+  font-family: 'DM Serif Display', serif;
+  font-size: clamp(1.2rem, 2.5vw, 1.5rem);
+  font-weight: 400;
+  font-style: italic;
+  color: var(--sf-blue);
+  line-height: 1.6;
+  border-left: 3px solid var(--sf-blue);
+  padding-left: 24px;
+  margin-bottom: 40px;
+}
+
+/* Body prose ── */
+.article-body p {
+  font-size: 1.03rem;
+  font-weight: 300;
+  color: var(--sf-subtext);
+  line-height: 1.85;
+  margin-bottom: 24px;
+}
+[data-theme="dark"] .article-body p { color: rgba(232,244,255,0.75); }
+.article-body p strong {
+  color: var(--sf-text);
+  font-weight: 600;
+}
+[data-theme="dark"] .article-body p strong { color: #E8F4FF; }
+.article-body p em {
+  font-style: italic;
+}
+
+/* Section heading inside article */
+.article-h2 {
+  font-family: 'Sora', sans-serif;
+  font-size: 1.25rem;
+  font-weight: 800;
+  color: var(--sf-text);
+  letter-spacing: -0.02em;
+  margin: 48px 0 16px;
+}
+
+/* Pull quote ── */
+.pull-quote {
+  background: var(--sf-tag-bg);
+  border-left: 4px solid var(--sf-blue);
+  border-radius: 0 12px 12px 0;
+  padding: 20px 28px;
+  margin: 36px 0;
+  font-family: 'DM Serif Display', serif;
+  font-size: 1.15rem;
+  font-style: italic;
+  color: var(--sf-text);
+  line-height: 1.6;
+}
+[data-theme="dark"] .pull-quote { background: rgba(27,150,255,0.08); border-left-color: var(--sf-electric); }
+
+/* Images ── */
+.article-image-wrap {
+  margin: 40px 0;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 8px 40px rgba(0,0,0,0.12);
+}
+.article-image-wrap img {
+  width: 100%;
+  display: block;
+  object-fit: cover;
+}
+.article-image-caption {
+  font-family: 'Sora', sans-serif;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--sf-subtext);
+  text-align: center;
+  margin-top: 12px;
+}
+
+/* Two-image grid */
+.article-image-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin: 40px 0;
+}
+@media (max-width: 600px) {
+  .article-image-grid { grid-template-columns: 1fr; }
+}
+.article-image-grid .article-image-wrap { margin: 0; }
+
+/* ── DIVIDER ── */
+.article-divider {
+  width: 48px; height: 3px; background: var(--sf-blue);
+  border-radius: 2px; margin: 40px 0;
+}
+
+/* ── TAGS ── */
+.article-tags {
+  display: flex; flex-wrap: wrap; gap: 8px; margin-top: 48px; padding-top: 32px;
+  border-top: 1px solid var(--sf-border);
+}
+.article-tag {
+  background: var(--sf-tag-bg); border: 1px solid var(--sf-border);
+  color: var(--sf-blue); border-radius: 20px;
+  padding: 4px 14px; font-family: 'Sora', sans-serif;
+  font-size: 0.75rem; font-weight: 700; letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+/* ── AUTHOR CARD ── */
+.author-card {
+  display: flex; align-items: center; gap: 20px;
+  background: var(--sf-card); border: 1px solid var(--sf-border);
+  border-radius: 16px; padding: 24px 28px; margin-top: 40px;
+  box-shadow: var(--shadow-card);
+}
+.author-avatar {
+  width: 56px; height: 56px; border-radius: 50%;
+  object-fit: cover; object-position: top; flex-shrink: 0;
+  border: 2px solid var(--sf-border);
+}
+.author-name {
+  font-family: 'Sora', sans-serif; font-size: 0.95rem; font-weight: 800;
+  color: var(--sf-text); margin-bottom: 4px;
+}
+.author-bio {
+  font-size: 0.85rem; font-weight: 300; color: var(--sf-subtext); line-height: 1.5;
+}
+.author-link {
+  display: inline-flex; align-items: center; gap: 6px;
+  margin-top: 8px; color: var(--sf-blue); text-decoration: none;
+  font-family: 'Sora', sans-serif; font-size: 0.78rem; font-weight: 700;
+}
+.author-link:hover { color: var(--sf-electric); }
+
+/* ── CONNECT STRIP ── */
+.connect-strip {
+  background: linear-gradient(135deg, var(--sf-navy) 0%, #0a2a5e 100%);
+  padding: 60px 5%;
+  text-align: center;
+}
+.connect-strip-inner { max-width: 600px; margin: 0 auto; }
+.connect-strip-label {
+  font-family: 'Sora', sans-serif; font-size: 0.72rem; font-weight: 700;
+  letter-spacing: 0.18em; text-transform: uppercase; color: var(--sf-electric);
+  margin-bottom: 12px;
+}
+.connect-strip-title {
+  font-family: 'Sora', sans-serif; font-size: clamp(1.5rem, 4vw, 2rem);
+  font-weight: 800; color: #fff; margin-bottom: 12px;
+}
+.connect-strip p {
+  color: rgba(255,255,255,0.55); font-size: 0.95rem; font-weight: 300;
+  max-width: 440px; margin: 0 auto 28px;
+}
+.connect-btn {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: var(--sf-blue); color: #fff;
+  padding: 13px 28px; border-radius: 8px; text-decoration: none;
+  font-family: 'Sora', sans-serif; font-weight: 700; font-size: 0.88rem;
+  transition: background 0.2s, transform 0.2s;
+}
+.connect-btn:hover { background: var(--sf-electric); transform: translateY(-2px); }
+
+/* ── FOOTER ── */
+footer {
+  background: #020E1E; padding: 30px 5%;
+  text-align: center; border-top: 1px solid rgba(255,255,255,0.05);
+}
+footer p { color: rgba(255,255,255,0.3); font-size: 0.8rem; font-family: 'Sora', sans-serif; }
+footer span { color: #1B96FF; }
+
+/* ── VE BOT ── */
+.ve-bubble {
+  position: fixed; bottom: 28px; right: 28px;
+  width: 52px; height: 52px; background: var(--sf-blue);
+  border-radius: 50%; cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  box-shadow: 0 4px 20px rgba(0,112,210,0.4); z-index: 9999;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+.ve-bubble:hover { transform: scale(1.08); }
+.ve-bubble svg { width: 24px; height: 24px; fill: white; }
+.ve-bubble .ve-close { display: none; font-size: 1.4rem; color: white; line-height: 1; }
+.ve-bubble.open .ve-icon { display: none; }
+.ve-bubble.open .ve-close { display: block; }
+.ve-window {
+  position: fixed; bottom: 92px; right: 28px; width: 360px; max-height: 520px;
+  background: var(--sf-card); border: 1px solid var(--sf-border);
+  border-radius: 20px; box-shadow: 0 8px 40px rgba(0,0,0,0.2);
+  display: none; flex-direction: column; overflow: hidden; z-index: 9998;
+  font-family: 'DM Sans', sans-serif;
+}
+.ve-window.open { display: flex; }
+.ve-header { background: linear-gradient(135deg, var(--sf-navy), #0a2a5e); padding: 16px 18px; display: flex; align-items: center; gap: 12px; }
+.ve-avatar { width: 38px; height: 38px; background: var(--sf-blue); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-family: 'Sora', sans-serif; font-weight: 800; font-size: 0.85rem; color: white; flex-shrink: 0; }
+.ve-header-name { font-family: 'Sora', sans-serif; font-size: 0.88rem; font-weight: 700; color: white; margin-bottom: 2px; }
+.ve-header-status { font-size: 0.72rem; color: rgba(255,255,255,0.5); display: flex; align-items: center; gap: 5px; }
+.ve-status-dot { width: 6px; height: 6px; background: #4CAF50; border-radius: 50%; }
+.ve-messages { flex: 1; overflow-y: auto; padding: 16px; display: flex; flex-direction: column; gap: 10px; scroll-behavior: smooth; }
+.ve-msg { max-width: 82%; padding: 10px 14px; border-radius: 14px; font-size: 0.88rem; line-height: 1.55; }
+.ve-msg.bot { background: var(--sf-tag-bg); color: var(--sf-text); border-bottom-left-radius: 4px; align-self: flex-start; }
+.ve-msg.user { background: var(--sf-blue); color: white; border-bottom-right-radius: 4px; align-self: flex-end; }
+.ve-typing { display: flex; align-items: center; gap: 4px; padding: 12px 14px; background: var(--sf-tag-bg); border-radius: 14px; border-bottom-left-radius: 4px; align-self: flex-start; }
+.ve-typing span { width: 6px; height: 6px; background: var(--sf-subtext); border-radius: 50%; animation: ve-bounce 1.2s infinite; }
+.ve-typing span:nth-child(2) { animation-delay: 0.2s; }
+.ve-typing span:nth-child(3) { animation-delay: 0.4s; }
+@keyframes ve-bounce { 0%, 60%, 100% { transform: translateY(0); } 30% { transform: translateY(-5px); } }
+.ve-input-area { padding: 12px 14px; border-top: 1px solid var(--sf-border); display: flex; gap: 8px; align-items: center; background: var(--sf-card); }
+.ve-input { flex: 1; background: var(--sf-tag-bg); border: 1.5px solid var(--sf-border); border-radius: 10px; padding: 9px 13px; color: var(--sf-text); font-family: 'DM Sans', sans-serif; font-size: 0.88rem; outline: none; transition: border 0.2s; }
+.ve-input:focus { border-color: var(--sf-blue); }
+.ve-send { width: 36px; height: 36px; background: var(--sf-blue); border: none; border-radius: 10px; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: background 0.2s; flex-shrink: 0; }
+.ve-send:hover { background: var(--sf-electric); }
+.ve-send svg { width: 16px; height: 16px; fill: white; }
+.ve-footer { padding: 6px 14px 10px; text-align: center; font-size: 0.68rem; color: var(--sf-subtext); opacity: 0.6; }
+@media (max-width: 480px) { .ve-window { width: calc(100vw - 32px); right: 16px; bottom: 80px; } .ve-bubble { bottom: 16px; right: 16px; } }
+
+/* ── FADE IN ── */
+.fade-in { animation: fadeIn 0.7s ease both; }
+.fade-in-2 { animation: fadeIn 0.7s ease 0.1s both; }
+.fade-in-3 { animation: fadeIn 0.7s ease 0.2s both; }
+@keyframes fadeIn { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: none; } }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo"><a href="/"><img src="/logo.png" alt="RS Logo" width="44" height="44"></a></div>
+  <div class="nav-center" id="navCenter">
+    <a href="/">Home</a>
+    <a href="/about.html">About</a>
+    <div class="nav-item" id="navThinkingLab">
+      <a class="has-dropdown" onclick="toggleMobileDropdown(this)">Thinking Lab</a>
+      <div class="dropdown" id="thinkingLabDropdown">
+        <div style="font-size:0.68rem;font-family:'Sora',sans-serif;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:var(--sf-blue);padding:8px 20px 4px;cursor:default;">Blog</div>
+        <a href="/salesforce.html">☁️&nbsp; Salesforce</a>
+        <a href="/hands-on-wrist.html" style="color:var(--sf-blue);font-weight:700;">
+          <svg id="watch-nav-art" viewBox="0 0 44 56" width="18" height="22" xmlns="http://www.w3.org/2000/svg" style="display:inline-block;vertical-align:middle;margin-right:8px;flex-shrink:0;"><rect x="14" y="1" width="16" height="9" rx="3" fill="var(--sf-subtext)" opacity="0.6"/><rect x="14" y="46" width="16" height="9" rx="3" fill="var(--sf-subtext)" opacity="0.6"/><circle cx="22" cy="28" r="17" fill="var(--sf-subtext)" opacity="0.25"/><circle cx="22" cy="28" r="14" fill="var(--watch-dial,#ffffff)"/><g id="watch-nav-art-hour"><line x1="22" y1="28" x2="22" y2="22" stroke="var(--sf-text,#0A1F44)" stroke-width="2.5" stroke-linecap="round"/></g><g id="watch-nav-art-min"><line x1="22" y1="28" x2="22" y2="17" stroke="var(--sf-text,#0A1F44)" stroke-width="1.5" stroke-linecap="round"/></g><circle cx="22" cy="28" r="1.8" fill="var(--sf-blue,#1B96FF)"/></svg>
+          Hands on Wrist
+        </a>
+        <a href="/hands-on-wheels.html">
+          <svg viewBox="10 10 80 80" width="18" height="18" xmlns="http://www.w3.org/2000/svg" style="display:inline-block;vertical-align:middle;margin-right:8px;flex-shrink:0;"><circle cx="50" cy="50" r="38" fill="none" stroke="var(--sf-subtext)" stroke-width="7"/><line x1="50" y1="50" x2="17" y2="31" stroke="var(--sf-subtext)" stroke-width="5" stroke-linecap="round"/><line x1="50" y1="50" x2="83" y2="31" stroke="var(--sf-subtext)" stroke-width="5" stroke-linecap="round"/><line x1="50" y1="50" x2="50" y2="88" stroke="var(--sf-subtext)" stroke-width="5" stroke-linecap="round"/><circle cx="50" cy="50" r="9" fill="var(--sf-card,#fff)" stroke="var(--sf-subtext)" stroke-width="2.5"/><circle cx="50" cy="50" r="5.5" fill="#C0392B"/><circle cx="50" cy="50" r="3.5" fill="#E74C3C"/><path d="M10 38 Q7 30 12 24 Q17 19 23 23 Q26 26 24 32 Q22 37 17 39 Q13 40 10 38Z" fill="var(--sf-subtext)" opacity="0.85"/><path d="M90 38 Q93 30 88 24 Q83 19 77 23 Q74 26 76 32 Q78 37 83 39 Q87 40 90 38Z" fill="var(--sf-subtext)" opacity="0.85"/></svg>
+          Hands on Wheels
+        </a>
+        <a href="/open-tabs.html">Open Tabs</a>
+        <div style="height:1px;background:var(--sf-border);margin:6px 0;"></div>
+        <div style="font-size:0.68rem;font-family:'Sora',sans-serif;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:var(--sf-blue);padding:8px 20px 4px;cursor:default;">Projects</div>
+        <a href="/in-the-making.html">🛠️&nbsp; In the Making</a>
+      </div>
+    </div>
+    <a href="#connect">Connect</a>
+  </div>
+  <div class="nav-right">
+    <button class="theme-toggle" onclick="toggleTheme()" id="themeBtn">🌙 Dark Mode</button>
+    <button class="hamburger" onclick="toggleMenu()" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- MOBILE MENU -->
+<div id="mobileMenuOverlay" style="display:none;position:fixed;top:68px;left:0;right:0;bottom:0;z-index:9998;background:var(--sf-card);border-top:1px solid var(--sf-border);overflow-y:auto;flex-direction:column;">
+  <a href="/" style="display:block;padding:16px 24px;border-bottom:1px solid var(--sf-border);color:var(--sf-text);text-decoration:none;font-size:1rem;">Home</a>
+  <a href="/about.html" style="display:block;padding:16px 24px;border-bottom:1px solid var(--sf-border);color:var(--sf-text);text-decoration:none;font-size:1rem;">About</a>
+  <button onclick="toggleLabMenu()" style="width:100%;padding:16px 24px;border:none;border-bottom:1px solid var(--sf-border);background:none;color:var(--sf-text);font-size:1rem;text-align:left;cursor:pointer;display:flex;justify-content:space-between;align-items:center;font-family:inherit;">Thinking Lab <span>&#9662;</span></button>
+  <div id="mobileLabMenu" style="display:none;background:var(--sf-light-bg);">
+    <a href="/salesforce.html" style="display:block;padding:12px 24px 12px 40px;border-bottom:1px solid var(--sf-border);color:var(--sf-text);text-decoration:none;font-size:0.9rem;">☁️&nbsp; Salesforce</a>
+    <a href="/hands-on-wrist.html" style="display:block;padding:12px 24px 12px 40px;border-bottom:1px solid var(--sf-border);color:var(--sf-blue);font-weight:700;text-decoration:none;font-size:0.9rem;">Hands on Wrist</a>
+    <a href="/hands-on-wheels.html" style="display:block;padding:12px 24px 12px 40px;border-bottom:1px solid var(--sf-border);color:var(--sf-text);text-decoration:none;font-size:0.9rem;">Hands on Wheels</a>
+    <a href="/open-tabs.html" style="display:block;padding:12px 24px 12px 40px;border-bottom:1px solid var(--sf-border);color:var(--sf-text);text-decoration:none;font-size:0.9rem;">Open Tabs</a>
+    <a href="/in-the-making.html" style="display:block;padding:12px 24px 12px 40px;border-bottom:1px solid var(--sf-border);color:var(--sf-text);text-decoration:none;font-size:0.9rem;">🛠️&nbsp; In the Making</a>
+  </div>
+  <a href="#connect" onclick="toggleMenu()" style="display:block;padding:16px 24px;border-bottom:1px solid var(--sf-border);color:var(--sf-text);text-decoration:none;font-size:1rem;">Connect</a>
+</div>
+
+<!-- ARTICLE HERO -->
+<div class="article-hero">
+  <div class="article-hero-inner">
+    <a href="/hands-on-wrist.html" class="back-link fade-in">Back to Hands on Wrist</a>
+    <div class="article-section-label fade-in">Hands on Wrist · Introduction</div>
+    <h1 class="article-title fade-in-2">How It All Started</h1>
+    <p class="article-subtitle fade-in-2">Watches mean different things at different times. A personal look at the stories strapped to our wrists — and why this conversation matters.</p>
+    <div class="article-meta-row fade-in-3">
+      <span class="article-meta-item">Rishabh Saxena</span>
+      <span class="meta-dot"></span>
+      <span class="article-meta-item">March 2026</span>
+      <span class="meta-dot"></span>
+      <span class="article-meta-item">5 min read</span>
+    </div>
+  </div>
+</div>
+
+<!-- ARTICLE BODY -->
+<div class="article-body-wrap">
+
+  <p class="article-intro">
+    Watches mean different things at different times. They are rarely just about tracking hours and minutes — they are physical markers of who we are and where we are in life.
+  </p>
+
+  <div class="article-body">
+
+    <p>Think about the first time you strapped one on. For a kid, a watch is a milestone. It's their very first serious gadget — not a toy, but something that actually does a real thing in the adult world. From there, the narrative just keeps evolving.</p>
+
+    <p>For a student in a silent exam hall, it is the ultimate time teller, pacing their future. For a sportsman, it is the silent opponent they are running against. For a diver plunging into the depths, a robust piece is a vital survivor tool. For a businessman walking into a boardroom, it is a statement.</p>
+
+    <div class="pull-quote">
+      For a father, a timepiece becomes something carefully preserved to pass on. And for the kid who eventually inherits it, it becomes an asset holding an emotional value far surpassing the sum of its gears, dials, and metal.
+    </div>
+
+    <p>I grew up observing this quiet relationship with timepieces in my own home. For the longest period, my father wore a black dial Titan, eventually moving through a gold HMT Quartz and a white dial steel Titan, before strapping on a coffee-brown dial Fossil Machine with a black PVD bracelet. And my mother? She still carries a <strong>1980 HMT Asha</strong>, wearing it with the exact same joy of a little girl who just received it from her own father. Over the years, she added a classic Titan, an elegant Titan Raga, and recently a Fossil to her own rotation.</p>
+
+    <p>It was against this backdrop that my own fascination started early. As a toddler, my wrist carried a simple digital watch with a Mickey Mouse face. But the real spark happened on my 6th birthday, when my grandfather gave me my first analog timepiece: a <strong>Prestige watch featuring classic Roman numerals and a white luminescent dial</strong>. Imagine the pure excitement of a six-year-old boy enthusiastically showing off that glowing watch to his classmates.</p>
+
+    <!-- IMAGE 1: Prestige Stanza -->
+    <div class="article-image-wrap">
+      <img src="IMG_7031.png" alt="Prestige Stanza — the watch that started it all" loading="lazy">
+    </div>
+    <p class="article-image-caption">The Prestige Stanza — the watch that started it all</p>
+
+    <p>From there, my wrist became a timeline of growing up. A <strong>Timex digital</strong> arrived for the 12-year-old boy. That was followed by a Titan to celebrate scoring decently well in high school, and eventually a Fastrack to navigate the college years.</p>
+
+    <!-- IMAGE 2: Timex -->
+    <div class="article-image-wrap">
+      <img src="IMG_7029.png" alt="The Timex that marked the next chapter" loading="lazy">
+    </div>
+    <p class="article-image-caption">The Timex — a milestone for the 12-year-old</p>
+
+    <p>Then came the watch I was genuinely hyped about: a <strong>black and gold G-Shock GBA400</strong>. This wasn't just another watch; it was the very first one I bought for myself with my own salary. And what a beautiful, ugly watch it is. To this day, it remains my reliable daily beater.</p>
+
+    <p>The collection has evolved since then, most notably bringing in a couple of Seikos — a <strong>Presage</strong> and, more recently, a <strong>stealth black Seiko 5 Sports</strong>. The beauties these watches have been. But it would be entirely unfair to cram them into this introduction. They carry their own authentic stories and mechanics, and I'll be giving them the spotlight they deserve in my coming blogs.</p>
+
+    <div class="article-divider"></div>
+
+    <p>But that is just my timeline. The beauty of this hobby is that everyone has their own version of this story, because we all look at our wrists through entirely different lenses. For some, a watch is pure luxury or a fashion accessory. For others, it's a purpose-built tool or simply an unbreakable habit.</p>
+
+    <p>Whether you own one, a gazillion, or none at all — you will always have a wish list. Maybe it's just one elusive piece. It could be an accessible legend from Casio or Timex. It could be a nostalgic piece from HMT or Titan. It could be a Rolex or a Patek Philippe, or even a bold design from Fossil, Diesel, Michael Kors, or Tommy Hilfiger.</p>
+
+    <div class="pull-quote">
+      The brand on the dial is secondary to the story it tells.
+    </div>
+
+    <p>This blog is about exploring those different meanings, unpacking that wish list, and talking about the incredible stories strapped to our wrists. Welcome to the conversation.</p>
+
+  </div>
+
+  <!-- TAGS -->
+  <div class="article-tags">
+    <span class="article-tag">Horology</span>
+    <span class="article-tag">Watches</span>
+    <span class="article-tag">HMT</span>
+    <span class="article-tag">Titan</span>
+    <span class="article-tag">Timex</span>
+    <span class="article-tag">G-Shock</span>
+    <span class="article-tag">Seiko</span>
+    <span class="article-tag">Introduction</span>
+  </div>
+
+  <!-- AUTHOR CARD -->
+  <div class="author-card">
+    <img src="/photo.png" alt="Rishabh Saxena" class="author-avatar">
+    <div>
+      <div class="author-name">Rishabh Saxena</div>
+      <div class="author-bio">Salesforce Consultant by profession, watch enthusiast by calling. Writing about horology, motorsport, and everything in between at rishabhsaxena.co.in</div>
+      <a href="https://www.linkedin.com/in/rishabh0201/" target="_blank" class="author-link">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+        Connect on LinkedIn
+      </a>
+    </div>
+  </div>
+
+</div>
+
+<!-- CONNECT STRIP -->
+<section id="connect" class="connect-strip">
+  <div class="connect-strip-inner">
+    <div class="connect-strip-label">Get In Touch</div>
+    <h2 class="connect-strip-title">Enjoyed this read?</h2>
+    <div style="width:48px;height:3px;background:var(--sf-electric);border-radius:2px;margin:16px auto 20px;"></div>
+    <p>Whether it's about watches, Salesforce, or something else entirely — Rishabh is always up for a good conversation.</p>
+    <a href="https://www.linkedin.com/in/rishabh0201/" target="_blank" class="connect-btn">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+      Connect on LinkedIn
+    </a>
+  </div>
+</section>
+
+<footer>
+  <p>© 2026 <span>Rishabh Saxena</span> · rishabhsaxena.co.in</p>
+</footer>
+
+<!-- VE BOT -->
+<div class="ve-bubble" id="veBubble" onclick="veToggle()">
+  <svg class="ve-icon" viewBox="0 0 24 24"><path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm0 14H6l-2 2V4h16v12z"/></svg>
+  <span class="ve-close">✕</span>
+</div>
+<div class="ve-window" id="veWindow">
+  <div class="ve-header">
+    <div class="ve-avatar">VE</div>
+    <div>
+      <div class="ve-header-name">Virtual Executive</div>
+      <div class="ve-header-status"><span class="ve-status-dot"></span> Rishabh's assistant · Always on</div>
+    </div>
+  </div>
+  <div class="ve-messages" id="veMessages"></div>
+  <div class="ve-input-area">
+    <input class="ve-input" id="veInput" type="text" placeholder="Ask me anything..." maxlength="300" onkeydown="if(event.key==='Enter')veSend()">
+    <button class="ve-send" onclick="veSend()">
+      <svg viewBox="0 0 24 24"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/></svg>
+    </button>
+  </div>
+  <div class="ve-footer">Powered by Rishabh Saxena · rishabhsaxena.co.in</div>
+</div>
+
+<script>
+// ── THEME ──
+function toggleTheme() {
+  var html = document.documentElement;
+  var isDark = html.getAttribute("data-theme") === "dark";
+  html.setAttribute("data-theme", isDark ? "light" : "dark");
+  var btn = document.getElementById("themeBtn");
+  if (btn) btn.textContent = isDark ? "🌙 Dark Mode" : "☀️ Light Mode";
+  localStorage.setItem("theme", isDark ? "light" : "dark");
+}
+(function() {
+  var saved = localStorage.getItem("theme") || "dark";
+  document.documentElement.setAttribute("data-theme", saved);
+  var btn = document.getElementById("themeBtn");
+  if (btn) btn.textContent = saved === "dark" ? "☀️ Light Mode" : "🌙 Dark Mode";
+})();
+
+// ── NAV ──
+function toggleMenu() {
+  var m = document.getElementById('mobileMenuOverlay');
+  if (!m) return;
+  m.style.display = m.style.display === 'flex' ? 'none' : 'flex';
+}
+function toggleLabMenu() {
+  var m = document.getElementById('mobileLabMenu');
+  if (m) m.style.display = m.style.display === 'block' ? 'none' : 'block';
+}
+function toggleMobileDropdown(el) {
+  if (window.innerWidth <= 768) {
+    el.nextElementSibling.classList.toggle("open");
+    if (window.updateClocks) window.updateClocks();
+  }
+}
+(function() {
+  var item = document.getElementById("navThinkingLab");
+  var dropdown = document.getElementById("thinkingLabDropdown");
+  if (!item || !dropdown) return;
+  var timer;
+  item.addEventListener("mouseenter", function() { clearTimeout(timer); dropdown.classList.add("open"); if (window.updateClocks) window.updateClocks(); });
+  item.addEventListener("mouseleave", function() { timer = setTimeout(function() { dropdown.classList.remove("open"); }, 600); });
+  dropdown.addEventListener("mouseenter", function() { clearTimeout(timer); });
+  dropdown.addEventListener("mouseleave", function() { timer = setTimeout(function() { dropdown.classList.remove("open"); }, 600); });
+})();
+
+// ── IST CLOCK ──
+(function() {
+  function getIST() { var now = new Date(); return new Date(now.getTime() + now.getTimezoneOffset() * 60000 + 19800000); }
+  function updateClocks() {
+    var ist = getIST(), h = ist.getHours() % 12, m = ist.getMinutes(), s = ist.getSeconds();
+    var hd = (h * 30) + (m * 0.5), md = (m * 6) + (s * 0.1);
+    document.querySelectorAll('[id$="-hour"]').forEach(function(el) { el.setAttribute('transform', 'rotate(' + hd + ' 22 28)'); });
+    document.querySelectorAll('[id$="-min"]').forEach(function(el) { el.setAttribute('transform', 'rotate(' + md + ' 22 28)'); });
+  }
+  window.updateClocks = updateClocks;
+  updateClocks();
+  setInterval(updateClocks, 1000);
+})();
+
+// ── VE BOT ──
+(function() {
+  var veOpen = false, veStarted = false, rIdx = {};
+  var R = {
+    greeting: ["Hey! I'm the Virtual Executive — Rishabh's digital assistant. Glad you're reading Hands on Wrist. What would you like to know?"],
+    who: ["Rishabh Saxena is a Salesforce Consultant and a genuine watch enthusiast — nearly a decade in the Salesforce ecosystem, and a wrist that's never been bare. This blog is his space to talk horology."],
+    watchit: ["Hands on Wrist is Rishabh's horology blog — perspectives on watches, craft, and the stories behind what we wear. More articles are coming. Follow him on LinkedIn to stay updated."],
+    contact: ["Best way to reach Rishabh is LinkedIn at linkedin.com/in/rishabh0201, or through the connect section at the bottom of this page."],
+    fallback: ["I might not have that one covered — but Rishabh would love to hear from you directly. Hit him up on LinkedIn at linkedin.com/in/rishabh0201."]
+  };
+  var K = [
+    { keys: ['hi','hello','hey','howdy','greetings'], res: 'greeting' },
+    { keys: ['who','rishabh','about'], res: 'who' },
+    { keys: ['watch','horology','blog','article','wrist','hands on wrist'], res: 'watchit' },
+    { keys: ['contact','reach','connect','linkedin','email'], res: 'contact' }
+  ];
+  function getRand(key) { var arr = R[key] || R.fallback; if (!rIdx[key]) rIdx[key] = 0; var r = arr[rIdx[key] % arr.length]; rIdx[key]++; return r; }
+  function match(text) {
+    var t = text.toLowerCase(), best = null, bestScore = 0;
+    for (var i = 0; i < K.length; i++) for (var j = 0; j < K[i].keys.length; j++) { var kw = K[i].keys[j]; if (t.includes(kw) && kw.length > bestScore) { bestScore = kw.length; best = K[i].res; } }
+    return best || 'fallback';
+  }
+  window.veToggle = function() {
+    veOpen = !veOpen;
+    document.getElementById('veBubble').classList.toggle('open', veOpen);
+    document.getElementById('veWindow').classList.toggle('open', veOpen);
+    if (veOpen && !veStarted) { veStarted = true; setTimeout(function() { addMsg(getRand('greeting'), 'bot'); }, 400); }
+    if (veOpen) document.getElementById('veInput').focus();
+  };
+  function addMsg(text, who) { var el = document.createElement('div'); el.className = 've-msg ' + who; el.textContent = text; document.getElementById('veMessages').appendChild(el); document.getElementById('veMessages').scrollTop = 9999; }
+  function showTyping() { var el = document.createElement('div'); el.className = 've-typing'; el.id = 'veTyping'; el.innerHTML = '<span></span><span></span><span></span>'; document.getElementById('veMessages').appendChild(el); document.getElementById('veMessages').scrollTop = 9999; return el; }
+  window.veSend = function() {
+    var input = document.getElementById('veInput'), text = input.value.trim(); if (!text) return;
+    input.value = ''; addMsg(text, 'user');
+    var typing = showTyping();
+    setTimeout(function() { typing.remove(); addMsg(getRand(match(text)), 'bot'); }, 700 + Math.random() * 200);
+  };
+})();
+</script>
+</body>
+</html>
