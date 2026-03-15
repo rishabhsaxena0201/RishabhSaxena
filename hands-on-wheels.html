@@ -3,48 +3,13 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/styles.css">
 <title>Hands on Wheels · Rishabh Saxena</title>
 <meta name="description" content="Automobiles, motorsport, and everything in between. From the circuit to the street — a passion for machines that move.">
 <link rel="icon" href="/logo.png" type="image/png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
 <style>
-:root {
-  --sf-navy: #0A1F44;
-  --sf-blue: #0070D2;
-  --sf-electric: #1B96FF;
-  --sf-text: #0A1F44;
-  --sf-subtext: #5C6B7A;
-  --sf-card: #FFFFFF;
-  --sf-border: #E0E5EB;
-  --sf-light-bg: #F4F6F9;
-  --sf-tag-bg: #EEF4FF;
-  --bg: #F4F6F9;
-  --shadow-card: 0 2px 20px rgba(0,0,0,0.07);
-  --watch-dial: #ffffff;
-  --watch-hand: #0A1F44;
-}
-[data-theme="dark"] {
-  --sf-text: #E8F4FF;
-  --sf-subtext: #8CA0B8;
-  --sf-card: #0F2847;
-  --sf-border: #1A3A5C;
-  --sf-light-bg: #081830;
-  --sf-tag-bg: #0D2240;
-  --bg: #060F1E;
-  --shadow-card: 0 2px 20px rgba(0,0,0,0.3);
-  --watch-dial: #0A1F44;
-  --watch-hand: #E8F4FF;
-}
-* { margin:0; padding:0; box-sizing:border-box; }
-body { font-family: 'DM Sans', sans-serif; background: var(--sf-light-bg); color: var(--sf-text); line-height: 1.7; transition: background 0.3s, color 0.3s; }
-
-
-
-
-
-
-
 .page-hero { padding: 120px 5% 60px; max-width: 1100px; margin: 0 auto; }
 .page-label { font-family: 'Sora', sans-serif; font-size: 0.72rem; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: var(--sf-blue); margin-bottom: 12px; display: flex; align-items: center; gap: 10px; }
 .page-label::before { content:''; display:block; width: 32px; height: 2px; background: var(--sf-blue); }
@@ -74,123 +39,8 @@ footer p { color: rgba(255,255,255,0.3); font-size: 0.8rem; font-family: 'Sora',
 footer span { color: #1B96FF; }
 
 /* ── NAV ── */
-nav {
-  position: fixed; top: 0; left: 0; right: 0;
-  height: 68px;
-  background: rgba(244,246,249,0.92);
-  backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
-  border-bottom: 1px solid var(--sf-border);
-  display: flex; align-items: center; justify-content: space-between;
-  padding: 0 5%; z-index: 1000;
-  transition: background 0.3s;
-}
-[data-theme="dark"] nav { background: rgba(6,15,30,0.92); }
-.nav-logo a { display: flex; align-items: center; text-decoration: none; }
-.nav-logo img { height: 44px; width: 44px; border-radius: 50%; object-fit: cover; }
-.nav-center {
-  position: absolute; left: 50%; transform: translateX(-50%);
-  display: flex; align-items: center; gap: 28px;
-}
-.nav-center a {
-  text-decoration: none; color: var(--sf-text);
-  font-size: 0.88rem; font-weight: 400;
-  transition: color 0.2s; white-space: nowrap;
-}
-.nav-center a:hover { color: var(--sf-blue); }
-.nav-item { position: relative; padding-bottom: 16px; margin-bottom: -16px; }
-.nav-item .has-dropdown {
-  cursor: pointer; display: flex; align-items: center; gap: 4px;
-  font-size: 0.88rem; font-weight: 400; color: var(--sf-text);
-  text-decoration: none; white-space: nowrap;
-}
-.nav-item .has-dropdown::after { content: "▾"; font-size: 0.7rem; opacity: 0.5; margin-left: 2px; }
-.dropdown {
-  display: none; position: absolute; top: 100%; left: -16px;
-  background: var(--sf-card); border: 1px solid var(--sf-border);
-  border-radius: 12px; padding: 8px 0; min-width: 220px;
-  box-shadow: 0 8px 30px rgba(0,0,0,0.12); z-index: 2000;
-}
-.dropdown a {
-  display: flex; align-items: center; padding: 9px 20px;
-  font-size: 0.88rem; color: var(--sf-text); text-decoration: none; transition: background 0.15s;
-}
-.dropdown a:hover { background: var(--sf-tag-bg); }
-.nav-item:hover .dropdown, .nav-item .dropdown.open { display: block; }
-.nav-right { display: flex; align-items: center; gap: 12px; }
-.theme-toggle {
-  background: var(--sf-tag-bg); border: 1px solid var(--sf-border);
-  color: var(--sf-text); padding: 6px 14px; border-radius: 20px;
-  cursor: pointer; font-size: 0.78rem; font-family: "Sora", sans-serif;
-  font-weight: 600; transition: all 0.2s; white-space: nowrap;
-}
-.theme-toggle:hover { border-color: var(--sf-blue); color: var(--sf-blue); }
-.hamburger {
-  display: none; flex-direction: column; gap: 5px;
-  background: none; border: none; cursor: pointer; padding: 4px;
-}
-.hamburger span { display: block; width: 22px; height: 2px; background: var(--sf-text); border-radius: 2px; transition: 0.3s; }
-@media (max-width: 768px) {
-  .nav-center {
-    display: none;
-    position: fixed;
-    top: 68px; left: 0; right: 0; bottom: 0;
-    transform: none;
-    background: var(--sf-card);
-    box-shadow: 0 8px 40px rgba(0,0,0,0.5);
-    border-top: 1px solid var(--sf-border);
-    flex-direction: column;
-    align-items: stretch;
-    padding: 8px 0;
-    gap: 0;
-    z-index: 999;
-    overflow-y: auto;
-    box-shadow: 0 8px 24px rgba(0,0,0,0.1);
-  }
-  .nav-center.open { display: flex; }
-  .nav-center > a {
-    padding: 14px 24px;
-    width: 100%;
-    border-bottom: 1px solid var(--sf-border);
-    font-size: 1rem !important;
-    color: var(--sf-text) !important;
-    display: block;
-  }
-  .nav-item {
-    width: 100%;
-    padding-bottom: 0 !important;
-    margin-bottom: 0 !important;
-    border-bottom: 1px solid var(--sf-border);
-  }
-  .nav-item .has-dropdown {
-    padding: 14px 24px;
-    width: 100%;
-    font-size: 1rem !important;
-    display: flex;
-    justify-content: space-between;
-  }
-  .nav-item:hover .dropdown { display: none; }
-  .dropdown {
-    position: static !important;
-    box-shadow: none !important;
-    border: none !important;
-    border-radius: 0 !important;
-    padding: 0 !important;
-    background: var(--sf-light-bg) !important;
-    min-width: unset !important;
-    display: none;
-  }
-  .dropdown.open { display: block !important; }
-  .dropdown a {
-    padding: 12px 24px 12px 40px !important;
-    border-bottom: 1px solid var(--sf-border) !important;
-    font-size: 0.9rem !important;
-  }
-  .hamburger { display: flex !important; background: none; border: none; }
-  .theme-toggle { font-size: 0.72rem; padding: 5px 10px; }
-}
-[data-theme="dark"] .nav-center.open { background: #132d56 !important; }
-[data-theme="light"] .nav-center.open { background: #ffffff !important; }
-/* ── END NAV ── */
+[data-theme="dark"] 
+[data-theme="dark"] [data-theme="light"] /* ── END NAV ── */
 </style>
 <style>
 /* Bot Widget */
