@@ -28,8 +28,8 @@
 }
 </script>
 <style>
-/* ── TOKENS ── */
 html { scroll-behavior: smooth; }
+
 /* ── HERO ── */
 .hero {
   min-height: 100vh;
@@ -335,28 +335,10 @@ footer {
 /* ── WATCH CSS ── */
 .watchit-icon { filter: drop-shadow(0 2px 6px rgba(0,112,210,0.2)); }
 
-/* ── RESPONSIVE ── */
-@media (max-width: 900px) {
-  .hero-inner { grid-template-columns: 1fr; gap: 40px; }
-  .hero-photo { order: -1; }
-  .hero-photo img { width: 200px; height: 240px; }
-  .hero-photo-badge { display: none; }
-  .interests-grid { grid-template-columns: repeat(2, 1fr); }
-  .lab-grid { grid-template-columns: repeat(2, 1fr); }
+@media (max-width: 768px) {
 }
-@media (max-width: 600px) {
-  
-  
-  
-  .interests-grid { grid-template-columns: 1fr; }
-  .lab-grid { grid-template-columns: 1fr; }
-  .hero-actions { flex-direction: column; }
-  .connect-btn { min-width: unset; width: 100%; margin-right: 0; margin-bottom: 10px; }
-}
-
-/* ── NAV ── */
-[data-theme="dark"] 
-[data-theme="dark"] [data-theme="light"] /* ── END NAV ── */
+[data-theme="dark"] .nav-center.open { background: #132d56 !important; }
+/* ── END NAV ── */
 </style>
 
 <style>

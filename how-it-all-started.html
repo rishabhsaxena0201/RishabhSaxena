@@ -11,12 +11,14 @@
 <link rel="icon" href="/logo.png" type="image/png">
 <style>
 html { scroll-behavior: smooth; }
-/* ── NAV ── */
-[data-theme="dark"] 
-[data-theme="dark"] [data-theme="light"] /* ── ARTICLE HERO ── */
+@media (max-width: 768px) {
+}
+[data-theme="dark"] .nav-center.open { background: #132d56 !important; }
+
+/* ── ARTICLE HERO ── */
 .article-hero {
   background: var(--sf-navy);
-  padding: 128px 5% 70px;
+  padding: 60px 5% 70px;
   position: relative;
   overflow: hidden;
 }

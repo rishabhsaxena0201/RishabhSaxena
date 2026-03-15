@@ -11,7 +11,9 @@
 <link rel="icon" href="/logo.png" type="image/png">
 <style>
 html { scroll-behavior: smooth; }
+
 /* ── PAGE LAYOUT ── */
+body { padding-top: 68px; }
 .section-inner { max-width: 1100px; margin: 0 auto; }
 .section-label {
   font-family: 'Sora', sans-serif; font-size: 0.72rem; font-weight: 700;
@@ -31,6 +33,7 @@ html { scroll-behavior: smooth; }
 .about-text p { margin-bottom: 16px; }
 .about-text strong { color: var(--sf-text); font-weight: 600; }
 .about-text em { font-style: italic; }
+@media (max-width: 768px) { .about-grid { grid-template-columns: 1fr; } }
 
 /* ── HIGHLIGHT CARDS ── */
 .highlight-card {
@@ -82,7 +85,12 @@ html { scroll-behavior: smooth; }
   color: var(--sf-subtext); background: var(--sf-tag-bg);
   padding: 3px 10px; border-radius: 20px; white-space: nowrap;
 }
-.stack-.stack-company { font-family: 'Sora', sans-serif; font-size: 1.1rem; font-weight: 800; color: var(--sf-text); margin-bottom: 4px; }
+.stack-body {
+  padding: 20px 28px 28px;
+  border-top: 1px solid var(--sf-border);
+  min-height: 300px;
+}
+.stack-company { font-family: 'Sora', sans-serif; font-size: 1.1rem; font-weight: 800; color: var(--sf-text); margin-bottom: 4px; }
 .stack-role { color: var(--sf-blue); font-size: 0.9rem; font-weight: 600; font-family: 'Sora', sans-serif; margin-bottom: 14px; }
 .stack-desc { color: var(--sf-subtext); font-size: 0.93rem; font-weight: 300; line-height: 1.7; }
 .sabbatical-box {
@@ -92,6 +100,9 @@ html { scroll-behavior: smooth; }
 .sabbatical-label {
   font-family: 'Sora', sans-serif; font-size: 0.72rem; font-weight: 700;
   letter-spacing: 0.12em; text-transform: uppercase; color: var(--sf-blue); margin-bottom: 6px;
+}
+@media (max-width: 768px) {
+  .stack-card { position: relative !important; top: 0 !important; margin-bottom: 12px; }
 }
 
 /* ── SKILLS ── */
@@ -176,6 +187,9 @@ footer span { color: #1B96FF; }
   border-radius: 50%; width: 36px; height: 36px;
   cursor: pointer; font-size: 1rem; display: flex; align-items: center; justify-content: center;
 }
+@media (max-width: 768px) {
+  .ve-window { width: calc(100vw - 32px); right: 16px; bottom: 80px; }
+}
 
 /* DROPDOWN NAV */
 
@@ -223,10 +237,10 @@ footer span { color: #1B96FF; }
   font-weight: 300;
   line-height: 1.7;
 }
-
-/* ── NAV ── */
-[data-theme="dark"] 
-[data-theme="dark"] [data-theme="light"] /* ── END NAV ── */
+@media (max-width: 768px) {
+}
+[data-theme="dark"] .nav-center.open { background: #132d56 !important; }
+/* ── END NAV ── */
 
 /* ── NAVY SECTIONS (About, What I Do, Education) ── */
 /* These always use fixed light colours regardless of dark/light mode */
@@ -391,6 +405,10 @@ section[style*="background:#0A1F44"] .section-label::before { background: #7ec8f
 }
 
 /* Hero photo mobile */
+@media (max-width: 768px) {
+  #page-hero { flex-direction: column !important; }
+  #page-hero img { width: 200px !important; height: 240px !important; }
+}
 </style>
 
 <style>

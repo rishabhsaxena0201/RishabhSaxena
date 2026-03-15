@@ -10,8 +10,8 @@
 <link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
 <link rel="icon" href="/logo.png" type="image/png">
 <style>
-/* ── TOKENS ── */
 html { scroll-behavior: smooth; }
+
 /* ── HERO ── */
 .hero {
   min-height: 100vh;
@@ -424,10 +424,10 @@ footer {
   transition: background 0.2s, transform 0.1s;
 }
 .suggest-btn:hover { background: var(--sf-electric); transform: translateY(-1px); }
-
-/* ── NAV ── */
-[data-theme="dark"] 
-[data-theme="dark"] [data-theme="light"] /* ── END NAV ── */
+@media (max-width: 768px) {
+}
+[data-theme="dark"] .nav-center.open { background: #132d56 !important; }
+/* ── END NAV ── */
 </style>
 <style>
 /* Bot Widget */
