@@ -1,1 +1,1120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<meta name="theme-color" content="#0D1117">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="ScoreMyPack">
+<link rel="manifest" href="manifest.json">
+<link rel="apple-touch-icon" href="icon-192.png">
+<title>ScoreMyPack</title>
+<!-- PostHog Analytics -->
+<script>
+!function(t,e){var o,n,p,r;e.__SV||(window.posthog=e,e._i=[],e.init=function(i,s,a){function g(t,e){var o=e.split(".");2==o.length&&(t=t[o[0]],e=o[1]);t[e]=function(){t.push([e].concat(Array.prototype.slice.call(arguments,0)))}}(p=t.createElement("script")).type="text/javascript",p.crossOrigin="anonymous",p.async=!0,p.src=s.api_host+"/static/array.js",(r=t.getElementsByTagName("script")[0]).parentNode.insertBefore(p,r);var u=e;for(void 0!==a?u=e[a]=[]:a="posthog",u.people=u.people||[],u.toString=function(t){var e="posthog";return"posthog"!==a&&(e+="."+a),t||(e+=" (stub)"),e},u.people.toString=function(){return u.toString(1)+" (stub)"},o="capture identify alias people.set people.set_once set_config register register_once unregister opt_out_capturing has_opted_out_capturing opt_in_capturing reset isFeatureEnabled onFeatureFlags getFeatureFlag getFeatureFlagPayload reloadFeatureFlags group updateEarlyAccessFeatureEnrollment getEarlyAccessFeatures getActiveMatchingSurveys getSurveys onSessionId".split(" "),n=0;n<o.length;n++)g(u,o[n]);e._i.push([i,s,a])},e.__SV=1)}(document,window.posthog||[]);
+posthog.init('phc_pV141cAwQHLesHjKjr21zJ5jdSgyYG2OwBk8vEjazhU', {
+  api_host: 'https://us.i.posthog.com',
+  autocapture: false,
+  capture_pageview: true,
+  persistence: 'localStorage+cookie'
+});
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#0B1520;--surface:#111E2E;--surface2:#172438;--border:#1E3450;--text:#E2EBF5;--muted:#7A96B0;--accent:#1464B4;--accent-bright:#2E8AE6;--grade-a:#038141;--grade-b:#85BB2F;--grade-c:#FECB02;--grade-d:#EE8100;--grade-e:#E63E11}
+*{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;overflow-x:hidden}
+body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellipse 80% 50% at 20% -10%,rgba(20,100,180,.15) 0%,transparent 60%),radial-gradient(ellipse 60% 40% at 80% 110%,rgba(40,80,100,.12) 0%,transparent 60%);pointer-events:none;z-index:0}
+.app{position:relative;z-index:1;max-width:480px;margin:0 auto;min-height:100vh;display:flex;flex-direction:column}
+header{padding:20px 24px 16px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--border);background:rgba(13,17,23,.8);backdrop-filter:blur(12px);position:sticky;top:0;z-index:100}
+.logo-group{display:flex;align-items:center;gap:12px}
+.brand{display:flex;flex-direction:column}
+.brand-name{font-family:'Syne',sans-serif;font-weight:700;font-size:18px;letter-spacing:-.3px;line-height:1}
+.brand-name span{color:var(--accent-bright)}
+.brand-tagline{font-size:10px;color:var(--muted);letter-spacing:.5px;margin-top:2px;text-transform:uppercase}
+.fssai-badge{font-size:9px;color:var(--muted);border:1px solid var(--border);padding:3px 8px;border-radius:20px;letter-spacing:.5px}
+main{flex:1;padding:24px 20px;display:flex;flex-direction:column;gap:20px}
+.scanner-card{background:var(--surface);border:1px solid var(--border);border-radius:20px;overflow:hidden}
+.scanner-area{aspect-ratio:4/3;background:var(--surface2);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;position:relative;overflow:hidden;cursor:pointer}
+.scanner-area.has-image{background:#000}
+#preview-img{width:100%;height:100%;object-fit:contain;display:none}
+.scanner-area.has-image #preview-img{display:block}
+.scanner-area.has-image .scan-placeholder{display:none}
+.corner{position:absolute;width:24px;height:24px;border-color:var(--accent-bright);border-style:solid;opacity:.7}
+.corner.tl{top:12px;left:12px;border-width:2px 0 0 2px;border-radius:4px 0 0 0}
+.corner.tr{top:12px;right:12px;border-width:2px 2px 0 0;border-radius:0 4px 0 0}
+.corner.bl{bottom:12px;left:12px;border-width:0 0 2px 2px;border-radius:0 0 0 4px}
+.corner.br{bottom:12px;right:12px;border-width:0 2px 2px 0;border-radius:0 0 4px 0}
+.scan-placeholder{display:flex;flex-direction:column;align-items:center;gap:10px}
+.scan-icon{width:56px;height:56px;border:2px dashed var(--border);border-radius:14px;display:flex;align-items:center;justify-content:center}
+.scan-icon svg{opacity:.4}
+.scan-text{font-size:13px;color:var(--muted);text-align:center;line-height:1.5}
+.scan-text strong{color:var(--text);display:block;font-size:15px;margin-bottom:2px}
+.scan-line{position:absolute;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,var(--accent-bright),transparent);animation:scanline 2.5s ease-in-out infinite;opacity:0}
+.scanner-area.has-image .scan-line{opacity:1}
+@keyframes scanline{0%{top:10%;opacity:0}10%{opacity:1}90%{opacity:1}100%{top:90%;opacity:0}}
+.scanner-actions{padding:14px 16px;display:flex;gap:10px;border-top:1px solid var(--border)}
+.btn{flex:1;padding:12px;border-radius:12px;border:none;font-family:'DM Sans',sans-serif;font-size:13px;font-weight:500;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:6px;transition:all .2s;letter-spacing:.2px}
+.btn-camera{background:var(--accent);color:#fff;font-weight:600}
+.btn-camera:active{transform:scale(.97);background:#0F52A0}
+.btn-upload{background:var(--surface2);color:var(--text);border:1px solid var(--border)}
+.btn-upload:active{transform:scale(.97)}
+.btn-analyse{width:100%;padding:15px;border-radius:14px;border:none;background:linear-gradient(135deg,#1464B4,#2E8AE6);color:#fff;font-family:'Syne',sans-serif;font-weight:700;font-size:15px;cursor:pointer;letter-spacing:.3px;transition:all .2s;display:flex;align-items:center;justify-content:center;gap:8px;box-shadow:0 4px 20px rgba(20,100,180,.35)}
+.btn-analyse:disabled{opacity:.3;cursor:not-allowed;box-shadow:none}
+.btn-analyse:not(:disabled):active{transform:scale(.98)}
+.processing-card{background:var(--surface);border:1px solid var(--border);border-radius:20px;padding:32px 24px;display:none;flex-direction:column;align-items:center;gap:16px;text-align:center}
+.processing-card.active{display:flex}
+.spinner{width:44px;height:44px;border:3px solid var(--border);border-top-color:var(--accent-bright);border-radius:50%;animation:spin .8s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+.processing-text{font-family:'Syne',sans-serif;font-weight:600;font-size:15px}
+.processing-sub{font-size:12px;color:var(--muted)}
+.progress-bar{width:100%;height:4px;background:var(--border);border-radius:2px;overflow:hidden}
+.progress-fill{height:100%;background:var(--accent-bright);border-radius:2px;width:0%;transition:width .4s ease}
+/* ── Shared ── */
+@keyframes slideUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.5;transform:scale(.8)}}
+#camera-input,#upload-input{display:none}
+footer{padding:16px 20px;text-align:center;font-size:11px;color:var(--border);border-top:1px solid var(--border)}
+.compress-notice{background:rgba(20,100,180,.08);border:1px solid rgba(20,100,180,.2);border-radius:10px;padding:10px 14px;font-size:11px;color:var(--muted);align-items:center;gap:8px;display:none}
+.compress-notice.active{display:flex}
+.compress-dot{width:6px;height:6px;border-radius:50%;background:var(--accent-bright);flex-shrink:0;animation:pulse 1.5s ease-in-out infinite}
+.error-card{background:rgba(230,62,17,.08);border:1px solid rgba(230,62,17,.25);border-radius:16px;padding:20px;display:none;text-align:center;gap:10px;flex-direction:column;align-items:center}
+.error-card.active{display:flex}
+.error-title{font-family:'Syne',sans-serif;font-weight:700;font-size:15px;color:#FF6B6B}
+.error-msg{font-size:13px;color:var(--muted);line-height:1.5}
+.rescan-btn{width:calc(100% - 40px);margin:0 20px 20px;padding:13px;border-radius:12px;border:1px solid var(--border);background:transparent;color:var(--muted);font-family:'DM Sans',sans-serif;font-size:13px;cursor:pointer;transition:all .2s;display:none}
+.rescan-btn.active{display:block}
+.rescan-btn:active{background:var(--surface2)}
 
+/* ── Review card ── */
+.review-card{background:var(--surface);border:1px solid var(--border);border-radius:20px;overflow:hidden;display:none;animation:slideUp .35s ease}
+.review-card.active{display:block}
+.review-header{padding:18px 20px 14px;border-bottom:1px solid var(--border);display:flex;align-items:flex-start;justify-content:space-between;gap:12px}
+.review-title{font-family:'Syne',sans-serif;font-weight:700;font-size:16px}
+.review-sub{font-size:12px;color:var(--muted);margin-top:3px;line-height:1.4}
+.ocr-conf{font-size:10px;padding:3px 8px;border-radius:10px;font-weight:600;letter-spacing:.4px;flex-shrink:0;margin-top:2px;white-space:nowrap}
+.conf-hi{background:rgba(3,129,65,.15);color:#4ec97b;border:1px solid rgba(3,129,65,.3)}
+.conf-md{background:rgba(254,203,2,.12);color:#c9a000;border:1px solid rgba(254,203,2,.3)}
+.conf-lo{background:rgba(230,62,17,.12);color:#ff7755;border:1px solid rgba(230,62,17,.25)}
+/* Portion size row */
+.portion-row{display:flex;align-items:center;gap:10px;padding:12px 20px;border-bottom:1px solid var(--border);background:var(--surface2)}
+.portion-label{font-size:12px;color:var(--muted);flex:1}
+.portion-input{width:72px;background:var(--surface);border:1px solid var(--accent);border-radius:8px;padding:7px 10px;color:var(--text);font-family:'DM Sans',sans-serif;font-size:14px;font-weight:600;outline:none;text-align:center;-webkit-appearance:none;appearance:none}
+.portion-unit{font-size:12px;color:var(--muted)}
+.portion-same{font-size:10px;color:var(--muted);font-style:italic}
+/* Two-column table */
+.field-table{width:100%;padding:0 20px;margin-top:4px}
+.field-table-head{display:grid;grid-template-columns:1fr 90px 90px;gap:4px;padding:8px 0 6px;border-bottom:1px solid var(--border);margin-bottom:2px}
+.col-head{font-size:10px;color:var(--muted);text-align:center;letter-spacing:.3px}
+.col-head.col-name{text-align:left;padding-left:2px}
+.field-row-2col{display:grid;grid-template-columns:1fr 90px 90px;gap:4px;align-items:center;padding:5px 0;border-bottom:1px solid rgba(30,52,80,.5)}
+.field-row-2col:last-child{border-bottom:none}
+.field-name-cell{font-size:12px;color:var(--muted);padding-left:2px;display:flex;align-items:center;gap:5px}
+.f-dot{display:inline-block;width:6px;height:6px;border-radius:50%;flex-shrink:0}
+.f-ok{background:#4ec97b}.f-miss{background:#E63E11}
+.field-cell{position:relative}
+.field-input-2{width:100%;background:var(--surface2);border:1px solid var(--border);border-radius:8px;padding:7px 6px;color:var(--text);font-family:'DM Sans',sans-serif;font-size:13px;outline:none;text-align:center;-webkit-appearance:none;appearance:none;transition:border-color .2s}
+.field-input-2:focus{border-color:var(--accent-bright)}
+.field-input-2.f-missing{border-color:rgba(230,62,17,.4);background:rgba(230,62,17,.04)}
+.field-input-2.f-missing:focus{border-color:var(--accent-bright);background:var(--surface2)}
+.field-input-2.f-readonly{background:transparent;border-color:transparent;color:var(--muted);cursor:default;pointer-events:none;font-weight:500}
+.field-unit-sm{font-size:9px;color:var(--border);display:block;text-align:center;margin-top:1px}
+.field-divider{height:1px;background:var(--border);margin:4px 0}
+.review-actions{padding:12px 20px 20px;display:flex;flex-direction:column;gap:10px}
+.review-note{font-size:11px;color:var(--muted);text-align:center;line-height:1.5;padding:0 4px}
+.btn-calc{width:100%;padding:14px;border-radius:13px;border:none;background:linear-gradient(135deg,#1464B4,#2E8AE6);color:#fff;font-family:'Syne',sans-serif;font-weight:700;font-size:15px;cursor:pointer;box-shadow:0 4px 16px rgba(20,100,180,.3);transition:all .2s;letter-spacing:.3px}
+.btn-calc:active{transform:scale(.98)}
+.btn-rescan-sm{width:100%;padding:11px;border-radius:12px;border:1px solid var(--border);background:transparent;color:var(--muted);font-family:'DM Sans',sans-serif;font-size:13px;cursor:pointer;transition:all .2s}
+.btn-rescan-sm:active{background:var(--surface2)}
+
+/* ── Result card ── */
+.result-card{background:var(--surface);border:1px solid var(--border);border-radius:20px;overflow:hidden;display:none;animation:slideUp .4s ease}
+.result-card.active{display:block}
+.result-header{padding:20px 20px 16px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between}
+.product-label{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.8px;margin-bottom:4px}
+.product-name{font-family:'Syne',sans-serif;font-weight:700;font-size:16px}
+.grade-badge{width:56px;height:56px;border-radius:14px;display:flex;align-items:center;justify-content:center;font-family:'Syne',sans-serif;font-weight:800;font-size:28px;color:#fff;flex-shrink:0}
+.grade-A{background:var(--grade-a);box-shadow:0 4px 20px rgba(3,129,65,.4)}
+.grade-B{background:var(--grade-b);box-shadow:0 4px 20px rgba(133,187,47,.4)}
+.grade-C{background:var(--grade-c);color:#1a1a1a;box-shadow:0 4px 20px rgba(254,203,2,.4)}
+.grade-D{background:var(--grade-d);box-shadow:0 4px 20px rgba(238,129,0,.4)}
+.grade-E{background:var(--grade-e);box-shadow:0 4px 20px rgba(230,62,17,.4)}
+.grade-bar{padding:16px 20px;display:flex;gap:6px;border-bottom:1px solid var(--border)}
+.grade-pill{flex:1;padding:8px 4px;border-radius:8px;text-align:center;font-family:'Syne',sans-serif;font-weight:700;font-size:14px;opacity:.25;transition:all .3s;color:#fff}
+.grade-pill.active{opacity:1;transform:scale(1.08)}
+.pill-A{background:var(--grade-a)}.pill-B{background:var(--grade-b)}.pill-C{background:var(--grade-c);color:#1a1a1a}.pill-D{background:var(--grade-d)}.pill-E{background:var(--grade-e)}
+/* Two-column nutrient table in result */
+.nutrients-section{padding:16px 20px;border-bottom:1px solid var(--border)}
+.section-title{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.8px;margin-bottom:12px}
+.nutrient-table-head{display:grid;grid-template-columns:100px 1fr 64px 64px;gap:6px;padding-bottom:8px;border-bottom:1px solid var(--border);margin-bottom:6px}
+.nt-col-head{font-size:10px;color:var(--muted);letter-spacing:.3px}
+.nt-col-head.right{text-align:right}
+.nutrient-row-2{display:grid;grid-template-columns:100px 1fr 64px 64px;gap:6px;align-items:center;padding:6px 0;border-bottom:1px solid rgba(30,52,80,.4)}
+.nutrient-row-2:last-child{border-bottom:none}
+.nutrient-name{font-size:12px;color:var(--muted);line-height:1.3}
+.nutrient-bar-wrap{height:5px;background:var(--border);border-radius:3px;overflow:hidden;align-self:center}
+.nutrient-bar-fill{height:100%;border-radius:3px;transition:width .8s ease}
+.fill-bad{background:linear-gradient(90deg,#B44020,#E63E11)}
+.fill-good{background:linear-gradient(90deg,#2E8AE6,#1464B4)}
+.nutrient-val{font-size:12px;color:var(--text);text-align:right;font-variant-numeric:tabular-nums}
+.nutrient-val.muted{color:var(--muted)}
+.score-section{padding:16px 20px;border-bottom:1px solid var(--border)}
+.score-row{display:flex;justify-content:space-between;align-items:center;padding:6px 0}
+.score-label{font-size:13px;color:var(--muted)}
+.score-val{font-size:13px;font-weight:500;font-variant-numeric:tabular-nums}
+.score-val.bad{color:#7AB0D0}.score-val.good{color:var(--accent-bright)}
+.score-val.total{color:var(--text);font-family:'Syne',sans-serif;font-weight:700;font-size:15px}
+.score-divider{height:1px;background:var(--border);margin:4px 0}
+.verdict-section{padding:16px 20px}
+.verdict-box{background:var(--surface2);border-radius:12px;padding:14px;font-size:13px;line-height:1.6;color:var(--text);border-left:3px solid var(--accent-bright)}
+.tips{display:flex;flex-direction:column;gap:8px;margin-top:12px}
+.tip{display:flex;align-items:flex-start;gap:8px;font-size:12px;color:var(--muted);line-height:1.5}
+.tip-dot{width:6px;height:6px;border-radius:50%;flex-shrink:0;margin-top:5px}
+.tip-green{background:var(--accent-bright)}.tip-orange{background:#B44020}
+</style>
+</head>
+<body>
+<div class="app">
+  <header>
+    <div class="logo-group">
+      <div style="width:44px;height:44px;background:linear-gradient(135deg,#1464B4,#2E8AE6);border-radius:12px;display:flex;align-items:center;justify-content:center;filter:drop-shadow(0 2px 10px rgba(20,100,180,.35))">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><path d="M9 3H5a2 2 0 0 0-2 2v4m6-6h10a2 2 0 0 1 2 2v4M9 3v18m0 0h10a2 2 0 0 0 2-2V9M9 21H5a2 2 0 0 1-2-2V9m0 0h18"/></svg>
+      </div>
+      <div class="brand">
+        <div class="brand-name">Score<span>MyPack</span></div>
+        <div class="brand-tagline">Nutrition Intelligence</div>
+      </div>
+    </div>
+    <div class="fssai-badge">India 🇮🇳</div>
+  </header>
+  <main>
+    <div class="scanner-card" id="scanner-card">
+      <div class="scanner-area" id="scanner-area" onclick="document.getElementById('upload-input').click()">
+        <div class="corner tl"></div><div class="corner tr"></div>
+        <div class="corner bl"></div><div class="corner br"></div>
+        <div class="scan-line"></div>
+        <img id="preview-img" alt="preview">
+        <div class="scan-placeholder">
+          <div class="scan-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="M8 12h8M12 8v8"/></svg></div>
+          <div class="scan-text"><strong>Tap to add nutrition label</strong>Use camera or pick from gallery</div>
+        </div>
+      </div>
+      <div class="scanner-actions">
+        <button class="btn btn-camera" onclick="openCamera()">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg>Camera
+        </button>
+        <button class="btn btn-upload" onclick="document.getElementById('upload-input').click()">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>Gallery
+        </button>
+      </div>
+    </div>
+
+    <div class="compress-notice" id="compress-notice">
+      <div class="compress-dot"></div><span>Large image — optimising…</span>
+    </div>
+
+    <button class="btn-analyse" id="analyse-btn" disabled onclick="analyseImage()">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+      Analyse Nutrition Label
+    </button>
+
+    <div class="processing-card" id="processing-card">
+      <div class="spinner"></div>
+      <div class="processing-text" id="proc-text">Loading OCR…</div>
+      <div class="processing-sub" id="proc-sub">First use downloads ~3MB</div>
+      <div class="progress-bar"><div class="progress-fill" id="prog-fill"></div></div>
+    </div>
+
+    <div class="review-card" id="review-card">
+      <div class="review-header">
+        <div>
+          <div class="review-title">Review Values</div>
+          <div class="review-sub"><span style="color:#E63E11">Red</span> = not found — enter from your pack. Edit either column.</div>
+        </div>
+        <div class="ocr-conf" id="ocr-conf">–</div>
+      </div>
+      <!-- Editable portion size -->
+      <div class="portion-row">
+        <span class="portion-label">Portion size on pack</span>
+        <input class="portion-input" type="number" id="portion-size" min="1" max="500" step="1" inputmode="decimal" onchange="onPortionChange()">
+        <span class="portion-unit">g</span>
+        <span class="portion-same" id="portion-same-note"></span>
+      </div>
+      <!-- Two-column field table -->
+      <div class="field-table">
+        <div class="field-table-head">
+          <div class="col-head col-name">Nutrient</div>
+          <div class="col-head" id="col-head-serving">Per serving</div>
+          <div class="col-head">Per 100g <span style="font-size:9px;opacity:.6">(auto)</span></div>
+        </div>
+        <div id="review-fields"></div>
+      </div>
+      <div class="review-actions">
+        <div class="review-note" id="review-note"></div>
+        <button class="btn-calc" onclick="calculateFromForm()">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="display:inline;vertical-align:middle;margin-right:6px"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+          Calculate Nutri-Score
+        </button>
+        <button class="btn-rescan-sm" onclick="resetApp()">↩ Scan a Different Label</button>
+      </div>
+    </div>
+
+    <div class="error-card" id="error-card">
+      <div class="error-title">Couldn't Read Label</div>
+      <div class="error-msg" id="error-msg">Please try with a clearer, well-lit photo.</div>
+      <button class="btn btn-upload" style="flex:none;padding:10px 20px" onclick="resetApp()">Try Again</button>
+    </div>
+
+    <div class="result-card" id="result-card">
+      <div class="result-header">
+        <div>
+          <div class="product-label">Nutri-Score Result</div>
+          <div class="product-name" id="result-name">Analysed Product</div>
+        </div>
+        <div class="grade-badge" id="grade-badge">–</div>
+      </div>
+      <div class="grade-bar">
+        <div class="grade-pill pill-A" id="pill-A">A</div><div class="grade-pill pill-B" id="pill-B">B</div>
+        <div class="grade-pill pill-C" id="pill-C">C</div><div class="grade-pill pill-D" id="pill-D">D</div>
+        <div class="grade-pill pill-E" id="pill-E">E</div>
+      </div>
+      <div class="nutrients-section">
+        <div class="section-title" id="result-section-title">Nutritional Values</div>
+        <div id="nutrient-grid"></div>
+      </div>
+      <div class="score-section">
+        <div class="section-title">Score Breakdown</div>
+        <div class="score-row"><span class="score-label">Negative points (energy, fat, sugar, sodium)</span><span class="score-val bad" id="bad-pts">–</span></div>
+        <div class="score-row"><span class="score-label">Positive points (protein, fibre, fruits/veg)</span><span class="score-val good" id="good-pts">–</span></div>
+        <div class="score-divider"></div>
+        <div class="score-row"><span class="score-label" style="font-weight:500;color:var(--text)">Final Score</span><span class="score-val total" id="final-score">–</span></div>
+      </div>
+      <div class="verdict-section">
+        <div class="section-title">Verdict</div>
+        <div class="verdict-box" id="verdict-box"></div>
+        <div class="tips" id="tips-list"></div>
+      </div>
+    </div>
+
+    <button class="rescan-btn" id="rescan-btn" onclick="resetApp()">↩ Scan Another Product</button>
+  </main>
+  <footer>ScoreMyPack • Nutri-Score v2 • Tesseract OCR • Thinking Lab</footer>
+</div>
+<input type="file" id="camera-input" accept="image/*" capture="environment" onchange="handleImage(this)">
+<input type="file" id="upload-input" accept="image/*" onchange="handleImage(this)">
+<script>
+// ═══════════════════════════════════════════════════════════════════
+//  TESSERACT LOADER
+// ═══════════════════════════════════════════════════════════════════
+let _tReady=null;
+function loadTesseract(){
+  if(_tReady) return _tReady;
+  const cdns=['https://unpkg.com/tesseract.js@5.1.0/dist/tesseract.min.js','https://cdn.jsdelivr.net/npm/tesseract.js@5.1.0/dist/tesseract.min.js'];
+  _tReady=(async()=>{for(const url of cdns){if(typeof Tesseract!=='undefined')return;try{await new Promise((res,rej)=>{const s=document.createElement('script');s.src=url;s.onload=res;s.onerror=rej;document.head.appendChild(s);});if(typeof Tesseract!=='undefined')return;}catch(e){}}throw new Error('Could not load Tesseract.js');})();
+  return _tReady;
+}
+
+// ═══════════════════════════════════════════════════════════════════
+//  IMAGE HANDLING
+// ═══════════════════════════════════════════════════════════════════
+let imgDataUrl=null;
+function openCamera(){document.getElementById('camera-input').click();}
+async function handleImage(input){
+  const file=input.files[0];if(!file)return;
+  ph('image_uploaded',{file_size_kb:Math.round(file.size/1024)});
+  const notice=document.getElementById('compress-notice');
+  if(file.size>3*1024*1024)notice.classList.add('active');
+  try{
+    const r=await compressImage(file,1800);
+    imgDataUrl=r.dataUrl;
+    document.getElementById('preview-img').src=r.dataUrl;
+    document.getElementById('scanner-area').classList.add('has-image');
+    document.getElementById('analyse-btn').disabled=false;
+    notice.classList.remove('active');
+    if(file.size>3*1024*1024){notice.querySelector('span').textContent=`✓ Optimised ${(file.size/1024/1024).toFixed(1)}MB → ${(r.size/1024).toFixed(0)}KB`;notice.classList.add('active');setTimeout(()=>notice.classList.remove('active'),3000);}
+    hideAll();
+  }catch(e){console.error(e);}
+  input.value='';
+}
+function compressImage(file,maxDim){
+  return new Promise((resolve,reject)=>{
+    const reader=new FileReader();
+    reader.onload=e=>{
+      const img=new Image();
+      img.onload=()=>{
+        let{width:w,height:h}=img;const sc=Math.min(1,maxDim/Math.max(w,h));w=Math.round(w*sc);h=Math.round(h*sc);
+        const canvas=document.createElement('canvas');canvas.width=w;canvas.height=h;
+        const ctx=canvas.getContext('2d');ctx.drawImage(img,0,0,w,h);
+        const dataUrl=canvas.toDataURL('image/jpeg',.92);
+        resolve({dataUrl,size:Math.round(dataUrl.length*.75)});
+      };img.onerror=reject;img.src=e.target.result;
+    };reader.onerror=reject;reader.readAsDataURL(file);
+  });
+}
+
+// ═══════════════════════════════════════════════════════════════════
+//  IMAGE PREPROCESSING  v2
+//  Pipeline: upscale → greyscale → label detection → crop →
+//            adaptive threshold → unsharp mask
+//  Then: multi-pass OCR → best result selection → non-Latin filter
+// ═══════════════════════════════════════════════════════════════════
+
+// ── Greyscale conversion ─────────────────────────────────────────
+function toGrey(data,w,h){
+  const g=new Float32Array(w*h);
+  for(let i=0;i<w*h;i++)g[i]=0.299*data[i*4]+0.587*data[i*4+1]+0.114*data[i*4+2];
+  return g;
+}
+
+// ── Integral image (for O(1) local mean/variance) ────────────────
+function buildIntegral(grey,w,h){
+  const S=new Float64Array(w*h),S2=new Float64Array(w*h);
+  for(let y=0;y<h;y++)for(let x=0;x<w;x++){
+    const i=y*w+x,v=grey[i];
+    S[i]=v+(x>0?S[i-1]:0)+(y>0?S[i-w]:0)-(x>0&&y>0?S[i-w-1]:0);
+    S2[i]=v*v+(x>0?S2[i-1]:0)+(y>0?S2[i-w]:0)-(x>0&&y>0?S2[i-w-1]:0);
+  }
+  return{S,S2};
+}
+function rsum(S,w,x0,y0,x1,y1){
+  let s=S[y1*w+x1];
+  if(x0>0)s-=S[y1*w+x0-1];
+  if(y0>0)s-=S[(y0-1)*w+x1];
+  if(x0>0&&y0>0)s+=S[(y0-1)*w+x0-1];
+  return s;
+}
+
+// ── Sauvola adaptive thresholding ────────────────────────────────
+// Handles uneven lighting, glare, shadows independently per region
+function sauvolaThreshold(grey,w,h,radius=18,k=0.2){
+  const{S,S2}=buildIntegral(grey,w,h);
+  const out=new Uint8ClampedArray(w*h*4);
+  for(let y=0;y<h;y++)for(let x=0;x<w;x++){
+    const x0=Math.max(0,x-radius),y0=Math.max(0,y-radius);
+    const x1=Math.min(w-1,x+radius),y1=Math.min(h-1,y+radius);
+    const n=(x1-x0+1)*(y1-y0+1);
+    const mean=rsum(S,w,x0,y0,x1,y1)/n;
+    const meanSq=rsum(S2,w,x0,y0,x1,y1)/n;
+    const std=Math.sqrt(Math.max(0,meanSq-mean*mean));
+    const t=mean*(1-k*(1-std/128));
+    const val=grey[y*w+x]>t?255:0;
+    const i=(y*w+x)*4;out[i]=out[i+1]=out[i+2]=val;out[i+3]=255;
+  }
+  return out;
+}
+
+// ── Unsharp mask (sharpen before thresholding) ───────────────────
+function unsharpMask(grey,w,h,strength=0.6){
+  // 3x3 Gaussian blur then subtract
+  const blurred=new Float32Array(w*h);
+  const kernel=[1,2,1,2,4,2,1,2,1];const ksum=16;
+  for(let y=0;y<h;y++)for(let x=0;x<w;x++){
+    let s=0,ki=0;
+    for(let dy=-1;dy<=1;dy++)for(let dx=-1;dx<=1;dx++){
+      const ny=Math.max(0,Math.min(h-1,y+dy)),nx=Math.max(0,Math.min(w-1,x+dx));
+      s+=grey[ny*w+nx]*kernel[ki++];
+    }
+    blurred[y*w+x]=s/ksum;
+  }
+  const out=new Float32Array(w*h);
+  for(let i=0;i<w*h;i++)out[i]=Math.min(255,Math.max(0,grey[i]*(1+strength)-blurred[i]*strength));
+  return out;
+}
+
+// ── Sobel edge detection (for label region finding) ──────────────
+function sobelEdge(grey,w,h){
+  const out=new Float32Array(w*h);
+  for(let y=1;y<h-1;y++)for(let x=1;x<w-1;x++){
+    const gx=(-grey[(y-1)*w+x-1]-2*grey[y*w+x-1]-grey[(y+1)*w+x-1]
+               +grey[(y-1)*w+x+1]+2*grey[y*w+x+1]+grey[(y+1)*w+x+1]);
+    const gy=(-grey[(y-1)*w+x-1]-2*grey[(y-1)*w+x]-grey[(y-1)*w+x+1]
+               +grey[(y+1)*w+x-1]+2*grey[(y+1)*w+x]+grey[(y+1)*w+x+1]);
+    out[y*w+x]=Math.min(255,Math.sqrt(gx*gx+gy*gy));
+  }
+  return out;
+}
+
+// ── Label region detection ───────────────────────────────────────
+// Finds the nutrition table by locating the densest rectangular
+// region of edges in the image. Silently falls back to full image.
+function detectLabelRegion(grey,w,h){
+  const edges=sobelEdge(grey,w,h);
+  const TILE=Math.round(Math.min(w,h)/30); // ~30 tiles across short side
+  const tilesX=Math.floor(w/TILE),tilesY=Math.floor(h/TILE);
+  if(tilesX<4||tilesY<4)return null; // image too small to tile
+  // Score each tile by edge density
+  const scores=[];
+  for(let ty=0;ty<tilesY;ty++)for(let tx=0;tx<tilesX;tx++){
+    let sum=0,cnt=0;
+    for(let y=ty*TILE;y<Math.min((ty+1)*TILE,h);y++)
+      for(let x=tx*TILE;x<Math.min((tx+1)*TILE,w);x++){sum+=edges[y*w+x];cnt++;}
+    scores.push({tx,ty,score:sum/cnt});
+  }
+  // Threshold: tiles above 60th percentile score are "text-like"
+  const sorted=[...scores].sort((a,b)=>b.score-a.score);
+  const threshold=sorted[Math.floor(sorted.length*0.3)].score; // top 30%
+  const high=scores.filter(t=>t.score>=threshold&&t.score>8);
+  if(high.length<6)return null; // not enough high-density tiles
+  // Bounding box of high-density tiles
+  const minTx=Math.min(...high.map(t=>t.tx)),maxTx=Math.max(...high.map(t=>t.tx));
+  const minTy=Math.min(...high.map(t=>t.ty)),maxTy=Math.max(...high.map(t=>t.ty));
+  // Reject if region is too large (>85% of image) — probably full image noise
+  const regionW=(maxTx-minTx+1)/tilesX,regionH=(maxTy-minTy+1)/tilesY;
+  if(regionW>0.85&&regionH>0.85)return null;
+  // Reject if region is too small (<10% of image)
+  if(regionW<0.1||regionH<0.1)return null;
+  const PAD=2; // tile padding around detected region
+  return{
+    x:Math.max(0,(minTx-PAD)*TILE),
+    y:Math.max(0,(minTy-PAD)*TILE),
+    w:Math.min(w,(maxTx-minTx+1+PAD*2)*TILE),
+    h:Math.min(h,(maxTy-minTy+1+PAD*2)*TILE)
+  };
+}
+
+// ── Non-Latin line filter (post-OCR) ─────────────────────────────
+// Strips lines where >40% of letters are non-Latin (Arabic, Hindi etc.)
+// Prevents foreign script from confusing the parser
+const NUTRIENT_KW=/energy|calories?|protein|fat|carbohydrate|sugar|fibre|fiber|sodium|salt|saturate/i;
+function filterNonLatin(text){
+  return text.split('\n').filter(line=>{
+    if(NUTRIENT_KW.test(line))return true; // always keep nutrient lines
+    const letters=(line.match(/\p{L}/gu)||[]);
+    if(!letters.length)return true;
+    const nonLatin=letters.filter(c=>!/[a-zA-Z]/.test(c)).length;
+    return nonLatin/letters.length<0.4;
+  }).join('\n');
+}
+
+// ── Score OCR result (for multi-pass selection) ──────────────────
+function scoreOcrText(text){
+  if(!text||!text.trim())return 0;
+  const lines=text.split('\n').filter(l=>l.trim());
+  const kwLines=lines.filter(l=>NUTRIENT_KW.test(l)).length;
+  const numLines=lines.filter(l=>/\d/.test(l)).length;
+  return kwLines*3+numLines; // weight keyword lines higher
+}
+
+// ── Main preprocessing pipeline ─────────────────────────────────
+// Returns array of {dataUrl, label} preprocessed versions for multi-pass OCR
+function buildPreprocessedVersions(imgData,w,h){
+  const grey=toGrey(imgData,w,h);
+  // Detect label region — silently fall back to full image if not found
+  const region=detectLabelRegion(grey,w,h);
+  const versions=[];
+  // Helper: crop grey to region, sharpen, threshold, return canvas dataUrl
+  function makeVersion(g,gw,gh,label){
+    const sharpened=unsharpMask(g,gw,gh);
+    const thresholded=sauvolaThreshold(sharpened,gw,gh);
+    const c=document.createElement('canvas');c.width=gw;c.height=gh;
+    const ctx=c.getContext('2d');
+    const id=ctx.createImageData(gw,gh);id.data.set(thresholded);
+    ctx.putImageData(id,0,0);
+    return{dataUrl:c.toDataURL('image/png'),label};
+  }
+  if(region){
+    // Version 1: cropped + adaptive threshold (primary)
+    const cw=region.w,ch=region.h;
+    const cropped=new Float32Array(cw*ch);
+    for(let y=0;y<ch;y++)for(let x=0;x<cw;x++)
+      cropped[y*cw+x]=grey[(region.y+y)*w+(region.x+x)];
+    versions.push(makeVersion(cropped,cw,ch,'crop+adaptive'));
+    // Version 2: cropped + light sharpen only (different radius)
+    const c2=document.createElement('canvas');c2.width=cw;c2.height=ch;
+    const ctx2=c2.getContext('2d');
+    const sharpened2=unsharpMask(cropped,cw,ch,0.3);
+    const id2=ctx2.createImageData(cw,ch);
+    // Simple contrast stretch for version 2
+    let mn=255,mx=0;for(const v of sharpened2){if(v<mn)mn=v;if(v>mx)mx=v;}
+    const range=mx-mn||1;
+    for(let i=0;i<cw*ch;i++){
+      const v=Math.round((sharpened2[i]-mn)/range*255);
+      id2.data[i*4]=id2.data[i*4+1]=id2.data[i*4+2]=v;id2.data[i*4+3]=255;
+    }
+    ctx2.putImageData(id2,0,0);
+    versions.push({dataUrl:c2.toDataURL('image/png'),label:'crop+contrast'});
+  }
+  // Always include full-image adaptive threshold as fallback
+  versions.push(makeVersion(grey,w,h,'full+adaptive'));
+  return versions;
+}
+
+// ── Load image → run preprocessing pipeline ──────────────────────
+function prepareImage(dataUrl){
+  return new Promise(resolve=>{
+    const img=new Image();
+    img.onload=()=>{
+      let w=img.naturalWidth,h=img.naturalHeight;
+      // Upscale if too small — Tesseract needs at least 1400px on longest side
+      const MIN=1400;
+      if(Math.max(w,h)<MIN){const sc=MIN/Math.max(w,h);w=Math.round(w*sc);h=Math.round(h*sc);}
+      // Cap at 3000px to avoid memory issues on mobile
+      const MAX=3000;
+      if(Math.max(w,h)>MAX){const sc=MAX/Math.max(w,h);w=Math.round(w*sc);h=Math.round(h*sc);}
+      const canvas=document.createElement('canvas');canvas.width=w;canvas.height=h;
+      const ctx=canvas.getContext('2d');ctx.drawImage(img,0,0,w,h);
+      const imgData=ctx.getImageData(0,0,w,h).data;
+      resolve(buildPreprocessedVersions(imgData,w,h));
+    };
+    img.src=dataUrl;
+  });
+}
+
+// ── Multi-pass OCR: run all versions, pick best result ───────────
+async function runOcr(dataUrl){
+  const versions=await prepareImage(dataUrl);
+  setProgress(18,'Preprocessing image…',`${versions.length} versions prepared`);
+  const worker=await Tesseract.createWorker('eng',1,{logger:m=>{
+    if(m.status==='loading tesseract core')setProgress(12,'Loading OCR engine…','');
+    else if(m.status==='loading language traineddata')setProgress(16,'Loading language data…','');
+  }});
+  try{
+    let best='',bestScore=-1,pass=0;
+    for(const v of versions){
+      pass++;
+      setProgress(20+Math.round((pass/versions.length)*40),
+        `Reading label… (pass ${pass}/${versions.length})`,v.label);
+      await worker.setParameters({
+        tessedit_pageseg_mode: v.label.startsWith('crop')?'6':'6',
+        preserve_interword_spaces:'1'
+      });
+      const r=await worker.recognize(v.dataUrl);
+      const text=filterNonLatin(r.data.text);
+      const score=scoreOcrText(text);
+      if(score>bestScore){bestScore=score;best=text;}
+    }
+    await worker.terminate();
+    return best;
+  }catch(e){await worker.terminate();throw e;}
+}
+
+// ═══════════════════════════════════════════════════════════════════
+//  NUTRITION PARSER  v4
+//  Handles: dot-leaders, two-column tables, per-serving scaling,
+//  kJ/kcal split lines, salt→sodium, OCR O→0 l→1 ll→11 corruptions,
+//  EU saturates, US Calories label, #kcal, <0.1 traces
+// ═══════════════════════════════════════════════════════════════════
+
+// Positional boundary detection — marks where the nutrition table ends.
+// Everything below this line is footnotes, allergen advice, manufacturer info, etc.
+// Pattern matches structural signals, not content keywords — robust across label types.
+const TABLE_END_RE=/^[\*†‡]|%\s*daily\s*value\s*\(?tells|footnote|manufactured\s*by|allergen\s*advice|contains:|best\s*before|net\s*weight|mfg\s*date|batch\s*no|for\s*queries|customer\s*care|disclaimer|^\s*note\s*:/i;
+
+// Truncate raw OCR text to only the nutrition table — called once before any parsing.
+// Finds the first line that signals "footnote section starts" and discards everything after it.
+function truncateToTable(raw){
+  const lines=raw.split('\n');
+  const cutAt=lines.findIndex(l=>TABLE_END_RE.test(l.trim()));
+  return(cutAt===-1?lines:lines.slice(0,cutAt)).join('\n');
+}
+
+function cleanOcr(raw){
+  // FIX 2: strip % Daily Value column — strip trailing "NN%" AND bare trailing integers
+  // that look like DV% (1–100) after a unit like g/mg
+  const stripDvCol=line=>{
+    // Remove explicit "NN%" patterns
+    let l=line.replace(/\s+\d{1,3}\s*%/g,'');
+    // Also strip a bare trailing integer 1–100 that follows a unit token (g/mg/mcg/iu)
+    l=l.replace(/(\b(?:mg|mcg|iu|g)\b)\s+(\d{1,3})$/i,'$1');
+    return l;
+  };
+  return raw.replace(/\r\n|\r/g,'\n')
+    // dot/dash leaders (3+ chars)
+    .replace(/([.\-_\u2022]{3,})/g,' ')
+    // OCR: ll/II → 11
+    .replace(/\bll\b/g,'11').replace(/\bII\b/g,'11').replace(/\blI\b/g,'11').replace(/\bIl\b/g,'11')
+    // l/I adjacent to digits
+    .replace(/(\d)[lI](\d)/g,'$11$2').replace(/\b[lI](\d)/g,'1$1').replace(/(\d)[lI]\b/g,'$11')
+    // O adjacent to digits
+    .replace(/(\d)O(\d)/g,'$10$2').replace(/\bO(\d)/g,'0$1').replace(/(\d)O\b/g,'$10')
+    // unit normalisation
+    .replace(/#\s*kcal/gi,'kcal').replace(/\bKCAL\b/g,'kcal').replace(/\bKcal\b/g,'kcal')
+    .replace(/\bKJ\b/gi,'kJ').replace(/\bMG\b/g,'mg')
+    // trace values
+    .replace(/<\s*0[.,]\d+/g,'0').replace(/<\s*(\d)/g,'$1')
+    // percent columns (existing)
+    .replace(/[*†‡]/g,'')
+    // apply DV column strip per line
+    .split('\n').map(stripDvCol).join('\n')
+    .replace(/[ \t]+/g,' ').trim();
+}
+function nums(str){return(str.match(/\d+(?:[.,]\d+)?/g)||[]).map(n=>parseFloat(n.replace(',','.'))).filter(n=>isFinite(n)&&n>=0);}
+function matchLines(lines,re){return lines.reduce((acc,line,i)=>{if(re.test(line))acc.push({line,next:lines[i+1]||'',idx:i});return acc;},[]);}
+function detectStruct(lines){
+  for(let i=0;i<Math.min(15,lines.length);i++){
+    const l=lines[i].toLowerCase();
+    // Standard single-line two-column header: "Per serving | Per 100g"
+    if(/per\s*100\s*g/.test(l)&&/per\s*serv/.test(l)){
+      const i100=l.search(/per\s*100/),iSrv=l.search(/per\s*serv/);
+      return{col100g:i100>iSrv?1:0};
+    }
+    // Standard single-line per-100g header
+    if(/per\s*100\s*g/.test(l)||/amount\s*per\s*100/.test(l))return{col100g:0};
+    // Multi-line header detection: join 3-line window to catch headers split across lines
+    // e.g. "Average / 100g serving / contains" (FSSAI multi-column format)
+    const win=[lines[i],lines[i+1]||'',lines[i+2]||''].join(' ').toLowerCase();
+    if(/100g\s*serving\s*contains/.test(win)||/average\s*100g/.test(win))return{col100g:0};
+    // "Typical Values" is a reliable FSSAI multi-column table signal
+    if(/typical\s*values/.test(l))return{col100g:0};
+  }
+  return null;
+}
+function pickVal(n,ts,maxVal=9999){
+  const s=n.filter(v=>v<=maxVal);if(!s.length)return null;if(s.length===1)return s[0];
+  if(ts)return s[Math.min(ts.col100g,s.length-1)];return s[s.length-1];
+}
+function parseNutrition(rawText){
+  // Truncate to table boundary first — eliminates footnotes before any regex runs
+  const text=cleanOcr(truncateToTable(rawText));
+  const lines=text.split('\n').map(l=>l.trim()).filter(Boolean);
+  const struct=detectStruct(lines);
+  // get(): uses current line nums only; falls to next line only if current has none
+  const get=(patterns,maxVal=9999)=>{
+    for(const re of patterns){
+      const hits=matchLines(lines,re);
+      for(const hit of hits){
+        const n=nums(hit.line);
+        if(n.length){const v=pickVal(n,struct,maxVal);if(v!==null)return v;}
+        else{const n2=nums(hit.next);if(n2.length)return pickVal(n2,struct,maxVal);}
+      }
+    }
+    return null;
+  };
+  // ENERGY
+  let energy_kcal=null,energy_kj=null;
+  const eLines=matchLines(lines,/\benergy\b|\bcalories?\b/i);
+  for(const hit of eLines){
+    const lo=hit.line.toLowerCase();
+    const isCalLabel=/\bcalories?\b/i.test(hit.line)&&!/kj/i.test(hit.line);
+    const kcalM=[...hit.line.matchAll(/(\d+(?:[.,]\d+)?)\s*kcal/gi)].map(m=>parseFloat(m[1].replace(',','.')));
+    const kjM  =[...hit.line.matchAll(/(\d+(?:[.,]\d+)?)\s*kj/gi)  ].map(m=>parseFloat(m[1].replace(',','.')));
+    if(kcalM.length)energy_kcal=energy_kcal??Math.max(...kcalM.filter(v=>v>0&&v<2000));
+    if(kjM.length)  energy_kj  =energy_kj  ??Math.max(...kjM.filter(v=>v>0&&v<5000));
+    if(!energy_kcal&&!energy_kj){
+      const n=nums(hit.line).filter(v=>v>0&&v<10000);
+      if(!n.length){
+        const n2=nums(hit.next).filter(v=>v>0&&v<10000);
+        if(n2.length){if(isCalLabel||/kcal/i.test(hit.next))energy_kcal=energy_kcal??n2[0];else if(/kj/i.test(hit.next))energy_kj=energy_kj??n2[0];else energy_kcal=energy_kcal??n2[0];}
+        continue;
+      }
+      const hasKcal=/kcal/.test(lo)||isCalLabel,hasKj=/kj/.test(lo);
+      if(hasKcal&&!hasKj)energy_kcal=energy_kcal??pickVal(n,struct,2000);
+      else if(hasKj&&!hasKcal)energy_kj=energy_kj??pickVal(n,struct,5000);
+      else{
+        const big=Math.max(...n),small=Math.min(...n.filter(x=>x>0));
+        if(n.length>=2&&big/small>3.2&&big/small<5.5){energy_kj=energy_kj??big;energy_kcal=energy_kcal??small;}
+        else if(isCalLabel)energy_kcal=energy_kcal??pickVal(n,struct,2000);
+        else{const best=pickVal(n,struct,5000);if(best>400)energy_kj=energy_kj??best;else energy_kcal=energy_kcal??best;}
+      }
+    }
+    if(energy_kcal||energy_kj)break;
+  }
+  if(!energy_kcal&&energy_kj)energy_kcal=+(energy_kj/4.184).toFixed(1);
+  if(!energy_kj&&energy_kcal)energy_kj=+(energy_kcal*4.184).toFixed(1);
+  const fat_g=get([/total\s*fat\b/i,/^fat\b/im,/\bfat[s]?\s*\(g\)/i,/\bfat[s]?\b(?!.*acid)(?!.*trans)(?!.*sat)/i]);
+  const saturated_fat_g=get([/saturated\s*fat/i,/\bsat[\s.]?\s*fat/i,/\bsaturates\b/i,/\bsaturated\b/i,/of\s*which[^,\n]{0,30}satura/i]);
+  const carbs_g=get([/total\s*carbohydrate/i,/^carbohydrate[s]?\b/im,/carbohydrate[s]?\s*[\s(,]/i,/\bcarbs?\b/i]);
+  const sugar_g=(()=>{
+    for(const re of[/total\s*sugar/i,/\bsugars?\b(?!\s*alcohol)/i,/of\s*which[^,\n]{0,20}sugar/i]){
+      const hits=matchLines(lines,re).filter(h=>/added/i.test(h.line)===false);
+      for(const hit of hits){const n=nums(hit.line);if(n.length){const v=pickVal(n,struct,200);if(v!==null)return v;}else{const n2=nums(hit.next);if(n2.length)return n2[0];}}
+    }
+    return null;
+  })();
+  // Fibre: max 30g — picks FIRST value ≤30 (fibre appears before salt on merged lines)
+  const fibre_g=(()=>{
+    for(const re of[/dietary\s*fi[b]?[re]+/i,/\bfi[b]?[re]+[s]?\b/i]){
+      const hits=matchLines(lines,re);
+      for(const hit of hits){
+        const n=nums(hit.line).filter(v=>v<=30);
+        if(n.length)return n[0];
+        const n2=nums(hit.next).filter(v=>v<=30);
+        if(n2.length)return n2[0];
+      }
+    }
+    return null;
+  })();
+  const protein_g=get([/\bprotein[s]?\b/i],100);
+  // Sodium: max 5000mg
+  let sodium_mg=get([/\bsodium\b/i],5000);
+  if(sodium_mg!==null&&sodium_mg>0&&sodium_mg<5)sodium_mg=+(sodium_mg*1000).toFixed(1);
+  // Salt fallback: max 10g — picks LAST value ≤10 (salt appears after fibre on merged lines)
+  if(sodium_mg===null){
+    for(const re of[/\bsalt\b/i]){
+      const hits=matchLines(lines,re);
+      for(const hit of hits){
+        const n=nums(hit.line).filter(v=>v<=10);
+        if(n.length){sodium_mg=+(n[n.length-1]/2.5*1000).toFixed(1);break;}
+        const n2=nums(hit.next).filter(v=>v<=10);
+        if(n2.length){sodium_mg=+(n2[n2.length-1]/2.5*1000).toFixed(1);break;}
+      }
+      if(sodium_mg!==null)break;
+    }
+  }
+  let serving_size_g=null;
+  // Serving size detection — covers: "Serving size 67g", "per 67g serve", "(30g)", "per 20g serving"
+  // Also scans first 5 lines for header-embedded serving sizes (e.g. dark label with split header)
+  const SERVING_PATTERNS=[
+    /serving\s*size\s*[:\-]?\s*(\d+(?:\.\d+)?)\s*g/i,
+    /per\s*(\d+(?:\.\d+)?)\s*g\s*serv/i,
+    /\bserv(?:ing|e)?\s+(\d+(?:\.\d+)?)\s*g\b/i,
+    /\((\d+(?:\.\d+)?)\s*g\s*\)/i,
+  ];
+  function extractServingG(str){
+    for(const re of SERVING_PATTERNS){const m=str.match(re);if(m)return parseFloat(m[1]);}
+    return null;
+  }
+  // First try: standard serving size line
+  const sHit=matchLines(lines,/serving\s*size|per\s*serving|serving\s*per|\bserve\b|per\s*\d+\s*g\s*serv/i)[0];
+  if(sHit){const combined=sHit.line+' '+sHit.next;serving_size_g=extractServingG(combined);}
+  // Second try: scan first 5 lines for header-embedded serving size (e.g. "per 67g serve" in title row)
+  if(!serving_size_g){
+    for(let i=0;i<Math.min(5,lines.length);i++){
+      const v=extractServingG(lines[i]);
+      if(v&&v>=5&&v<500){serving_size_g=v;break;}
+    }
+  }
+  let scale=1;
+  if(!struct&&serving_size_g&&serving_size_g>0&&serving_size_g<95&&energy_kcal!==null){
+    const exp100=energy_kcal*(100/serving_size_g);
+    if(exp100>=50&&exp100<=1500)scale=100/serving_size_g;
+  }
+  const sc=v=>v!==null?+(v*scale).toFixed(1):null;
+  return{energy_kcal:sc(energy_kcal),energy_kj:sc(energy_kj),fat_g:sc(fat_g),saturated_fat_g:sc(saturated_fat_g),carbs_g:sc(carbs_g),sugar_g:sc(sugar_g),fibre_g:sc(fibre_g),protein_g:sc(protein_g),sodium_mg:sc(sodium_mg),serving_size_g};
+}
+function confScore(n){
+  const keys=['energy_kcal','fat_g','saturated_fat_g','sugar_g','protein_g','sodium_mg'];
+  return{found:keys.filter(k=>n[k]!==null).length,total:keys.length};
+}
+
+// ═══════════════════════════════════════════════════════════════════
+//  NUTRI-SCORE v2
+// ═══════════════════════════════════════════════════════════════════
+const scoreEnergy =kj =>[335,670,1005,1340,1675,2010,2345,2680,3015,3350].filter(t=>kj>t).length;
+const scoreSatFat =g  =>[1,2,3,4,5,6,7,8,9,10].filter(t=>g>t).length;
+const scoreSugar  =g  =>[4.5,9,13.5,18,22.5,27,31,36,40,45].filter(t=>g>t).length;
+const scoreSodium =mg =>[90,180,270,360,450,540,630,720,810,900].filter(t=>mg>t).length;
+const scoreFibre  =g  =>!g?0:[.9,1.9,2.8,3.7,4.7].filter(t=>g>t).length;
+const scoreProtein=g  =>!g?0:[1.6,3.2,4.8,6.4,8].filter(t=>g>t).length;
+const scoreFVN    =p  =>!p||p<=40?0:p<=60?1:p<=80?2:5;
+const gradeOf     =s  =>s<=-1?'A':s<=2?'B':s<=10?'C':s<=18?'D':'E';
+function calcScore(n,fvp=0){
+  const kj=n.energy_kj||(n.energy_kcal?n.energy_kcal*4.184:null);
+  const eP=kj?scoreEnergy(kj):5,sP=n.saturated_fat_g?scoreSatFat(n.saturated_fat_g):5;
+  const suP=n.sugar_g?scoreSugar(n.sugar_g):5,naP=n.sodium_mg?scoreSodium(n.sodium_mg):5;
+  const N=eP+sP+suP+naP;
+  const fP=scoreFibre(n.fibre_g),prP=scoreProtein(n.protein_g),fvP=scoreFVN(fvp);
+  const P=fP+prP+fvP;
+  return{negative_points:{energy:eP,sat_fat:sP,sugar:suP,sodium:naP,total:N},positive_points:{fibre:fP,protein:prP,fruits_veg:fvP,total:P},final_score:N-P,grade:gradeOf(N-P)};
+}
+function genVerdict(n,sc){
+  const{grade,negative_points:neg,positive_points:pos}=sc;
+  const desc={A:'Excellent nutritional quality.',B:'Good nutritional quality.',C:'Average nutritional quality.',D:'Below average nutritional quality.',E:'Poor nutritional quality.'};
+  let v=desc[grade]+' ';const concerns=[],strengths=[];
+  if(neg.sugar>=6)   concerns.push(`High in sugar (${n.sugar_g??'?'}g per 100g)`);
+  if(neg.sat_fat>=6) concerns.push(`High in saturated fat (${n.saturated_fat_g??'?'}g per 100g)`);
+  if(neg.sodium>=6)  concerns.push(`High in sodium (${n.sodium_mg??'?'}mg per 100g)`);
+  if(neg.energy>=7)  concerns.push(`High energy density (${n.energy_kcal??'?'} kcal per 100g)`);
+  if(pos.protein>=3) strengths.push(`Good source of protein (${n.protein_g??'?'}g per 100g)`);
+  if(pos.fibre>=3)   strengths.push(`Good source of fibre (${n.fibre_g??'?'}g per 100g)`);
+  if(concerns.length)v+='Watch out for '+concerns.slice(0,2).join(' and ').toLowerCase()+'.';
+  else v+='Balanced nutritional profile overall.';
+  if(strengths.length)v+=' Positives: '+strengths.slice(0,2).join(' and ').toLowerCase()+'.';
+  return{verdict:v,strengths,concerns};
+}
+
+// ═══════════════════════════════════════════════════════════════════
+//  UI HELPERS
+// ═══════════════════════════════════════════════════════════════════
+function setProgress(pct,text,sub){
+  document.getElementById('prog-fill').style.width=pct+'%';
+  if(text)document.getElementById('proc-text').textContent=text;
+  if(sub!==undefined)document.getElementById('proc-sub').textContent=sub;
+}
+function hideAll(){['result-card','error-card','review-card','rescan-btn'].forEach(id=>document.getElementById(id).classList.remove('active'));}
+function showError(msg){document.getElementById('error-msg').textContent=msg;document.getElementById('error-card').classList.add('active');document.getElementById('rescan-btn').classList.add('active');}
+
+// ═══════════════════════════════════════════════════════════════════
+//  REVIEW CARD  v3
+//  Column 1 (per serving) — editable, raw input from pack
+//  Column 2 (per 100g)    — read only, always = col1 × 100 / portionG
+//  Portion size field     — editable, triggers col2 recalc
+// ═══════════════════════════════════════════════════════════════════
+
+const FIELDS=[
+  {key:'energy_kcal', label:'Energy',        unit:'kcal'},
+  {key:'fat_g',       label:'Total Fat',      unit:'g'},
+  {key:'saturated_fat_g',label:'Saturated Fat',unit:'g'},
+  {key:'carbs_g',     label:'Carbohydrates',  unit:'g'},
+  {key:'sugar_g',     label:'Total Sugar',    unit:'g'},
+  {key:'fibre_g',     label:'Dietary Fibre',  unit:'g'},
+  {key:'protein_g',   label:'Protein',        unit:'g'},
+  {key:'sodium_mg',   label:'Sodium',         unit:'mg'},
+];
+const SCORE_KEYS=new Set(['energy_kcal','saturated_fat_g','sugar_g','sodium_mg','fibre_g','protein_g']);
+
+let _portionG = 100;
+
+// ── Single recalc function — reads all serving inputs, writes all 100g outputs ──
+function recalc100g(){
+  const p = _portionG;
+  if(!p||p<=0) return;
+  const factor = 100 / p;
+  for(const f of FIELDS){
+    const servEl = document.getElementById('fs-'+f.key);
+    const per100El = document.getElementById('f-'+f.key);
+    if(!servEl||!per100El) continue;
+    const v = parseFloat(servEl.value);
+    per100El.value = (!isNaN(v) && servEl.value!=='') ? +(v * factor).toFixed(f.unit==='mg'?1:1) : '';
+  }
+}
+
+// ── Portion size change ───────────────────────────────────────────
+function onPortionChange(){
+  const el = document.getElementById('portion-size');
+  const v = parseFloat(el.value);
+  if(!v||v<=0||v>500) return;
+  _portionG = v;
+  // Update column header
+  const head = document.getElementById('col-head-serving');
+  if(head) head.textContent = `Per ${_portionG}g`;
+  const note = document.getElementById('portion-same-note');
+  if(note) note.textContent = _portionG===100 ? '= 100g' : '';
+  // Recalc 100g column
+  recalc100g();
+}
+
+// ── Any serving column edit triggers 100g recalc ──────────────────
+function onServingInput(){
+  recalc100g();
+}
+
+// ── Build review form ─────────────────────────────────────────────
+function showReviewCard(nutrition){
+  _portionG = nutrition.serving_size_g || 100;
+
+  // OCR confidence badge
+  const cf = confScore(nutrition);
+  const pct = Math.round(cf.found/cf.total*100);
+  const badge = document.getElementById('ocr-conf');
+  badge.textContent = `${pct}% OCR`;
+  badge.className = 'ocr-conf '+(pct>=80?'conf-hi':pct>=50?'conf-md':'conf-lo');
+
+  // Portion size field
+  const portionEl = document.getElementById('portion-size');
+  portionEl.value = _portionG;
+  const head = document.getElementById('col-head-serving');
+  if(head) head.textContent = `Per ${_portionG}g`;
+  const note = document.getElementById('portion-same-note');
+  if(note) note.textContent = _portionG===100 ? '= 100g' : '';
+
+  // Missing fields note
+  const missingLabels=[];
+  if(nutrition.energy_kcal===null) missingLabels.push('Energy');
+  if(nutrition.saturated_fat_g===null) missingLabels.push('Saturated Fat');
+  if(nutrition.sugar_g===null) missingLabels.push('Total Sugar');
+  if(nutrition.sodium_mg===null) missingLabels.push('Sodium');
+  if(nutrition.fibre_g===null) missingLabels.push('Dietary Fibre');
+  if(nutrition.protein_g===null) missingLabels.push('Protein');
+  document.getElementById('review-note').textContent = missingLabels.length
+    ? `⚠ Not found: ${missingLabels.join(', ')}. Enter from your pack.`
+    : '✓ All key fields extracted. Verify before calculating.';
+
+  // Build rows — serving column is editable, 100g column is readonly
+  const cont = document.getElementById('review-fields');
+  const factor = 100 / _portionG;
+
+  function servingVal(v100){
+    // Convert 100g value back to per-serving for display in col1
+    if(v100===null||v100===undefined) return '';
+    return +(v100 / factor).toFixed(v100>10?1:2);
+  }
+  function per100Val(v100){
+    if(v100===null||v100===undefined) return '';
+    return v100;
+  }
+
+  let html = '';
+  for(const f of FIELDS){
+    const v100 = nutrition[f.key];
+    const miss = v100===null||v100===undefined;
+    const dot = `<span class="f-dot ${miss?'f-miss':'f-ok'}"></span>`;
+    html += `
+    <div class="field-row-2col">
+      <div class="field-name-cell">${dot}${f.label}</div>
+      <div class="field-cell">
+        <input class="field-input-2${miss?' f-missing':''}" type="number"
+          id="fs-${f.key}"
+          value="${servingVal(v100)}"
+          placeholder="—" step="any" min="0" inputmode="decimal"
+          oninput="onServingInput()">
+        <span class="field-unit-sm">${f.unit}</span>
+      </div>
+      <div class="field-cell">
+        <input class="field-input-2 f-readonly" type="number"
+          id="f-${f.key}"
+          value="${per100Val(v100)}"
+          placeholder="—" readonly tabindex="-1">
+        <span class="field-unit-sm">${f.unit}</span>
+      </div>
+    </div>`;
+  }
+  cont.innerHTML = html;
+
+  // Analytics
+  _reviewNutrition = nutrition;
+  ph('review_shown',{fields_found:cf.found,fields_missing:cf.total-cf.found,ocr_pct:pct,portion_g:_portionG});
+
+  document.getElementById('review-card').classList.add('active');
+  document.getElementById('review-card').scrollIntoView({behavior:'smooth',block:'start'});
+}
+
+// ── Read serving column → scale to 100g → score ──────────────────
+function calculateFromForm(){
+  const factor = 100 / _portionG;
+  const n = {};
+  for(const f of FIELDS){
+    const servEl = document.getElementById('fs-'+f.key);
+    const v = servEl && servEl.value!=='' ? parseFloat(servEl.value) : null;
+    n[f.key] = (v!==null&&!isNaN(v)) ? +(v*factor).toFixed(1) : null;
+  }
+  if(n.energy_kcal!==null) n.energy_kj = +(n.energy_kcal*4.184).toFixed(1);
+  const sc = calcScore(n);
+  const{verdict,strengths,concerns} = genVerdict(n,sc);
+  showResult({per100g:n, portionG:_portionG, ...sc, strengths, concerns, verdict});
+}
+
+// ═══════════════════════════════════════════════════════════════════
+//  ANALYTICS HELPERS
+// ═══════════════════════════════════════════════════════════════════
+function ph(event, props){
+  try{ window.posthog && posthog.capture(event, props||{}); }catch(e){}
+}
+// Track which fields user manually edits in the review form
+let _reviewNutrition=null; // nutrition as parsed by OCR
+function trackFieldEdit(fieldKey, newVal, wasEmpty){
+  ph('field_corrected',{
+    field: fieldKey,
+    was_empty: wasEmpty,
+    ocr_score: _reviewNutrition ? confScore(_reviewNutrition).found : null
+  });
+}
+
+// ═══════════════════════════════════════════════════════════════════
+//  MAIN FLOW
+// ═══════════════════════════════════════════════════════════════════
+async function analyseImage(){
+  if(!imgDataUrl)return;
+  document.getElementById('analyse-btn').style.display='none';
+  document.getElementById('scanner-card').style.display='none';
+  document.getElementById('compress-notice').classList.remove('active');
+  document.getElementById('processing-card').classList.add('active');
+  hideAll();
+  setProgress(5,'Loading OCR engine…','First use downloads ~3MB');
+  try{await loadTesseract();}catch(e){document.getElementById('processing-card').classList.remove('active');showError('Could not load OCR engine. Please check your internet connection.');resetApp();return;}
+  try{
+    setProgress(10,'Finding nutrition table…','Detecting label region');
+    const ocrText=await runOcr(imgDataUrl);
+    ph('ocr_complete');
+    setProgress(70,'Parsing values…','Extracting nutrition data');
+    const nutrition=parseNutrition(ocrText);
+    setProgress(100,'Done!','');
+    setTimeout(()=>{document.getElementById('processing-card').classList.remove('active');showReviewCard(nutrition);},300);
+  }catch(e){
+    console.error(e);
+    document.getElementById('processing-card').classList.remove('active');
+    showError('OCR failed. Try a clearer, well-lit photo with the nutrition table filling the frame.');
+  }
+}
+function showResult(r){
+  ph('grade_calculated',{grade:r.grade,final_score:r.final_score,negative_points:r.negative_points.total,positive_points:r.positive_points.total,portion_g:r.portionG});
+  const p=r.per100g;
+  const portionG=r.portionG||100;
+  const isSame=portionG===100;
+
+  document.getElementById('result-name').textContent='Analysed Product';
+  const badge=document.getElementById('grade-badge');badge.textContent=r.grade;badge.className='grade-badge grade-'+r.grade;
+  ['A','B','C','D','E'].forEach(g=>document.getElementById('pill-'+g).classList.toggle('active',g===r.grade));
+
+  // Section title
+  document.getElementById('result-section-title').textContent = isSame
+    ? 'Nutritional Values (per 100g)'
+    : `Nutritional Values`;
+
+  const fmt=(v,dec,u)=>v!==null&&v!==undefined?v.toFixed(dec)+u:'—';
+  const fmtS=(v,dec,u)=>v!==null&&v!==undefined?+(v*portionG/100).toFixed(dec)+u:'—';
+
+  const nutrients=[
+    {name:'Energy',        v100:p.energy_kcal, dec:0, u:' kcal', pct:Math.min(100,((p.energy_kcal||0)/600)*100),  bad:true},
+    {name:'Total Fat',     v100:p.fat_g,        dec:1, u:'g',     pct:Math.min(100,((p.fat_g||0)/35)*100),         bad:true},
+    {name:'Saturated Fat', v100:p.saturated_fat_g,dec:1,u:'g',   pct:Math.min(100,((p.saturated_fat_g||0)/15)*100),bad:true},
+    {name:'Sugar',         v100:p.sugar_g,      dec:1, u:'g',     pct:Math.min(100,((p.sugar_g||0)/50)*100),       bad:true},
+    {name:'Fibre',         v100:p.fibre_g,      dec:1, u:'g',     pct:Math.min(100,((p.fibre_g||0)/10)*100),       bad:false},
+    {name:'Protein',       v100:p.protein_g,    dec:1, u:'g',     pct:Math.min(100,((p.protein_g||0)/30)*100),     bad:false},
+    {name:'Sodium',        v100:p.sodium_mg,    dec:0, u:'mg',    pct:Math.min(100,((p.sodium_mg||0)/1000)*100),   bad:true},
+  ];
+
+  if(isSame){
+    // Single column — same as before
+    document.getElementById('nutrient-grid').innerHTML=
+      `<div class="nutrient-table-head">
+        <div class="nt-col-head">Nutrient</div>
+        <div></div>
+        <div class="nt-col-head right" colspan="2">Per 100g</div>
+      </div>`+
+      nutrients.map(n=>`
+      <div class="nutrient-row-2">
+        <div class="nutrient-name">${n.name}</div>
+        <div class="nutrient-bar-wrap"><div class="nutrient-bar-fill ${n.bad?'fill-bad':'fill-good'}" style="width:${n.pct}%"></div></div>
+        <div class="nutrient-val" style="grid-column:3/5">${fmt(n.v100,n.dec,n.u)}</div>
+      </div>`).join('');
+  } else {
+    // Two columns — per serving | per 100g
+    document.getElementById('nutrient-grid').innerHTML=
+      `<div class="nutrient-table-head">
+        <div class="nt-col-head">Nutrient</div>
+        <div></div>
+        <div class="nt-col-head right">Per ${portionG}g</div>
+        <div class="nt-col-head right">Per 100g</div>
+      </div>`+
+      nutrients.map(n=>`
+      <div class="nutrient-row-2">
+        <div class="nutrient-name">${n.name}</div>
+        <div class="nutrient-bar-wrap"><div class="nutrient-bar-fill ${n.bad?'fill-bad':'fill-good'}" style="width:${n.pct}%"></div></div>
+        <div class="nutrient-val muted">${fmtS(n.v100,n.dec,n.u)}</div>
+        <div class="nutrient-val">${fmt(n.v100,n.dec,n.u)}</div>
+      </div>`).join('');
+  }
+
+  document.getElementById('bad-pts').textContent=r.negative_points.total;
+  document.getElementById('good-pts').textContent=r.positive_points.total;
+  document.getElementById('final-score').textContent=r.final_score+' → Grade '+r.grade;
+  document.getElementById('verdict-box').textContent=r.verdict;
+  const tips=[...(r.strengths||[]).map(s=>({text:s,good:true})),...(r.concerns||[]).map(c=>({text:c,good:false}))];
+  document.getElementById('tips-list').innerHTML=tips.map(t=>`<div class="tip"><div class="tip-dot ${t.good?'tip-green':'tip-orange'}"></div><span>${t.text}</span></div>`).join('');
+  document.getElementById('result-card').classList.add('active');
+  document.getElementById('rescan-btn').classList.add('active');
+  document.getElementById('result-card').scrollIntoView({behavior:'smooth',block:'start'});
+}
+function resetApp(){
+  imgDataUrl=null;
+  document.getElementById('preview-img').src='';
+  document.getElementById('scanner-area').classList.remove('has-image');
+  document.getElementById('analyse-btn').disabled=true;
+  document.getElementById('analyse-btn').style.display='';
+  document.getElementById('scanner-card').style.display='';
+  document.getElementById('processing-card').classList.remove('active');
+  document.getElementById('compress-notice').classList.remove('active');
+  hideAll();window.scrollTo({top:0,behavior:'smooth'});
+}
+</script>
+<script>
+if('serviceWorker' in navigator&&location.hostname!=='www.claudeusercontent.com'){
+  window.addEventListener('load',()=>navigator.serviceWorker.register('/sw.js').catch(()=>{}));
+}
+</script>
+</body>
+</html>
