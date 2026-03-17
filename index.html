@@ -703,12 +703,12 @@ footer {
         <div class="interest-tag">Read the blog</div>
       </a>
 
-      <div class="interest-card" style="--card-accent:#27AE60;cursor:default;">
+      <a href="/in-the-making.html" class="interest-card" style="--card-accent:#27AE60;">
         <span class="interest-icon">📱</span>
         <div class="interest-title">Building Apps</div>
         <p class="interest-desc">When something in daily life is needlessly annoying, the fix tends to be an app. The way these get built has changed a lot recently — turns out describing what you want clearly is a skill too.</p>
-        <div class="interest-tag" style="cursor:pointer;" onclick="showModal(event)">In the Making</div>
-      </div>
+        <div class="interest-tag">In the Making</div>
+      </a>
 
     </div>
   </div>
@@ -720,6 +720,7 @@ footer {
     <h2>Want the full professional story?</h2>
     <p>A decade in the Salesforce ecosystem, five certifications, an MBA, and a few strong opinions about what makes projects actually succeed.</p>
     <a href="/about.html">View Full Profile →</a>
+
   </div>
 </section>
 
@@ -732,22 +733,23 @@ footer {
     <div class="section-label">Side Projects</div>
     <h2 class="section-title">In the Making</h2>
     <div class="section-divider" style="margin:0 0 32px;"></div>
-    <div style="background:var(--sf-light-bg);border:1px solid var(--sf-border);border-radius:20px;padding:40px;display:flex;align-items:center;gap:40px;flex-wrap:wrap;">
-      <div style="flex:1;min-width:260px;">
-        <div style="font-family:'Sora',sans-serif;font-size:1.3rem;font-weight:800;color:var(--sf-text);margin-bottom:10px;">Building things that scratch a real itch</div>
-        <p style="color:var(--sf-subtext);font-weight:300;line-height:1.7;margin-bottom:20px;">A few small apps in various stages of being built. The common thread — each one started because something in daily life was needlessly annoying. If you have a problem you'd love to see solved, Rishabh is genuinely interested.</p>
-        <div style="display:flex;flex-wrap:wrap;gap:8px;">
-          <span style="background:var(--sf-tag-bg);border:1px solid var(--sf-border);border-radius:20px;padding:5px 14px;font-family:'Sora',sans-serif;font-size:0.75rem;font-weight:700;color:var(--sf-subtext);">📱 Mobile Apps</span>
-          <span style="background:var(--sf-tag-bg);border:1px solid var(--sf-border);border-radius:20px;padding:5px 14px;font-family:'Sora',sans-serif;font-size:0.75rem;font-weight:700;color:var(--sf-subtext);">💻 Vibe Coding</span>
-          <span style="background:var(--sf-tag-bg);border:1px solid var(--sf-border);border-radius:20px;padding:5px 14px;font-family:'Sora',sans-serif;font-size:0.75rem;font-weight:700;color:var(--sf-subtext);">🔧 Problem-First</span>
-          <span style="background:var(--sf-tag-bg);border:1px solid var(--sf-border);border-radius:20px;padding:5px 14px;font-family:'Sora',sans-serif;font-size:0.75rem;font-weight:700;color:var(--sf-subtext);">🚧 Work in Progress</span>
+    <a href="/scoremypack/" target="_blank" style="display:block;background:var(--sf-light-bg);border:1px solid var(--sf-border);border-radius:20px;padding:36px 40px;text-decoration:none;color:var(--sf-text);transition:transform 0.2s,box-shadow 0.2s,border-color 0.2s;" onmouseover="this.style.transform='translateY(-4px)';this.style.boxShadow='0 12px 40px rgba(0,0,0,0.1)';this.style.borderColor='var(--sf-blue)'" onmouseout="this.style.transform='';this.style.boxShadow='';this.style.borderColor='var(--sf-border)'">
+      <div style="display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:20px;flex-wrap:wrap;gap:12px;">
+        <div>
+          <div style="font-family:'Sora',sans-serif;font-size:0.68rem;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:var(--sf-blue);margin-bottom:8px;">Thinking Lab &middot; Live</div>
+          <div style="font-family:'Sora',sans-serif;font-size:1.3rem;font-weight:800;color:var(--sf-text);">ScoreMyPack</div>
         </div>
+        <span style="background:rgba(27,150,255,0.1);color:var(--sf-blue);border:1px solid rgba(27,150,255,0.3);border-radius:20px;padding:4px 14px;font-family:'Sora',sans-serif;font-size:0.72rem;font-weight:700;">&#9679; Live</span>
       </div>
-      <div style="text-align:center;padding:20px;">
-        <div style="font-size:4rem;margin-bottom:12px;">🛠️</div>
-        <div style="font-family:'Sora',sans-serif;font-size:0.8rem;font-weight:700;color:var(--sf-subtext);letter-spacing:0.1em;text-transform:uppercase;">Something's cooking</div>
+      <p style="color:var(--sf-subtext);font-weight:300;line-height:1.7;margin-bottom:24px;max-width:640px;">Scan any packaged food's nutrition label and get an instant Nutri-Score v2 grade — A to E. OCR and scoring run entirely in the browser. Analytics via PostHog. Built for the Indian market with FSSAI labels in mind.</p>
+      <div style="display:flex;flex-wrap:wrap;gap:8px;margin-bottom:24px;">
+        <span style="background:var(--sf-tag-bg);border:1px solid var(--sf-border);border-radius:20px;padding:4px 14px;font-family:'Sora',sans-serif;font-size:0.72rem;font-weight:700;color:var(--sf-subtext);">📱 PWA</span>
+        <span style="background:var(--sf-tag-bg);border:1px solid var(--sf-border);border-radius:20px;padding:4px 14px;font-family:'Sora',sans-serif;font-size:0.72rem;font-weight:700;color:var(--sf-subtext);">🔍 OCR</span>
+        <span style="background:var(--sf-tag-bg);border:1px solid var(--sf-border);border-radius:20px;padding:4px 14px;font-family:'Sora',sans-serif;font-size:0.72rem;font-weight:700;color:var(--sf-subtext);">🇮🇳 India</span>
+        <span style="background:var(--sf-tag-bg);border:1px solid var(--sf-border);border-radius:20px;padding:4px 14px;font-family:'Sora',sans-serif;font-size:0.72rem;font-weight:700;color:var(--sf-subtext);">&#128274; Offline</span>
       </div>
-    </div>
+      <div style="font-family:'Sora',sans-serif;font-size:0.78rem;font-weight:700;color:var(--sf-blue);">Try it &rarr;</div>
+    </a>
   </div>
 </section>
 
