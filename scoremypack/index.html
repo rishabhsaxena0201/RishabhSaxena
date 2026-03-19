@@ -217,23 +217,147 @@ footer{padding:16px 20px;text-align:center;font-size:11px;color:var(--border);bo
 .crop-handle-br{bottom:-4px;right:-4px;cursor:se-resize}
 .crop-actions{display:flex;gap:10px;padding:14px 16px;border-top:1px solid var(--border)}
 .crop-btn{flex:1;padding:12px;border-radius:12px;border:none;font-family:'DM Sans',sans-serif;font-size:13px;font-weight:500;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:6px;transition:all .2s}
-.crop-btn-skip{background:var(--surface2);color:var(--muted)}
-.crop-btn-skip:hover{color:var(--text)}
-.crop-btn-confirm{background:var(--accent);color:#fff}
-.crop-btn-confirm:hover{background:var(--accent-bright)}
+.crop-btn-skip{background:var(--surface2);color:var(--muted)}.crop-btn-skip:hover{color:var(--text)}
+.crop-btn-confirm{background:var(--accent);color:#fff}.crop-btn-confirm:hover{background:var(--accent-bright)}
 
 /* ── Data Notice ── */
-.data-notice{display:flex;align-items:flex-start;gap:8px;padding:12px 16px;background:var(--surface);border:1px solid var(--border);border-radius:12px;font-size:11px;color:var(--muted);line-height:1.6;margin-bottom:4px}
+.data-notice{display:flex;align-items:flex-start;gap:8px;padding:12px 16px;background:var(--surface);border:1px solid var(--border);border-radius:12px;font-size:11px;color:var(--muted);line-height:1.6}
 .data-notice svg{flex-shrink:0;margin-top:1px;opacity:.6}
+
+/* ── Review accuracy note ── */
+.review-accuracy-note{display:flex;align-items:flex-start;gap:7px;padding:10px 16px;background:rgba(46,138,230,.07);border-bottom:1px solid var(--border);font-size:12px;color:var(--muted);line-height:1.6}
+.review-accuracy-note svg{flex-shrink:0;margin-top:1px;color:var(--accent-bright);opacity:.8}
+
+/* ── Splash Modal ── */
+.splash-modal{position:fixed;inset:0;z-index:999;display:flex;flex-direction:column;background:var(--bg);overflow-y:auto;-webkit-overflow-scrolling:touch}
+.splash-modal.hidden{display:none}
+.splash-inner{max-width:480px;margin:0 auto;width:100%;padding:32px 24px 120px;display:flex;flex-direction:column;gap:28px}
+.splash-logo-row{display:flex;align-items:center;gap:12px}
+.splash-logo-img{width:40px;height:40px;border-radius:10px;flex-shrink:0}
+.splash-brand-name{font-family:'Syne',sans-serif;font-size:17px;font-weight:800;color:var(--text)}
+.splash-brand-name span{color:var(--accent-bright)}
+.splash-eyebrow{font-family:'Syne',sans-serif;font-size:11px;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:var(--accent-bright)}
+.splash-headline{font-family:'Syne',sans-serif;font-size:clamp(22px,6vw,30px);font-weight:800;color:var(--text);line-height:1.25}
+.splash-headline em{color:var(--accent-bright);font-style:normal}
+.splash-divider{width:36px;height:3px;background:var(--accent);border-radius:2px}
+.splash-body{font-size:14px;font-weight:300;color:var(--muted);line-height:1.85;display:flex;flex-direction:column;gap:12px}
+.splash-body p{margin:0}
+.splash-grade-row{display:flex;gap:8px}
+.splash-grade-chip{flex:1;display:flex;flex-direction:column;align-items:center;gap:4px;padding:10px 4px;border-radius:10px;border:1px solid var(--border)}
+.splash-grade-chip .gc-letter{font-family:'Syne',sans-serif;font-size:16px;font-weight:800}
+.splash-grade-chip .gc-desc{font-size:9px;color:var(--muted);text-align:center}
+.splash-grade-chip.ga{border-color:var(--grade-a);background:rgba(3,129,65,.08)}.splash-grade-chip.ga .gc-letter{color:var(--grade-a)}
+.splash-grade-chip.gb{border-color:var(--grade-b);background:rgba(133,187,47,.08)}.splash-grade-chip.gb .gc-letter{color:var(--grade-b)}
+.splash-grade-chip.gc{border-color:var(--grade-c);background:rgba(254,203,2,.08)}.splash-grade-chip.gc .gc-letter{color:var(--grade-c)}
+.splash-grade-chip.gd{border-color:var(--grade-d);background:rgba(238,129,0,.08)}.splash-grade-chip.gd .gc-letter{color:var(--grade-d)}
+.splash-grade-chip.ge{border-color:var(--grade-e);background:rgba(230,62,17,.08)}.splash-grade-chip.ge .gc-letter{color:var(--grade-e)}
+.splash-closing{padding:16px 20px;background:var(--surface);border:1px solid var(--border);border-radius:14px;border-left:3px solid var(--accent-bright);font-size:13px;color:var(--muted);line-height:1.8;font-style:italic}
+.splash-cta-fixed{position:fixed;bottom:0;left:0;right:0;padding:16px 24px 28px;background:linear-gradient(to top,var(--bg) 70%,transparent);z-index:1000}
+.splash-cta-inner{max-width:480px;margin:0 auto}
+.splash-btn{width:100%;padding:16px;background:var(--accent);color:#fff;border:none;border-radius:14px;font-family:'Syne',sans-serif;font-size:15px;font-weight:700;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:10px;transition:background .2s}
+.splash-btn:hover{background:var(--accent-bright)}
+.splash-btn svg{transition:transform .2s}
+.splash-btn:hover svg{transform:translateX(3px)}
+
+/* ══ FITMENT: no-scroll for scanner + processing + error screens ══ */
+
+/* Lock viewport */
+html { height: 100%; }
+body { height: 100%; overflow: hidden; min-height: unset; }
+.app { height: 100%; min-height: unset; overflow: hidden; }
+
+/* Header: tighter padding */
+header { padding: 12px 20px 10px; flex-shrink: 0; }
+
+/* Main: fills remaining space, no scroll */
+main {
+  flex: 1;
+  padding: 12px 16px;
+  gap: 10px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Scanner card: flex-grow to fill space, scanner-area uses remaining */
+.scanner-card { display: flex; flex-direction: column; flex: 1; min-height: 0; }
+.scanner-area {
+  aspect-ratio: unset !important;
+  flex: 1;
+  min-height: 0;
+}
+.scanner-actions { flex-shrink: 0; }
+
+/* Steps: more compact */
+.steps-row { margin-bottom: 8px; }
+.step-icon { width: 36px; height: 36px; }
+.step-label { font-size: 11px; }
+.step-desc { font-size: 9px; }
+.step-arrow { font-size: 16px; margin-top: 8px; }
+
+/* Analyse button: slightly tighter */
+.btn-analyse { padding: 12px; font-size: 14px; }
+
+/* Data notice: tighter */
+.data-notice { padding: 8px 12px; font-size: 10px; }
+
+/* Processing: centred, fills main */
+.processing-card {
+  flex: 1;
+  justify-content: center;
+}
+
+/* Error card: fills space */
+.error-card { flex: 1; justify-content: center; }
+
+/* Review + Result: allow scroll — override hidden */
+.review-card { overflow-y: auto; max-height: calc(100vh - 80px); }
+.result-card { overflow-y: auto; max-height: calc(100vh - 80px); }
+
+/* Compress notice: compact */
+.compress-notice { padding: 7px 12px; font-size: 10px; }
 </style>
 </head>
 <body>
+  <!-- SPLASH MODAL -->
+  <div class="splash-modal" id="splash-modal">
+    <div class="splash-inner">
+      <div class="splash-logo-row">
+        <img src="icon-192.png" class="splash-logo-img" alt="ScoreMyPack">
+        <div class="splash-brand-name">Score<span>MyPack</span></div>
+      </div>
+      <div>
+        <div class="splash-eyebrow" style="margin-bottom:12px;">A Thinking Lab Project</div>
+        <h1 class="splash-headline">We eat a lot of packaged food assuming it's safe.<br><em>Short term — probably fine. Long term, nobody's counting.</em></h1>
+      </div>
+      <div class="splash-divider"></div>
+      <div class="splash-body">
+        <p>India mandates nutrition tables on every pack. Good start. But there's no instant signal — no single grade that tells you what you're actually holding.</p>
+        <p>The EU has one. India doesn't. Yet.</p>
+      </div>
+      <div class="splash-grade-row">
+        <div class="splash-grade-chip ga"><span class="gc-letter">A</span><span class="gc-desc">Excellent</span></div>
+        <div class="splash-grade-chip gb"><span class="gc-letter">B</span><span class="gc-desc">Good</span></div>
+        <div class="splash-grade-chip gc"><span class="gc-letter">C</span><span class="gc-desc">Average</span></div>
+        <div class="splash-grade-chip gd"><span class="gc-letter">D</span><span class="gc-desc">Below avg</span></div>
+        <div class="splash-grade-chip ge"><span class="gc-letter">E</span><span class="gc-desc">Poor</span></div>
+      </div>
+      <div class="splash-closing">This app exists until the government makes it unnecessary.</div>
+    </div>
+    <div class="splash-cta-fixed">
+      <div class="splash-cta-inner">
+        <button class="splash-btn" onclick="enterApp()">
+          Scan a Label
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </button>
+      </div>
+    </div>
+  </div>
+
 <div class="app">
   <header>
     <div class="logo-group">
-      <div style="width:44px;height:44px;background:linear-gradient(135deg,#1464B4,#2E8AE6);border-radius:12px;display:flex;align-items:center;justify-content:center;filter:drop-shadow(0 2px 10px rgba(20,100,180,.35))">
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><path d="M9 3H5a2 2 0 0 0-2 2v4m6-6h10a2 2 0 0 1 2 2v4M9 3v18m0 0h10a2 2 0 0 0 2-2V9M9 21H5a2 2 0 0 1-2-2V9m0 0h18"/></svg>
-      </div>
+      <img src="icon-192.png" width="44" height="44" style="border-radius:12px;">
       <div class="brand">
         <div class="brand-name">Score<span>MyPack</span></div>
         <div class="brand-tagline">Nutrition Intelligence</div>
@@ -245,25 +369,19 @@ footer{padding:16px 20px;text-align:center;font-size:11px;color:var(--border);bo
     <!-- Steps -->
     <div class="steps-row">
       <div class="step">
-        <div class="step-icon">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg>
-        </div>
+        <div class="step-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg></div>
         <div class="step-label">Photograph</div>
         <div class="step-desc">Capture the nutrition table</div>
       </div>
       <div class="step-arrow">›</div>
       <div class="step">
-        <div class="step-icon">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
-        </div>
+        <div class="step-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg></div>
         <div class="step-label">Review</div>
         <div class="step-desc">Verify extracted values</div>
       </div>
       <div class="step-arrow">›</div>
       <div class="step">
-        <div class="step-icon">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
-        </div>
+        <div class="step-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg></div>
         <div class="step-label">Get Grade</div>
         <div class="step-desc">Nutri-Score A to E</div>
       </div>
@@ -280,9 +398,7 @@ footer{padding:16px 20px;text-align:center;font-size:11px;color:var(--border);bo
             <div class="vf-corner vf-tl"></div><div class="vf-corner vf-tr"></div>
             <div class="vf-corner vf-bl"></div><div class="vf-corner vf-br"></div>
             <div class="vf-pulse"></div>
-            <div class="vf-inner">
-              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.5)" stroke-width="1.5"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg>
-            </div>
+            <div class="vf-inner"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.5)" stroke-width="1.5"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg></div>
           </div>
           <div class="scan-text"><strong>Tap to photograph nutrition label</strong>Point camera at the nutrition table</div>
         </div>
@@ -297,7 +413,7 @@ footer{padding:16px 20px;text-align:center;font-size:11px;color:var(--border);bo
       </div>
     </div>
 
-    <!-- Crop selection overlay -->
+    <!-- Crop -->
     <div class="crop-modal" id="crop-modal">
       <div class="crop-header">
         <div class="crop-title">Select Nutrition Table</div>
@@ -357,6 +473,10 @@ footer{padding:16px 20px;text-align:center;font-size:11px;color:var(--border);bo
           <div class="review-sub"><span style="color:#E63E11">Red</span> = not found — enter from your pack. Edit either column.</div>
         </div>
         <div class="ocr-conf" id="ocr-conf">–</div>
+      </div>
+      <div class="review-accuracy-note">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+        These values were read from your image. Give them a quick check before scoring.
       </div>
       <!-- Editable portion size -->
       <div class="portion-row">
@@ -1239,79 +1359,45 @@ function resetApp(){
 
 /* ── Crop Tool ── */
 let _cropBox={x:10,y:10,w:80,h:80};
-let _cropDragging=null;
-let _cropDragStart=null;
-let _cropImgNatural={w:0,h:0};
-
+let _cropDragging=null,_cropDragStart=null,_cropImgNatural={w:0,h:0};
 function showCropTool(dataUrl){
   const modal=document.getElementById('crop-modal');
   const img=document.getElementById('crop-img');
   img.src=dataUrl;
   img.onload=function(){
     _cropImgNatural={w:img.naturalWidth,h:img.naturalHeight};
-    // Default box: 10% inset
     _cropBox={x:10,y:10,w:80,h:80};
-    renderCropBox();
-    modal.classList.add('active');
+    renderCropBox();modal.classList.add('active');
     modal.scrollIntoView({behavior:'smooth',block:'center'});
     initCropDrag();
   };
 }
-
 function renderCropBox(){
   const box=document.getElementById('crop-box');
-  box.style.left=_cropBox.x+'%';
-  box.style.top=_cropBox.y+'%';
-  box.style.width=_cropBox.w+'%';
-  box.style.height=_cropBox.h+'%';
+  box.style.left=_cropBox.x+'%';box.style.top=_cropBox.y+'%';
+  box.style.width=_cropBox.w+'%';box.style.height=_cropBox.h+'%';
 }
-
 function initCropDrag(){
   const wrap=document.getElementById('crop-canvas-wrap');
   const box=document.getElementById('crop-box');
-
   function getRelPos(e,el){
     const r=el.getBoundingClientRect();
-    const clientX=e.touches?e.touches[0].clientX:e.clientX;
-    const clientY=e.touches?e.touches[0].clientY:e.clientY;
-    return{x:(clientX-r.left)/r.width*100,y:(clientY-r.top)/r.height*100};
+    const cx=e.touches?e.touches[0].clientX:e.clientX;
+    const cy=e.touches?e.touches[0].clientY:e.clientY;
+    return{x:(cx-r.left)/r.width*100,y:(cy-r.top)/r.height*100};
   }
-
-  // Handle drag
   document.querySelectorAll('.crop-handle').forEach(h=>{
-    const startDrag=e=>{
-      e.preventDefault();e.stopPropagation();
-      _cropDragging=h.dataset.handle;
-      const pos=getRelPos(e,wrap);
-      _cropDragStart={...pos,box:{..._cropBox}};
-    };
-    h.addEventListener('mousedown',startDrag);
-    h.addEventListener('touchstart',startDrag,{passive:false});
+    const start=e=>{e.preventDefault();e.stopPropagation();_cropDragging=h.dataset.handle;const p=getRelPos(e,wrap);_cropDragStart={...p,box:{..._cropBox}};};
+    h.addEventListener('mousedown',start);h.addEventListener('touchstart',start,{passive:false});
   });
-
-  // Box move
-  const startMove=e=>{
-    if(e.target.classList.contains('crop-handle'))return;
-    e.preventDefault();
-    _cropDragging='move';
-    const pos=getRelPos(e,wrap);
-    _cropDragStart={...pos,box:{..._cropBox}};
-  };
-  box.addEventListener('mousedown',startMove);
-  box.addEventListener('touchstart',startMove,{passive:false});
-
+  const startMove=e=>{if(e.target.classList.contains('crop-handle'))return;e.preventDefault();_cropDragging='move';const p=getRelPos(e,wrap);_cropDragStart={...p,box:{..._cropBox}};};
+  box.addEventListener('mousedown',startMove);box.addEventListener('touchstart',startMove,{passive:false});
   const onMove=e=>{
-    if(!_cropDragging)return;
-    e.preventDefault();
-    const pos=getRelPos(e,wrap);
-    const dx=pos.x-_cropDragStart.x;
-    const dy=pos.y-_cropDragStart.y;
-    const b={..._cropDragStart.box};
-    const MIN=8;
-    if(_cropDragging==='move'){
-      b.x=Math.max(0,Math.min(100-b.w,b.x+dx));
-      b.y=Math.max(0,Math.min(100-b.h,b.y+dy));
-    } else {
+    if(!_cropDragging)return;e.preventDefault();
+    const p=getRelPos(e,wrap);const dx=p.x-_cropDragStart.x,dy=p.y-_cropDragStart.y;
+    const b={..._cropDragStart.box};const MIN=8;
+    if(_cropDragging==='move'){b.x=Math.max(0,Math.min(100-b.w,b.x+dx));b.y=Math.max(0,Math.min(100-b.h,b.y+dy));}
+    else{
       if(_cropDragging.includes('r'))b.w=Math.max(MIN,Math.min(100-b.x,b.w+dx));
       if(_cropDragging.includes('b'))b.h=Math.max(MIN,Math.min(100-b.y,b.h+dy));
       if(_cropDragging.includes('l')){const nw=Math.max(MIN,b.w-dx);b.x=b.x+b.w-nw;b.w=nw;}
@@ -1320,18 +1406,14 @@ function initCropDrag(){
     _cropBox=b;renderCropBox();
   };
   const onEnd=()=>{_cropDragging=null;_cropDragStart=null;};
-  document.addEventListener('mousemove',onMove);
-  document.addEventListener('touchmove',onMove,{passive:false});
-  document.addEventListener('mouseup',onEnd);
-  document.addEventListener('touchend',onEnd);
+  document.addEventListener('mousemove',onMove);document.addEventListener('touchmove',onMove,{passive:false});
+  document.addEventListener('mouseup',onEnd);document.addEventListener('touchend',onEnd);
 }
-
 function cropSkip(){
   document.getElementById('crop-modal').classList.remove('active');
   document.getElementById('analyse-btn').disabled=false;
   document.getElementById('analyse-btn').style.display='';
 }
-
 function cropConfirm(){
   const img=document.getElementById('crop-img');
   const canvas=document.getElementById('crop-canvas');
@@ -1342,11 +1424,20 @@ function cropConfirm(){
   canvas.width=sw;canvas.height=sh;
   ctx.drawImage(img,sx,sy,sw,sh,0,0,sw,sh);
   imgDataUrl=canvas.toDataURL('image/jpeg',0.92);
-  // Update preview
   document.getElementById('preview-img').src=imgDataUrl;
   document.getElementById('crop-modal').classList.remove('active');
   document.getElementById('analyse-btn').disabled=false;
   document.getElementById('analyse-btn').style.display='';
+}
+
+
+/* ── Splash Modal ── */
+function enterApp(){
+  document.getElementById('splash-modal').classList.add('hidden');
+  sessionStorage.setItem('smp_seen','1');
+}
+if(sessionStorage.getItem('smp_seen')){
+  document.getElementById('splash-modal').classList.add('hidden');
 }
 
 </script>
