@@ -174,6 +174,57 @@ footer{padding:16px 20px;text-align:center;font-size:11px;color:var(--border);bo
 .tip{display:flex;align-items:flex-start;gap:8px;font-size:12px;color:var(--muted);line-height:1.5}
 .tip-dot{width:6px;height:6px;border-radius:50%;flex-shrink:0;margin-top:5px}
 .tip-green{background:var(--accent-bright)}.tip-orange{background:#B44020}
+
+/* ── Steps ── */
+.steps-row{display:flex;align-items:flex-start;justify-content:center;gap:4px;margin-bottom:16px;padding:0 4px}
+.step{flex:1;display:flex;flex-direction:column;align-items:center;gap:8px;text-align:center}
+.step-icon{width:44px;height:44px;border-radius:12px;background:var(--surface);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;color:var(--accent-bright)}
+.step-label{font-family:'Syne',sans-serif;font-size:12px;font-weight:700;color:var(--text)}
+.step-desc{font-size:10px;color:var(--muted);line-height:1.4}
+.step-arrow{font-size:20px;color:var(--border);margin-top:12px;flex-shrink:0}
+
+/* ── Viewfinder ── */
+.viewfinder{width:120px;height:90px;position:relative;display:flex;align-items:center;justify-content:center}
+.vf-corner{position:absolute;width:18px;height:18px;border-color:var(--accent-bright);border-style:solid;opacity:.9}
+.vf-corner.vf-tl{top:0;left:0;border-width:2px 0 0 2px;border-radius:3px 0 0 0}
+.vf-corner.vf-tr{top:0;right:0;border-width:2px 2px 0 0;border-radius:0 3px 0 0}
+.vf-corner.vf-bl{bottom:0;left:0;border-width:0 0 2px 2px;border-radius:0 0 0 3px}
+.vf-corner.vf-br{bottom:0;right:0;border-width:0 2px 2px 0;border-radius:0 0 3px 0}
+.vf-pulse{position:absolute;inset:0;border-radius:4px;border:1px solid var(--accent-bright);opacity:0;animation:vfpulse 2.5s ease-in-out infinite}
+.vf-inner{display:flex;align-items:center;justify-content:center}
+@keyframes vfpulse{0%,100%{opacity:0;transform:scale(1)}50%{opacity:.3;transform:scale(1.06)}}
+
+/* ── Crop Modal ── */
+.crop-modal{display:none;flex-direction:column;gap:0;background:var(--surface);border:1px solid var(--border);border-radius:20px;overflow:hidden;margin-bottom:12px}
+.crop-modal.active{display:flex}
+.crop-header{padding:16px 20px 12px;border-bottom:1px solid var(--border)}
+.crop-title{font-family:'Syne',sans-serif;font-size:15px;font-weight:700;color:var(--text)}
+.crop-hint{font-size:12px;color:var(--muted);margin-top:2px}
+.crop-canvas-wrap{position:relative;width:100%;background:#000;overflow:hidden;max-height:65vw}
+.crop-canvas-wrap img{width:100%;display:block;user-select:none;-webkit-user-drag:none}
+#crop-canvas{display:none}
+.crop-overlay{position:absolute;inset:0;pointer-events:none}
+.crop-box{position:absolute;border:2px solid var(--accent-bright);box-shadow:0 0 0 9999px rgba(0,0,0,.55);pointer-events:all;cursor:move}
+.crop-guideline{position:absolute;background:rgba(255,255,255,.25);pointer-events:none}
+.crop-guideline-h1,.crop-guideline-h2{left:0;right:0;height:1px}
+.crop-guideline-h1{top:33.33%}.crop-guideline-h2{top:66.66%}
+.crop-guideline-v1,.crop-guideline-v2{top:0;bottom:0;width:1px}
+.crop-guideline-v1{left:33.33%}.crop-guideline-v2{left:66.66%}
+.crop-handle{position:absolute;width:18px;height:18px;background:var(--accent-bright);border-radius:3px}
+.crop-handle-tl{top:-4px;left:-4px;cursor:nw-resize}
+.crop-handle-tr{top:-4px;right:-4px;cursor:ne-resize}
+.crop-handle-bl{bottom:-4px;left:-4px;cursor:sw-resize}
+.crop-handle-br{bottom:-4px;right:-4px;cursor:se-resize}
+.crop-actions{display:flex;gap:10px;padding:14px 16px;border-top:1px solid var(--border)}
+.crop-btn{flex:1;padding:12px;border-radius:12px;border:none;font-family:'DM Sans',sans-serif;font-size:13px;font-weight:500;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:6px;transition:all .2s}
+.crop-btn-skip{background:var(--surface2);color:var(--muted)}
+.crop-btn-skip:hover{color:var(--text)}
+.crop-btn-confirm{background:var(--accent);color:#fff}
+.crop-btn-confirm:hover{background:var(--accent-bright)}
+
+/* ── Data Notice ── */
+.data-notice{display:flex;align-items:flex-start;gap:8px;padding:12px 16px;background:var(--surface);border:1px solid var(--border);border-radius:12px;font-size:11px;color:var(--muted);line-height:1.6;margin-bottom:4px}
+.data-notice svg{flex-shrink:0;margin-top:1px;opacity:.6}
 </style>
 </head>
 <body>
@@ -191,6 +242,33 @@ footer{padding:16px 20px;text-align:center;font-size:11px;color:var(--border);bo
     <div class="fssai-badge">India 🇮🇳</div>
   </header>
   <main>
+    <!-- Steps -->
+    <div class="steps-row">
+      <div class="step">
+        <div class="step-icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg>
+        </div>
+        <div class="step-label">Photograph</div>
+        <div class="step-desc">Capture the nutrition table</div>
+      </div>
+      <div class="step-arrow">›</div>
+      <div class="step">
+        <div class="step-icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
+        </div>
+        <div class="step-label">Review</div>
+        <div class="step-desc">Verify extracted values</div>
+      </div>
+      <div class="step-arrow">›</div>
+      <div class="step">
+        <div class="step-icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+        </div>
+        <div class="step-label">Get Grade</div>
+        <div class="step-desc">Nutri-Score A to E</div>
+      </div>
+    </div>
+
     <div class="scanner-card" id="scanner-card">
       <div class="scanner-area" id="scanner-area" onclick="document.getElementById('upload-input').click()">
         <div class="corner tl"></div><div class="corner tr"></div>
@@ -198,8 +276,15 @@ footer{padding:16px 20px;text-align:center;font-size:11px;color:var(--border);bo
         <div class="scan-line"></div>
         <img id="preview-img" alt="preview">
         <div class="scan-placeholder">
-          <div class="scan-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="M8 12h8M12 8v8"/></svg></div>
-          <div class="scan-text"><strong>Tap to add nutrition label</strong>Use camera or pick from gallery</div>
+          <div class="viewfinder">
+            <div class="vf-corner vf-tl"></div><div class="vf-corner vf-tr"></div>
+            <div class="vf-corner vf-bl"></div><div class="vf-corner vf-br"></div>
+            <div class="vf-pulse"></div>
+            <div class="vf-inner">
+              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.5)" stroke-width="1.5"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg>
+            </div>
+          </div>
+          <div class="scan-text"><strong>Tap to photograph nutrition label</strong>Point camera at the nutrition table</div>
         </div>
       </div>
       <div class="scanner-actions">
@@ -212,6 +297,37 @@ footer{padding:16px 20px;text-align:center;font-size:11px;color:var(--border);bo
       </div>
     </div>
 
+    <!-- Crop selection overlay -->
+    <div class="crop-modal" id="crop-modal">
+      <div class="crop-header">
+        <div class="crop-title">Select Nutrition Table</div>
+        <div class="crop-hint">Drag corners to fit the table</div>
+      </div>
+      <div class="crop-canvas-wrap" id="crop-canvas-wrap">
+        <img id="crop-img" alt="crop preview">
+        <canvas id="crop-canvas"></canvas>
+        <div class="crop-overlay" id="crop-overlay">
+          <div class="crop-box" id="crop-box">
+            <div class="crop-handle crop-handle-tl" data-handle="tl"></div>
+            <div class="crop-handle crop-handle-tr" data-handle="tr"></div>
+            <div class="crop-handle crop-handle-bl" data-handle="bl"></div>
+            <div class="crop-handle crop-handle-br" data-handle="br"></div>
+            <div class="crop-guideline crop-guideline-h1"></div>
+            <div class="crop-guideline crop-guideline-h2"></div>
+            <div class="crop-guideline crop-guideline-v1"></div>
+            <div class="crop-guideline crop-guideline-v2"></div>
+          </div>
+        </div>
+      </div>
+      <div class="crop-actions">
+        <button class="crop-btn crop-btn-skip" onclick="cropSkip()">Use Full Image</button>
+        <button class="crop-btn crop-btn-confirm" onclick="cropConfirm()">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+          Crop &amp; Analyse
+        </button>
+      </div>
+    </div>
+
     <div class="compress-notice" id="compress-notice">
       <div class="compress-dot"></div><span>Large image — optimising…</span>
     </div>
@@ -220,6 +336,12 @@ footer{padding:16px 20px;text-align:center;font-size:11px;color:var(--border);bo
       <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
       Analyse Nutrition Label
     </button>
+
+    <!-- Data notice -->
+    <div class="data-notice">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+      <span>Images you capture are retained to improve ScoreMyPack's accuracy. By using this app you consent to this. No personal data is collected.</span>
+    </div>
 
     <div class="processing-card" id="processing-card">
       <div class="spinner"></div>
@@ -333,6 +455,8 @@ async function handleImage(input){
     document.getElementById('preview-img').src=r.dataUrl;
     document.getElementById('scanner-area').classList.add('has-image');
     document.getElementById('analyse-btn').disabled=false;
+    document.getElementById('analyse-btn').style.display='none';
+    showCropTool(r.dataUrl);
     notice.classList.remove('active');
     if(file.size>3*1024*1024){notice.querySelector('span').textContent=`✓ Optimised ${(file.size/1024/1024).toFixed(1)}MB → ${(r.size/1024).toFixed(0)}KB`;notice.classList.add('active');setTimeout(()=>notice.classList.remove('active'),3000);}
     hideAll();
@@ -1108,8 +1232,123 @@ function resetApp(){
   document.getElementById('scanner-card').style.display='';
   document.getElementById('processing-card').classList.remove('active');
   document.getElementById('compress-notice').classList.remove('active');
+  document.getElementById('crop-modal').classList.remove('active');
   hideAll();window.scrollTo({top:0,behavior:'smooth'});
 }
+
+
+/* ── Crop Tool ── */
+let _cropBox={x:10,y:10,w:80,h:80};
+let _cropDragging=null;
+let _cropDragStart=null;
+let _cropImgNatural={w:0,h:0};
+
+function showCropTool(dataUrl){
+  const modal=document.getElementById('crop-modal');
+  const img=document.getElementById('crop-img');
+  img.src=dataUrl;
+  img.onload=function(){
+    _cropImgNatural={w:img.naturalWidth,h:img.naturalHeight};
+    // Default box: 10% inset
+    _cropBox={x:10,y:10,w:80,h:80};
+    renderCropBox();
+    modal.classList.add('active');
+    modal.scrollIntoView({behavior:'smooth',block:'center'});
+    initCropDrag();
+  };
+}
+
+function renderCropBox(){
+  const box=document.getElementById('crop-box');
+  box.style.left=_cropBox.x+'%';
+  box.style.top=_cropBox.y+'%';
+  box.style.width=_cropBox.w+'%';
+  box.style.height=_cropBox.h+'%';
+}
+
+function initCropDrag(){
+  const wrap=document.getElementById('crop-canvas-wrap');
+  const box=document.getElementById('crop-box');
+
+  function getRelPos(e,el){
+    const r=el.getBoundingClientRect();
+    const clientX=e.touches?e.touches[0].clientX:e.clientX;
+    const clientY=e.touches?e.touches[0].clientY:e.clientY;
+    return{x:(clientX-r.left)/r.width*100,y:(clientY-r.top)/r.height*100};
+  }
+
+  // Handle drag
+  document.querySelectorAll('.crop-handle').forEach(h=>{
+    const startDrag=e=>{
+      e.preventDefault();e.stopPropagation();
+      _cropDragging=h.dataset.handle;
+      const pos=getRelPos(e,wrap);
+      _cropDragStart={...pos,box:{..._cropBox}};
+    };
+    h.addEventListener('mousedown',startDrag);
+    h.addEventListener('touchstart',startDrag,{passive:false});
+  });
+
+  // Box move
+  const startMove=e=>{
+    if(e.target.classList.contains('crop-handle'))return;
+    e.preventDefault();
+    _cropDragging='move';
+    const pos=getRelPos(e,wrap);
+    _cropDragStart={...pos,box:{..._cropBox}};
+  };
+  box.addEventListener('mousedown',startMove);
+  box.addEventListener('touchstart',startMove,{passive:false});
+
+  const onMove=e=>{
+    if(!_cropDragging)return;
+    e.preventDefault();
+    const pos=getRelPos(e,wrap);
+    const dx=pos.x-_cropDragStart.x;
+    const dy=pos.y-_cropDragStart.y;
+    const b={..._cropDragStart.box};
+    const MIN=8;
+    if(_cropDragging==='move'){
+      b.x=Math.max(0,Math.min(100-b.w,b.x+dx));
+      b.y=Math.max(0,Math.min(100-b.h,b.y+dy));
+    } else {
+      if(_cropDragging.includes('r'))b.w=Math.max(MIN,Math.min(100-b.x,b.w+dx));
+      if(_cropDragging.includes('b'))b.h=Math.max(MIN,Math.min(100-b.y,b.h+dy));
+      if(_cropDragging.includes('l')){const nw=Math.max(MIN,b.w-dx);b.x=b.x+b.w-nw;b.w=nw;}
+      if(_cropDragging.includes('t')){const nh=Math.max(MIN,b.h-dy);b.y=b.y+b.h-nh;b.h=nh;}
+    }
+    _cropBox=b;renderCropBox();
+  };
+  const onEnd=()=>{_cropDragging=null;_cropDragStart=null;};
+  document.addEventListener('mousemove',onMove);
+  document.addEventListener('touchmove',onMove,{passive:false});
+  document.addEventListener('mouseup',onEnd);
+  document.addEventListener('touchend',onEnd);
+}
+
+function cropSkip(){
+  document.getElementById('crop-modal').classList.remove('active');
+  document.getElementById('analyse-btn').disabled=false;
+  document.getElementById('analyse-btn').style.display='';
+}
+
+function cropConfirm(){
+  const img=document.getElementById('crop-img');
+  const canvas=document.getElementById('crop-canvas');
+  const ctx=canvas.getContext('2d');
+  const nw=_cropImgNatural.w,nh=_cropImgNatural.h;
+  const sx=_cropBox.x/100*nw,sy=_cropBox.y/100*nh;
+  const sw=_cropBox.w/100*nw,sh=_cropBox.h/100*nh;
+  canvas.width=sw;canvas.height=sh;
+  ctx.drawImage(img,sx,sy,sw,sh,0,0,sw,sh);
+  imgDataUrl=canvas.toDataURL('image/jpeg',0.92);
+  // Update preview
+  document.getElementById('preview-img').src=imgDataUrl;
+  document.getElementById('crop-modal').classList.remove('active');
+  document.getElementById('analyse-btn').disabled=false;
+  document.getElementById('analyse-btn').style.display='';
+}
+
 </script>
 <script>
 if('serviceWorker' in navigator&&location.hostname!=='www.claudeusercontent.com'){
