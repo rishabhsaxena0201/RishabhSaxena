@@ -369,6 +369,11 @@ main { padding: 12px 16px; gap: 10px; overflow: hidden; position: relative; }
   margin: 16px 20px;
   display: block;
 }
+
+/* ── Download ── */
+.download-row{padding:0 20px 12px;display:flex;gap:10px}
+.download-btn{flex:1;padding:13px;border-radius:12px;border:none;font-family:'DM Sans',sans-serif;font-size:13px;font-weight:600;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:7px;transition:all .2s;background:var(--surface2);color:var(--text);border:1px solid var(--border)}
+.download-btn:hover{background:var(--accent);color:#fff;border-color:var(--accent)}
 </style>
 </head>
 <body>
@@ -592,9 +597,14 @@ main { padding: 12px 16px; gap: 10px; overflow: hidden; position: relative; }
         <div class="verdict-box" id="verdict-box"></div>
         <div class="tips" id="tips-list"></div>
       </div>
+      <div class="download-row">
+        <button class="download-btn" onclick="downloadPNG()">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+          Save as Image
+        </button>
+      </div>
+      <button class="rescan-btn" id="rescan-btn" onclick="resetApp()" style="margin:0 20px 24px;display:block;">↩ Scan Another Product</button>
     </div>
-
-    <button class="rescan-btn" id="rescan-btn" onclick="resetApp()">↩ Scan Another Product</button>
   </main>
   <footer>ScoreMyPack • Nutri-Score v2 • Tesseract OCR • Thinking Lab</footer>
 </div>
@@ -1491,6 +1501,243 @@ function enterApp(){
 }
 if(sessionStorage.getItem('smp_seen')){
   document.getElementById('splash-modal').classList.add('hidden');
+}
+
+
+
+/* ── PNG Report Generator ── */
+async function downloadPNG(){
+  const btn = document.querySelector('.download-btn');
+  const origText = btn.innerHTML;
+  btn.innerHTML = '⏳ Generating…';
+  btn.disabled = true;
+
+  try {
+    const SCALE = 2; // retina
+    const W = 800, PAD = 40;
+    let y = 0;
+
+    // ── Collect data from DOM ──
+    const grade      = document.getElementById('grade-badge').textContent.trim();
+    const badPts     = document.getElementById('bad-pts').textContent.trim();
+    const goodPts    = document.getElementById('good-pts').textContent.trim();
+    const finalScore = document.getElementById('final-score').textContent.trim();
+    const verdict    = document.getElementById('verdict-box').textContent.trim();
+    const sectionTitle = document.getElementById('result-section-title').textContent.trim();
+
+    // Nutrient rows from grid
+    const nutrientRows = [];
+    document.querySelectorAll('#nutrient-grid .nutrient-row').forEach(row => {
+      const name = row.querySelector('.nutrient-name')?.textContent.trim() || '';
+      const val  = row.querySelector('.nutrient-val')?.textContent.trim() || '';
+      nutrientRows.push({name, val});
+    });
+
+    // Grade colours
+    const GRADE_COLORS = {A:'#038141',B:'#85BB2F',C:'#FECB02',D:'#EE8100',E:'#E63E11'};
+    const gradeColor = GRADE_COLORS[grade] || '#7A96B0';
+
+    // ── Calculate total canvas height ──
+    const IMG_H    = imgDataUrl ? 220 : 0;
+    const HDR_H    = 80;
+    const GRADE_H  = 160;
+    const NUTR_H   = 40 + nutrientRows.length * 36;
+    const SCORE_H  = 140;
+    const VERDICT_H= verdict ? 80 + Math.ceil(verdict.length / 80) * 22 : 0;
+    const FOOTER_H = 60;
+    const TOTAL_H  = HDR_H + IMG_H + GRADE_H + NUTR_H + SCORE_H + VERDICT_H + FOOTER_H + PAD*2;
+
+    const canvas = document.createElement('canvas');
+    canvas.width  = W * SCALE;
+    canvas.height = TOTAL_H * SCALE;
+    const ctx = canvas.getContext('2d');
+    ctx.scale(SCALE, SCALE);
+
+    // ── Background ──
+    ctx.fillStyle = '#0B1520';
+    ctx.fillRect(0, 0, W, TOTAL_H);
+
+    // ── Helper functions ──
+    function roundRect(x, y, w, h, r, fill, stroke) {
+      ctx.beginPath();
+      ctx.moveTo(x+r, y);
+      ctx.lineTo(x+w-r, y); ctx.quadraticCurveTo(x+w, y, x+w, y+r);
+      ctx.lineTo(x+w, y+h-r); ctx.quadraticCurveTo(x+w, y+h, x+w-r, y+h);
+      ctx.lineTo(x+r, y+h); ctx.quadraticCurveTo(x, y+h, x, y+h-r);
+      ctx.lineTo(x, y+r); ctx.quadraticCurveTo(x, y, x+r, y);
+      ctx.closePath();
+      if(fill){ ctx.fillStyle=fill; ctx.fill(); }
+      if(stroke){ ctx.strokeStyle=stroke; ctx.lineWidth=1; ctx.stroke(); }
+    }
+
+    function text(str, x, yy, font, color, align='left') {
+      ctx.font = font;
+      ctx.fillStyle = color;
+      ctx.textAlign = align;
+      ctx.fillText(str, x, yy);
+      ctx.textAlign = 'left';
+    }
+
+    function wrapText(str, x, yy, maxW, lineH, font, color) {
+      ctx.font = font;
+      ctx.fillStyle = color;
+      const words = str.split(' ');
+      let line = '';
+      for(const word of words){
+        const test = line ? line+' '+word : word;
+        if(ctx.measureText(test).width > maxW && line){
+          ctx.fillText(line, x, yy); yy += lineH; line = word;
+        } else { line = test; }
+      }
+      if(line) ctx.fillText(line, x, yy);
+      return yy + lineH;
+    }
+
+    y = PAD;
+
+    // ── HEADER ──
+    text('ScoreMyPack', PAD, y+28, 'bold 22px Syne,sans-serif', '#E2EBF5');
+    text('Nutrition Report', PAD, y+50, '300 14px sans-serif', '#7A96B0');
+    text(new Date().toLocaleDateString('en-IN',{day:'numeric',month:'short',year:'numeric'}),
+         W-PAD, y+28, '12px sans-serif', '#7A96B0', 'right');
+    // accent line
+    ctx.fillStyle = '#1464B4';
+    ctx.fillRect(W-PAD-60, y+40, 60, 2);
+    y += HDR_H;
+
+    // ── SCANNED IMAGE ──
+    if(imgDataUrl){
+      await new Promise(resolve=>{
+        const img = new Image();
+        img.onload = ()=>{
+          const iw=img.naturalWidth, ih=img.naturalHeight;
+          const scale = Math.min((W-PAD*2)/iw, (IMG_H-20)/ih);
+          const dw=iw*scale, dh=ih*scale;
+          const dx=PAD+(W-PAD*2-dw)/2;
+          roundRect(PAD, y, W-PAD*2, IMG_H-10, 12, '#111E2E', '#1E3450');
+          ctx.drawImage(img, dx, y+(IMG_H-10-dh)/2, dw, dh);
+          resolve();
+        };
+        img.src = imgDataUrl;
+      });
+      y += IMG_H;
+    }
+
+    // ── GRADE SECTION ──
+    roundRect(PAD, y, W-PAD*2, GRADE_H-20, 16, '#111E2E', '#1E3450');
+
+    // Big grade letter
+    const gx = PAD+32, gy = y+20;
+    roundRect(gx, gy, 90, 90, 16, gradeColor+'22', gradeColor);
+    ctx.font = 'bold 56px Syne,sans-serif';
+    ctx.fillStyle = gradeColor;
+    ctx.textAlign = 'center';
+    ctx.fillText(grade, gx+45, gy+65);
+    ctx.textAlign = 'left';
+
+    // Grade label + description
+    const GRADE_LABELS = {A:'Excellent',B:'Good',C:'Average',D:'Below Average',E:'Poor'};
+    text('Nutri-Score v2', gx+110, gy+28, '700 11px sans-serif', '#7A96B0');
+    text('Grade '+grade+' — '+( GRADE_LABELS[grade]||''), gx+110, gy+56, 'bold 20px Syne,sans-serif', '#E2EBF5');
+    text('Nutritional quality assessment', gx+110, gy+78, '300 13px sans-serif', '#7A96B0');
+
+    // Grade pills A-E
+    const pills=['A','B','C','D','E'];
+    const pillW=54, pillGap=8;
+    const totalPillW = pills.length*pillW + (pills.length-1)*pillGap;
+    let px = PAD + (W-PAD*2-totalPillW)/2;
+    const py = gy+100;
+    pills.forEach(g=>{
+      const isActive = g===grade;
+      const col = GRADE_COLORS[g];
+      roundRect(px, py, pillW, 28, 8, isActive?col:col+'22', col);
+      ctx.font = 'bold 14px Syne,sans-serif';
+      ctx.fillStyle = isActive?'#fff':col;
+      ctx.textAlign='center';
+      ctx.fillText(g, px+pillW/2, py+19);
+      ctx.textAlign='left';
+      px += pillW+pillGap;
+    });
+    y += GRADE_H;
+
+    // ── NUTRIENTS ──
+    y += 8;
+    text(sectionTitle, PAD, y+18, '700 13px sans-serif', '#7A96B0');
+    y += 30;
+
+    nutrientRows.forEach((row, i)=>{
+      const rowY = y + i*36;
+      if(i%2===0) roundRect(PAD, rowY-4, W-PAD*2, 32, 6, '#111E2E', 'transparent');
+      text(row.name, PAD+12, rowY+16, '300 13px sans-serif', '#E2EBF5');
+      text(row.val,  W-PAD-12, rowY+16, '600 13px sans-serif', '#E2EBF5', 'right');
+    });
+    y += nutrientRows.length*36 + 16;
+
+    // ── SCORE BREAKDOWN ──
+    roundRect(PAD, y, W-PAD*2, SCORE_H-20, 12, '#111E2E', '#1E3450');
+    text('Score Breakdown', PAD+16, y+24, '700 13px sans-serif', '#7A96B0');
+    ctx.fillStyle='#1E3450'; ctx.fillRect(PAD+16, y+32, W-PAD*2-32, 1);
+
+    text('Negative points (energy, fat, sugar, sodium)', PAD+16, y+58, '300 13px sans-serif', '#7A96B0');
+    text(badPts, W-PAD-16, y+58, '600 14px sans-serif', '#7AB0D0', 'right');
+    text('Positive points (protein, fibre, fruits/veg)', PAD+16, y+82, '300 13px sans-serif', '#7A96B0');
+    text(goodPts, W-PAD-16, y+82, '600 14px sans-serif', '#2E8AE6', 'right');
+    ctx.fillStyle='#1E3450'; ctx.fillRect(PAD+16, y+94, W-PAD*2-32, 1);
+    text('Final Score', PAD+16, y+114, '500 14px sans-serif', '#E2EBF5');
+    text(finalScore, W-PAD-16, y+114, 'bold 16px Syne,sans-serif', gradeColor, 'right');
+    y += SCORE_H;
+
+    // ── VERDICT ──
+    if(verdict){
+      y += 8;
+      roundRect(PAD, y, W-PAD*2, VERDICT_H+16, 12, '#111E2E', '#1464B4');
+      ctx.fillStyle='#1464B4'; ctx.fillRect(PAD, y, 3, VERDICT_H+16);
+      text('Verdict', PAD+16, y+24, '700 13px sans-serif', '#7A96B0');
+      wrapText(verdict, PAD+16, y+46, W-PAD*2-32, 22, '300 13px sans-serif', '#E2EBF5');
+      y += VERDICT_H + 24;
+    }
+
+    // ── FOOTER ──
+    y = TOTAL_H - FOOTER_H;
+    ctx.fillStyle='#1E3450'; ctx.fillRect(0, y, W, 1);
+    text('Generated by ScoreMyPack · Thinking Lab · Nutri-Score v2 Algorithm',
+         W/2, y+28, '300 11px sans-serif', '#7A96B0', 'center');
+    text('This report is for informational purposes only.',
+         W/2, y+46, '300 11px sans-serif', '#7A96B0'+'88', 'center');
+
+    // ── DOWNLOAD ──
+    const dataUrl = canvas.toDataURL('image/png');
+    const filename = 'scoremypack-report-' + new Date().toISOString().slice(0,10) + '.png';
+
+    // Try standard download first
+    try {
+      const link = document.createElement('a');
+      link.download = filename;
+      link.href = dataUrl;
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+    } catch(e) {}
+
+    // Also open in new tab as fallback (works on iOS — user can long-press to save)
+    setTimeout(() => {
+      const w = window.open();
+      if(w) {
+        w.document.write('<title>' + filename + '</title>');
+        w.document.write('<style>body{margin:0;background:#000;display:flex;align-items:center;justify-content:center;min-height:100vh}</style>');
+        w.document.write('<img src="' + dataUrl + '" style="max-width:100%;height:auto;">');
+        w.document.write('<p style="position:fixed;bottom:20px;left:0;right:0;text-align:center;color:#fff;font-family:sans-serif;font-size:13px">Long-press the image and tap Save to Photos</p>');
+        w.document.close();
+      }
+    }, 300);
+
+  } catch(e) {
+    console.error('PNG generation failed:', e);
+    alert('Could not generate report. Please try again.');
+  } finally {
+    btn.innerHTML = origText;
+    btn.disabled = false;
+  }
 }
 
 </script>
