@@ -35,9 +35,9 @@ posthog.init('phc_pV141cAwQHLesHjKjr21zJ5jdSgyYG2OwBk8vEjazhU', {
 <style>
 :root{--bg:#0B1520;--surface:#111E2E;--surface2:#172438;--border:#1E3450;--text:#E2EBF5;--muted:#7A96B0;--accent:#1464B4;--accent-bright:#2E8AE6;--grade-a:#038141;--grade-b:#85BB2F;--grade-c:#FECB02;--grade-d:#EE8100;--grade-e:#E63E11}
 *{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
-body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;overflow-x:hidden}
+body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);height:100vh;overflow:hidden}
 body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellipse 80% 50% at 20% -10%,rgba(20,100,180,.15) 0%,transparent 60%),radial-gradient(ellipse 60% 40% at 80% 110%,rgba(40,80,100,.12) 0%,transparent 60%);pointer-events:none;z-index:0}
-.app{position:relative;z-index:1;max-width:480px;margin:0 auto;min-height:100vh;display:flex;flex-direction:column}
+.app{position:relative;z-index:1;max-width:480px;margin:0 auto;height:100%;overflow:hidden;display:flex;flex-direction:column}
 header{padding:20px 24px 16px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--border);background:rgba(13,17,23,.8);backdrop-filter:blur(12px);position:sticky;top:0;z-index:100}
 .logo-group{display:flex;align-items:center;gap:12px}
 .brand{display:flex;flex-direction:column}
@@ -45,7 +45,7 @@ header{padding:20px 24px 16px;display:flex;align-items:center;justify-content:sp
 .brand-name span{color:var(--accent-bright)}
 .brand-tagline{font-size:10px;color:var(--muted);letter-spacing:.5px;margin-top:2px;text-transform:uppercase}
 .fssai-badge{font-size:9px;color:var(--muted);border:1px solid var(--border);padding:3px 8px;border-radius:20px;letter-spacing:.5px}
-main{flex:1;padding:24px 20px;display:flex;flex-direction:column;gap:20px}
+main{flex:1;display:flex;flex-direction:column}
 .scanner-card{background:var(--surface);border:1px solid var(--border);border-radius:20px;overflow:hidden}
 .scanner-area{aspect-ratio:4/3;background:var(--surface2);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;position:relative;overflow:hidden;cursor:pointer}
 .scanner-area.has-image{background:#000}
@@ -249,7 +249,7 @@ footer{padding:16px 20px;text-align:center;font-size:11px;color:var(--border);bo
 .splash-headline{font-family:'Syne',sans-serif;font-size:clamp(22px,6vw,30px);font-weight:800;color:var(--text);line-height:1.25}
 .splash-headline em{color:var(--accent-bright);font-style:normal}
 .splash-divider{width:36px;height:3px;background:var(--accent);border-radius:2px}
-.splash-body{font-size:14px;font-weight:300;color:var(--muted);line-height:1.85;display:flex;flex-direction:column;gap:12px}
+.splash-.splash-body{font-size:14px;font-weight:300;color:var(--muted);line-height:1.85;display:flex;flex-direction:column;gap:12px}
 .splash-body p{margin:0}
 .splash-grade-row{display:flex;gap:8px}
 .splash-grade-chip{flex:1;display:flex;flex-direction:column;align-items:center;gap:4px;padding:10px 4px;border-radius:10px;border:1px solid var(--border)}
@@ -272,21 +272,12 @@ footer{padding:16px 20px;text-align:center;font-size:11px;color:var(--border);bo
 
 /* Lock viewport */
 html { height: 100%; }
-body { height: 100%; overflow: hidden; min-height: unset; }
-.app { height: 100%; min-height: unset; overflow: hidden; }
 
 /* Header: tighter padding */
 header { padding: 12px 20px 10px; flex-shrink: 0; }
 
-/* Main: fills remaining space, no scroll */
-main {
-  flex: 1;
-  padding: 12px 16px;
-  gap: 10px;
-  overflow: hidden;
-  display: flex;
-  flex-direction: column;
-}
+/* Main: fills remaining space, clips scanner screen only */
+main { padding: 12px 16px; gap: 10px; overflow: hidden; position: relative; }
 
 /* Scanner card: flex-grow to fill space, scanner-area uses remaining */
 .scanner-card { display: flex; flex-direction: column; flex: 1; min-height: 0; }
@@ -310,21 +301,74 @@ main {
 /* Data notice: tighter */
 .data-notice { padding: 8px 12px; font-size: 10px; }
 
+/* Compress notice: compact */
+.compress-notice { padding: 7px 12px; font-size: 10px; }
+
 /* Processing: centred, fills main */
-.processing-card {
-  flex: 1;
-  justify-content: center;
-}
+.processing-card { flex: 1; justify-content: center; }
 
 /* Error card: fills space */
 .error-card { flex: 1; justify-content: center; }
 
-/* Review + Result: allow scroll — override hidden */
-.review-card { overflow-y: auto; max-height: calc(100vh - 80px); }
-.result-card { overflow-y: auto; max-height: calc(100vh - 80px); }
+/* ── CROP: fullscreen fixed overlay so it's never clipped ── */
+.crop-modal {
+  position: fixed !important;
+  inset: 0 !important;
+  z-index: 500;
+  border-radius: 0 !important;
+  margin: 0 !important;
+  display: none;
+  flex-direction: column;
+  background: var(--bg);
+  overflow: hidden;
+}
+.crop-modal.active { display: flex; }
+.crop-canvas-wrap {
+  flex: 1;
+  max-height: unset !important;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  background: #000;
+}
+.crop-canvas-wrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
 
-/* Compress notice: compact */
-.compress-notice { padding: 7px 12px; font-size: 10px; }
+/* ── REVIEW + RESULT: fullscreen fixed so they can scroll freely ── */
+.review-card {
+  position: fixed !important;
+  inset: 0 !important;
+  z-index: 400;
+  border-radius: 0 !important;
+  overflow-y: auto !important;
+  max-height: unset !important;
+  display: none;
+  animation: none !important;
+}
+.review-card.active { display: block; }
+
+.result-card {
+  position: fixed !important;
+  inset: 0 !important;
+  z-index: 400;
+  border-radius: 0 !important;
+  overflow-y: auto !important;
+  max-height: unset !important;
+  display: none;
+  animation: none !important;
+}
+.result-card.active { display: block; }
+
+/* Rescan button: fixed at bottom when result is showing */
+.rescan-btn {
+  position: sticky;
+  bottom: 16px;
+  margin: 16px 20px;
+  display: block;
+}
 </style>
 </head>
 <body>
