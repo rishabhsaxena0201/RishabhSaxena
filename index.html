@@ -703,12 +703,12 @@ footer {
         <div class="interest-tag">Read the blog</div>
       </a>
 
-      <a href="/in-the-making.html" class="interest-card" style="--card-accent:#27AE60;">
+      <div class="interest-card" style="--card-accent:#27AE60;cursor:default;">
         <span class="interest-icon">📱</span>
         <div class="interest-title">Building Apps</div>
         <p class="interest-desc">When something in daily life is needlessly annoying, the fix tends to be an app. The way these get built has changed a lot recently — turns out describing what you want clearly is a skill too.</p>
-        <div class="interest-tag">In the Making</div>
-      </a>
+        <div class="interest-tag" style="cursor:pointer;" onclick="showModal(event)">In the Making</div>
+      </div>
 
     </div>
   </div>
@@ -720,7 +720,6 @@ footer {
     <h2>Want the full professional story?</h2>
     <p>A decade in the Salesforce ecosystem, five certifications, an MBA, and a few strong opinions about what makes projects actually succeed.</p>
     <a href="/about.html">View Full Profile →</a>
-
   </div>
 </section>
 
@@ -733,23 +732,22 @@ footer {
     <div class="section-label">Side Projects</div>
     <h2 class="section-title">In the Making</h2>
     <div class="section-divider" style="margin:0 0 32px;"></div>
-    <a href="/scoremypack/" target="_blank" style="display:block;background:var(--sf-light-bg);border:1px solid var(--sf-border);border-radius:20px;padding:36px 40px;text-decoration:none;color:var(--sf-text);transition:transform 0.2s,box-shadow 0.2s,border-color 0.2s;" onmouseover="this.style.transform='translateY(-4px)';this.style.boxShadow='0 12px 40px rgba(0,0,0,0.1)';this.style.borderColor='var(--sf-blue)'" onmouseout="this.style.transform='';this.style.boxShadow='';this.style.borderColor='var(--sf-border)'">
-      <div style="display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:20px;flex-wrap:wrap;gap:12px;">
-        <div>
-          <div style="font-family:'Sora',sans-serif;font-size:0.68rem;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:var(--sf-blue);margin-bottom:8px;">Thinking Lab &middot; Live</div>
-          <div style="font-family:'Sora',sans-serif;font-size:1.3rem;font-weight:800;color:var(--sf-text);">ScoreMyPack</div>
+    <div style="background:var(--sf-light-bg);border:1px solid var(--sf-border);border-radius:20px;padding:40px;display:flex;align-items:center;gap:40px;flex-wrap:wrap;">
+      <div style="flex:1;min-width:260px;">
+        <div style="font-family:'Sora',sans-serif;font-size:1.3rem;font-weight:800;color:var(--sf-text);margin-bottom:10px;">Building things that scratch a real itch</div>
+        <p style="color:var(--sf-subtext);font-weight:300;line-height:1.7;margin-bottom:20px;">A few small apps in various stages of being built. The common thread — each one started because something in daily life was needlessly annoying. If you have a problem you'd love to see solved, Rishabh is genuinely interested.</p>
+        <div style="display:flex;flex-wrap:wrap;gap:8px;">
+          <span style="background:var(--sf-tag-bg);border:1px solid var(--sf-border);border-radius:20px;padding:5px 14px;font-family:'Sora',sans-serif;font-size:0.75rem;font-weight:700;color:var(--sf-subtext);">📱 Mobile Apps</span>
+          <span style="background:var(--sf-tag-bg);border:1px solid var(--sf-border);border-radius:20px;padding:5px 14px;font-family:'Sora',sans-serif;font-size:0.75rem;font-weight:700;color:var(--sf-subtext);">💻 Vibe Coding</span>
+          <span style="background:var(--sf-tag-bg);border:1px solid var(--sf-border);border-radius:20px;padding:5px 14px;font-family:'Sora',sans-serif;font-size:0.75rem;font-weight:700;color:var(--sf-subtext);">🔧 Problem-First</span>
+          <span style="background:var(--sf-tag-bg);border:1px solid var(--sf-border);border-radius:20px;padding:5px 14px;font-family:'Sora',sans-serif;font-size:0.75rem;font-weight:700;color:var(--sf-subtext);">🚧 Work in Progress</span>
         </div>
-        <span style="background:rgba(27,150,255,0.1);color:var(--sf-blue);border:1px solid rgba(27,150,255,0.3);border-radius:20px;padding:4px 14px;font-family:'Sora',sans-serif;font-size:0.72rem;font-weight:700;">&#9679; Live</span>
       </div>
-      <p style="color:var(--sf-subtext);font-weight:300;line-height:1.7;margin-bottom:24px;max-width:640px;">Scan any packaged food's nutrition label and get an instant Nutri-Score v2 grade — A to E. OCR and scoring run entirely in the browser. Analytics via PostHog. Built for the Indian market with FSSAI labels in mind.</p>
-      <div style="display:flex;flex-wrap:wrap;gap:8px;margin-bottom:24px;">
-        <span style="background:var(--sf-tag-bg);border:1px solid var(--sf-border);border-radius:20px;padding:4px 14px;font-family:'Sora',sans-serif;font-size:0.72rem;font-weight:700;color:var(--sf-subtext);">📱 PWA</span>
-        <span style="background:var(--sf-tag-bg);border:1px solid var(--sf-border);border-radius:20px;padding:4px 14px;font-family:'Sora',sans-serif;font-size:0.72rem;font-weight:700;color:var(--sf-subtext);">🔍 OCR</span>
-        <span style="background:var(--sf-tag-bg);border:1px solid var(--sf-border);border-radius:20px;padding:4px 14px;font-family:'Sora',sans-serif;font-size:0.72rem;font-weight:700;color:var(--sf-subtext);">🇮🇳 India</span>
-        <span style="background:var(--sf-tag-bg);border:1px solid var(--sf-border);border-radius:20px;padding:4px 14px;font-family:'Sora',sans-serif;font-size:0.72rem;font-weight:700;color:var(--sf-subtext);">&#128274; Offline</span>
+      <div style="text-align:center;padding:20px;">
+        <div style="font-size:4rem;margin-bottom:12px;">🛠️</div>
+        <div style="font-family:'Sora',sans-serif;font-size:0.8rem;font-weight:700;color:var(--sf-subtext);letter-spacing:0.1em;text-transform:uppercase;">Something's cooking</div>
       </div>
-      <div style="font-family:'Sora',sans-serif;font-size:0.78rem;font-weight:700;color:var(--sf-blue);">Try it &rarr;</div>
-    </a>
+    </div>
   </div>
 </section>
 
@@ -760,7 +758,7 @@ footer {
     <h2 class="section-title" style="color:white;">Let's Start a Conversation</h2>
     <div class="section-divider" style="margin:16px auto 24px;"></div>
     <p>Whether you're exploring Salesforce, want to talk watches, or have a problem worth solving — Rishabh is always up for a good conversation.</p>
-    <div>
+    <div style="display:flex;align-items:center;justify-content:center;gap:16px;flex-wrap:wrap;">
       <a href="https://linkedin.com/in/rishabh0201" target="_blank" class="connect-btn primary">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="white"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
         Connect on LinkedIn
