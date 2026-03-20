@@ -1,1293 +1,1750 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="dark">
+<html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="/styles.css">
-<title>Rishabh Saxena</title>
-<meta name="description" content="Problem solver. Salesforce Consultant, problem solver, watch enthusiast, motorsport marshal.">
-  <!-- Open Graph -->
-  <meta property="og:type"        content="website">
-  <meta property="og:url"         content="https://rishabhsaxena.co.in">
-  <meta property="og:title"       content="Rishabh Saxena">
-  <meta property="og:description" content="Problem solver. Salesforce Consultant, problem solver, watch enthusiast, motorsport marshal.">
-  <meta property="og:image"       content="https://rishabhsaxena.co.in/photo.png">
-  <!-- Twitter Card -->
-  <meta name="twitter:card"        content="summary_large_image">
-  <meta name="twitter:title"       content="Rishabh Saxena">
-  <meta name="twitter:description" content="Problem solver. Salesforce Consultant, problem solver, watch enthusiast, motorsport marshal.">
-  <meta name="twitter:image"       content="https://rishabhsaxena.co.in/photo.png">
-<meta name="keywords" content="Rishabh Saxena, Salesforce, Problem Solver, Consultant, Watches, Motorsport, Piano, Vibe Coding">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
-<link rel="icon" href="/logo.png" type="image/png">
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "Person",
-  "name": "Rishabh Saxena",
-  "url": "https://rishabhsaxena.co.in",
-  "image": "https://rishabhsaxena.co.in/photo.png",
-  "jobTitle": "Salesforce Consultant",
-  "worksFor": { "@type": "Organization", "name": "Salesforce" },
-  "sameAs": ["https://linkedin.com/in/rishabh0201"]
-}
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<meta name="theme-color" content="#0D1117">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="ScoreMyPack">
+<link rel="manifest" href="manifest.json">
+<link rel="apple-touch-icon" href="icon-192.png">
+<title>ScoreMyPack</title>
+<!-- PostHog Analytics -->
+<script>
+!function(t,e){var o,n,p,r;e.__SV||(window.posthog=e,e._i=[],e.init=function(i,s,a){function g(t,e){var o=e.split(".");2==o.length&&(t=t[o[0]],e=o[1]);t[e]=function(){t.push([e].concat(Array.prototype.slice.call(arguments,0)))}}(p=t.createElement("script")).type="text/javascript",p.crossOrigin="anonymous",p.async=!0,p.src=s.api_host+"/static/array.js",(r=t.getElementsByTagName("script")[0]).parentNode.insertBefore(p,r);var u=e;for(void 0!==a?u=e[a]=[]:a="posthog",u.people=u.people||[],u.toString=function(t){var e="posthog";return"posthog"!==a&&(e+="."+a),t||(e+=" (stub)"),e},u.people.toString=function(){return u.toString(1)+" (stub)"},o="capture identify alias people.set people.set_once set_config register register_once unregister opt_out_capturing has_opted_out_capturing opt_in_capturing reset isFeatureEnabled onFeatureFlags getFeatureFlag getFeatureFlagPayload reloadFeatureFlags group updateEarlyAccessFeatureEnrollment getEarlyAccessFeatures getActiveMatchingSurveys getSurveys onSessionId".split(" "),n=0;n<o.length;n++)g(u,o[n]);e._i.push([i,s,a])},e.__SV=1)}(document,window.posthog||[]);
+posthog.init('phc_pV141cAwQHLesHjKjr21zJ5jdSgyYG2OwBk8vEjazhU', {
+  api_host: 'https://us.i.posthog.com',
+  autocapture: false,
+  capture_pageview: true,
+  persistence: 'localStorage+cookie'
+});
 </script>
+<!-- Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-8GHGE13QRJ"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-8GHGE13QRJ');
+</script>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
-html { scroll-behavior: smooth; }
+:root{--bg:#0B1520;--surface:#111E2E;--surface2:#172438;--border:#1E3450;--text:#E2EBF5;--muted:#7A96B0;--accent:#1464B4;--accent-bright:#2E8AE6;--grade-a:#038141;--grade-b:#85BB2F;--grade-c:#FECB02;--grade-d:#EE8100;--grade-e:#E63E11}
+*{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);height:100vh;overflow:hidden}
+body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellipse 80% 50% at 20% -10%,rgba(20,100,180,.15) 0%,transparent 60%),radial-gradient(ellipse 60% 40% at 80% 110%,rgba(40,80,100,.12) 0%,transparent 60%);pointer-events:none;z-index:0}
+.app{position:relative;z-index:1;max-width:480px;margin:0 auto;height:100%;overflow:hidden;display:flex;flex-direction:column}
+header{padding:20px 24px 16px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--border);background:rgba(13,17,23,.8);backdrop-filter:blur(12px);position:sticky;top:0;z-index:100}
+.logo-group{display:flex;align-items:center;gap:12px}
+.brand{display:flex;flex-direction:column}
+.brand-name{font-family:'Syne',sans-serif;font-weight:700;font-size:18px;letter-spacing:-.3px;line-height:1}
+.brand-name span{color:var(--accent-bright)}
+.brand-tagline{font-size:10px;color:var(--muted);letter-spacing:.5px;margin-top:2px;text-transform:uppercase}
+.fssai-badge{font-size:9px;color:var(--muted);border:1px solid var(--border);padding:3px 8px;border-radius:20px;letter-spacing:.5px}
+main{flex:1;display:flex;flex-direction:column}
+.scanner-card{background:var(--surface);border:1px solid var(--border);border-radius:20px;overflow:hidden}
+.scanner-area{aspect-ratio:4/3;background:var(--surface2);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;position:relative;overflow:hidden;cursor:pointer}
+.scanner-area.has-image{background:#000}
+#preview-img{width:100%;height:100%;object-fit:contain;display:none}
+.scanner-area.has-image #preview-img{display:block}
+.scanner-area.has-image .scan-placeholder{display:none}
+.corner{position:absolute;width:24px;height:24px;border-color:var(--accent-bright);border-style:solid;opacity:.7}
+.corner.tl{top:12px;left:12px;border-width:2px 0 0 2px;border-radius:4px 0 0 0}
+.corner.tr{top:12px;right:12px;border-width:2px 2px 0 0;border-radius:0 4px 0 0}
+.corner.bl{bottom:12px;left:12px;border-width:0 0 2px 2px;border-radius:0 0 0 4px}
+.corner.br{bottom:12px;right:12px;border-width:0 2px 2px 0;border-radius:0 0 4px 0}
+.scan-placeholder{display:flex;flex-direction:column;align-items:center;gap:10px}
+.scan-icon{width:56px;height:56px;border:2px dashed var(--border);border-radius:14px;display:flex;align-items:center;justify-content:center}
+.scan-icon svg{opacity:.4}
+.scan-text{font-size:13px;color:var(--muted);text-align:center;line-height:1.5}
+.scan-text strong{color:var(--text);display:block;font-size:15px;margin-bottom:2px}
+.scan-line{position:absolute;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,var(--accent-bright),transparent);animation:scanline 2.5s ease-in-out infinite;opacity:0}
+.scanner-area.has-image .scan-line{opacity:1}
+@keyframes scanline{0%{top:10%;opacity:0}10%{opacity:1}90%{opacity:1}100%{top:90%;opacity:0}}
+.scanner-actions{padding:14px 16px;display:flex;gap:10px;border-top:1px solid var(--border)}
+.btn{flex:1;padding:12px;border-radius:12px;border:none;font-family:'DM Sans',sans-serif;font-size:13px;font-weight:500;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:6px;transition:all .2s;letter-spacing:.2px}
+.btn-camera{background:var(--accent);color:#fff;font-weight:600}
+.btn-camera:active{transform:scale(.97);background:#0F52A0}
+.btn-upload{background:var(--surface2);color:var(--text);border:1px solid var(--border)}
+.btn-upload:active{transform:scale(.97)}
+.btn-analyse{width:100%;padding:15px;border-radius:14px;border:none;background:linear-gradient(135deg,#1464B4,#2E8AE6);color:#fff;font-family:'Syne',sans-serif;font-weight:700;font-size:15px;cursor:pointer;letter-spacing:.3px;transition:all .2s;display:flex;align-items:center;justify-content:center;gap:8px;box-shadow:0 4px 20px rgba(20,100,180,.35)}
+.btn-analyse:disabled{opacity:.3;cursor:not-allowed;box-shadow:none}
+.btn-analyse:not(:disabled):active{transform:scale(.98)}
+.processing-card{background:var(--surface);border:1px solid var(--border);border-radius:20px;padding:32px 24px;display:none;flex-direction:column;align-items:center;gap:16px;text-align:center}
+.processing-card.active{display:flex}
+.spinner{width:44px;height:44px;border:3px solid var(--border);border-top-color:var(--accent-bright);border-radius:50%;animation:spin .8s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+.processing-text{font-family:'Syne',sans-serif;font-weight:600;font-size:15px}
+.processing-sub{font-size:12px;color:var(--muted)}
+.progress-bar{width:100%;height:4px;background:var(--border);border-radius:2px;overflow:hidden}
+.progress-fill{height:100%;background:var(--accent-bright);border-radius:2px;width:0%;transition:width .4s ease}
+/* ── Shared ── */
+@keyframes slideUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.5;transform:scale(.8)}}
+#camera-input,#upload-input{display:none}
+footer{padding:16px 20px;text-align:center;font-size:11px;color:var(--border);border-top:1px solid var(--border)}
+.compress-notice{background:rgba(20,100,180,.08);border:1px solid rgba(20,100,180,.2);border-radius:10px;padding:10px 14px;font-size:11px;color:var(--muted);align-items:center;gap:8px;display:none}
+.compress-notice.active{display:flex}
+.compress-dot{width:6px;height:6px;border-radius:50%;background:var(--accent-bright);flex-shrink:0;animation:pulse 1.5s ease-in-out infinite}
+.error-card{background:rgba(230,62,17,.08);border:1px solid rgba(230,62,17,.25);border-radius:16px;padding:20px;display:none;text-align:center;gap:10px;flex-direction:column;align-items:center}
+.error-card.active{display:flex}
+.error-title{font-family:'Syne',sans-serif;font-weight:700;font-size:15px;color:#FF6B6B}
+.error-msg{font-size:13px;color:var(--muted);line-height:1.5}
+.rescan-btn{width:calc(100% - 40px);margin:0 20px 20px;padding:13px;border-radius:12px;border:1px solid var(--border);background:transparent;color:var(--muted);font-family:'DM Sans',sans-serif;font-size:13px;cursor:pointer;transition:all .2s;display:none}
+.rescan-btn.active{display:block}
+.rescan-btn:active{background:var(--surface2)}
 
-/* ── HERO ── */
-.hero {
-  min-height: 100vh;
-  display: flex; align-items: center;
-  padding: 100px 5% 60px;
-  max-width: 1200px;
-  margin: 0 auto;
-}
-.hero-inner {
-  display: grid;
-  grid-template-columns: 1fr 420px;
-  gap: 80px;
-  align-items: center;
-  width: 100%;
-}
-.hero-label {
-  font-family: 'Sora', sans-serif;
-  font-size: 0.72rem; font-weight: 700;
-  letter-spacing: 0.18em; text-transform: uppercase;
-  color: var(--sf-blue); margin-bottom: 20px;
-  display: flex; align-items: center; gap: 10px;
-}
-.hero-label::before {
-  content: ''; display: block;
-  width: 32px; height: 2px; background: var(--sf-blue);
-}
-.hero h1 {
-  font-family: 'Sora', sans-serif;
-  font-size: clamp(3rem, 6vw, 4.5rem);
-  font-weight: 800; letter-spacing: -0.03em;
-  line-height: 1.05; margin-bottom: 24px;
-}
-.hero h1 span { color: var(--sf-blue); }
-.hero-tagline {
-  font-size: 1.15rem; font-weight: 300;
-  color: var(--sf-subtext); line-height: 1.7;
-  max-width: 520px; margin-bottom: 36px;
-  font-style: italic;
-}
-.hero-intro {
-  font-size: 1rem; font-weight: 400;
-  color: var(--sf-subtext); line-height: 1.8;
-  max-width: 520px; margin-bottom: 40px;
-}
-.hero-intro strong { color: var(--sf-text); font-weight: 500; }
-.hero-actions { display: flex; gap: 14px; flex-wrap: wrap; }
-.btn-primary {
-  background: var(--sf-blue); color: white;
-  padding: 13px 28px; border-radius: 8px;
-  text-decoration: none; font-family: 'Sora', sans-serif;
-  font-weight: 700; font-size: 0.9rem;
-  transition: all 0.2s; display: inline-flex; align-items: center; gap: 8px;
-}
-.btn-primary:hover { background: var(--sf-electric); transform: translateY(-1px); }
-.btn-outline {
-  background: transparent; color: var(--sf-text);
-  padding: 13px 28px; border-radius: 8px;
-  text-decoration: none; font-family: 'Sora', sans-serif;
-  font-weight: 600; font-size: 0.9rem;
-  border: 1.5px solid var(--sf-border);
-  transition: all 0.2s; display: inline-flex; align-items: center; gap: 8px;
-}
-.btn-outline:hover { border-color: var(--sf-blue); color: var(--sf-blue); }
-.hero-photo {
-  position: relative;
-  display: flex; justify-content: center;
-}
-.hero-photo img {
-  width: 340px; height: 400px;
-  object-fit: cover; object-position: top;
-  border-radius: 20px;
-  box-shadow: 0 20px 60px rgba(0,112,210,0.2);
-}
-.hero-photo-badge {
-  position: absolute; bottom: 24px; left: -20px;
-  background: var(--sf-card); border: 1px solid var(--sf-border);
-  border-radius: 12px; padding: 12px 16px;
-  box-shadow: var(--shadow-card);
-  font-family: 'Sora', sans-serif; font-size: 0.78rem;
-}
-.hero-photo-badge strong { display: block; font-weight: 700; color: var(--sf-text); }
-.hero-photo-badge span { color: var(--sf-subtext); font-weight: 400; font-size: 0.72rem; }
+/* ── Review card ── */
+.review-card{background:var(--surface);border:1px solid var(--border);border-radius:20px;overflow:hidden;display:none;animation:slideUp .35s ease}
+.review-card.active{display:block}
+.review-header{padding:18px 20px 14px;border-bottom:1px solid var(--border);display:flex;align-items:flex-start;justify-content:space-between;gap:12px}
+.review-title{font-family:'Syne',sans-serif;font-weight:700;font-size:16px}
+.review-sub{font-size:12px;color:var(--muted);margin-top:3px;line-height:1.4}
+.ocr-conf{font-size:10px;padding:3px 8px;border-radius:10px;font-weight:600;letter-spacing:.4px;flex-shrink:0;margin-top:2px;white-space:nowrap}
+.conf-hi{background:rgba(3,129,65,.15);color:#4ec97b;border:1px solid rgba(3,129,65,.3)}
+.conf-md{background:rgba(254,203,2,.12);color:#c9a000;border:1px solid rgba(254,203,2,.3)}
+.conf-lo{background:rgba(230,62,17,.12);color:#ff7755;border:1px solid rgba(230,62,17,.25)}
+/* Portion size row */
+.portion-row{display:flex;align-items:center;gap:10px;padding:12px 20px;border-bottom:1px solid var(--border);background:var(--surface2)}
+.portion-label{font-size:12px;color:var(--muted);flex:1}
+.portion-input{width:72px;background:var(--surface);border:1px solid var(--accent);border-radius:8px;padding:7px 10px;color:var(--text);font-family:'DM Sans',sans-serif;font-size:14px;font-weight:600;outline:none;text-align:center;-webkit-appearance:none;appearance:none}
+.portion-unit{font-size:12px;color:var(--muted)}
+.portion-same{font-size:10px;color:var(--muted);font-style:italic}
+/* Two-column table */
+.field-table{width:100%;padding:0 20px;margin-top:4px}
+.field-table-head{display:grid;grid-template-columns:1fr 90px 90px;gap:4px;padding:8px 0 6px;border-bottom:1px solid var(--border);margin-bottom:2px}
+.col-head{font-size:10px;color:var(--muted);text-align:center;letter-spacing:.3px}
+.col-head.col-name{text-align:left;padding-left:2px}
+.field-row-2col{display:grid;grid-template-columns:1fr 90px 90px;gap:4px;align-items:center;padding:5px 0;border-bottom:1px solid rgba(30,52,80,.5)}
+.field-row-2col:last-child{border-bottom:none}
+.field-name-cell{font-size:12px;color:var(--muted);padding-left:2px;display:flex;align-items:center;gap:5px}
+.f-dot{display:inline-block;width:6px;height:6px;border-radius:50%;flex-shrink:0}
+.f-ok{background:#4ec97b}.f-miss{background:#E63E11}
+.field-cell{position:relative}
+.field-input-2{width:100%;background:var(--surface2);border:1px solid var(--border);border-radius:8px;padding:7px 6px;color:var(--text);font-family:'DM Sans',sans-serif;font-size:13px;outline:none;text-align:center;-webkit-appearance:none;appearance:none;transition:border-color .2s}
+.field-input-2:focus{border-color:var(--accent-bright)}
+.field-input-2.f-missing{border-color:rgba(230,62,17,.4);background:rgba(230,62,17,.04)}
+.field-input-2.f-missing:focus{border-color:var(--accent-bright);background:var(--surface2)}
+.field-input-2.f-readonly{background:transparent;border-color:transparent;color:var(--muted);cursor:default;pointer-events:none;font-weight:500}
+.field-unit-sm{font-size:9px;color:var(--border);display:block;text-align:center;margin-top:1px}
+.field-divider{height:1px;background:var(--border);margin:4px 0}
+.review-actions{padding:12px 20px 20px;display:flex;flex-direction:column;gap:10px}
+.review-note{font-size:11px;color:var(--muted);text-align:center;line-height:1.5;padding:0 4px}
+.btn-calc{width:100%;padding:14px;border-radius:13px;border:none;background:linear-gradient(135deg,#1464B4,#2E8AE6);color:#fff;font-family:'Syne',sans-serif;font-weight:700;font-size:15px;cursor:pointer;box-shadow:0 4px 16px rgba(20,100,180,.3);transition:all .2s;letter-spacing:.3px}
+.btn-calc:active{transform:scale(.98)}
+.btn-rescan-sm{width:100%;padding:11px;border-radius:12px;border:1px solid var(--border);background:transparent;color:var(--muted);font-family:'DM Sans',sans-serif;font-size:13px;cursor:pointer;transition:all .2s}
+.btn-rescan-sm:active{background:var(--surface2)}
 
-/* ── WHO I AM ── */
-.who-section {
-  background: var(--sf-navy);
-  padding: 80px 5%;
-}
-.who-inner {
-  max-width: 800px; margin: 0 auto; text-align: center;
-}
-.who-section .section-title { color: var(--sf-electric); }
-.who-section .section-divider { margin: 0 auto 28px; }
-.section-label {
-  font-family: 'Sora', sans-serif;
-  font-size: 0.72rem; font-weight: 700;
-  letter-spacing: 0.18em; text-transform: uppercase;
-  color: var(--sf-blue); margin-bottom: 12px;
-}
-.section-title {
-  font-family: 'Sora', sans-serif;
-  font-size: clamp(1.6rem, 3vw, 2.2rem);
-  font-weight: 800; letter-spacing: -0.02em;
-  margin-bottom: 12px;
-}
-.section-divider {
-  width: 48px; height: 3px;
-  background: var(--sf-blue); border-radius: 2px;
-  margin: 0 auto 28px;
-}
-.who-text {
-  font-size: 1.05rem; line-height: 1.85;
-  color: rgba(255,255,255,0.65); font-weight: 300;
-}
-.who-text strong { color: #ffffff; font-weight: 600; }
+/* ── Result card ── */
+.result-card{background:var(--surface);border:1px solid var(--border);border-radius:20px;overflow:hidden;display:none;animation:slideUp .4s ease}
+.result-card.active{display:block}
+.result-header{padding:20px 20px 16px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between}
+.product-label{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.8px;margin-bottom:4px}
+.product-name{font-family:'Syne',sans-serif;font-weight:700;font-size:16px}
+.grade-badge{width:56px;height:56px;border-radius:14px;display:flex;align-items:center;justify-content:center;font-family:'Syne',sans-serif;font-weight:800;font-size:28px;color:#fff;flex-shrink:0}
+.grade-A{background:var(--grade-a);box-shadow:0 4px 20px rgba(3,129,65,.4)}
+.grade-B{background:var(--grade-b);box-shadow:0 4px 20px rgba(133,187,47,.4)}
+.grade-C{background:var(--grade-c);color:#1a1a1a;box-shadow:0 4px 20px rgba(254,203,2,.4)}
+.grade-D{background:var(--grade-d);box-shadow:0 4px 20px rgba(238,129,0,.4)}
+.grade-E{background:var(--grade-e);box-shadow:0 4px 20px rgba(230,62,17,.4)}
+.grade-bar{padding:16px 20px;display:flex;gap:6px;border-bottom:1px solid var(--border)}
+.grade-pill{flex:1;padding:8px 4px;border-radius:8px;text-align:center;font-family:'Syne',sans-serif;font-weight:700;font-size:14px;opacity:.25;transition:all .3s;color:#fff}
+.grade-pill.active{opacity:1;transform:scale(1.08)}
+.pill-A{background:var(--grade-a)}.pill-B{background:var(--grade-b)}.pill-C{background:var(--grade-c);color:#1a1a1a}.pill-D{background:var(--grade-d)}.pill-E{background:var(--grade-e)}
+/* Two-column nutrient table in result */
+.nutrients-section{padding:16px 20px;border-bottom:1px solid var(--border)}
+.section-title{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.8px;margin-bottom:12px}
+.nutrient-table-head{display:grid;grid-template-columns:100px 1fr 64px 64px;gap:6px;padding-bottom:8px;border-bottom:1px solid var(--border);margin-bottom:6px}
+.nt-col-head{font-size:10px;color:var(--muted);letter-spacing:.3px}
+.nt-col-head.right{text-align:right}
+.nutrient-row-2{display:grid;grid-template-columns:100px 1fr 64px 64px;gap:6px;align-items:center;padding:6px 0;border-bottom:1px solid rgba(30,52,80,.4)}
+.nutrient-row-2:last-child{border-bottom:none}
+.nutrient-name{font-size:12px;color:var(--muted);line-height:1.3}
+.nutrient-bar-wrap{height:5px;background:var(--border);border-radius:3px;overflow:hidden;align-self:center}
+.nutrient-bar-fill{height:100%;border-radius:3px;transition:width .8s ease}
+.fill-bad{background:linear-gradient(90deg,#B44020,#E63E11)}
+.fill-good{background:linear-gradient(90deg,#2E8AE6,#1464B4)}
+.nutrient-val{font-size:12px;color:var(--text);text-align:right;font-variant-numeric:tabular-nums}
+.nutrient-val.muted{color:var(--muted)}
+.score-section{padding:16px 20px;border-bottom:1px solid var(--border)}
+.score-row{display:flex;justify-content:space-between;align-items:center;padding:6px 0}
+.score-label{font-size:13px;color:var(--muted)}
+.score-val{font-size:13px;font-weight:500;font-variant-numeric:tabular-nums}
+.score-val.bad{color:#7AB0D0}.score-val.good{color:var(--accent-bright)}
+.score-val.total{color:var(--text);font-family:'Syne',sans-serif;font-weight:700;font-size:15px}
+.score-divider{height:1px;background:var(--border);margin:4px 0}
+.verdict-section{padding:16px 20px}
+.verdict-box{background:var(--surface2);border-radius:12px;padding:14px;font-size:13px;line-height:1.6;color:var(--text);border-left:3px solid var(--accent-bright)}
+.tips{display:flex;flex-direction:column;gap:8px;margin-top:12px}
+.tip{display:flex;align-items:flex-start;gap:8px;font-size:12px;color:var(--muted);line-height:1.5}
+.tip-dot{width:6px;height:6px;border-radius:50%;flex-shrink:0;margin-top:5px}
+.tip-green{background:var(--accent-bright)}.tip-orange{background:#B44020}
 
-/* ── INTERESTS GRID ── */
-.interests-section {
-  padding: 80px 5%;
-  background: var(--sf-light-bg);
-}
-.interests-inner { max-width: 1100px; margin: 0 auto; }
-.interests-header { margin-bottom: 48px; }
-.interests-section .section-label { color: var(--sf-blue); }
-.interests-section .section-title { color: var(--sf-text); }
-.interests-section .section-divider { margin-bottom: 32px; }
-.interests-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 20px;
-}
-.interest-card {
-  background: var(--sf-card);
-  border: 1px solid var(--sf-border);
-  border-radius: 16px;
-  padding: 28px 24px;
-  text-decoration: none;
-  color: var(--sf-text);
-  transition: all 0.25s;
-  display: flex; flex-direction: column;
-  position: relative; overflow: hidden;
-}
-.interest-card::before {
-  content: '';
-  position: absolute; top: 0; left: 0; right: 0; height: 3px;
-  background: var(--card-accent, var(--sf-blue));
-  transform: scaleX(0); transform-origin: left;
-  transition: transform 0.3s;
-}
-.interest-card:hover {
-  border-color: var(--card-accent, var(--sf-blue));
-  transform: translateY(-3px);
-  box-shadow: 0 8px 30px rgba(0,0,0,0.1);
-}
-.interest-card:hover::before { transform: scaleX(1); }
-.interest-icon {
-  font-size: 2rem; margin-bottom: 14px; display: block;
-}
-.interest-title {
-  font-family: 'Sora', sans-serif;
-  font-size: 1rem; font-weight: 700;
-  margin-bottom: 8px;
-}
-.interest-desc {
-  font-size: 0.88rem; color: var(--sf-subtext);
-  line-height: 1.6; flex: 1;
-}
-.interest-tag {
-  margin-top: 16px; align-self: flex-start;
-  font-family: 'Sora', sans-serif;
-  font-size: 0.7rem; font-weight: 700;
-  letter-spacing: 0.08em; text-transform: uppercase;
-  color: var(--card-accent, var(--sf-blue));
-  display: flex; align-items: center; gap: 5px;
-}
-.interest-tag::after { content: '→'; }
+/* ── Steps ── */
+.steps-row{display:flex;align-items:flex-start;justify-content:center;gap:4px;margin-bottom:16px;padding:0 4px}
+.step{flex:1;display:flex;flex-direction:column;align-items:center;gap:8px;text-align:center}
+.step-icon{width:44px;height:44px;border-radius:12px;background:var(--surface);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;color:var(--accent-bright)}
+.step-label{font-family:'Syne',sans-serif;font-size:12px;font-weight:700;color:var(--text)}
+.step-desc{font-size:10px;color:var(--muted);line-height:1.4}
+.step-arrow{font-size:20px;color:var(--border);margin-top:12px;flex-shrink:0}
 
-/* ── ABOUT CTA ── */
-.about-cta {
-  padding: 60px 5%;
-  background: var(--sf-navy);
-  text-align: center;
-}
-.about-cta .section-label { color: var(--sf-electric); }
-.about-cta .section-title { color: #ffffff; }
-.about-cta p { color: rgba(255,255,255,0.65); }
-.about-cta-inner { max-width: 600px; margin: 0 auto; }
-.about-cta h2 {
-  font-family: 'Sora', sans-serif;
-  font-size: 1.5rem; font-weight: 700;
-  color: white; margin-bottom: 12px;
-}
-.about-cta p {
-  color: rgba(255,255,255,0.55);
-  font-size: 0.95rem; font-weight: 300; margin-bottom: 28px;
-  line-height: 1.7;
-}
-.about-cta a {
-  background: white; color: var(--sf-navy);
-  padding: 13px 28px; border-radius: 8px;
-  text-decoration: none; font-family: 'Sora', sans-serif;
-  font-weight: 700; font-size: 0.9rem;
-  display: inline-flex; align-items: center; gap: 8px;
-  transition: all 0.2s;
-}
-.about-cta a:hover { background: var(--sf-electric); color: white; }
+/* ── Viewfinder ── */
+.viewfinder{width:120px;height:90px;position:relative;display:flex;align-items:center;justify-content:center}
+.vf-corner{position:absolute;width:18px;height:18px;border-color:var(--accent-bright);border-style:solid;opacity:.9}
+.vf-corner.vf-tl{top:0;left:0;border-width:2px 0 0 2px;border-radius:3px 0 0 0}
+.vf-corner.vf-tr{top:0;right:0;border-width:2px 2px 0 0;border-radius:0 3px 0 0}
+.vf-corner.vf-bl{bottom:0;left:0;border-width:0 0 2px 2px;border-radius:0 0 0 3px}
+.vf-corner.vf-br{bottom:0;right:0;border-width:0 2px 2px 0;border-radius:0 0 3px 0}
+.vf-pulse{position:absolute;inset:0;border-radius:4px;border:1px solid var(--accent-bright);opacity:0;animation:vfpulse 2.5s ease-in-out infinite}
+.vf-inner{display:flex;align-items:center;justify-content:center}
+@keyframes vfpulse{0%,100%{opacity:0;transform:scale(1)}50%{opacity:.3;transform:scale(1.06)}}
 
-/* ── THINKING LAB PREVIEW ── */
-.lab-section { padding: 80px 5%; background: var(--sf-light-bg); }
-.lab-inner { max-width: 1100px; margin: 0 auto; }
-.lab-grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 20px; margin-top: 40px;
-}
-.lab-card {
-  background: var(--sf-card);
-  border: 1px solid var(--sf-border);
-  border-radius: 16px; padding: 24px;
-  text-decoration: none; color: var(--sf-text);
-  transition: all 0.25s; display: flex; flex-direction: column;
-}
-.lab-card:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 8px 30px rgba(0,0,0,0.1);
-  border-color: var(--sf-blue);
-}
-.lab-card-icon { font-size: 1.8rem; margin-bottom: 14px; display: block; }
-.lab-card-title {
-  font-family: 'Sora', sans-serif;
-  font-size: 0.95rem; font-weight: 700; margin-bottom: 6px;
-}
-.lab-card-desc {
-  font-size: 0.83rem; color: var(--sf-subtext);
-  line-height: 1.6; flex: 1;
-}
-.lab-card-link {
-  margin-top: 14px;
-  font-family: 'Sora', sans-serif;
-  font-size: 0.75rem; font-weight: 700;
-  letter-spacing: 0.06em; text-transform: uppercase;
-  color: var(--sf-blue);
-}
+/* ── Crop Modal ── */
+.crop-modal{display:none;flex-direction:column;gap:0;background:var(--surface);border:1px solid var(--border);border-radius:20px;overflow:hidden;margin-bottom:12px}
+.crop-modal.active{display:flex}
+.crop-header{padding:16px 20px 12px;border-bottom:1px solid var(--border)}
+.crop-title{font-family:'Syne',sans-serif;font-size:15px;font-weight:700;color:var(--text)}
+.crop-hint{font-size:12px;color:var(--muted);margin-top:2px}
+.crop-canvas-wrap{position:relative;width:100%;background:#000;overflow:hidden;max-height:65vw}
+.crop-canvas-wrap img{width:100%;display:block;user-select:none;-webkit-user-drag:none}
+#crop-canvas{display:none}
+.crop-overlay{position:absolute;inset:0;pointer-events:none}
+.crop-box{position:absolute;border:2px solid var(--accent-bright);box-shadow:0 0 0 9999px rgba(0,0,0,.55);pointer-events:all;cursor:move}
+.crop-guideline{position:absolute;background:rgba(255,255,255,.25);pointer-events:none}
+.crop-guideline-h1,.crop-guideline-h2{left:0;right:0;height:1px}
+.crop-guideline-h1{top:33.33%}.crop-guideline-h2{top:66.66%}
+.crop-guideline-v1,.crop-guideline-v2{top:0;bottom:0;width:1px}
+.crop-guideline-v1{left:33.33%}.crop-guideline-v2{left:66.66%}
+.crop-handle{position:absolute;width:18px;height:18px;background:var(--accent-bright);border-radius:3px}
+.crop-handle-tl{top:-4px;left:-4px;cursor:nw-resize}
+.crop-handle-tr{top:-4px;right:-4px;cursor:ne-resize}
+.crop-handle-bl{bottom:-4px;left:-4px;cursor:sw-resize}
+.crop-handle-br{bottom:-4px;right:-4px;cursor:se-resize}
+.crop-actions{display:flex;gap:10px;padding:14px 16px;border-top:1px solid var(--border)}
+.crop-btn{flex:1;padding:12px;border-radius:12px;border:none;font-family:'DM Sans',sans-serif;font-size:13px;font-weight:500;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:6px;transition:all .2s}
+.crop-btn-skip{background:var(--surface2);color:var(--muted)}.crop-btn-skip:hover{color:var(--text)}
+.crop-btn-confirm{background:var(--accent);color:#fff}.crop-btn-confirm:hover{background:var(--accent-bright)}
 
-/* ── CONNECT ── */
-.connect-bg {
-  background: linear-gradient(135deg, var(--sf-navy) 0%, #0a2a5e 100%);
-  padding: 80px 5%;
-}
-.connect-inner { max-width: 700px; margin: 0 auto; text-align: center; }
-.connect-inner .section-label { color: rgba(255,255,255,0.5); }
-.connect-inner .section-title { color: white; }
-.connect-inner .section-divider { margin: 16px auto 24px; }
-.connect-inner p { color: rgba(255,255,255,0.55); font-size: 1rem; font-weight: 300; margin-bottom: 32px; line-height: 1.7; }
-.connect-btn {
-  display: inline-flex; align-items: center; gap: 10px;
-  padding: 15px 32px; border-radius: 8px;
-  font-family: 'Sora', sans-serif; font-weight: 700; font-size: 0.95rem;
-  text-decoration: none; transition: all 0.2s; min-width: 200px; justify-content: center;
-}
-.connect-btn.primary { background: var(--sf-blue); color: white; margin-right: 14px; }
-.connect-btn.primary:hover { background: var(--sf-electric); transform: translateY(-2px); }
-.connect-btn.outline { background: transparent; color: white; border: 1.5px solid rgba(255,255,255,0.3); }
-.connect-btn.outline:hover { border-color: white; background: rgba(255,255,255,0.05); }
+/* ── Data Notice ── */
+.data-notice{display:flex;align-items:flex-start;gap:8px;padding:12px 16px;background:var(--surface);border:1px solid var(--border);border-radius:12px;font-size:11px;color:var(--muted);line-height:1.6}
+.data-notice svg{flex-shrink:0;margin-top:1px;opacity:.6}
 
-/* ── CONTACT FORM ── */
-.contact-form-section {
-  background: var(--sf-light-bg); padding: 60px 5%;
-}
-.contact-form-inner { max-width: 700px; margin: 0 auto; }
+/* ── Review accuracy note ── */
+.review-accuracy-note{display:flex;align-items:flex-start;gap:7px;padding:10px 16px;background:rgba(46,138,230,.07);border-bottom:1px solid var(--border);font-size:12px;color:var(--muted);line-height:1.6}
+.review-accuracy-note svg{flex-shrink:0;margin-top:1px;color:var(--accent-bright);opacity:.8}
 
-/* ── FOOTER ── */
-footer {
-  background: var(--sf-navy); color: rgba(255,255,255,0.4);
-  text-align: center; padding: 24px 5%;
-  font-size: 0.8rem;
-}
+/* ── Splash Modal ── */
+.splash-modal{position:fixed;inset:0;z-index:999;display:flex;flex-direction:column;background:var(--bg);overflow-y:auto;-webkit-overflow-scrolling:touch}
+.splash-modal.hidden{display:none}
+.splash-inner{max-width:480px;margin:0 auto;width:100%;padding:32px 24px 120px;display:flex;flex-direction:column;gap:28px}
+.splash-logo-row{display:flex;align-items:center;gap:12px}
+.splash-logo-img{width:40px;height:40px;border-radius:10px;flex-shrink:0}
+.splash-brand-name{font-family:'Syne',sans-serif;font-size:17px;font-weight:800;color:var(--text)}
+.splash-brand-name span{color:var(--accent-bright)}
+.splash-eyebrow{font-family:'Syne',sans-serif;font-size:11px;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:var(--accent-bright)}
+.splash-headline{font-family:'Syne',sans-serif;font-size:clamp(22px,6vw,30px);font-weight:800;color:var(--text);line-height:1.25}
+.splash-headline em{color:var(--accent-bright);font-style:normal}
+.splash-divider{width:36px;height:3px;background:var(--accent);border-radius:2px}
+.splash-.splash-body{font-size:14px;font-weight:300;color:var(--muted);line-height:1.85;display:flex;flex-direction:column;gap:12px}
+.splash-body p{margin:0}
+.splash-grade-row{display:flex;gap:8px}
+.splash-grade-chip{flex:1;display:flex;flex-direction:column;align-items:center;gap:4px;padding:10px 4px;border-radius:10px;border:1px solid var(--border)}
+.splash-grade-chip .gc-letter{font-family:'Syne',sans-serif;font-size:16px;font-weight:800}
+.splash-grade-chip .gc-desc{font-size:9px;color:var(--muted);text-align:center}
+.splash-grade-chip.ga{border-color:var(--grade-a);background:rgba(3,129,65,.08)}.splash-grade-chip.ga .gc-letter{color:var(--grade-a)}
+.splash-grade-chip.gb{border-color:var(--grade-b);background:rgba(133,187,47,.08)}.splash-grade-chip.gb .gc-letter{color:var(--grade-b)}
+.splash-grade-chip.gc{border-color:var(--grade-c);background:rgba(254,203,2,.08)}.splash-grade-chip.gc .gc-letter{color:var(--grade-c)}
+.splash-grade-chip.gd{border-color:var(--grade-d);background:rgba(238,129,0,.08)}.splash-grade-chip.gd .gc-letter{color:var(--grade-d)}
+.splash-grade-chip.ge{border-color:var(--grade-e);background:rgba(230,62,17,.08)}.splash-grade-chip.ge .gc-letter{color:var(--grade-e)}
+.splash-closing{padding:16px 20px;background:var(--surface);border:1px solid var(--border);border-radius:14px;border-left:3px solid var(--accent-bright);font-size:13px;color:var(--muted);line-height:1.8;font-style:italic}
+.splash-cta-fixed{position:fixed;bottom:0;left:0;right:0;padding:16px 24px 28px;background:linear-gradient(to top,var(--bg) 70%,transparent);z-index:1000}
+.splash-cta-inner{max-width:480px;margin:0 auto}
+.splash-btn{width:100%;padding:16px;background:var(--accent);color:#fff;border:none;border-radius:14px;font-family:'Syne',sans-serif;font-size:15px;font-weight:700;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:10px;transition:background .2s}
+.splash-btn:hover{background:var(--accent-bright)}
+.splash-btn svg{transition:transform .2s}
+.splash-btn:hover svg{transform:translateX(3px)}
 
-/* ── MODAL ── */
-.modal-overlay {
-  display: none; position: fixed; inset: 0;
-  background: rgba(0,0,0,0.6); z-index: 2000;
-  align-items: center; justify-content: center;
-}
-.modal-overlay.open { display: flex; }
-.modal-box {
-  background: var(--sf-card); border-radius: 20px;
-  padding: 40px; max-width: 480px; width: 90%;
-  text-align: center; position: relative;
-  box-shadow: 0 20px 60px rgba(0,0,0,0.3);
-}
-.modal-close {
-  position: absolute; top: 16px; right: 20px;
-  background: none; border: none; font-size: 1.4rem;
-  color: var(--sf-subtext); cursor: pointer;
-}
+/* ══ FITMENT: no-scroll for scanner + processing + error screens ══ */
 
-/* ── FADE IN ── */
-.fade-in { animation: fadein 0.6s ease both; }
-.fade-in-2 { animation: fadein 0.6s 0.15s ease both; }
-@keyframes fadein { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: translateY(0); } }
+/* Lock viewport */
+html { height: 100%; }
 
-/* ── WATCH CSS ── */
-.watchit-icon { filter: drop-shadow(0 2px 6px rgba(0,112,210,0.2)); }
+/* Header: tighter padding */
+header { padding: 12px 20px 10px; flex-shrink: 0; }
 
-@media (max-width: 900px) {
-  .hero-inner { grid-template-columns: 1fr; gap: 40px; }
-  .hero-photo { order: -1; }
-  .hero-photo img { width: 200px; height: 240px; }
-  .hero-photo-badge { display: none; }
-  .interests-grid { grid-template-columns: repeat(2, 1fr); }
-  .lab-grid { grid-template-columns: repeat(2, 1fr); }
+/* Main: fills remaining space, clips scanner screen only */
+main { padding: 12px 16px; gap: 10px; overflow: hidden; position: relative; }
+
+/* Scanner card: flex-grow to fill space, scanner-area uses remaining */
+.scanner-card { display: flex; flex-direction: column; flex: 1; min-height: 0; }
+.scanner-area {
+  aspect-ratio: unset !important;
+  flex: 1;
+  min-height: 0;
 }
+.scanner-actions { flex-shrink: 0; }
 
-@media (max-width: 600px) {
-  .interests-grid { grid-template-columns: 1fr; }
-  .lab-grid { grid-template-columns: 1fr; }
-  .hero-actions { flex-direction: column; }
-  .connect-btn { min-width: unset; width: 100%; margin-right: 0; margin-bottom: 10px; }
-}
-[data-theme="dark"] .nav-center.open { background: #132d56 !important; }
-/* ── END NAV ── */
-</style>
+/* Steps: more compact */
+.steps-row { margin-bottom: 8px; }
+.step-icon { width: 36px; height: 36px; }
+.step-label { font-size: 11px; }
+.step-desc { font-size: 9px; }
+.step-arrow { font-size: 16px; margin-top: 8px; }
 
-<style>
-/* Bot Widget */
-.ve-bubble {
-  position: fixed;
-  bottom: 28px; right: 28px;
-  width: 52px; height: 52px;
-  background: var(--sf-blue);
-  border-radius: 50%;
-  cursor: pointer;
-  display: flex; align-items: center; justify-content: center;
-  box-shadow: 0 4px 20px rgba(0,112,210,0.4);
-  z-index: 9999;
-  transition: transform 0.2s, box-shadow 0.2s;
-}
-.ve-bubble:hover { transform: scale(1.08); box-shadow: 0 6px 28px rgba(0,112,210,0.5); }
-.ve-bubble svg { width: 24px; height: 24px; fill: white; }
-.ve-bubble .ve-close { display: none; font-size: 1.4rem; color: white; line-height: 1; }
-.ve-bubble.open .ve-icon { display: none; }
-.ve-bubble.open .ve-close { display: block; }
+/* Analyse button: slightly tighter */
+.btn-analyse { padding: 12px; font-size: 14px; }
 
-.ve-window {
-  position: fixed;
-  bottom: 92px; right: 28px;
-  width: 360px;
-  max-height: 520px;
-  background: var(--sf-card);
-  border: 1px solid var(--sf-border);
-  border-radius: 20px;
-  box-shadow: 0 8px 40px rgba(0,0,0,0.2);
+/* Data notice: tighter */
+.data-notice { padding: 8px 12px; font-size: 10px; }
+
+/* Compress notice: compact */
+.compress-notice { padding: 7px 12px; font-size: 10px; }
+
+/* Processing: centred, fills main */
+.processing-card { flex: 1; justify-content: center; }
+
+/* Error card: fills space */
+.error-card { flex: 1; justify-content: center; }
+
+/* ── CROP: fullscreen fixed overlay so it's never clipped ── */
+.crop-modal {
+  position: fixed !important;
+  inset: 0 !important;
+  z-index: 500;
+  border-radius: 0 !important;
+  margin: 0 !important;
   display: none;
   flex-direction: column;
+  background: var(--bg);
   overflow: hidden;
-  z-index: 9998;
-  font-family: 'DM Sans', sans-serif;
 }
-.ve-window.open { display: flex; }
-
-.ve-header {
-  background: linear-gradient(135deg, var(--sf-navy), #0a2a5e);
-  padding: 16px 18px;
-  display: flex; align-items: center; gap: 12px;
-}
-.ve-avatar {
-  width: 38px; height: 38px;
-  background: var(--sf-blue);
-  border-radius: 50%;
-  display: flex; align-items: center; justify-content: center;
-  font-family: 'Sora', sans-serif;
-  font-weight: 800; font-size: 0.85rem;
-  color: white; flex-shrink: 0;
-}
-.ve-header-info { flex: 1; }
-.ve-header-name {
-  font-family: 'Sora', sans-serif;
-  font-size: 0.88rem; font-weight: 700;
-  color: white; margin-bottom: 2px;
-}
-.ve-header-status {
-  font-size: 0.72rem; color: rgba(255,255,255,0.5);
-  display: flex; align-items: center; gap: 5px;
-}
-.ve-status-dot {
-  width: 6px; height: 6px;
-  background: #4CAF50; border-radius: 50%;
-}
-
-.ve-messages {
-  flex: 1; overflow-y: auto;
-  padding: 16px;
-  display: flex; flex-direction: column; gap: 10px;
-  scroll-behavior: smooth;
-}
-.ve-messages::-webkit-scrollbar { width: 4px; }
-.ve-messages::-webkit-scrollbar-track { background: transparent; }
-.ve-messages::-webkit-scrollbar-thumb { background: var(--sf-border); border-radius: 4px; }
-
-.ve-msg {
-  max-width: 82%;
-  padding: 10px 14px;
-  border-radius: 14px;
-  font-size: 0.88rem;
-  line-height: 1.55;
-  animation: ve-fadein 0.2s ease;
-}
-@keyframes ve-fadein { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: translateY(0); } }
-
-.ve-msg.bot {
-  background: var(--sf-tag-bg);
-  color: var(--sf-text);
-  border-bottom-left-radius: 4px;
-  align-self: flex-start;
-}
-.ve-msg.user {
-  background: var(--sf-blue);
-  color: white;
-  border-bottom-right-radius: 4px;
-  align-self: flex-end;
-}
-.ve-typing {
-  display: flex; align-items: center; gap: 4px;
-  padding: 12px 14px;
-  background: var(--sf-tag-bg);
-  border-radius: 14px; border-bottom-left-radius: 4px;
-  align-self: flex-start;
-  animation: ve-fadein 0.2s ease;
-}
-.ve-typing span {
-  width: 6px; height: 6px;
-  background: var(--sf-subtext);
-  border-radius: 50%;
-  animation: ve-bounce 1.2s infinite;
-}
-.ve-typing span:nth-child(2) { animation-delay: 0.2s; }
-.ve-typing span:nth-child(3) { animation-delay: 0.4s; }
-@keyframes ve-bounce {
-  0%, 60%, 100% { transform: translateY(0); }
-  30% { transform: translateY(-5px); }
-}
-
-.ve-input-area {
-  padding: 12px 14px;
-  border-top: 1px solid var(--sf-border);
-  display: flex; gap: 8px; align-items: center;
-  background: var(--sf-card);
-}
-.ve-input {
+.crop-modal.active { display: flex; }
+.crop-canvas-wrap {
   flex: 1;
-  background: var(--sf-tag-bg);
-  border: 1.5px solid var(--sf-border);
-  border-radius: 10px;
-  padding: 9px 13px;
-  color: var(--sf-text);
-  font-family: 'DM Sans', sans-serif;
-  font-size: 0.88rem;
-  outline: none;
-  transition: border 0.2s;
-  resize: none;
+  max-height: unset !important;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  background: #000;
 }
-.ve-input:focus { border-color: var(--sf-blue); }
-.ve-send {
-  width: 36px; height: 36px;
-  background: var(--sf-blue);
-  border: none; border-radius: 10px;
-  cursor: pointer;
-  display: flex; align-items: center; justify-content: center;
-  transition: background 0.2s, transform 0.1s;
-  flex-shrink: 0;
-}
-.ve-send:hover { background: var(--sf-electric); transform: scale(1.05); }
-.ve-send svg { width: 16px; height: 16px; fill: white; }
-
-
-
-@media (max-width: 480px) {
-  .ve-window { width: calc(100vw - 32px); right: 16px; bottom: 80px; }
-  .ve-bubble { bottom: 16px; right: 16px; }
+.crop-canvas-wrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
 }
 
-.ve-footer {
-  padding: 6px 14px 10px;
-  text-align: center;
-  font-size: 0.68rem;
-  color: var(--sf-subtext);
-  opacity: 0.6;
+/* ── REVIEW + RESULT: fullscreen fixed so they can scroll freely ── */
+.review-card {
+  position: fixed !important;
+  inset: 0 !important;
+  z-index: 400;
+  border-radius: 0 !important;
+  overflow-y: auto !important;
+  max-height: unset !important;
+  display: none;
+  animation: none !important;
 }
+.review-card.active { display: block; }
+
+.result-card {
+  position: fixed !important;
+  inset: 0 !important;
+  z-index: 400;
+  border-radius: 0 !important;
+  overflow-y: auto !important;
+  max-height: unset !important;
+  display: none;
+  animation: none !important;
+}
+.result-card.active { display: block; }
+
+/* Rescan button: fixed at bottom when result is showing */
+.rescan-btn {
+  position: sticky;
+  bottom: 16px;
+  margin: 16px 20px;
+  display: block;
+}
+
+/* ── Download ── */
+.download-row{padding:0 20px 12px;display:flex;gap:10px}
+.download-btn{flex:1;padding:13px;border-radius:12px;border:none;font-family:'DM Sans',sans-serif;font-size:13px;font-weight:600;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:7px;transition:all .2s;background:var(--surface2);color:var(--text);border:1px solid var(--border)}
+.download-btn:hover{background:var(--accent);color:#fff;border-color:var(--accent)}
 </style>
-  <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-WGYJHP2512"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'G-WGYJHP2512');
-  </script>
 </head>
 <body>
-
-<!-- NAV -->
-<nav>
-  <div class="nav-logo"><a href="/"><img src="/logo.png" alt="RS Logo" width="44" height="44"></a></div>
-  <div class="nav-center" id="navCenter">
-    <a href="/about.html">About</a>
-    <div class="nav-item" id="navThinkingLab">
-      <a class="has-dropdown" onclick="toggleMobileDropdown(this)">Thinking Lab</a>
-      <div class="dropdown" id="thinkingLabDropdown">
-        <div style="font-size:0.68rem;font-family:'Sora',sans-serif;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:var(--sf-blue);padding:8px 20px 4px;cursor:default;">Blog</div>
-        <a href="/salesforce.html">☁️&nbsp; Salesforce</a>
-        <a href="/hands-on-wrist.html"><svg id="watch-navindex" viewBox="0 0 44 56" width="18" height="22" xmlns="http://www.w3.org/2000/svg" style="display:inline-block;vertical-align:middle;margin-right:8px;flex-shrink:0;"><rect x="14" y="1" width="16" height="9" rx="3" fill="var(--sf-subtext)" opacity="0.6"/><rect x="14" y="46" width="16" height="9" rx="3" fill="var(--sf-subtext)" opacity="0.6"/><circle cx="22" cy="28" r="17" fill="var(--sf-subtext)" opacity="0.25"/><circle cx="22" cy="28" r="14" fill="var(--watch-dial,#ffffff)"/><g id="watch-navindex-hour"><line x1="22" y1="28" x2="22" y2="22" stroke="var(--sf-text,#0A1F44)" stroke-width="2.5" stroke-linecap="round"/></g><g id="watch-navindex-min"><line x1="22" y1="28" x2="22" y2="17" stroke="var(--sf-text,#0A1F44)" stroke-width="1.5" stroke-linecap="round"/></g><circle cx="22" cy="28" r="1.8" fill="var(--sf-blue,#1B96FF)"/></svg> Hands on Wrist</a>
-        <a href="/hands-on-wheels.html"><svg viewBox="10 10 80 80" width="18" height="18" xmlns="http://www.w3.org/2000/svg" style="display:inline-block;vertical-align:middle;margin-right:8px;flex-shrink:0;"><circle cx="50" cy="50" r="38" fill="none" stroke="var(--sf-subtext)" stroke-width="7"/><line x1="50" y1="50" x2="17" y2="31" stroke="var(--sf-subtext)" stroke-width="5" stroke-linecap="round"/><line x1="50" y1="50" x2="83" y2="31" stroke="var(--sf-subtext)" stroke-width="5" stroke-linecap="round"/><line x1="50" y1="50" x2="50" y2="88" stroke="var(--sf-subtext)" stroke-width="5" stroke-linecap="round"/><circle cx="50" cy="50" r="9" fill="var(--sf-card,#fff)" stroke="var(--sf-subtext)" stroke-width="2.5"/><circle cx="50" cy="50" r="5.5" fill="#C0392B"/><circle cx="50" cy="50" r="3.5" fill="#E74C3C"/><path d="M10 38 Q7 30 12 24 Q17 19 23 23 Q26 26 24 32 Q22 37 17 39 Q13 40 10 38Z" fill="var(--sf-subtext)" opacity="0.85"/><path d="M90 38 Q93 30 88 24 Q83 19 77 23 Q74 26 76 32 Q78 37 83 39 Q87 40 90 38Z" fill="var(--sf-subtext)" opacity="0.85"/></svg> Hands on Wheels</a>
-        <a href="/open-tabs.html"><svg viewBox="7 9 47 54" width="18" height="18" xmlns="http://www.w3.org/2000/svg" style="display:inline-block;vertical-align:middle;margin-right:8px;flex-shrink:0;"><rect x="8" y="10" width="38" height="48" rx="3" fill="var(--sf-subtext)" opacity="0.3" stroke="var(--sf-subtext)" stroke-width="2.5"/><rect x="5" y="16" width="6" height="4" rx="2" fill="none" stroke="var(--sf-subtext)" stroke-width="2.2"/><rect x="5" y="26" width="6" height="4" rx="2" fill="none" stroke="var(--sf-subtext)" stroke-width="2.2"/><rect x="5" y="36" width="6" height="4" rx="2" fill="none" stroke="var(--sf-subtext)" stroke-width="2.2"/><line x1="16" y1="22" x2="40" y2="22" stroke="var(--sf-subtext)" stroke-width="1.2" stroke-linecap="round" opacity="0.8"/><line x1="16" y1="30" x2="40" y2="30" stroke="var(--sf-subtext)" stroke-width="1.2" stroke-linecap="round" opacity="0.8"/><line x1="16" y1="38" x2="34" y2="38" stroke="var(--sf-subtext)" stroke-width="1.2" stroke-linecap="round" opacity="0.8"/><rect x="30" y="38" width="5" height="18" rx="2" fill="var(--sf-blue,#1B96FF)" transform="rotate(-35 32 46)"/><polygon points="0,0 4,0 2,5" fill="var(--sf-subtext)" transform="translate(37,51) rotate(-35)"/></svg> Open Tabs</a>
-        <div style="height:1px;background:var(--sf-border);margin:6px 0;"></div>
-        <div style="font-size:0.68rem;font-family:'Sora',sans-serif;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:var(--sf-blue);padding:8px 20px 4px;cursor:default;">Projects</div>
-        <a href="/in-the-making.html">🛠️&nbsp; In the Making</a>
-      </div>
-    </div>
-    <a href="#connect">Connect</a>
-  </div>
-  <div class="nav-right">
-    <button class="theme-toggle" onclick="toggleTheme()" id="themeBtn">🌙 Dark Mode</button>
-    <button class="hamburger" onclick="toggleMenu()" aria-label="Menu">
-      <span></span><span></span><span></span>
-    </button>
-  </div>
-</nav>
-
-<!-- MOBILE MENU -->
-<div id="mobileMenuOverlay" style="display:none;position:fixed;top:68px;left:0;right:0;bottom:0;z-index:9998;background:var(--sf-card);border-top:1px solid var(--sf-border);overflow-y:auto;flex-direction:column;">
-  <a href="/" style="display:block;padding:16px 24px;border-bottom:1px solid var(--sf-border);color:var(--sf-blue);font-weight:700;text-decoration:none;font-size:1rem;">Home</a>
-  <a href="/about.html" style="display:block;padding:16px 24px;border-bottom:1px solid var(--sf-border);color:var(--sf-text);text-decoration:none;font-size:1rem;">About</a>
-  <button onclick="toggleLabMenu()" style="width:100%;padding:16px 24px;border:none;border-bottom:1px solid var(--sf-border);background:none;color:var(--sf-text);font-size:1rem;text-align:left;cursor:pointer;display:flex;justify-content:space-between;align-items:center;font-family:inherit;">Thinking Lab <span>&#9662;</span></button>
-  <div id="mobileLabMenu" style="display:none;background:var(--sf-light-bg);">
-    <div style="font-size:0.68rem;font-family:'Sora',sans-serif;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:var(--sf-blue);padding:10px 24px 4px 40px;">Blog</div>
-    <a href="/salesforce.html" style="display:block;padding:12px 24px 12px 40px;border-bottom:1px solid var(--sf-border);color:var(--sf-text);text-decoration:none;font-size:0.9rem;">&#9729;&#65039;&nbsp; Salesforce</a>
-    <a href="/hands-on-wrist.html" style="display:block;padding:12px 24px 12px 40px;border-bottom:1px solid var(--sf-border);color:var(--sf-text);text-decoration:none;font-size:0.9rem;"><svg id="watch-navindex-mob" viewBox="0 0 44 56" width="18" height="22" xmlns="http://www.w3.org/2000/svg" style="display:inline-block;vertical-align:middle;margin-right:8px;flex-shrink:0;"><rect x="14" y="1" width="16" height="9" rx="3" fill="var(--sf-subtext)" opacity="0.6"/><rect x="14" y="46" width="16" height="9" rx="3" fill="var(--sf-subtext)" opacity="0.6"/><circle cx="22" cy="28" r="17" fill="var(--sf-subtext)" opacity="0.25"/><circle cx="22" cy="28" r="14" fill="var(--watch-dial,#ffffff)"/><g id="watch-navindex-mob-hour"><line x1="22" y1="28" x2="22" y2="22" stroke="var(--sf-text,#0A1F44)" stroke-width="2.5" stroke-linecap="round"/></g><g id="watch-navindex-mob-min"><line x1="22" y1="28" x2="22" y2="17" stroke="var(--sf-text,#0A1F44)" stroke-width="1.5" stroke-linecap="round"/></g><circle cx="22" cy="28" r="1.8" fill="var(--sf-blue,#1B96FF)"/></svg> Hands on Wrist</a>
-    <a href="/hands-on-wheels.html" style="display:block;padding:12px 24px 12px 40px;border-bottom:1px solid var(--sf-border);color:var(--sf-text);text-decoration:none;font-size:0.9rem;"><svg viewBox="10 10 80 80" width="18" height="18" xmlns="http://www.w3.org/2000/svg" style="display:inline-block;vertical-align:middle;margin-right:8px;flex-shrink:0;"><circle cx="50" cy="50" r="38" fill="none" stroke="var(--sf-subtext)" stroke-width="7"/><line x1="50" y1="50" x2="17" y2="31" stroke="var(--sf-subtext)" stroke-width="5" stroke-linecap="round"/><line x1="50" y1="50" x2="83" y2="31" stroke="var(--sf-subtext)" stroke-width="5" stroke-linecap="round"/><line x1="50" y1="50" x2="50" y2="88" stroke="var(--sf-subtext)" stroke-width="5" stroke-linecap="round"/><circle cx="50" cy="50" r="9" fill="var(--sf-card,#fff)" stroke="var(--sf-subtext)" stroke-width="2.5"/><circle cx="50" cy="50" r="5.5" fill="#C0392B"/><circle cx="50" cy="50" r="3.5" fill="#E74C3C"/><path d="M10 38 Q7 30 12 24 Q17 19 23 23 Q26 26 24 32 Q22 37 17 39 Q13 40 10 38Z" fill="var(--sf-subtext)" opacity="0.85"/><path d="M90 38 Q93 30 88 24 Q83 19 77 23 Q74 26 76 32 Q78 37 83 39 Q87 40 90 38Z" fill="var(--sf-subtext)" opacity="0.85"/></svg> Hands on Wheels</a>
-    <a href="/open-tabs.html" style="display:block;padding:12px 24px 12px 40px;border-bottom:1px solid var(--sf-border);color:var(--sf-text);text-decoration:none;font-size:0.9rem;"><svg viewBox="7 9 47 54" width="18" height="18" xmlns="http://www.w3.org/2000/svg" style="display:inline-block;vertical-align:middle;margin-right:8px;flex-shrink:0;"><rect x="8" y="10" width="38" height="48" rx="3" fill="var(--sf-subtext)" opacity="0.3" stroke="var(--sf-subtext)" stroke-width="2.5"/><rect x="5" y="16" width="6" height="4" rx="2" fill="none" stroke="var(--sf-subtext)" stroke-width="2.2"/><rect x="5" y="26" width="6" height="4" rx="2" fill="none" stroke="var(--sf-subtext)" stroke-width="2.2"/><rect x="5" y="36" width="6" height="4" rx="2" fill="none" stroke="var(--sf-subtext)" stroke-width="2.2"/><line x1="16" y1="22" x2="40" y2="22" stroke="var(--sf-subtext)" stroke-width="1.2" stroke-linecap="round" opacity="0.8"/><line x1="16" y1="30" x2="40" y2="30" stroke="var(--sf-subtext)" stroke-width="1.2" stroke-linecap="round" opacity="0.8"/><line x1="16" y1="38" x2="34" y2="38" stroke="var(--sf-subtext)" stroke-width="1.2" stroke-linecap="round" opacity="0.8"/><rect x="30" y="38" width="5" height="18" rx="2" fill="var(--sf-blue,#1B96FF)" transform="rotate(-35 32 46)"/><polygon points="0,0 4,0 2,5" fill="var(--sf-subtext)" transform="translate(37,51) rotate(-35)"/></svg> Open Tabs</a>
-    <div style="height:1px;background:var(--sf-border);margin:4px 0;"></div>
-    <div style="font-size:0.68rem;font-family:'Sora',sans-serif;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:var(--sf-blue);padding:10px 24px 4px 40px;">Projects</div>
-    <a href="/in-the-making.html" style="display:block;padding:12px 24px 12px 40px;border-bottom:1px solid var(--sf-border);color:var(--sf-text);text-decoration:none;font-size:0.9rem;">&#128736;&#65039;&nbsp; In the Making</a>
-  </div>
-  <a href="#connect" onclick="toggleMenu()" style="display:block;padding:16px 24px;border-bottom:1px solid var(--sf-border);color:var(--sf-text);text-decoration:none;font-size:1rem;">Connect</a>
-</div>
-
-
-
-<!-- HERO -->
-<section class="hero" id="home">
-  <div class="hero-inner">
-    <div class="fade-in">
-      <div class="hero-label">Problem Solver · Builder · Thinker</div>
-      <h1>Rishabh<br><span>Saxena</span></h1>
-      <p class="hero-tagline">Most people come with a solution already in mind. I'm the one who asks if it's solving the right problem.</p>
-      <p class="hero-intro">
-        Salesforce consultant by profession. Problem solver by instinct.<br>
-        Also: watches, motorsport, piano, and whatever he's building next.
-      </p>
-      <div class="hero-actions">
-        <a href="/about.html" class="btn-primary">Full Profile →</a>
-        <a href="#connect" class="btn-outline">Let's Talk</a>
-      </div>
-    </div>
-    <div class="hero-photo fade-in-2">
-      <img src="photo.png" alt="Rishabh Saxena">
-      <div class="hero-photo-badge">
-        <strong>Rishabh Saxena</strong>
-        <span>Salesforce Consultant</span>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- WHO I AM -->
-<section class="who-section">
-  <div class="who-inner">
-    <div class="section-label">About Rishabh</div>
-    <h2 class="section-title">More Than a Job Title</h2>
-    <div class="section-divider"></div>
-    <p class="who-text">
-      A decade in the <strong>Salesforce ecosystem</strong>. An <strong>MBA</strong> that taught him why decisions are emotional before they're rational. A <strong>motorsport marshal</strong> who's been on the circuit at F1 and MotoGP. A <strong>watch enthusiast</strong> who believes craft is a form of respect. Someone quietly teaching himself <strong>piano</strong>, building small apps by describing problems clearly and iterating fast — and completely unable to leave things the way they are.
-    </p>
-  </div>
-</section>
-
-<!-- INTERESTS -->
-<section class="interests-section" id="interests">
-  <div class="interests-inner">
-    <div class="interests-header">
-      <div class="section-label">Interests</div>
-      <h2 class="section-title">The Worlds He Lives In</h2>
-      <div class="section-divider" style="margin:0 0 0 0;"></div>
-    </div>
-    <div class="interests-grid">
-
-      <a href="/salesforce.html" class="interest-card" style="--card-accent:#0070D2;">
-        <span class="interest-icon">☁️</span>
-        <div class="interest-title">Salesforce & Problem Solving</div>
-        <p class="interest-desc">A decade across the Salesforce ecosystem — from writing code to closing deals. Most focused on making sure the right problem gets solved before anything gets built.</p>
-        <div class="interest-tag">Read the blog</div>
-      </a>
-
-      <a href="/hands-on-wrist.html" class="interest-card" style="--card-accent:#8B6914;">
-        <span class="interest-icon"><svg id="watch-index_lab" viewBox="0 0 44 56" width="36" height="45" xmlns="http://www.w3.org/2000/svg" style="display:block;">
-  <rect x="13" y="0" width="18" height="10" rx="3" fill="var(--sf-subtext)" opacity="0.7"/>
-  <rect x="13" y="46" width="18" height="10" rx="3" fill="var(--sf-subtext)" opacity="0.7"/>
-  <circle cx="22" cy="28" r="18" fill="var(--sf-subtext)" opacity="0.4"/>
-  <circle cx="22" cy="28" r="15" fill="var(--watch-dial,#E8EEF4)"/>
-  <line x1="22" y1="14" x2="22" y2="17" stroke="var(--sf-subtext)" stroke-width="1.5" stroke-linecap="round"/>
-  <line x1="22" y1="39" x2="22" y2="42" stroke="var(--sf-subtext)" stroke-width="1.5" stroke-linecap="round"/>
-  <line x1="8"  y1="28" x2="11" y2="28" stroke="var(--sf-subtext)" stroke-width="1.5" stroke-linecap="round"/>
-  <line x1="33" y1="28" x2="36" y2="28" stroke="var(--sf-subtext)" stroke-width="1.5" stroke-linecap="round"/>
-  <line x1="28" y1="14" x2="27" y2="17" stroke="var(--sf-subtext)" stroke-width="1" stroke-linecap="round" opacity="0.5"/>
-  <line x1="16" y1="14" x2="17" y2="17" stroke="var(--sf-subtext)" stroke-width="1" stroke-linecap="round" opacity="0.5"/>
-  <line x1="33" y1="22" x2="30.5" y2="23.5" stroke="var(--sf-subtext)" stroke-width="1" stroke-linecap="round" opacity="0.5"/>
-  <line x1="11" y1="22" x2="13.5" y2="23.5" stroke="var(--sf-subtext)" stroke-width="1" stroke-linecap="round" opacity="0.5"/>
-  <g id="watch-index_lab-hour"><line x1="22" y1="28" x2="22" y2="20" stroke="var(--sf-text,#1A3A5C)" stroke-width="2" stroke-linecap="round"/></g>
-  <g id="watch-index_lab-min"><line x1="22" y1="28" x2="22" y2="16" stroke="var(--sf-text,#1A3A5C)" stroke-width="1.5" stroke-linecap="round"/></g>
-  <g id="watch-index_lab-sec"><line x1="22" y1="28" x2="22" y2="15" stroke="#E74C3C" stroke-width="1" stroke-linecap="round"/></g>
-  <circle cx="22" cy="28" r="1.5" fill="var(--sf-blue,#1B96FF)"/>
-  <rect x="38" y="25.5" width="4" height="5" rx="1.5" fill="var(--sf-subtext)" opacity="0.8"/>
-</svg></span>
-        <div class="interest-title">Hands on Wrist</div>
-        <p class="interest-desc">Horology through the eyes of someone who appreciates craft. Not reviews — the stories, the movements, the obsession with things built to outlast everything around them.</p>
-        <div class="interest-tag">Read the blog</div>
-      </a>
-
-      <a href="/hands-on-wheels.html" class="interest-card" style="--card-accent:#C0392B;">
-        <span class="interest-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="40" height="40" style="display:block;">
-  <circle cx="50" cy="50" r="38" fill="none" stroke="var(--sf-subtext)" stroke-width="7" stroke-linecap="round"/>
-  <line x1="50" y1="50" x2="17" y2="31" stroke="var(--sf-subtext)" stroke-width="5" stroke-linecap="round"/>
-  <line x1="50" y1="50" x2="83" y2="31" stroke="var(--sf-subtext)" stroke-width="5" stroke-linecap="round"/>
-  <line x1="50" y1="50" x2="50" y2="88" stroke="var(--sf-subtext)" stroke-width="5" stroke-linecap="round"/>
-  <circle cx="50" cy="50" r="9" fill="var(--sf-card,#0F2847)" stroke="var(--sf-subtext)" stroke-width="2.5"/>
-  <circle cx="50" cy="50" r="5.5" fill="#C0392B"/>
-  <circle cx="50" cy="50" r="3.5" fill="#E74C3C"/>
-  <circle cx="48.5" cy="48.5" r="1.2" fill="rgba(255,255,255,0.5)"/>
-  <path d="M10 38 Q7 30 12 24 Q17 19 23 23 Q26 26 24 32 Q22 37 17 39 Q13 40 10 38Z" fill="var(--sf-subtext)" opacity="0.85"/>
-  <path d="M90 38 Q93 30 88 24 Q83 19 77 23 Q74 26 76 32 Q78 37 83 39 Q87 40 90 38Z" fill="var(--sf-subtext)" opacity="0.85"/>
-</svg></span>
-        <div class="interest-title">Hands on Wheels</div>
-        <p class="interest-desc">Automobiles, motorsport, and everything in between. Track marshal at F1 India 2013 and Bharat MotoGP 2023. Been following circuits since before it was cool.</p>
-        <div class="interest-tag">Read the blog</div>
-      </a>
-
-      <a href="/open-tabs.html" class="interest-card" style="--card-accent:#6C3483;">
-        <span class="interest-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="40" height="40" style="display:block;">
-  <rect x="8" y="10" width="38" height="48" rx="3" fill="var(--sf-card,#0F2847)" stroke="var(--sf-subtext)" stroke-width="2.5"/>
-  <rect x="5" y="16" width="6" height="4" rx="2" fill="none" stroke="var(--sf-subtext)" stroke-width="2.2"/>
-  <rect x="5" y="26" width="6" height="4" rx="2" fill="none" stroke="var(--sf-subtext)" stroke-width="2.2"/>
-  <rect x="5" y="36" width="6" height="4" rx="2" fill="none" stroke="var(--sf-subtext)" stroke-width="2.2"/>
-  <rect x="5" y="46" width="6" height="4" rx="2" fill="none" stroke="var(--sf-subtext)" stroke-width="2.2"/>
-  <line x1="16" y1="22" x2="40" y2="22" stroke="var(--sf-subtext)" stroke-width="1.2" stroke-linecap="round" opacity="0.8"/>
-  <line x1="16" y1="30" x2="40" y2="30" stroke="var(--sf-subtext)" stroke-width="1.2" stroke-linecap="round" opacity="0.8"/>
-  <line x1="16" y1="38" x2="34" y2="38" stroke="var(--sf-subtext)" stroke-width="1.2" stroke-linecap="round" opacity="0.8"/>
-  <rect x="34" y="36" width="6" height="22" rx="2" fill="var(--sf-blue,#1B96FF)" transform="rotate(-35 37 47)"/>
-  <rect x="36" y="36" width="1.5" height="14" rx="0.5" fill="var(--sf-subtext)" opacity="0.7" transform="rotate(-35 37 47)"/>
-  <polygon points="0,0 4,0 2,6" fill="var(--sf-subtext)" transform="translate(43,54) rotate(-35)"/>
-  <rect x="33" y="34" width="6" height="3" rx="1.5" fill="var(--sf-subtext)" opacity="0.6" transform="rotate(-35 36 36)"/>
-</svg></span>
-        <div class="interest-title">Open Tabs</div>
-        <p class="interest-desc">A personal space for things that don't fit neatly anywhere — observations, half-formed thoughts, and whatever's currently taking up too much mental RAM.</p>
-        <div class="interest-tag">Read the blog</div>
-      </a>
-
-      <a href="/in-the-making.html" class="interest-card" style="--card-accent:#27AE60;">
-        <span class="interest-icon">📱</span>
-        <div class="interest-title">Building Apps</div>
-        <p class="interest-desc">When something in daily life is needlessly annoying, the fix tends to be an app. The way these get built has changed a lot recently — turns out describing what you want clearly is a skill too.</p>
-        <div class="interest-tag">In the Making</div>
-      </a>
-
-    </div>
-  </div>
-</section>
-
-<!-- ABOUT CTA -->
-<section class="about-cta">
-  <div class="about-cta-inner">
-    <h2>Want the full professional story?</h2>
-    <p>A decade in the Salesforce ecosystem, five certifications, an MBA, and a few strong opinions about what makes projects actually succeed.</p>
-    <a href="/about.html">View Full Profile →</a>
-
-  </div>
-</section>
-
-
-
-
-<!-- IN THE MAKING -->
-<section id="in-the-making" style="background:var(--sf-card);padding:80px 5%;">
-  <div style="max-width:1100px;margin:0 auto;">
-    <div class="section-label">Side Projects</div>
-    <h2 class="section-title">In the Making</h2>
-    <div class="section-divider" style="margin:0 0 32px;"></div>
-    <a href="/scoremypack/" target="_blank" style="display:block;background:var(--sf-light-bg);border:1px solid var(--sf-border);border-radius:20px;padding:36px 40px;text-decoration:none;color:var(--sf-text);transition:transform 0.2s,box-shadow 0.2s,border-color 0.2s;" onmouseover="this.style.transform='translateY(-4px)';this.style.boxShadow='0 12px 40px rgba(0,0,0,0.1)';this.style.borderColor='var(--sf-blue)'" onmouseout="this.style.transform='';this.style.boxShadow='';this.style.borderColor='var(--sf-border)'">
-      <div style="display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:20px;flex-wrap:wrap;gap:12px;">
-        <div>
-          <div style="font-family:'Sora',sans-serif;font-size:0.68rem;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:var(--sf-blue);margin-bottom:8px;">Thinking Lab &middot; Live</div>
-          <div style="font-family:'Sora',sans-serif;font-size:1.3rem;font-weight:800;color:var(--sf-text);">ScoreMyPack</div>
-        </div>
-        <span style="background:rgba(27,150,255,0.1);color:var(--sf-blue);border:1px solid rgba(27,150,255,0.3);border-radius:20px;padding:4px 14px;font-family:'Sora',sans-serif;font-size:0.72rem;font-weight:700;">&#9679; Live</span>
-      </div>
-      <p style="color:var(--sf-subtext);font-weight:300;line-height:1.7;margin-bottom:24px;max-width:640px;">Scan any packaged food's nutrition label and get an instant Nutri-Score v2 grade — A to E. OCR and scoring run entirely in the browser. Analytics via PostHog. Built for the Indian market with FSSAI labels in mind.</p>
-      <div style="display:flex;flex-wrap:wrap;gap:8px;margin-bottom:24px;">
-        <span style="background:var(--sf-tag-bg);border:1px solid var(--sf-border);border-radius:20px;padding:4px 14px;font-family:'Sora',sans-serif;font-size:0.72rem;font-weight:700;color:var(--sf-subtext);">📱 PWA</span>
-        <span style="background:var(--sf-tag-bg);border:1px solid var(--sf-border);border-radius:20px;padding:4px 14px;font-family:'Sora',sans-serif;font-size:0.72rem;font-weight:700;color:var(--sf-subtext);">🔍 OCR</span>
-        <span style="background:var(--sf-tag-bg);border:1px solid var(--sf-border);border-radius:20px;padding:4px 14px;font-family:'Sora',sans-serif;font-size:0.72rem;font-weight:700;color:var(--sf-subtext);">🇮🇳 India</span>
-        <span style="background:var(--sf-tag-bg);border:1px solid var(--sf-border);border-radius:20px;padding:4px 14px;font-family:'Sora',sans-serif;font-size:0.72rem;font-weight:700;color:var(--sf-subtext);">&#128274; Offline</span>
-      </div>
-      <div style="font-family:'Sora',sans-serif;font-size:0.78rem;font-weight:700;color:var(--sf-blue);">Try it &rarr;</div>
-    </a>
-  </div>
-</section>
-
-<!-- CONNECT -->
-<section id="connect" class="connect-bg">
-  <div class="connect-inner">
-    <div class="section-label">Get In Touch</div>
-    <h2 class="section-title" style="color:white;">Let's Start a Conversation</h2>
-    <div class="section-divider" style="margin:16px auto 24px;"></div>
-    <p>Whether you're exploring Salesforce, want to talk watches, or have a problem worth solving — Rishabh is always up for a good conversation.</p>
-    <div>
-      <a href="https://linkedin.com/in/rishabh0201" target="_blank" class="connect-btn primary">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="white"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
-        Connect on LinkedIn
-      </a>
-      <a href="#contact-form" class="connect-btn outline">Drop a Note ✉️</a>
-    </div>
-  </div>
-</section>
-
-<!-- CONTACT FORM -->
-<section id="contact-form" style="background:var(--sf-light-bg);padding:60px 5%;">
-  <div class="contact-form-inner">
-    <div class="section-label">Quick Form</div>
-    <h2 class="section-title">Drop Me a Note</h2>
-    <div class="section-divider" style="margin:0 0 28px 0;"></div>
-    <p style="color:var(--sf-subtext);margin-bottom:32px;font-weight:300;">Fill in the form below and I'll get back to you. No spam, no cold calls — just a conversation.</p>
-
-    <div id="formSuccess" style="display:none;background:var(--sf-tag-bg);border:1px solid var(--sf-blue);border-radius:12px;padding:24px;text-align:center;margin-bottom:24px;">
-      <div style="font-size:2rem;margin-bottom:8px;">✅</div>
-      <div style="font-family:'Sora',sans-serif;font-weight:700;color:var(--sf-text);margin-bottom:4px;">Message received!</div>
-      <div style="color:var(--sf-subtext);font-size:0.9rem;">I'll get back to you soon.</div>
-    </div>
-
-    <form id="contactForm" style="display:flex;flex-direction:column;gap:16px;">
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;">
-        <div>
-          <label style="font-family:'Sora',sans-serif;font-size:0.75rem;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:var(--sf-subtext);display:block;margin-bottom:6px;">Name *</label>
-          <input type="text" id="f-name" required placeholder="Your name" style="width:100%;padding:12px 16px;background:var(--sf-card);border:1.5px solid var(--sf-border);border-radius:8px;color:var(--sf-text);font-family:'DM Sans',sans-serif;font-size:0.95rem;outline:none;transition:border 0.2s;" onfocus="this.style.borderColor='var(--sf-blue)'" onblur="this.style.borderColor='var(--sf-border)'">
-        </div>
-        <div>
-          <label style="font-family:'Sora',sans-serif;font-size:0.75rem;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:var(--sf-subtext);display:block;margin-bottom:6px;">Company</label>
-          <input type="text" id="f-company" placeholder="Your company" style="width:100%;padding:12px 16px;background:var(--sf-card);border:1.5px solid var(--sf-border);border-radius:8px;color:var(--sf-text);font-family:'DM Sans',sans-serif;font-size:0.95rem;outline:none;transition:border 0.2s;" onfocus="this.style.borderColor='var(--sf-blue)'" onblur="this.style.borderColor='var(--sf-border)'">
-        </div>
-      </div>
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;">
-        <div>
-          <label style="font-family:'Sora',sans-serif;font-size:0.75rem;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:var(--sf-subtext);display:block;margin-bottom:6px;">Designation</label>
-          <input type="text" id="f-designation" placeholder="Your role" style="width:100%;padding:12px 16px;background:var(--sf-card);border:1.5px solid var(--sf-border);border-radius:8px;color:var(--sf-text);font-family:'DM Sans',sans-serif;font-size:0.95rem;outline:none;transition:border 0.2s;" onfocus="this.style.borderColor='var(--sf-blue)'" onblur="this.style.borderColor='var(--sf-border)'">
-        </div>
-        <div>
-          <label style="font-family:'Sora',sans-serif;font-size:0.75rem;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:var(--sf-subtext);display:block;margin-bottom:6px;">Email</label>
-          <input type="email" id="f-linkedin" placeholder="your@email.com" style="width:100%;padding:12px 16px;background:var(--sf-card);border:1.5px solid var(--sf-border);border-radius:8px;color:var(--sf-text);font-family:'DM Sans',sans-serif;font-size:0.95rem;outline:none;transition:border 0.2s;" onfocus="this.style.borderColor='var(--sf-blue)'" onblur="this.style.borderColor='var(--sf-border)'">
-        </div>
+  <!-- SPLASH MODAL -->
+  <div class="splash-modal" id="splash-modal">
+    <div class="splash-inner">
+      <div class="splash-logo-row">
+        <img src="icon-192.png" class="splash-logo-img" alt="ScoreMyPack">
+        <div class="splash-brand-name">Score<span>MyPack</span></div>
       </div>
       <div>
-        <label style="font-family:'Sora',sans-serif;font-size:0.75rem;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:var(--sf-subtext);display:block;margin-bottom:6px;">Message</label>
-        <textarea id="f-message" rows="4" placeholder="What's on your mind?" style="width:100%;padding:12px 16px;background:var(--sf-card);border:1.5px solid var(--sf-border);border-radius:8px;color:var(--sf-text);font-family:'DM Sans',sans-serif;font-size:0.95rem;outline:none;transition:border 0.2s;resize:vertical;" onfocus="this.style.borderColor='var(--sf-blue)'" onblur="this.style.borderColor='var(--sf-border)'"></textarea>
+        <div class="splash-eyebrow" style="margin-bottom:12px;">A Thinking Lab Project</div>
+        <h1 class="splash-headline">We eat a lot of packaged food assuming it's safe.<br><em>Short term — probably fine. Long term, nobody's counting.</em></h1>
       </div>
-      <!-- Honeypot -->
-      <div style="position:absolute;left:-9999px;opacity:0;pointer-events:none;" aria-hidden="true">
-        <input type="text" id="f-website" name="website" tabindex="-1" autocomplete="off" placeholder="Leave empty">
+      <div class="splash-divider"></div>
+      <div class="splash-body">
+        <p>India mandates nutrition tables on every pack. Good start. But there's no instant signal — no single grade that tells you what you're actually holding.</p>
+        <p>The EU has one. India doesn't. Yet.</p>
       </div>
-      <button type="submit" id="submitBtn" style="background:var(--sf-blue);color:white;border:none;padding:14px 32px;border-radius:8px;font-family:'Sora',sans-serif;font-weight:700;font-size:0.95rem;cursor:pointer;transition:all 0.2s;align-self:flex-start;">
-        Send Message →
-      </button>
-    </form>
-  </div>
-</section>
-
-<footer>
-  <p>© 2026 <span>Rishabh Saxena</span> · rishabhsaxena.co.in</p>
-</footer>
-
-<!-- IN THE MAKING MODAL -->
-<div class="modal-overlay" id="modal">
-  <div class="modal-box">
-    <button class="modal-close" onclick="document.getElementById('modal').classList.remove('open')">✕</button>
-    <div style="font-size:2.5rem;margin-bottom:16px;">🔬</div>
-    <h3 style="font-family:'Sora',sans-serif;font-size:1.3rem;font-weight:800;margin-bottom:10px;">In the Making</h3>
-    <p style="color:var(--sf-subtext);font-size:0.9rem;line-height:1.7;margin-bottom:20px;">A few tools are quietly being built. Nothing to announce just yet — but they're coming. Watch this space.</p>
-    <a href="#connect" onclick="document.getElementById('modal').classList.remove('open')" style="background:var(--sf-blue);color:white;padding:11px 24px;border-radius:8px;text-decoration:none;font-family:'Sora',sans-serif;font-weight:700;font-size:0.88rem;">Stay in the Loop</a>
-  </div>
-</div>
-
-<script>
-// Theme
-function showModal(e) {
-  if (e) e.preventDefault();
-  document.getElementById('modal').classList.add('open');
-}
-var _modal = document.getElementById('modal');
-if (_modal) _modal.addEventListener('click', function(e) {
-  if (e.target === this) this.classList.remove('open');
-});
-
-// Contact form
-var _cf = document.getElementById('contactForm');
-if (_cf) _cf.addEventListener('submit', async function(e) {
-  e.preventDefault();
-  const btn = document.getElementById('submitBtn');
-  btn.textContent = 'Sending...'; btn.disabled = true;
-  const payload = {
-    name: document.getElementById('f-name').value,
-    company: document.getElementById('f-company').value,
-    designation: document.getElementById('f-designation').value,
-    linkedin: document.getElementById('f-linkedin').value,
-    message: document.getElementById('f-message').value,
-    source: 'Homepage',
-    website: document.getElementById('f-website') ? document.getElementById('f-website').value : ''
-  };
-  try {
-    await fetch('https://script.google.com/macros/s/AKfycbwNtyPDWl2dRPmwKRNRx0tMKQoTx5d-vHt4hRVBNMUWwN7jLrjh-xyH7fxuO8T6aP4/exec', {
-      method: 'POST', mode: 'no-cors',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(payload)
-    });
-    document.getElementById('contactForm').style.display = 'none';
-    document.getElementById('formSuccess').style.display = 'block';
-  } catch(err) {
-    btn.textContent = 'Send Message →'; btn.disabled = false;
-  }
-});
-</script>
-<!-- VIRTUAL EXECUTIVE BOT -->
-
-
-<!-- Bot HTML -->
-<div class="ve-bubble" id="veBubble" onclick="veToggle()">
-  <svg class="ve-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-    <path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm0 14H6l-2 2V4h16v12z"/>
-  </svg>
-  <span class="ve-close">✕</span>
-</div>
-
-<div class="ve-window" id="veWindow">
-  <div class="ve-header">
-    <div class="ve-avatar">VE</div>
-    <div class="ve-header-info">
-      <div class="ve-header-name">Virtual Executive</div>
-      <div class="ve-header-status"><span class="ve-status-dot"></span> Rishabh's assistant · Always on</div>
+      <div class="splash-grade-row">
+        <div class="splash-grade-chip ga"><span class="gc-letter">A</span><span class="gc-desc">Excellent</span></div>
+        <div class="splash-grade-chip gb"><span class="gc-letter">B</span><span class="gc-desc">Good</span></div>
+        <div class="splash-grade-chip gc"><span class="gc-letter">C</span><span class="gc-desc">Average</span></div>
+        <div class="splash-grade-chip gd"><span class="gc-letter">D</span><span class="gc-desc">Below avg</span></div>
+        <div class="splash-grade-chip ge"><span class="gc-letter">E</span><span class="gc-desc">Poor</span></div>
+      </div>
+      <div class="splash-closing">This app exists until the government makes it unnecessary.</div>
+    </div>
+    <div class="splash-cta-fixed">
+      <div class="splash-cta-inner">
+        <button class="splash-btn" onclick="enterApp()">
+          Scan a Label
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </button>
+      </div>
     </div>
   </div>
-  <div class="ve-messages" id="veMessages"></div>
-  <div class="ve-input-area">
-    <input class="ve-input" id="veInput" type="text" placeholder="Ask me anything..." maxlength="300" onkeydown="if(event.key==='Enter')veSend()">
-    <button class="ve-send" onclick="veSend()">
-      <svg viewBox="0 0 24 24"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/></svg>
+
+<div class="app">
+  <header>
+    <div class="logo-group">
+      <img src="icon-192.png" width="44" height="44" style="border-radius:12px;">
+      <div class="brand">
+        <div class="brand-name">Score<span>MyPack</span></div>
+        <div class="brand-tagline">Nutrition Intelligence</div>
+      </div>
+    </div>
+    <div class="fssai-badge">India 🇮🇳</div>
+  </header>
+  <main>
+    <!-- Steps -->
+    <div class="steps-row">
+      <div class="step">
+        <div class="step-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg></div>
+        <div class="step-label">Photograph</div>
+        <div class="step-desc">Capture the nutrition table</div>
+      </div>
+      <div class="step-arrow">›</div>
+      <div class="step">
+        <div class="step-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg></div>
+        <div class="step-label">Review</div>
+        <div class="step-desc">Verify extracted values</div>
+      </div>
+      <div class="step-arrow">›</div>
+      <div class="step">
+        <div class="step-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg></div>
+        <div class="step-label">Get Grade</div>
+        <div class="step-desc">Nutri-Score A to E</div>
+      </div>
+    </div>
+
+    <div class="scanner-card" id="scanner-card">
+      <div class="scanner-area" id="scanner-area" onclick="document.getElementById('upload-input').click()">
+        <div class="corner tl"></div><div class="corner tr"></div>
+        <div class="corner bl"></div><div class="corner br"></div>
+        <div class="scan-line"></div>
+        <img id="preview-img" alt="preview">
+        <div class="scan-placeholder">
+          <div class="viewfinder">
+            <div class="vf-corner vf-tl"></div><div class="vf-corner vf-tr"></div>
+            <div class="vf-corner vf-bl"></div><div class="vf-corner vf-br"></div>
+            <div class="vf-pulse"></div>
+            <div class="vf-inner"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.5)" stroke-width="1.5"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg></div>
+          </div>
+          <div class="scan-text"><strong>Tap to photograph nutrition label</strong>Point camera at the nutrition table</div>
+        </div>
+      </div>
+      <div class="scanner-actions">
+        <button class="btn btn-camera" onclick="openCamera()">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg>Camera
+        </button>
+        <button class="btn btn-upload" onclick="document.getElementById('upload-input').click()">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>Gallery
+        </button>
+      </div>
+    </div>
+
+    <!-- Crop -->
+    <div class="crop-modal" id="crop-modal">
+      <div class="crop-header">
+        <div class="crop-title">Select Nutrition Table</div>
+        <div class="crop-hint">Drag corners to fit the table</div>
+      </div>
+      <div class="crop-canvas-wrap" id="crop-canvas-wrap">
+        <img id="crop-img" alt="crop preview">
+        <canvas id="crop-canvas"></canvas>
+        <div class="crop-overlay" id="crop-overlay">
+          <div class="crop-box" id="crop-box">
+            <div class="crop-handle crop-handle-tl" data-handle="tl"></div>
+            <div class="crop-handle crop-handle-tr" data-handle="tr"></div>
+            <div class="crop-handle crop-handle-bl" data-handle="bl"></div>
+            <div class="crop-handle crop-handle-br" data-handle="br"></div>
+            <div class="crop-guideline crop-guideline-h1"></div>
+            <div class="crop-guideline crop-guideline-h2"></div>
+            <div class="crop-guideline crop-guideline-v1"></div>
+            <div class="crop-guideline crop-guideline-v2"></div>
+          </div>
+        </div>
+      </div>
+      <div class="crop-actions">
+        <button class="crop-btn crop-btn-skip" onclick="cropSkip()">Use Full Image</button>
+        <button class="crop-btn crop-btn-confirm" onclick="cropConfirm()">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+          Crop &amp; Analyse
+        </button>
+      </div>
+    </div>
+
+    <div class="compress-notice" id="compress-notice">
+      <div class="compress-dot"></div><span>Large image — optimising…</span>
+    </div>
+
+    <button class="btn-analyse" id="analyse-btn" disabled onclick="analyseImage()">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+      Analyse Nutrition Label
     </button>
-  </div>
-  <div class="ve-footer">Powered by Rishabh Saxena · rishabhsaxena.co.in</div>
+
+    <!-- Data notice -->
+    <div class="data-notice">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+      <span>Images you capture are retained to improve ScoreMyPack's accuracy. By using this app you consent to this. No personal data is collected.</span>
+    </div>
+
+    <div class="processing-card" id="processing-card">
+      <div class="spinner"></div>
+      <div class="processing-text" id="proc-text">Loading OCR…</div>
+      <div class="processing-sub" id="proc-sub">First use downloads ~3MB</div>
+      <div class="progress-bar"><div class="progress-fill" id="prog-fill"></div></div>
+    </div>
+
+    <div class="review-card" id="review-card">
+      <div class="review-header">
+        <div>
+          <div class="review-title">Review Values</div>
+          <div class="review-sub"><span style="color:#E63E11">Red</span> = not found — enter from your pack. Edit either column.</div>
+        </div>
+        <div class="ocr-conf" id="ocr-conf">–</div>
+      </div>
+      <div class="review-accuracy-note">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+        These values were read from your image. Give them a quick check before scoring.
+      </div>
+      <!-- Editable portion size -->
+      <div class="portion-row">
+        <span class="portion-label">Portion size on pack</span>
+        <input class="portion-input" type="number" id="portion-size" min="1" max="500" step="1" inputmode="decimal" onchange="onPortionChange()">
+        <span class="portion-unit">g</span>
+        <span class="portion-same" id="portion-same-note"></span>
+      </div>
+      <!-- Two-column field table -->
+      <div class="field-table">
+        <div class="field-table-head">
+          <div class="col-head col-name">Nutrient</div>
+          <div class="col-head" id="col-head-serving">Per serving</div>
+          <div class="col-head">Per 100g <span style="font-size:9px;opacity:.6">(auto)</span></div>
+        </div>
+        <div id="review-fields"></div>
+      </div>
+      <div class="review-actions">
+        <div class="review-note" id="review-note"></div>
+        <button class="btn-calc" onclick="calculateFromForm()">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="display:inline;vertical-align:middle;margin-right:6px"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+          Calculate Nutri-Score
+        </button>
+        <button class="btn-rescan-sm" onclick="resetApp()">↩ Scan a Different Label</button>
+      </div>
+    </div>
+
+    <div class="error-card" id="error-card">
+      <div class="error-title">Couldn't Read Label</div>
+      <div class="error-msg" id="error-msg">Please try with a clearer, well-lit photo.</div>
+      <button class="btn btn-upload" style="flex:none;padding:10px 20px" onclick="resetApp()">Try Again</button>
+    </div>
+
+    <div class="result-card" id="result-card">
+      <div class="result-header">
+        <div>
+          <div class="product-label">Nutri-Score Result</div>
+          <div class="product-name" id="result-name">Analysed Product</div>
+        </div>
+        <div class="grade-badge" id="grade-badge">–</div>
+      </div>
+      <div class="grade-bar">
+        <div class="grade-pill pill-A" id="pill-A">A</div><div class="grade-pill pill-B" id="pill-B">B</div>
+        <div class="grade-pill pill-C" id="pill-C">C</div><div class="grade-pill pill-D" id="pill-D">D</div>
+        <div class="grade-pill pill-E" id="pill-E">E</div>
+      </div>
+      <div class="nutrients-section">
+        <div class="section-title" id="result-section-title">Nutritional Values</div>
+        <div id="nutrient-grid"></div>
+      </div>
+      <div class="score-section">
+        <div class="section-title">Score Breakdown</div>
+        <div class="score-row"><span class="score-label">Negative points (energy, fat, sugar, sodium)</span><span class="score-val bad" id="bad-pts">–</span></div>
+        <div class="score-row"><span class="score-label">Positive points (protein, fibre, fruits/veg)</span><span class="score-val good" id="good-pts">–</span></div>
+        <div class="score-divider"></div>
+        <div class="score-row"><span class="score-label" style="font-weight:500;color:var(--text)">Final Score</span><span class="score-val total" id="final-score">–</span></div>
+      </div>
+      <div class="verdict-section">
+        <div class="section-title">Verdict</div>
+        <div class="verdict-box" id="verdict-box"></div>
+        <div class="tips" id="tips-list"></div>
+      </div>
+      <div class="download-row">
+        <button class="download-btn" onclick="downloadPNG()">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+          Save as Image
+        </button>
+      </div>
+      <button class="rescan-btn" id="rescan-btn" onclick="resetApp()" style="margin:0 20px 24px;display:block;">↩ Scan Another Product</button>
+    </div>
+  </main>
+  <footer>ScoreMyPack • Nutri-Score v2 • Tesseract OCR • Thinking Lab</footer>
 </div>
-
+<input type="file" id="camera-input" accept="image/*" capture="environment" onchange="handleImage(this)">
+<input type="file" id="upload-input" accept="image/*" onchange="handleImage(this)">
 <script>
-(function() {
-
-// ── RESPONSE LIBRARY ──────────────────────────────────────────────
-const R = {
-  greeting: [
-    "Hey there! I'm the Virtual Executive — Rishabh's digital assistant. Whether you're here to learn about his work, explore the blog, or just say hello — I've got you. What's on your mind?",
-    "Hello! Good to have you here. I'm the Virtual Executive, and I know quite a bit about Rishabh and his work. What would you like to know?",
-    "Hi! I'm VE — Virtual Executive. Think of me as Rishabh's always-on assistant. Ask me anything."
-  ],
-  who: [
-    "Rishabh Saxena is a Salesforce Consultant with a decade in the ecosystem — 5x certified, and currently part of Salesforce's own Professional Services team in India. Before that, he's done presales and consulting at LTIMindtree, Brillio, and TCS. He's also an MBA from Great Lakes, a motorsport enthusiast, and a watch collector. Quite a range, I know.",
-    "Rishabh is a Salesforce Consultant — part of the India PS GTM team. He owns end-to-end presales for Data Cloud, Marketing Cloud, and RCG Cloud. A decade in the Salesforce ecosystem, 5 certifications, and a genuine belief that most implementations fail not because of bad tech, but because the original problem gets lost. That's the gap he works in."
-  ],
-  salesforce: [
-    "Rishabh has been in the Salesforce ecosystem for a decade — across development, presales, consulting, and now engagement management. He's worked across Sales Cloud, Service Cloud, Data Cloud, Marketing Cloud, RCG Cloud, Experience Cloud, and CMS. Currently at Salesforce itself, managing the PS India GTM for Data Cloud, Marketing Cloud, and RCG Cloud.",
-    "Salesforce is Rishabh's core domain. He's 5x certified — Data Cloud Consultant, AI Associate, Sales Cloud Consultant, Administrator, and Platform Developer I. He's been a developer, a presales consultant, and now a Salesforce Consultant. He understands the full lifecycle — from discovery to delivery.",
-    "If you're looking for Salesforce expertise — Rishabh's been living and breathing it since 2016. He's particularly strong in presales, discovery, and making sure the right problem gets solved before a single line of config is written."
-  ],
-  datacloud: [
-    "Data Cloud is one of Rishabh's current focus areas at Salesforce PS India. He's owned the Data Cloud deal pipeline and has a Data Cloud Consultant certification. If you have specific questions about Data Cloud engagements or implementations, he'd be the right person to talk to.",
-  ],
-  marketingcloud: [
-    "Marketing Cloud is another key area Rishabh covers in his current role at Salesforce PS India. He's managed the Marketing Cloud deal pipeline end-to-end — from discovery and proposals to SOW structuring.",
-  ],
-  presales: [
-    "Presales is where Rishabh has spent a significant part of his career — at TCS, Brillio, LTIMindtree, and now Salesforce. He's run RFP/RFI responses, built proposals, written SOWs, created staffing models, and supported oral defenses. He's also built reusable content repositories to scale presales efficiency.",
-    "Rishabh's presales experience spans the full cycle — qualifying opportunities, running discovery, crafting solution narratives, building commercial structures, and closing. He's done this across EMEA and APAC for some of the largest Salesforce partners in India."
-  ],
-  certs: [
-    "Rishabh holds 5 Salesforce certifications: Data Cloud Consultant (2024), AI Associate (2024), Sales Cloud Consultant (2020), Administrator (2020), and Platform Developer I (2016). He also holds SAFe Agilist and a Microsoft Partner Sales Bootcamp certification.",
-    "Five Salesforce certifications — Data Cloud Consultant, AI Associate, Sales Cloud Consultant, Administrator, and Platform Developer I. Plus SAFe Agilist for good measure. He's been collecting them since 2016."
-  ],
-  experience: [
-    "Rishabh's career spans Salesforce PS (current), LTIMindtree, Brillio Technologies, and TCS — with an MBA sabbatical from Great Lakes Institute of Management in between. That's 9+ years across development, presales, consulting, and engagement management.",
-    "The journey: TCS (2016–2021) as a Salesforce Developer turned Presales Consultant, with an MBA break in 2018–19. Then Brillio (2021–2022), LTIMindtree (2022–2023), and now Salesforce Professional Services since July 2023."
-  ],
-  tcs: [
-    "Rishabh started his career at TCS in 2016 as a Salesforce Developer — led a team of three, reduced daily incidents from 100+ to under 30, and then transitioned to Presales. He drove Salesforce business expansion in the EMEA region before leaving in 2021. He also took an MBA sabbatical during his TCS tenure."
-  ],
-  mba: [
-    "Rishabh did his MBA from Great Lakes Institute of Management, Chennai — a one-year intensive in Marketing and AI & Machine Learning. His thesis was on the effect of nostalgia on consumer buying behaviour. He took a sabbatical from TCS for this and returned as a Presales Consultant.",
-  ],
-  watchit: [
-    "WatchIt is Rishabh's horology blog — perspectives on watches, craft, and what it means to appreciate something built to last. It's not a review site. It's more about the stories behind what we wear on our wrists. First article coming soon.",
-    "If you're into watches, Hands on Wrist is worth bookmarking. It's Rishabh's take on horology — the craft, the history, the obsession. He's been collecting and following the watch world seriously. Head over to rishabhsaxena.co.in/hands-on-wrist.html."
-  ],
-  shiftit: [
-    "Hands on Wheels is the automobiles and motorsport section of Rishabh's blog. He's been a Track and Flag Marshal with the Indian Motorsport Marshals Club, attended the Formula 1 Indian Grand Prix in 2013 and Bharat MotoGP 2023, and has been following MRF and JK Tyre championships since 2013. Expect passionate writing.",
-    "Hands on Wheels covers cars, motorsport, and everything in between. Rishabh is deeply into this — not as a casual fan but as someone who's been on the circuit as a marshal. Check it out at rishabhsaxena.co.in/hands-on-wheels.html."
-  ],
-  blog: [
-    "The Thinking Lab is Rishabh's blog — three sections: Salesforce (implementations, presales, strategy), WatchIt (horology and watches), and ShiftIt (automobiles and motorsport). Content is coming — follow him on LinkedIn to stay updated.",
-    "Three blogs, one person. Salesforce at rishabhsaxena.co.in/salesforce.html, WatchIt at /hands-on-wrist.html, and ShiftIt at /hands-on-wheels.html. All part of the Thinking Lab."
-  ],
-  motorsport: [
-    "Rishabh has been involved in Indian motorsport since 2013 — attended the F1 Indian Grand Prix, the Bharat MotoGP 2023, and has been a continuous participant in MRF and JK Tyre National Racing Championships as a Track and Flag Marshal with the Indian Motorsport Marshals Club.",
-  ],
-  collaborate: [
-    "If you're thinking about working with Rishabh — whether it's a Salesforce engagement, a presales challenge, or a consulting conversation — the best way to start is by dropping a note via the contact form on this page, or connecting on LinkedIn at linkedin.com/in/rishabh0201.",
-    "Rishabh is open to the right conversations — Salesforce implementations, presales strategy, or just a good professional discussion. Use the contact form below or reach out on LinkedIn."
-  ],
-  contact: [
-    "You can reach Rishabh on LinkedIn at linkedin.com/in/rishabh0201, or drop a note using the contact form at the bottom of this page — just fill in your email and he'll get back to you directly.",
-    "Best way to get in touch — LinkedIn at linkedin.com/in/rishabh0201, or the contact form at the bottom of this page. Leave your email and he'll come back to you."
-  ],
-  compliment: [
-    "That's kind of you to say — I'll pass it along to Rishabh. He'd appreciate hearing that.",
-    "Glad you think so! If you'd like to connect with Rishabh directly, the contact form at the bottom works well.",
-    "Thank you — Rishabh has put a lot of thought into this. If something resonated, he'd love to hear about it."
-  ],
-  linkedin: [
-    "Rishabh is active on LinkedIn at linkedin.com/in/rishabh0201. Best place to follow his professional updates, articles, and to connect directly."
-  ],
-  apps: [
-    "Rishabh is currently working on a few tools under the 'In the Making' section of his site — simple apps built around everyday problems, the kind that make you wonder why they don't already exist. Nothing to announce just yet, but worth watching. You can follow him on LinkedIn at linkedin.com/in/rishabh0201 for updates.",
-    "The 'In the Making' section on this site hints at what's coming — a few tools Rishabh is quietly building. He's not ready to announce specifics yet, but if you have a problem you'd like solved, the contact form below is a good place to share it. It might just influence what he builds next."
-  ],
-  job: [
-    "Rishabh is always open to interesting conversations — but the best way to explore if there's a fit is to share a bit more about the role and what you're looking to solve. Drop the details via the contact form below and he'll reach out if the timing feels right.",
-    "Rishabh isn't actively looking, but the right opportunity has a way of making itself known. If you think there's something worth discussing, share the role details and what makes it interesting — he'll take a look and connect if it resonates.",
-    "Rishabh believes in having the right conversations at the right time. If you have something specific in mind, share the details via the contact form below — company, role, what you're solving for. He'll be in touch if the stars align."
-  ],
-  contentidea: [
-    "That's actually really helpful to know — Rishabh is always thinking about what to write or build next. Could you share a bit more? Is this about a Salesforce challenge, a watch you're curious about, a car or motorsport topic, or something else entirely? Drop it in the contact form below and he'll factor it into what he builds next.",
-    "Ideas from real people are worth more than anything Rishabh could come up with in isolation. If you've got a specific topic, problem, or question you'd love to see covered — share it via the contact form. It might just become his next article or app.",
-    "Noted — and genuinely appreciated. The best content comes from real problems. Share the specifics via the contact form below and Rishabh will keep it in mind for future articles, tools, or apps."
-  ],
-  fallback: [
-    "That's a bit outside my coverage — but I don't want to leave you hanging. ||FORM||",
-    "Hmm, I didn't quite catch that. I cover Rishabh's work, Salesforce, the blog, watches, motorsport, and how to connect. Drop it here and he'll get back to you: ||FORM||",
-    "I want to be helpful, but I'm not sure I have the right answer for this one. Share it directly here and he'll get back to you: ||FORM||"
-  ],
-  returning: [
-    "Welcome back! Good to see you again. What would you like to know this time?",
-    "You're back! Happy to help again. What's on your mind?"
-  ]
-};
-
-// ── KEYWORD MAP ────────────────────────────────────────────────────
-const K = [
-  { keys: ['hi','hello','hey','howdy','sup','good morning','good evening','good afternoon','greetings','hiya','yo'], res: 'greeting' },
-  { keys: ['who is','who are','about rishabh','introduce','tell me about','about you','what do you do','background','yourself'], res: 'who' },
-  { keys: ['salesforce','crm','cloud','sfdc','sf ','lightning','apex','visualforce','flow','lwc'], res: 'salesforce' },
-  { keys: ['data cloud','cdp','customer data'], res: 'datacloud' },
-  { keys: ['marketing cloud','mc ','pardot','email studio','journey builder'], res: 'marketingcloud' },
-  { keys: ['presales','pre-sales','rfp','rfi','proposal','sow','pitch','demo','poc','estimate','staffing'], res: 'presales' },
-  { keys: ['certif','certified','credential','badge','exam','qualification'], res: 'certs' },
-  { keys: ['experience','career','worked','journey','years','professional'], res: 'experience' },
-  { keys: ['tcs','tata','consultancy','ltimindtree','lti','brillio'], res: 'tcs' },
-  { keys: ['mba','great lakes','masters','education','university','degree','college'], res: 'mba' },
-  { keys: ['hands on wrist','watch','horology','timepiece','wristwatch','rolex','omega','seiko','horolog'], res: 'watchit' },
-  { keys: ['hands on wheels','car','automobile','motorsport','racing','f1','formula','motogp','moto gp','circuit','marshal','track','jk tyre','mrf'], res: 'shiftit' },
-  { keys: ['blog','article','post','write','thinking lab','read','content','publish'], res: 'blog' },
-  { keys: ['hire','collaborate','work together','engage','consulting','freelance','opportunity','project','partnership'], res: 'collaborate' },
-  { keys: ['contact','reach','email','connect','message','talk','meet','call','get in touch','linkedin'], res: 'contact' },
-  { keys: ['linkedin'], res: 'linkedin' },
-  { keys: ['app','apps','tool','tools','build','building','in the making','product','side project'], res: 'apps' },
-  { keys: ['open to work','looking for job','job opportunity','hiring','recruit','position','role','opening','new role','career opportunity','job change','switch job','switching','exploring opportunities'], res: 'job' },
-  { keys: ['write about','cover topic','content idea','suggest topic','what should','next article','next app','build something','problem i face','challenge i have','would love to read','idea for','struggling with','pain point'], res: 'contentidea' },
-  { keys: ['great','impressive','amazing','love','nice','good work','well done','awesome','brilliant','excellent','interesting','cool'], res: 'compliment' },
-];
-
-// ── STATE ──────────────────────────────────────────────────────────
-let veOpen = false;
-let veStarted = false;
-let rIdx = {};
-
-function getRand(key) {
-  const arr = R[key];
-  if (!rIdx[key]) rIdx[key] = 0;
-  const r = arr[rIdx[key] % arr.length];
-  rIdx[key]++;
-  return r;
+// ═══════════════════════════════════════════════════════════════════
+//  TESSERACT LOADER
+// ═══════════════════════════════════════════════════════════════════
+let _tReady=null;
+function loadTesseract(){
+  if(_tReady) return _tReady;
+  const cdns=['https://unpkg.com/tesseract.js@5.1.0/dist/tesseract.min.js','https://cdn.jsdelivr.net/npm/tesseract.js@5.1.0/dist/tesseract.min.js'];
+  _tReady=(async()=>{for(const url of cdns){if(typeof Tesseract!=='undefined')return;try{await new Promise((res,rej)=>{const s=document.createElement('script');s.src=url;s.onload=res;s.onerror=rej;document.head.appendChild(s);});if(typeof Tesseract!=='undefined')return;}catch(e){}}throw new Error('Could not load Tesseract.js');})();
+  return _tReady;
 }
 
-function match(text) {
-  const t = text.toLowerCase();
-  let best = null, bestScore = 0;
-  for (const entry of K) {
-    for (const kw of entry.keys) {
-      // Use word boundary matching - keyword must appear as whole word
-      const re = new RegExp('(^|[\\s,?.!\'\"-])' + kw.replace(/[.*+?^${}()|[\]\\]/g, '\\$&') + '($|[\\s,?.!\'\"-])', 'i');
-      if (re.test(t) || (kw.length > 4 && t.includes(kw))) {
-        if (kw.length > bestScore) {
-          bestScore = kw.length;
-          best = entry.res;
-        }
+// ═══════════════════════════════════════════════════════════════════
+//  IMAGE HANDLING
+// ═══════════════════════════════════════════════════════════════════
+let imgDataUrl=null;
+function openCamera(){document.getElementById('camera-input').click();}
+async function handleImage(input){
+  const file=input.files[0];if(!file)return;
+  ph('image_uploaded',{file_size_kb:Math.round(file.size/1024)});
+  const notice=document.getElementById('compress-notice');
+  if(file.size>3*1024*1024)notice.classList.add('active');
+  try{
+    const r=await compressImage(file,1800);
+    imgDataUrl=r.dataUrl;
+    document.getElementById('preview-img').src=r.dataUrl;
+    document.getElementById('scanner-area').classList.add('has-image');
+    document.getElementById('analyse-btn').disabled=false;
+    document.getElementById('analyse-btn').style.display='none';
+    showCropTool(r.dataUrl);
+    notice.classList.remove('active');
+    if(file.size>3*1024*1024){notice.querySelector('span').textContent=`✓ Optimised ${(file.size/1024/1024).toFixed(1)}MB → ${(r.size/1024).toFixed(0)}KB`;notice.classList.add('active');setTimeout(()=>notice.classList.remove('active'),3000);}
+    hideAll();
+  }catch(e){console.error(e);}
+  input.value='';
+}
+function compressImage(file,maxDim){
+  return new Promise((resolve,reject)=>{
+    const reader=new FileReader();
+    reader.onload=e=>{
+      const img=new Image();
+      img.onload=()=>{
+        let{width:w,height:h}=img;const sc=Math.min(1,maxDim/Math.max(w,h));w=Math.round(w*sc);h=Math.round(h*sc);
+        const canvas=document.createElement('canvas');canvas.width=w;canvas.height=h;
+        const ctx=canvas.getContext('2d');ctx.drawImage(img,0,0,w,h);
+        const dataUrl=canvas.toDataURL('image/jpeg',.92);
+        resolve({dataUrl,size:Math.round(dataUrl.length*.75)});
+      };img.onerror=reject;img.src=e.target.result;
+    };reader.onerror=reject;reader.readAsDataURL(file);
+  });
+}
+
+// ═══════════════════════════════════════════════════════════════════
+//  IMAGE PREPROCESSING  v2
+//  Pipeline: upscale → greyscale → label detection → crop →
+//            adaptive threshold → unsharp mask
+//  Then: multi-pass OCR → best result selection → non-Latin filter
+// ═══════════════════════════════════════════════════════════════════
+
+// ── Greyscale conversion ─────────────────────────────────────────
+function toGrey(data,w,h){
+  const g=new Float32Array(w*h);
+  for(let i=0;i<w*h;i++)g[i]=0.299*data[i*4]+0.587*data[i*4+1]+0.114*data[i*4+2];
+  return g;
+}
+
+// ── Integral image (for O(1) local mean/variance) ────────────────
+function buildIntegral(grey,w,h){
+  const S=new Float64Array(w*h),S2=new Float64Array(w*h);
+  for(let y=0;y<h;y++)for(let x=0;x<w;x++){
+    const i=y*w+x,v=grey[i];
+    S[i]=v+(x>0?S[i-1]:0)+(y>0?S[i-w]:0)-(x>0&&y>0?S[i-w-1]:0);
+    S2[i]=v*v+(x>0?S2[i-1]:0)+(y>0?S2[i-w]:0)-(x>0&&y>0?S2[i-w-1]:0);
+  }
+  return{S,S2};
+}
+function rsum(S,w,x0,y0,x1,y1){
+  let s=S[y1*w+x1];
+  if(x0>0)s-=S[y1*w+x0-1];
+  if(y0>0)s-=S[(y0-1)*w+x1];
+  if(x0>0&&y0>0)s+=S[(y0-1)*w+x0-1];
+  return s;
+}
+
+// ── Sauvola adaptive thresholding ────────────────────────────────
+// Handles uneven lighting, glare, shadows independently per region
+function sauvolaThreshold(grey,w,h,radius=18,k=0.2){
+  const{S,S2}=buildIntegral(grey,w,h);
+  const out=new Uint8ClampedArray(w*h*4);
+  for(let y=0;y<h;y++)for(let x=0;x<w;x++){
+    const x0=Math.max(0,x-radius),y0=Math.max(0,y-radius);
+    const x1=Math.min(w-1,x+radius),y1=Math.min(h-1,y+radius);
+    const n=(x1-x0+1)*(y1-y0+1);
+    const mean=rsum(S,w,x0,y0,x1,y1)/n;
+    const meanSq=rsum(S2,w,x0,y0,x1,y1)/n;
+    const std=Math.sqrt(Math.max(0,meanSq-mean*mean));
+    const t=mean*(1-k*(1-std/128));
+    const val=grey[y*w+x]>t?255:0;
+    const i=(y*w+x)*4;out[i]=out[i+1]=out[i+2]=val;out[i+3]=255;
+  }
+  return out;
+}
+
+// ── Unsharp mask (sharpen before thresholding) ───────────────────
+function unsharpMask(grey,w,h,strength=0.6){
+  // 3x3 Gaussian blur then subtract
+  const blurred=new Float32Array(w*h);
+  const kernel=[1,2,1,2,4,2,1,2,1];const ksum=16;
+  for(let y=0;y<h;y++)for(let x=0;x<w;x++){
+    let s=0,ki=0;
+    for(let dy=-1;dy<=1;dy++)for(let dx=-1;dx<=1;dx++){
+      const ny=Math.max(0,Math.min(h-1,y+dy)),nx=Math.max(0,Math.min(w-1,x+dx));
+      s+=grey[ny*w+nx]*kernel[ki++];
+    }
+    blurred[y*w+x]=s/ksum;
+  }
+  const out=new Float32Array(w*h);
+  for(let i=0;i<w*h;i++)out[i]=Math.min(255,Math.max(0,grey[i]*(1+strength)-blurred[i]*strength));
+  return out;
+}
+
+// ── Sobel edge detection (for label region finding) ──────────────
+function sobelEdge(grey,w,h){
+  const out=new Float32Array(w*h);
+  for(let y=1;y<h-1;y++)for(let x=1;x<w-1;x++){
+    const gx=(-grey[(y-1)*w+x-1]-2*grey[y*w+x-1]-grey[(y+1)*w+x-1]
+               +grey[(y-1)*w+x+1]+2*grey[y*w+x+1]+grey[(y+1)*w+x+1]);
+    const gy=(-grey[(y-1)*w+x-1]-2*grey[(y-1)*w+x]-grey[(y-1)*w+x+1]
+               +grey[(y+1)*w+x-1]+2*grey[(y+1)*w+x]+grey[(y+1)*w+x+1]);
+    out[y*w+x]=Math.min(255,Math.sqrt(gx*gx+gy*gy));
+  }
+  return out;
+}
+
+// ── Label region detection ───────────────────────────────────────
+// Finds the nutrition table by locating the densest rectangular
+// region of edges in the image. Silently falls back to full image.
+function detectLabelRegion(grey,w,h){
+  const edges=sobelEdge(grey,w,h);
+  const TILE=Math.round(Math.min(w,h)/30); // ~30 tiles across short side
+  const tilesX=Math.floor(w/TILE),tilesY=Math.floor(h/TILE);
+  if(tilesX<4||tilesY<4)return null; // image too small to tile
+  // Score each tile by edge density
+  const scores=[];
+  for(let ty=0;ty<tilesY;ty++)for(let tx=0;tx<tilesX;tx++){
+    let sum=0,cnt=0;
+    for(let y=ty*TILE;y<Math.min((ty+1)*TILE,h);y++)
+      for(let x=tx*TILE;x<Math.min((tx+1)*TILE,w);x++){sum+=edges[y*w+x];cnt++;}
+    scores.push({tx,ty,score:sum/cnt});
+  }
+  // Threshold: tiles above 60th percentile score are "text-like"
+  const sorted=[...scores].sort((a,b)=>b.score-a.score);
+  const threshold=sorted[Math.floor(sorted.length*0.3)].score; // top 30%
+  const high=scores.filter(t=>t.score>=threshold&&t.score>8);
+  if(high.length<6)return null; // not enough high-density tiles
+  // Bounding box of high-density tiles
+  const minTx=Math.min(...high.map(t=>t.tx)),maxTx=Math.max(...high.map(t=>t.tx));
+  const minTy=Math.min(...high.map(t=>t.ty)),maxTy=Math.max(...high.map(t=>t.ty));
+  // Reject if region is too large (>85% of image) — probably full image noise
+  const regionW=(maxTx-minTx+1)/tilesX,regionH=(maxTy-minTy+1)/tilesY;
+  if(regionW>0.85&&regionH>0.85)return null;
+  // Reject if region is too small (<10% of image)
+  if(regionW<0.1||regionH<0.1)return null;
+  const PAD=2; // tile padding around detected region
+  return{
+    x:Math.max(0,(minTx-PAD)*TILE),
+    y:Math.max(0,(minTy-PAD)*TILE),
+    w:Math.min(w,(maxTx-minTx+1+PAD*2)*TILE),
+    h:Math.min(h,(maxTy-minTy+1+PAD*2)*TILE)
+  };
+}
+
+// ── Non-Latin line filter (post-OCR) ─────────────────────────────
+// Strips lines where >40% of letters are non-Latin (Arabic, Hindi etc.)
+// Prevents foreign script from confusing the parser
+const NUTRIENT_KW=/energy|calories?|protein|fat|carbohydrate|sugar|fibre|fiber|sodium|salt|saturate/i;
+function filterNonLatin(text){
+  return text.split('\n').filter(line=>{
+    if(NUTRIENT_KW.test(line))return true; // always keep nutrient lines
+    const letters=(line.match(/\p{L}/gu)||[]);
+    if(!letters.length)return true;
+    const nonLatin=letters.filter(c=>!/[a-zA-Z]/.test(c)).length;
+    return nonLatin/letters.length<0.4;
+  }).join('\n');
+}
+
+// ── Score OCR result (for multi-pass selection) ──────────────────
+function scoreOcrText(text){
+  if(!text||!text.trim())return 0;
+  const lines=text.split('\n').filter(l=>l.trim());
+  const kwLines=lines.filter(l=>NUTRIENT_KW.test(l)).length;
+  const numLines=lines.filter(l=>/\d/.test(l)).length;
+  return kwLines*3+numLines; // weight keyword lines higher
+}
+
+// ── Main preprocessing pipeline ─────────────────────────────────
+// Returns array of {dataUrl, label} preprocessed versions for multi-pass OCR
+function buildPreprocessedVersions(imgData,w,h){
+  const grey=toGrey(imgData,w,h);
+  // Detect label region — silently fall back to full image if not found
+  const region=detectLabelRegion(grey,w,h);
+  const versions=[];
+  // Helper: crop grey to region, sharpen, threshold, return canvas dataUrl
+  function makeVersion(g,gw,gh,label){
+    const sharpened=unsharpMask(g,gw,gh);
+    const thresholded=sauvolaThreshold(sharpened,gw,gh);
+    const c=document.createElement('canvas');c.width=gw;c.height=gh;
+    const ctx=c.getContext('2d');
+    const id=ctx.createImageData(gw,gh);id.data.set(thresholded);
+    ctx.putImageData(id,0,0);
+    return{dataUrl:c.toDataURL('image/png'),label};
+  }
+  if(region){
+    // Version 1: cropped + adaptive threshold (primary)
+    const cw=region.w,ch=region.h;
+    const cropped=new Float32Array(cw*ch);
+    for(let y=0;y<ch;y++)for(let x=0;x<cw;x++)
+      cropped[y*cw+x]=grey[(region.y+y)*w+(region.x+x)];
+    versions.push(makeVersion(cropped,cw,ch,'crop+adaptive'));
+    // Version 2: cropped + light sharpen only (different radius)
+    const c2=document.createElement('canvas');c2.width=cw;c2.height=ch;
+    const ctx2=c2.getContext('2d');
+    const sharpened2=unsharpMask(cropped,cw,ch,0.3);
+    const id2=ctx2.createImageData(cw,ch);
+    // Simple contrast stretch for version 2
+    let mn=255,mx=0;for(const v of sharpened2){if(v<mn)mn=v;if(v>mx)mx=v;}
+    const range=mx-mn||1;
+    for(let i=0;i<cw*ch;i++){
+      const v=Math.round((sharpened2[i]-mn)/range*255);
+      id2.data[i*4]=id2.data[i*4+1]=id2.data[i*4+2]=v;id2.data[i*4+3]=255;
+    }
+    ctx2.putImageData(id2,0,0);
+    versions.push({dataUrl:c2.toDataURL('image/png'),label:'crop+contrast'});
+  }
+  // Always include full-image adaptive threshold as fallback
+  versions.push(makeVersion(grey,w,h,'full+adaptive'));
+  return versions;
+}
+
+// ── Load image → run preprocessing pipeline ──────────────────────
+function prepareImage(dataUrl){
+  return new Promise(resolve=>{
+    const img=new Image();
+    img.onload=()=>{
+      let w=img.naturalWidth,h=img.naturalHeight;
+      // Upscale if too small — Tesseract needs at least 1400px on longest side
+      const MIN=1400;
+      if(Math.max(w,h)<MIN){const sc=MIN/Math.max(w,h);w=Math.round(w*sc);h=Math.round(h*sc);}
+      // Cap at 3000px to avoid memory issues on mobile
+      const MAX=3000;
+      if(Math.max(w,h)>MAX){const sc=MAX/Math.max(w,h);w=Math.round(w*sc);h=Math.round(h*sc);}
+      const canvas=document.createElement('canvas');canvas.width=w;canvas.height=h;
+      const ctx=canvas.getContext('2d');ctx.drawImage(img,0,0,w,h);
+      const imgData=ctx.getImageData(0,0,w,h).data;
+      resolve(buildPreprocessedVersions(imgData,w,h));
+    };
+    img.src=dataUrl;
+  });
+}
+
+// ── Multi-pass OCR: run all versions, pick best result ───────────
+async function runOcr(dataUrl){
+  const versions=await prepareImage(dataUrl);
+  setProgress(18,'Preprocessing image…',`${versions.length} versions prepared`);
+  const worker=await Tesseract.createWorker('eng',1,{logger:m=>{
+    if(m.status==='loading tesseract core')setProgress(12,'Loading OCR engine…','');
+    else if(m.status==='loading language traineddata')setProgress(16,'Loading language data…','');
+  }});
+  try{
+    let best='',bestScore=-1,pass=0;
+    for(const v of versions){
+      pass++;
+      setProgress(20+Math.round((pass/versions.length)*40),
+        `Reading label… (pass ${pass}/${versions.length})`,v.label);
+      await worker.setParameters({
+        tessedit_pageseg_mode: v.label.startsWith('crop')?'6':'6',
+        preserve_interword_spaces:'1'
+      });
+      const r=await worker.recognize(v.dataUrl);
+      const text=filterNonLatin(r.data.text);
+      const score=scoreOcrText(text);
+      if(score>bestScore){bestScore=score;best=text;}
+    }
+    await worker.terminate();
+    return best;
+  }catch(e){await worker.terminate();throw e;}
+}
+
+// ═══════════════════════════════════════════════════════════════════
+//  NUTRITION PARSER  v4
+//  Handles: dot-leaders, two-column tables, per-serving scaling,
+//  kJ/kcal split lines, salt→sodium, OCR O→0 l→1 ll→11 corruptions,
+//  EU saturates, US Calories label, #kcal, <0.1 traces
+// ═══════════════════════════════════════════════════════════════════
+
+// Positional boundary detection — marks where the nutrition table ends.
+// Everything below this line is footnotes, allergen advice, manufacturer info, etc.
+// Pattern matches structural signals, not content keywords — robust across label types.
+const TABLE_END_RE=/^[\*†‡]|%\s*daily\s*value\s*\(?tells|footnote|manufactured\s*by|allergen\s*advice|contains:|best\s*before|net\s*weight|mfg\s*date|batch\s*no|for\s*queries|customer\s*care|disclaimer|^\s*note\s*:/i;
+
+// Truncate raw OCR text to only the nutrition table — called once before any parsing.
+// Finds the first line that signals "footnote section starts" and discards everything after it.
+function truncateToTable(raw){
+  const lines=raw.split('\n');
+  const cutAt=lines.findIndex(l=>TABLE_END_RE.test(l.trim()));
+  return(cutAt===-1?lines:lines.slice(0,cutAt)).join('\n');
+}
+
+function cleanOcr(raw){
+  // FIX 2: strip % Daily Value column — strip trailing "NN%" AND bare trailing integers
+  // that look like DV% (1–100) after a unit like g/mg
+  const stripDvCol=line=>{
+    // Remove explicit "NN%" patterns
+    let l=line.replace(/\s+\d{1,3}\s*%/g,'');
+    // Also strip a bare trailing integer 1–100 that follows a unit token (g/mg/mcg/iu)
+    l=l.replace(/(\b(?:mg|mcg|iu|g)\b)\s+(\d{1,3})$/i,'$1');
+    return l;
+  };
+  return raw.replace(/\r\n|\r/g,'\n')
+    // dot/dash leaders (3+ chars)
+    .replace(/([.\-_\u2022]{3,})/g,' ')
+    // OCR: ll/II → 11
+    .replace(/\bll\b/g,'11').replace(/\bII\b/g,'11').replace(/\blI\b/g,'11').replace(/\bIl\b/g,'11')
+    // l/I adjacent to digits
+    .replace(/(\d)[lI](\d)/g,'$11$2').replace(/\b[lI](\d)/g,'1$1').replace(/(\d)[lI]\b/g,'$11')
+    // O adjacent to digits
+    .replace(/(\d)O(\d)/g,'$10$2').replace(/\bO(\d)/g,'0$1').replace(/(\d)O\b/g,'$10')
+    // unit normalisation
+    .replace(/#\s*kcal/gi,'kcal').replace(/\bKCAL\b/g,'kcal').replace(/\bKcal\b/g,'kcal')
+    .replace(/\bKJ\b/gi,'kJ').replace(/\bMG\b/g,'mg')
+    // trace values
+    .replace(/<\s*0[.,]\d+/g,'0').replace(/<\s*(\d)/g,'$1')
+    // percent columns (existing)
+    .replace(/[*†‡]/g,'')
+    // apply DV column strip per line
+    .split('\n').map(stripDvCol).join('\n')
+    .replace(/[ \t]+/g,' ').trim();
+}
+function nums(str){return(str.match(/\d+(?:[.,]\d+)?/g)||[]).map(n=>parseFloat(n.replace(',','.'))).filter(n=>isFinite(n)&&n>=0);}
+function matchLines(lines,re){return lines.reduce((acc,line,i)=>{if(re.test(line))acc.push({line,next:lines[i+1]||'',idx:i});return acc;},[]);}
+function detectStruct(lines){
+  for(let i=0;i<Math.min(15,lines.length);i++){
+    const l=lines[i].toLowerCase();
+    // Standard single-line two-column header: "Per serving | Per 100g"
+    if(/per\s*100\s*g/.test(l)&&/per\s*serv/.test(l)){
+      const i100=l.search(/per\s*100/),iSrv=l.search(/per\s*serv/);
+      return{col100g:i100>iSrv?1:0};
+    }
+    // Standard single-line per-100g header
+    if(/per\s*100\s*g/.test(l)||/amount\s*per\s*100/.test(l))return{col100g:0};
+    // Multi-line header detection: join 3-line window to catch headers split across lines
+    // e.g. "Average / 100g serving / contains" (FSSAI multi-column format)
+    const win=[lines[i],lines[i+1]||'',lines[i+2]||''].join(' ').toLowerCase();
+    if(/100g\s*serving\s*contains/.test(win)||/average\s*100g/.test(win))return{col100g:0};
+    // "Typical Values" is a reliable FSSAI multi-column table signal
+    if(/typical\s*values/.test(l))return{col100g:0};
+  }
+  return null;
+}
+function pickVal(n,ts,maxVal=9999){
+  const s=n.filter(v=>v<=maxVal);if(!s.length)return null;if(s.length===1)return s[0];
+  if(ts)return s[Math.min(ts.col100g,s.length-1)];return s[s.length-1];
+}
+function parseNutrition(rawText){
+  // Truncate to table boundary first — eliminates footnotes before any regex runs
+  const text=cleanOcr(truncateToTable(rawText));
+  const lines=text.split('\n').map(l=>l.trim()).filter(Boolean);
+  const struct=detectStruct(lines);
+  // get(): uses current line nums only; falls to next line only if current has none
+  const get=(patterns,maxVal=9999)=>{
+    for(const re of patterns){
+      const hits=matchLines(lines,re);
+      for(const hit of hits){
+        const n=nums(hit.line);
+        if(n.length){const v=pickVal(n,struct,maxVal);if(v!==null)return v;}
+        else{const n2=nums(hit.next);if(n2.length)return pickVal(n2,struct,maxVal);}
       }
     }
+    return null;
+  };
+  // ENERGY
+  let energy_kcal=null,energy_kj=null;
+  const eLines=matchLines(lines,/\benergy\b|\bcalories?\b/i);
+  for(const hit of eLines){
+    const lo=hit.line.toLowerCase();
+    const isCalLabel=/\bcalories?\b/i.test(hit.line)&&!/kj/i.test(hit.line);
+    const kcalM=[...hit.line.matchAll(/(\d+(?:[.,]\d+)?)\s*kcal/gi)].map(m=>parseFloat(m[1].replace(',','.')));
+    const kjM  =[...hit.line.matchAll(/(\d+(?:[.,]\d+)?)\s*kj/gi)  ].map(m=>parseFloat(m[1].replace(',','.')));
+    if(kcalM.length)energy_kcal=energy_kcal??Math.max(...kcalM.filter(v=>v>0&&v<2000));
+    if(kjM.length)  energy_kj  =energy_kj  ??Math.max(...kjM.filter(v=>v>0&&v<5000));
+    if(!energy_kcal&&!energy_kj){
+      const n=nums(hit.line).filter(v=>v>0&&v<10000);
+      if(!n.length){
+        const n2=nums(hit.next).filter(v=>v>0&&v<10000);
+        if(n2.length){if(isCalLabel||/kcal/i.test(hit.next))energy_kcal=energy_kcal??n2[0];else if(/kj/i.test(hit.next))energy_kj=energy_kj??n2[0];else energy_kcal=energy_kcal??n2[0];}
+        continue;
+      }
+      const hasKcal=/kcal/.test(lo)||isCalLabel,hasKj=/kj/.test(lo);
+      if(hasKcal&&!hasKj)energy_kcal=energy_kcal??pickVal(n,struct,2000);
+      else if(hasKj&&!hasKcal)energy_kj=energy_kj??pickVal(n,struct,5000);
+      else{
+        const big=Math.max(...n),small=Math.min(...n.filter(x=>x>0));
+        if(n.length>=2&&big/small>3.2&&big/small<5.5){energy_kj=energy_kj??big;energy_kcal=energy_kcal??small;}
+        else if(isCalLabel)energy_kcal=energy_kcal??pickVal(n,struct,2000);
+        else{const best=pickVal(n,struct,5000);if(best>400)energy_kj=energy_kj??best;else energy_kcal=energy_kcal??best;}
+      }
+    }
+    if(energy_kcal||energy_kj)break;
   }
-  return best || 'fallback';
+  if(!energy_kcal&&energy_kj)energy_kcal=+(energy_kj/4.184).toFixed(1);
+  if(!energy_kj&&energy_kcal)energy_kj=+(energy_kcal*4.184).toFixed(1);
+  const fat_g=get([/total\s*fat\b/i,/^fat\b/im,/\bfat[s]?\s*\(g\)/i,/\bfat[s]?\b(?!.*acid)(?!.*trans)(?!.*sat)/i]);
+  const saturated_fat_g=get([/saturated\s*fat/i,/\bsat[\s.]?\s*fat/i,/\bsaturates\b/i,/\bsaturated\b/i,/of\s*which[^,\n]{0,30}satura/i]);
+  const carbs_g=get([/total\s*carbohydrate/i,/^carbohydrate[s]?\b/im,/carbohydrate[s]?\s*[\s(,]/i,/\bcarbs?\b/i]);
+  const sugar_g=(()=>{
+    for(const re of[/total\s*sugar/i,/\bsugars?\b(?!\s*alcohol)/i,/of\s*which[^,\n]{0,20}sugar/i]){
+      const hits=matchLines(lines,re).filter(h=>/added/i.test(h.line)===false);
+      for(const hit of hits){const n=nums(hit.line);if(n.length){const v=pickVal(n,struct,200);if(v!==null)return v;}else{const n2=nums(hit.next);if(n2.length)return n2[0];}}
+    }
+    return null;
+  })();
+  // Fibre: max 30g — picks FIRST value ≤30 (fibre appears before salt on merged lines)
+  const fibre_g=(()=>{
+    for(const re of[/dietary\s*fi[b]?[re]+/i,/\bfi[b]?[re]+[s]?\b/i]){
+      const hits=matchLines(lines,re);
+      for(const hit of hits){
+        const n=nums(hit.line).filter(v=>v<=30);
+        if(n.length)return n[0];
+        const n2=nums(hit.next).filter(v=>v<=30);
+        if(n2.length)return n2[0];
+      }
+    }
+    return null;
+  })();
+  const protein_g=get([/\bprotein[s]?\b/i],100);
+  // Sodium: max 5000mg
+  let sodium_mg=get([/\bsodium\b/i],5000);
+  if(sodium_mg!==null&&sodium_mg>0&&sodium_mg<5)sodium_mg=+(sodium_mg*1000).toFixed(1);
+  // Salt fallback: max 10g — picks LAST value ≤10 (salt appears after fibre on merged lines)
+  if(sodium_mg===null){
+    for(const re of[/\bsalt\b/i]){
+      const hits=matchLines(lines,re);
+      for(const hit of hits){
+        const n=nums(hit.line).filter(v=>v<=10);
+        if(n.length){sodium_mg=+(n[n.length-1]/2.5*1000).toFixed(1);break;}
+        const n2=nums(hit.next).filter(v=>v<=10);
+        if(n2.length){sodium_mg=+(n2[n2.length-1]/2.5*1000).toFixed(1);break;}
+      }
+      if(sodium_mg!==null)break;
+    }
+  }
+  let serving_size_g=null;
+  // Serving size detection — covers: "Serving size 67g", "per 67g serve", "(30g)", "per 20g serving"
+  // Also scans first 5 lines for header-embedded serving sizes (e.g. dark label with split header)
+  const SERVING_PATTERNS=[
+    /serving\s*size\s*[:\-]?\s*(\d+(?:\.\d+)?)\s*g/i,
+    /per\s*(\d+(?:\.\d+)?)\s*g\s*serv/i,
+    /\bserv(?:ing|e)?\s+(\d+(?:\.\d+)?)\s*g\b/i,
+    /\((\d+(?:\.\d+)?)\s*g\s*\)/i,
+  ];
+  function extractServingG(str){
+    for(const re of SERVING_PATTERNS){const m=str.match(re);if(m)return parseFloat(m[1]);}
+    return null;
+  }
+  // First try: standard serving size line
+  const sHit=matchLines(lines,/serving\s*size|per\s*serving|serving\s*per|\bserve\b|per\s*\d+\s*g\s*serv/i)[0];
+  if(sHit){const combined=sHit.line+' '+sHit.next;serving_size_g=extractServingG(combined);}
+  // Second try: scan first 5 lines for header-embedded serving size (e.g. "per 67g serve" in title row)
+  if(!serving_size_g){
+    for(let i=0;i<Math.min(5,lines.length);i++){
+      const v=extractServingG(lines[i]);
+      if(v&&v>=5&&v<500){serving_size_g=v;break;}
+    }
+  }
+  let scale=1;
+  if(!struct&&serving_size_g&&serving_size_g>0&&serving_size_g<95&&energy_kcal!==null){
+    const exp100=energy_kcal*(100/serving_size_g);
+    if(exp100>=50&&exp100<=1500)scale=100/serving_size_g;
+  }
+  const sc=v=>v!==null?+(v*scale).toFixed(1):null;
+  return{energy_kcal:sc(energy_kcal),energy_kj:sc(energy_kj),fat_g:sc(fat_g),saturated_fat_g:sc(saturated_fat_g),carbs_g:sc(carbs_g),sugar_g:sc(sugar_g),fibre_g:sc(fibre_g),protein_g:sc(protein_g),sodium_mg:sc(sodium_mg),serving_size_g};
+}
+function confScore(n){
+  const keys=['energy_kcal','fat_g','saturated_fat_g','sugar_g','protein_g','sodium_mg'];
+  return{found:keys.filter(k=>n[k]!==null).length,total:keys.length};
 }
 
-// ── UI ──────────────────────────────────────────────────────────────
-function veToggle() {
-  veOpen = !veOpen;
-  document.getElementById('veBubble').classList.toggle('open', veOpen);
-  document.getElementById('veWindow').classList.toggle('open', veOpen);
-  if (veOpen && !veStarted) {
-    veStarted = true;
-    const returning = localStorage.getItem('ve_visited');
-    localStorage.setItem('ve_visited', '1');
+// ═══════════════════════════════════════════════════════════════════
+//  NUTRI-SCORE v2
+// ═══════════════════════════════════════════════════════════════════
+const scoreEnergy =kj =>[335,670,1005,1340,1675,2010,2345,2680,3015,3350].filter(t=>kj>t).length;
+const scoreSatFat =g  =>[1,2,3,4,5,6,7,8,9,10].filter(t=>g>t).length;
+const scoreSugar  =g  =>[4.5,9,13.5,18,22.5,27,31,36,40,45].filter(t=>g>t).length;
+const scoreSodium =mg =>[90,180,270,360,450,540,630,720,810,900].filter(t=>mg>t).length;
+const scoreFibre  =g  =>!g?0:[.9,1.9,2.8,3.7,4.7].filter(t=>g>t).length;
+const scoreProtein=g  =>!g?0:[1.6,3.2,4.8,6.4,8].filter(t=>g>t).length;
+const scoreFVN    =p  =>!p||p<=40?0:p<=60?1:p<=80?2:5;
+const gradeOf     =s  =>s<=-1?'A':s<=2?'B':s<=10?'C':s<=18?'D':'E';
+function calcScore(n,fvp=0){
+  const kj=n.energy_kj||(n.energy_kcal?n.energy_kcal*4.184:null);
+  const eP=kj?scoreEnergy(kj):5,sP=n.saturated_fat_g?scoreSatFat(n.saturated_fat_g):5;
+  const suP=n.sugar_g?scoreSugar(n.sugar_g):5,naP=n.sodium_mg?scoreSodium(n.sodium_mg):5;
+  const N=eP+sP+suP+naP;
+  const fP=scoreFibre(n.fibre_g),prP=scoreProtein(n.protein_g),fvP=scoreFVN(fvp);
+  const P=fP+prP+fvP;
+  return{negative_points:{energy:eP,sat_fat:sP,sugar:suP,sodium:naP,total:N},positive_points:{fibre:fP,protein:prP,fruits_veg:fvP,total:P},final_score:N-P,grade:gradeOf(N-P)};
+}
+function genVerdict(n,sc){
+  const{grade,negative_points:neg,positive_points:pos}=sc;
+  const desc={A:'Excellent nutritional quality.',B:'Good nutritional quality.',C:'Average nutritional quality.',D:'Below average nutritional quality.',E:'Poor nutritional quality.'};
+  let v=desc[grade]+' ';const concerns=[],strengths=[];
+  if(neg.sugar>=6)   concerns.push(`High in sugar (${n.sugar_g??'?'}g per 100g)`);
+  if(neg.sat_fat>=6) concerns.push(`High in saturated fat (${n.saturated_fat_g??'?'}g per 100g)`);
+  if(neg.sodium>=6)  concerns.push(`High in sodium (${n.sodium_mg??'?'}mg per 100g)`);
+  if(neg.energy>=7)  concerns.push(`High energy density (${n.energy_kcal??'?'} kcal per 100g)`);
+  if(pos.protein>=3) strengths.push(`Good source of protein (${n.protein_g??'?'}g per 100g)`);
+  if(pos.fibre>=3)   strengths.push(`Good source of fibre (${n.fibre_g??'?'}g per 100g)`);
+  if(concerns.length)v+='Watch out for '+concerns.slice(0,2).join(' and ').toLowerCase()+'.';
+  else v+='Balanced nutritional profile overall.';
+  if(strengths.length)v+=' Positives: '+strengths.slice(0,2).join(' and ').toLowerCase()+'.';
+  return{verdict:v,strengths,concerns};
+}
+
+// ═══════════════════════════════════════════════════════════════════
+//  UI HELPERS
+// ═══════════════════════════════════════════════════════════════════
+function setProgress(pct,text,sub){
+  document.getElementById('prog-fill').style.width=pct+'%';
+  if(text)document.getElementById('proc-text').textContent=text;
+  if(sub!==undefined)document.getElementById('proc-sub').textContent=sub;
+}
+function hideAll(){['result-card','error-card','review-card','rescan-btn'].forEach(id=>document.getElementById(id).classList.remove('active'));}
+function showError(msg){document.getElementById('error-msg').textContent=msg;document.getElementById('error-card').classList.add('active');document.getElementById('rescan-btn').classList.add('active');}
+
+// ═══════════════════════════════════════════════════════════════════
+//  REVIEW CARD  v3
+//  Column 1 (per serving) — editable, raw input from pack
+//  Column 2 (per 100g)    — read only, always = col1 × 100 / portionG
+//  Portion size field     — editable, triggers col2 recalc
+// ═══════════════════════════════════════════════════════════════════
+
+const FIELDS=[
+  {key:'energy_kcal', label:'Energy',        unit:'kcal'},
+  {key:'fat_g',       label:'Total Fat',      unit:'g'},
+  {key:'saturated_fat_g',label:'Saturated Fat',unit:'g'},
+  {key:'carbs_g',     label:'Carbohydrates',  unit:'g'},
+  {key:'sugar_g',     label:'Total Sugar',    unit:'g'},
+  {key:'fibre_g',     label:'Dietary Fibre',  unit:'g'},
+  {key:'protein_g',   label:'Protein',        unit:'g'},
+  {key:'sodium_mg',   label:'Sodium',         unit:'mg'},
+];
+const SCORE_KEYS=new Set(['energy_kcal','saturated_fat_g','sugar_g','sodium_mg','fibre_g','protein_g']);
+
+let _portionG = 100;
+
+// ── Single recalc function — reads all serving inputs, writes all 100g outputs ──
+function recalc100g(){
+  const p = _portionG;
+  if(!p||p<=0) return;
+  const factor = 100 / p;
+  for(const f of FIELDS){
+    const servEl = document.getElementById('fs-'+f.key);
+    const per100El = document.getElementById('f-'+f.key);
+    if(!servEl||!per100El) continue;
+    const v = parseFloat(servEl.value);
+    per100El.value = (!isNaN(v) && servEl.value!=='') ? +(v * factor).toFixed(f.unit==='mg'?1:1) : '';
+  }
+}
+
+// ── Portion size change ───────────────────────────────────────────
+function onPortionChange(){
+  const el = document.getElementById('portion-size');
+  const v = parseFloat(el.value);
+  if(!v||v<=0||v>500) return;
+  _portionG = v;
+  // Update column header
+  const head = document.getElementById('col-head-serving');
+  if(head) head.textContent = `Per ${_portionG}g`;
+  const note = document.getElementById('portion-same-note');
+  if(note) note.textContent = _portionG===100 ? '= 100g' : '';
+  // Recalc 100g column
+  recalc100g();
+}
+
+// ── Any serving column edit triggers 100g recalc ──────────────────
+function onServingInput(){
+  recalc100g();
+}
+
+// ── Build review form ─────────────────────────────────────────────
+function showReviewCard(nutrition){
+  _portionG = nutrition.serving_size_g || 100;
+
+  // OCR confidence badge
+  const cf = confScore(nutrition);
+  const pct = Math.round(cf.found/cf.total*100);
+  const badge = document.getElementById('ocr-conf');
+  badge.textContent = `${pct}% OCR`;
+  badge.className = 'ocr-conf '+(pct>=80?'conf-hi':pct>=50?'conf-md':'conf-lo');
+
+  // Portion size field
+  const portionEl = document.getElementById('portion-size');
+  portionEl.value = _portionG;
+  const head = document.getElementById('col-head-serving');
+  if(head) head.textContent = `Per ${_portionG}g`;
+  const note = document.getElementById('portion-same-note');
+  if(note) note.textContent = _portionG===100 ? '= 100g' : '';
+
+  // Missing fields note
+  const missingLabels=[];
+  if(nutrition.energy_kcal===null) missingLabels.push('Energy');
+  if(nutrition.saturated_fat_g===null) missingLabels.push('Saturated Fat');
+  if(nutrition.sugar_g===null) missingLabels.push('Total Sugar');
+  if(nutrition.sodium_mg===null) missingLabels.push('Sodium');
+  if(nutrition.fibre_g===null) missingLabels.push('Dietary Fibre');
+  if(nutrition.protein_g===null) missingLabels.push('Protein');
+  document.getElementById('review-note').textContent = missingLabels.length
+    ? `⚠ Not found: ${missingLabels.join(', ')}. Enter from your pack.`
+    : '✓ All key fields extracted. Verify before calculating.';
+
+  // Build rows — serving column is editable, 100g column is readonly
+  const cont = document.getElementById('review-fields');
+  const factor = 100 / _portionG;
+
+  function servingVal(v100){
+    // Convert 100g value back to per-serving for display in col1
+    if(v100===null||v100===undefined) return '';
+    return +(v100 / factor).toFixed(v100>10?1:2);
+  }
+  function per100Val(v100){
+    if(v100===null||v100===undefined) return '';
+    return v100;
+  }
+
+  let html = '';
+  for(const f of FIELDS){
+    const v100 = nutrition[f.key];
+    const miss = v100===null||v100===undefined;
+    const dot = `<span class="f-dot ${miss?'f-miss':'f-ok'}"></span>`;
+    html += `
+    <div class="field-row-2col">
+      <div class="field-name-cell">${dot}${f.label}</div>
+      <div class="field-cell">
+        <input class="field-input-2${miss?' f-missing':''}" type="number"
+          id="fs-${f.key}"
+          value="${servingVal(v100)}"
+          placeholder="—" step="any" min="0" inputmode="decimal"
+          oninput="onServingInput()">
+        <span class="field-unit-sm">${f.unit}</span>
+      </div>
+      <div class="field-cell">
+        <input class="field-input-2 f-readonly" type="number"
+          id="f-${f.key}"
+          value="${per100Val(v100)}"
+          placeholder="—" readonly tabindex="-1">
+        <span class="field-unit-sm">${f.unit}</span>
+      </div>
+    </div>`;
+  }
+  cont.innerHTML = html;
+
+  // Analytics
+  _reviewNutrition = nutrition;
+  ph('review_shown',{fields_found:cf.found,fields_missing:cf.total-cf.found,ocr_pct:pct,portion_g:_portionG});
+
+  document.getElementById('review-card').classList.add('active');
+  document.getElementById('review-card').scrollIntoView({behavior:'smooth',block:'start'});
+}
+
+// ── Read serving column → scale to 100g → score ──────────────────
+function calculateFromForm(){
+  const factor = 100 / _portionG;
+  const n = {};
+  for(const f of FIELDS){
+    const servEl = document.getElementById('fs-'+f.key);
+    const v = servEl && servEl.value!=='' ? parseFloat(servEl.value) : null;
+    n[f.key] = (v!==null&&!isNaN(v)) ? +(v*factor).toFixed(1) : null;
+  }
+  if(n.energy_kcal!==null) n.energy_kj = +(n.energy_kcal*4.184).toFixed(1);
+  const sc = calcScore(n);
+  const{verdict,strengths,concerns} = genVerdict(n,sc);
+  showResult({per100g:n, portionG:_portionG, ...sc, strengths, concerns, verdict});
+}
+
+// ═══════════════════════════════════════════════════════════════════
+//  ANALYTICS HELPERS
+// ═══════════════════════════════════════════════════════════════════
+function ph(event, props){
+  try{ window.posthog && posthog.capture(event, props||{}); }catch(e){}
+}
+// Track which fields user manually edits in the review form
+let _reviewNutrition=null; // nutrition as parsed by OCR
+function trackFieldEdit(fieldKey, newVal, wasEmpty){
+  ph('field_corrected',{
+    field: fieldKey,
+    was_empty: wasEmpty,
+    ocr_score: _reviewNutrition ? confScore(_reviewNutrition).found : null
+  });
+}
+
+// ═══════════════════════════════════════════════════════════════════
+//  MAIN FLOW
+// ═══════════════════════════════════════════════════════════════════
+async function analyseImage(){
+  if(!imgDataUrl)return;
+  document.getElementById('analyse-btn').style.display='none';
+  document.getElementById('scanner-card').style.display='none';
+  document.getElementById('compress-notice').classList.remove('active');
+  document.getElementById('processing-card').classList.add('active');
+  hideAll();
+  setProgress(5,'Loading OCR engine…','First use downloads ~3MB');
+  try{await loadTesseract();}catch(e){document.getElementById('processing-card').classList.remove('active');showError('Could not load OCR engine. Please check your internet connection.');resetApp();return;}
+  try{
+    setProgress(10,'Finding nutrition table…','Detecting label region');
+    const ocrText=await runOcr(imgDataUrl);
+    ph('ocr_complete');
+    setProgress(70,'Parsing values…','Extracting nutrition data');
+    const nutrition=parseNutrition(ocrText);
+    setProgress(100,'Done!','');
+    setTimeout(()=>{document.getElementById('processing-card').classList.remove('active');showReviewCard(nutrition);},300);
+  }catch(e){
+    console.error(e);
+    document.getElementById('processing-card').classList.remove('active');
+    showError('OCR failed. Try a clearer, well-lit photo with the nutrition table filling the frame.');
+  }
+}
+function showResult(r){
+  ph('grade_calculated',{grade:r.grade,final_score:r.final_score,negative_points:r.negative_points.total,positive_points:r.positive_points.total,portion_g:r.portionG});
+  const p=r.per100g;
+  const portionG=r.portionG||100;
+  const isSame=portionG===100;
+
+  document.getElementById('result-name').textContent='Analysed Product';
+  const badge=document.getElementById('grade-badge');badge.textContent=r.grade;badge.className='grade-badge grade-'+r.grade;
+  ['A','B','C','D','E'].forEach(g=>document.getElementById('pill-'+g).classList.toggle('active',g===r.grade));
+
+  // Section title
+  document.getElementById('result-section-title').textContent = isSame
+    ? 'Nutritional Values (per 100g)'
+    : `Nutritional Values`;
+
+  const fmt=(v,dec,u)=>v!==null&&v!==undefined?v.toFixed(dec)+u:'—';
+  const fmtS=(v,dec,u)=>v!==null&&v!==undefined?+(v*portionG/100).toFixed(dec)+u:'—';
+
+  const nutrients=[
+    {name:'Energy',        v100:p.energy_kcal, dec:0, u:' kcal', pct:Math.min(100,((p.energy_kcal||0)/600)*100),  bad:true},
+    {name:'Total Fat',     v100:p.fat_g,        dec:1, u:'g',     pct:Math.min(100,((p.fat_g||0)/35)*100),         bad:true},
+    {name:'Saturated Fat', v100:p.saturated_fat_g,dec:1,u:'g',   pct:Math.min(100,((p.saturated_fat_g||0)/15)*100),bad:true},
+    {name:'Sugar',         v100:p.sugar_g,      dec:1, u:'g',     pct:Math.min(100,((p.sugar_g||0)/50)*100),       bad:true},
+    {name:'Fibre',         v100:p.fibre_g,      dec:1, u:'g',     pct:Math.min(100,((p.fibre_g||0)/10)*100),       bad:false},
+    {name:'Protein',       v100:p.protein_g,    dec:1, u:'g',     pct:Math.min(100,((p.protein_g||0)/30)*100),     bad:false},
+    {name:'Sodium',        v100:p.sodium_mg,    dec:0, u:'mg',    pct:Math.min(100,((p.sodium_mg||0)/1000)*100),   bad:true},
+  ];
+
+  if(isSame){
+    // Single column — same as before
+    document.getElementById('nutrient-grid').innerHTML=
+      `<div class="nutrient-table-head">
+        <div class="nt-col-head">Nutrient</div>
+        <div></div>
+        <div class="nt-col-head right" colspan="2">Per 100g</div>
+      </div>`+
+      nutrients.map(n=>`
+      <div class="nutrient-row-2">
+        <div class="nutrient-name">${n.name}</div>
+        <div class="nutrient-bar-wrap"><div class="nutrient-bar-fill ${n.bad?'fill-bad':'fill-good'}" style="width:${n.pct}%"></div></div>
+        <div class="nutrient-val" style="grid-column:3/5">${fmt(n.v100,n.dec,n.u)}</div>
+      </div>`).join('');
+  } else {
+    // Two columns — per serving | per 100g
+    document.getElementById('nutrient-grid').innerHTML=
+      `<div class="nutrient-table-head">
+        <div class="nt-col-head">Nutrient</div>
+        <div></div>
+        <div class="nt-col-head right">Per ${portionG}g</div>
+        <div class="nt-col-head right">Per 100g</div>
+      </div>`+
+      nutrients.map(n=>`
+      <div class="nutrient-row-2">
+        <div class="nutrient-name">${n.name}</div>
+        <div class="nutrient-bar-wrap"><div class="nutrient-bar-fill ${n.bad?'fill-bad':'fill-good'}" style="width:${n.pct}%"></div></div>
+        <div class="nutrient-val muted">${fmtS(n.v100,n.dec,n.u)}</div>
+        <div class="nutrient-val">${fmt(n.v100,n.dec,n.u)}</div>
+      </div>`).join('');
+  }
+
+  document.getElementById('bad-pts').textContent=r.negative_points.total;
+  document.getElementById('good-pts').textContent=r.positive_points.total;
+  document.getElementById('final-score').textContent=r.final_score+' → Grade '+r.grade;
+  document.getElementById('verdict-box').textContent=r.verdict;
+  const tips=[...(r.strengths||[]).map(s=>({text:s,good:true})),...(r.concerns||[]).map(c=>({text:c,good:false}))];
+  document.getElementById('tips-list').innerHTML=tips.map(t=>`<div class="tip"><div class="tip-dot ${t.good?'tip-green':'tip-orange'}"></div><span>${t.text}</span></div>`).join('');
+  document.getElementById('result-card').classList.add('active');
+  document.getElementById('rescan-btn').classList.add('active');
+  document.getElementById('result-card').scrollIntoView({behavior:'smooth',block:'start'});
+}
+function resetApp(){
+  imgDataUrl=null;
+  document.getElementById('preview-img').src='';
+  document.getElementById('scanner-area').classList.remove('has-image');
+  document.getElementById('analyse-btn').disabled=true;
+  document.getElementById('analyse-btn').style.display='';
+  document.getElementById('scanner-card').style.display='';
+  document.getElementById('processing-card').classList.remove('active');
+  document.getElementById('compress-notice').classList.remove('active');
+  document.getElementById('crop-modal').classList.remove('active');
+  hideAll();window.scrollTo({top:0,behavior:'smooth'});
+}
+
+
+/* ── Crop Tool ── */
+let _cropBox={x:10,y:10,w:80,h:80};
+let _cropDragging=null,_cropDragStart=null,_cropImgNatural={w:0,h:0};
+function showCropTool(dataUrl){
+  const modal=document.getElementById('crop-modal');
+  const img=document.getElementById('crop-img');
+  img.src=dataUrl;
+  img.onload=function(){
+    _cropImgNatural={w:img.naturalWidth,h:img.naturalHeight};
+    _cropBox={x:10,y:10,w:80,h:80};
+    renderCropBox();modal.classList.add('active');
+    modal.scrollIntoView({behavior:'smooth',block:'center'});
+    initCropDrag();
+  };
+}
+function renderCropBox(){
+  const box=document.getElementById('crop-box');
+  box.style.left=_cropBox.x+'%';box.style.top=_cropBox.y+'%';
+  box.style.width=_cropBox.w+'%';box.style.height=_cropBox.h+'%';
+}
+function initCropDrag(){
+  const wrap=document.getElementById('crop-canvas-wrap');
+  const box=document.getElementById('crop-box');
+  function getRelPos(e,el){
+    const r=el.getBoundingClientRect();
+    const cx=e.touches?e.touches[0].clientX:e.clientX;
+    const cy=e.touches?e.touches[0].clientY:e.clientY;
+    return{x:(cx-r.left)/r.width*100,y:(cy-r.top)/r.height*100};
+  }
+  document.querySelectorAll('.crop-handle').forEach(h=>{
+    const start=e=>{e.preventDefault();e.stopPropagation();_cropDragging=h.dataset.handle;const p=getRelPos(e,wrap);_cropDragStart={...p,box:{..._cropBox}};};
+    h.addEventListener('mousedown',start);h.addEventListener('touchstart',start,{passive:false});
+  });
+  const startMove=e=>{if(e.target.classList.contains('crop-handle'))return;e.preventDefault();_cropDragging='move';const p=getRelPos(e,wrap);_cropDragStart={...p,box:{..._cropBox}};};
+  box.addEventListener('mousedown',startMove);box.addEventListener('touchstart',startMove,{passive:false});
+  const onMove=e=>{
+    if(!_cropDragging)return;e.preventDefault();
+    const p=getRelPos(e,wrap);const dx=p.x-_cropDragStart.x,dy=p.y-_cropDragStart.y;
+    const b={..._cropDragStart.box};const MIN=8;
+    if(_cropDragging==='move'){b.x=Math.max(0,Math.min(100-b.w,b.x+dx));b.y=Math.max(0,Math.min(100-b.h,b.y+dy));}
+    else{
+      if(_cropDragging.includes('r'))b.w=Math.max(MIN,Math.min(100-b.x,b.w+dx));
+      if(_cropDragging.includes('b'))b.h=Math.max(MIN,Math.min(100-b.y,b.h+dy));
+      if(_cropDragging.includes('l')){const nw=Math.max(MIN,b.w-dx);b.x=b.x+b.w-nw;b.w=nw;}
+      if(_cropDragging.includes('t')){const nh=Math.max(MIN,b.h-dy);b.y=b.y+b.h-nh;b.h=nh;}
+    }
+    _cropBox=b;renderCropBox();
+  };
+  const onEnd=()=>{_cropDragging=null;_cropDragStart=null;};
+  document.addEventListener('mousemove',onMove);document.addEventListener('touchmove',onMove,{passive:false});
+  document.addEventListener('mouseup',onEnd);document.addEventListener('touchend',onEnd);
+}
+function cropSkip(){
+  document.getElementById('crop-modal').classList.remove('active');
+  document.getElementById('analyse-btn').disabled=false;
+  document.getElementById('analyse-btn').style.display='';
+}
+function cropConfirm(){
+  const img=document.getElementById('crop-img');
+  const canvas=document.getElementById('crop-canvas');
+  const ctx=canvas.getContext('2d');
+  const nw=_cropImgNatural.w,nh=_cropImgNatural.h;
+  const sx=_cropBox.x/100*nw,sy=_cropBox.y/100*nh;
+  const sw=_cropBox.w/100*nw,sh=_cropBox.h/100*nh;
+  canvas.width=sw;canvas.height=sh;
+  ctx.drawImage(img,sx,sy,sw,sh,0,0,sw,sh);
+  imgDataUrl=canvas.toDataURL('image/jpeg',0.92);
+  document.getElementById('preview-img').src=imgDataUrl;
+  document.getElementById('crop-modal').classList.remove('active');
+  document.getElementById('analyse-btn').disabled=false;
+  document.getElementById('analyse-btn').style.display='';
+}
+
+
+/* ── Splash Modal ── */
+function enterApp(){
+  document.getElementById('splash-modal').classList.add('hidden');
+  sessionStorage.setItem('smp_seen','1');
+}
+if(sessionStorage.getItem('smp_seen')){
+  document.getElementById('splash-modal').classList.add('hidden');
+}
+
+
+
+/* ── PNG Report Generator ── */
+async function downloadPNG(){
+  const btn = document.querySelector('.download-btn');
+  const origText = btn.innerHTML;
+  btn.innerHTML = '⏳ Generating…';
+  btn.disabled = true;
+
+  try {
+    const SCALE = 2; // retina
+    const W = 800, PAD = 40;
+    let y = 0;
+
+    // ── Collect data from DOM ──
+    const grade      = document.getElementById('grade-badge').textContent.trim();
+    const badPts     = document.getElementById('bad-pts').textContent.trim();
+    const goodPts    = document.getElementById('good-pts').textContent.trim();
+    const finalScore = document.getElementById('final-score').textContent.trim();
+    const verdict    = document.getElementById('verdict-box').textContent.trim();
+    const sectionTitle = document.getElementById('result-section-title').textContent.trim();
+
+    // Nutrient rows from grid
+    const nutrientRows = [];
+    document.querySelectorAll('#nutrient-grid .nutrient-row').forEach(row => {
+      const name = row.querySelector('.nutrient-name')?.textContent.trim() || '';
+      const val  = row.querySelector('.nutrient-val')?.textContent.trim() || '';
+      nutrientRows.push({name, val});
+    });
+
+    // Grade colours
+    const GRADE_COLORS = {A:'#038141',B:'#85BB2F',C:'#FECB02',D:'#EE8100',E:'#E63E11'};
+    const gradeColor = GRADE_COLORS[grade] || '#7A96B0';
+
+    // ── Calculate total canvas height ──
+    const IMG_H    = imgDataUrl ? 220 : 0;
+    const HDR_H    = 80;
+    const GRADE_H  = 160;
+    const NUTR_H   = 40 + nutrientRows.length * 36;
+    const SCORE_H  = 140;
+    const VERDICT_H= verdict ? 80 + Math.ceil(verdict.length / 80) * 22 : 0;
+    const FOOTER_H = 60;
+    const TOTAL_H  = HDR_H + IMG_H + GRADE_H + NUTR_H + SCORE_H + VERDICT_H + FOOTER_H + PAD*2;
+
+    const canvas = document.createElement('canvas');
+    canvas.width  = W * SCALE;
+    canvas.height = TOTAL_H * SCALE;
+    const ctx = canvas.getContext('2d');
+    ctx.scale(SCALE, SCALE);
+
+    // ── Background ──
+    ctx.fillStyle = '#0B1520';
+    ctx.fillRect(0, 0, W, TOTAL_H);
+
+    // ── Helper functions ──
+    function roundRect(x, y, w, h, r, fill, stroke) {
+      ctx.beginPath();
+      ctx.moveTo(x+r, y);
+      ctx.lineTo(x+w-r, y); ctx.quadraticCurveTo(x+w, y, x+w, y+r);
+      ctx.lineTo(x+w, y+h-r); ctx.quadraticCurveTo(x+w, y+h, x+w-r, y+h);
+      ctx.lineTo(x+r, y+h); ctx.quadraticCurveTo(x, y+h, x, y+h-r);
+      ctx.lineTo(x, y+r); ctx.quadraticCurveTo(x, y, x+r, y);
+      ctx.closePath();
+      if(fill){ ctx.fillStyle=fill; ctx.fill(); }
+      if(stroke){ ctx.strokeStyle=stroke; ctx.lineWidth=1; ctx.stroke(); }
+    }
+
+    function text(str, x, yy, font, color, align='left') {
+      ctx.font = font;
+      ctx.fillStyle = color;
+      ctx.textAlign = align;
+      ctx.fillText(str, x, yy);
+      ctx.textAlign = 'left';
+    }
+
+    function wrapText(str, x, yy, maxW, lineH, font, color) {
+      ctx.font = font;
+      ctx.fillStyle = color;
+      const words = str.split(' ');
+      let line = '';
+      for(const word of words){
+        const test = line ? line+' '+word : word;
+        if(ctx.measureText(test).width > maxW && line){
+          ctx.fillText(line, x, yy); yy += lineH; line = word;
+        } else { line = test; }
+      }
+      if(line) ctx.fillText(line, x, yy);
+      return yy + lineH;
+    }
+
+    y = PAD;
+
+    // ── HEADER ──
+    text('ScoreMyPack', PAD, y+28, 'bold 22px Syne,sans-serif', '#E2EBF5');
+    text('Nutrition Report', PAD, y+50, '300 14px sans-serif', '#7A96B0');
+    text(new Date().toLocaleDateString('en-IN',{day:'numeric',month:'short',year:'numeric'}),
+         W-PAD, y+28, '12px sans-serif', '#7A96B0', 'right');
+    // accent line
+    ctx.fillStyle = '#1464B4';
+    ctx.fillRect(W-PAD-60, y+40, 60, 2);
+    y += HDR_H;
+
+    // ── SCANNED IMAGE ──
+    if(imgDataUrl){
+      await new Promise(resolve=>{
+        const img = new Image();
+        img.onload = ()=>{
+          const iw=img.naturalWidth, ih=img.naturalHeight;
+          const scale = Math.min((W-PAD*2)/iw, (IMG_H-20)/ih);
+          const dw=iw*scale, dh=ih*scale;
+          const dx=PAD+(W-PAD*2-dw)/2;
+          roundRect(PAD, y, W-PAD*2, IMG_H-10, 12, '#111E2E', '#1E3450');
+          ctx.drawImage(img, dx, y+(IMG_H-10-dh)/2, dw, dh);
+          resolve();
+        };
+        img.src = imgDataUrl;
+      });
+      y += IMG_H;
+    }
+
+    // ── GRADE SECTION ──
+    roundRect(PAD, y, W-PAD*2, GRADE_H-20, 16, '#111E2E', '#1E3450');
+
+    // Big grade letter
+    const gx = PAD+32, gy = y+20;
+    roundRect(gx, gy, 90, 90, 16, gradeColor+'22', gradeColor);
+    ctx.font = 'bold 56px Syne,sans-serif';
+    ctx.fillStyle = gradeColor;
+    ctx.textAlign = 'center';
+    ctx.fillText(grade, gx+45, gy+65);
+    ctx.textAlign = 'left';
+
+    // Grade label + description
+    const GRADE_LABELS = {A:'Excellent',B:'Good',C:'Average',D:'Below Average',E:'Poor'};
+    text('Nutri-Score v2', gx+110, gy+28, '700 11px sans-serif', '#7A96B0');
+    text('Grade '+grade+' — '+( GRADE_LABELS[grade]||''), gx+110, gy+56, 'bold 20px Syne,sans-serif', '#E2EBF5');
+    text('Nutritional quality assessment', gx+110, gy+78, '300 13px sans-serif', '#7A96B0');
+
+    // Grade pills A-E
+    const pills=['A','B','C','D','E'];
+    const pillW=54, pillGap=8;
+    const totalPillW = pills.length*pillW + (pills.length-1)*pillGap;
+    let px = PAD + (W-PAD*2-totalPillW)/2;
+    const py = gy+100;
+    pills.forEach(g=>{
+      const isActive = g===grade;
+      const col = GRADE_COLORS[g];
+      roundRect(px, py, pillW, 28, 8, isActive?col:col+'22', col);
+      ctx.font = 'bold 14px Syne,sans-serif';
+      ctx.fillStyle = isActive?'#fff':col;
+      ctx.textAlign='center';
+      ctx.fillText(g, px+pillW/2, py+19);
+      ctx.textAlign='left';
+      px += pillW+pillGap;
+    });
+    y += GRADE_H;
+
+    // ── NUTRIENTS ──
+    y += 8;
+    text(sectionTitle, PAD, y+18, '700 13px sans-serif', '#7A96B0');
+    y += 30;
+
+    nutrientRows.forEach((row, i)=>{
+      const rowY = y + i*36;
+      if(i%2===0) roundRect(PAD, rowY-4, W-PAD*2, 32, 6, '#111E2E', 'transparent');
+      text(row.name, PAD+12, rowY+16, '300 13px sans-serif', '#E2EBF5');
+      text(row.val,  W-PAD-12, rowY+16, '600 13px sans-serif', '#E2EBF5', 'right');
+    });
+    y += nutrientRows.length*36 + 16;
+
+    // ── SCORE BREAKDOWN ──
+    roundRect(PAD, y, W-PAD*2, SCORE_H-20, 12, '#111E2E', '#1E3450');
+    text('Score Breakdown', PAD+16, y+24, '700 13px sans-serif', '#7A96B0');
+    ctx.fillStyle='#1E3450'; ctx.fillRect(PAD+16, y+32, W-PAD*2-32, 1);
+
+    text('Negative points (energy, fat, sugar, sodium)', PAD+16, y+58, '300 13px sans-serif', '#7A96B0');
+    text(badPts, W-PAD-16, y+58, '600 14px sans-serif', '#7AB0D0', 'right');
+    text('Positive points (protein, fibre, fruits/veg)', PAD+16, y+82, '300 13px sans-serif', '#7A96B0');
+    text(goodPts, W-PAD-16, y+82, '600 14px sans-serif', '#2E8AE6', 'right');
+    ctx.fillStyle='#1E3450'; ctx.fillRect(PAD+16, y+94, W-PAD*2-32, 1);
+    text('Final Score', PAD+16, y+114, '500 14px sans-serif', '#E2EBF5');
+    text(finalScore, W-PAD-16, y+114, 'bold 16px Syne,sans-serif', gradeColor, 'right');
+    y += SCORE_H;
+
+    // ── VERDICT ──
+    if(verdict){
+      y += 8;
+      roundRect(PAD, y, W-PAD*2, VERDICT_H+16, 12, '#111E2E', '#1464B4');
+      ctx.fillStyle='#1464B4'; ctx.fillRect(PAD, y, 3, VERDICT_H+16);
+      text('Verdict', PAD+16, y+24, '700 13px sans-serif', '#7A96B0');
+      wrapText(verdict, PAD+16, y+46, W-PAD*2-32, 22, '300 13px sans-serif', '#E2EBF5');
+      y += VERDICT_H + 24;
+    }
+
+    // ── FOOTER ──
+    y = TOTAL_H - FOOTER_H;
+    ctx.fillStyle='#1E3450'; ctx.fillRect(0, y, W, 1);
+    text('Generated by ScoreMyPack · Thinking Lab · Nutri-Score v2 Algorithm',
+         W/2, y+28, '300 11px sans-serif', '#7A96B0', 'center');
+    text('This report is for informational purposes only.',
+         W/2, y+46, '300 11px sans-serif', '#7A96B0'+'88', 'center');
+
+    // ── DOWNLOAD ──
+    const dataUrl = canvas.toDataURL('image/png');
+    const filename = 'scoremypack-report-' + new Date().toISOString().slice(0,10) + '.png';
+
+    // Try standard download first
+    try {
+      const link = document.createElement('a');
+      link.download = filename;
+      link.href = dataUrl;
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+    } catch(e) {}
+
+    // Also open in new tab as fallback (works on iOS — user can long-press to save)
     setTimeout(() => {
-      addMsg(returning ? getRand('returning') : getRand('greeting'), 'bot');
-    }, 400);
+      const w = window.open();
+      if(w) {
+        w.document.write('<title>' + filename + '</title>');
+        w.document.write('<style>body{margin:0;background:#000;display:flex;align-items:center;justify-content:center;min-height:100vh}</style>');
+        w.document.write('<img src="' + dataUrl + '" style="max-width:100%;height:auto;">');
+        w.document.write('<p style="position:fixed;bottom:20px;left:0;right:0;text-align:center;color:#fff;font-family:sans-serif;font-size:13px">Long-press the image and tap Save to Photos</p>');
+        w.document.close();
+      }
+    }, 300);
+
+  } catch(e) {
+    console.error('PNG generation failed:', e);
+    alert('Could not generate report. Please try again.');
+  } finally {
+    btn.innerHTML = origText;
+    btn.disabled = false;
   }
-  if (veOpen) document.getElementById('veInput').focus();
 }
 
-function addMsg(text, who) {
-  const el = document.createElement('div');
-  el.className = 've-msg ' + who;
-  el.textContent = text;
-  document.getElementById('veMessages').appendChild(el);
-  scrollBot();
-}
-
-function showTyping() {
-  const el = document.createElement('div');
-  el.className = 've-typing';
-  el.id = 'veTyping';
-  el.innerHTML = '<span></span><span></span><span></span>';
-  document.getElementById('veMessages').appendChild(el);
-  scrollBot();
-  return el;
-}
-
-function scrollBot() {
-  const m = document.getElementById('veMessages');
-  m.scrollTop = m.scrollHeight;
-}
-
-let fallbackCount = 0;
-
-function typeMsg(text, who) {
-  var hasForm = text.indexOf('||FORM||') !== -1;
-  var cleanText = text.replace('||FORM||', '').trim();
-  var el = document.createElement('div');
-  el.className = 've-msg ' + who;
-  el.textContent = '';
-  document.getElementById('veMessages').appendChild(el);
-  scrollBot();
-  var i = 0;
-  var speed = 18;
-  function tick() {
-    if (i < cleanText.length) {
-      el.textContent += cleanText[i++];
-      scrollBot();
-      setTimeout(tick, speed);
-    } else if (hasForm) {
-      var formDiv = document.createElement('div');
-      formDiv.innerHTML = '<div style="margin-top:10px;"><div style="font-size:0.82rem;margin-bottom:8px;color:var(--sf-text);font-weight:600;">Drop your details and Rishabh will get back to you:</div><input id="vfName2" placeholder="Your name" style="width:100%;margin-bottom:6px;padding:7px 10px;border-radius:7px;border:1.5px solid var(--sf-border);background:var(--sf-tag-bg);color:var(--sf-text);font-size:0.82rem;outline:none;font-family:DM Sans,sans-serif;"><input id="vfEmail2" type="email" placeholder="your@email.com" style="width:100%;margin-bottom:6px;padding:7px 10px;border-radius:7px;border:1.5px solid var(--sf-border);background:var(--sf-tag-bg);color:var(--sf-text);font-size:0.82rem;outline:none;font-family:DM Sans,sans-serif;"><input id="vfMsg2" placeholder="Your question or message" style="width:100%;margin-bottom:7px;padding:7px 10px;border-radius:7px;border:1.5px solid var(--sf-border);background:var(--sf-tag-bg);color:var(--sf-text);font-size:0.82rem;outline:none;font-family:DM Sans,sans-serif;"><button onclick="submitInlineForm()" style="background:var(--sf-blue);color:white;border:none;padding:7px 16px;border-radius:7px;font-family:Sora,sans-serif;font-weight:700;font-size:0.8rem;cursor:pointer;width:100%;">Send to Rishabh →</button></div>';
-      el.appendChild(formDiv);
-      scrollBot();
-    }
-  }
-  tick();
-}
-
-function showMiniForm() {
-  const existing = document.getElementById('veMiniForm');
-  if (existing) return;
-  const el = document.createElement('div');
-  el.id = 'veMiniForm';
-  el.className = 've-msg bot';
-  el.style.maxWidth = '100%';
-  el.innerHTML = '<div style="font-size:0.82rem;margin-bottom:10px;color:var(--sf-text);">Leave your details and Rishabh will get back to you directly:</div>' +
-    '<input id="vfName" placeholder="Your name" style="width:100%;margin-bottom:7px;padding:7px 10px;border-radius:7px;border:1.5px solid var(--sf-border);background:var(--sf-tag-bg);color:var(--sf-text);font-size:0.82rem;outline:none;font-family:DM Sans,sans-serif;">' +
-    '<input id="vfMsg" placeholder="Your question or message" style="width:100%;margin-bottom:7px;padding:7px 10px;border-radius:7px;border:1.5px solid var(--sf-border);background:var(--sf-tag-bg);color:var(--sf-text);font-size:0.82rem;outline:none;font-family:DM Sans,sans-serif;">' +
-    '<button onclick="submitMiniForm()" style="background:var(--sf-blue);color:white;border:none;padding:7px 16px;border-radius:7px;font-family:Sora,sans-serif;font-weight:700;font-size:0.8rem;cursor:pointer;width:100%;">Send to Rishabh →</button>';
-  document.getElementById('veMessages').appendChild(el);
-  scrollBot();
-}
-
-function submitMiniForm() {
-  const name = document.getElementById('vfName').value.trim();
-  const msg = document.getElementById('vfMsg').value.trim();
-  if (!name || !msg) { return; }
-  const payload = { name, message: msg, source: 'Virtual Executive Bot', company: '', designation: '', linkedin: '' };
-  fetch('https://script.google.com/macros/s/AKfycbwNtyPDWl2dRPmwKRNRx0tMKQoTx5d-vHt4hRVBNMUWwN7jLrjh-xyH7fxuO8T6aP4/exec', {
-    method: 'POST', mode: 'no-cors',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify(payload)
-  });
-  document.getElementById('veMiniForm').innerHTML = '<div style="text-align:center;padding:8px 0;">✅ Sent! Rishabh will be in touch.</div>';
-  fallbackCount = 0;
-}
-
-function veSend() {
-  const input = document.getElementById('veInput');
-  const text = input.value.trim();
-  if (!text) return;
-  input.value = '';
-  addMsg(text, 'user');
-  const typing = showTyping();
-  const key = match(text);
-  if (key === 'fallback') fallbackCount++;
-  // Thinking delay: 600-900ms feels natural
-  const delay = 600 + Math.random() * 300;
-  setTimeout(() => {
-    typing.remove();
-    typeMsg(getRand(key), 'bot');
-    if (fallbackCount >= 2) {
-      setTimeout(showMiniForm, 800);
-      fallbackCount = 0;
-    }
-  }, delay);
-}
-
-window.veToggle = veToggle;
-window.veSend = veSend;
-window.submitMiniForm = submitMiniForm;
-
-function submitInlineForm() {
-  var n = document.getElementById('vfName2');
-  var e = document.getElementById('vfEmail2');
-  var m = document.getElementById('vfMsg2');
-  if (!n || !m || !n.value.trim() || !m.value.trim()) return;
-  fetch('https://script.google.com/macros/s/AKfycbwNtyPDWl2dRPmwKRNRx0tMKQoTx5d-vHt4hRVBNMUWwN7jLrjh-xyH7fxuO8T6aP4/exec', {
-    method: 'POST', mode: 'no-cors',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ name: n.value.trim(), linkedin: e ? e.value.trim() : '', message: m.value.trim(), source: 'VE Fallback Inline', company: '', designation: '' })
-  });
-  var btn = document.querySelector('[onclick="submitInlineForm()"]');
-  if (btn) btn.closest('div').innerHTML = '<div style="text-align:center;padding:6px 0;">✅ Sent! Rishabh will be in touch.</div>';
-}
-window.submitInlineForm = submitInlineForm;
-
-
-})();
 </script>
-
-
-
-
-
 <script>
-(function() {
-  function getIST() {
-    var now = new Date();
-    var utc = now.getTime() + now.getTimezoneOffset() * 60000;
-    return new Date(utc + 19800000);
-  }
-  function updateClocks() {
-    var ist = getIST();
-    var h = ist.getHours() % 12;
-    var m = ist.getMinutes();
-    var s = ist.getSeconds();
-    var hourDeg   = (h * 30) + (m * 0.5);
-    var minuteDeg = (m * 6) + (s * 0.1);
-    var secDeg    = s * 6;
-    document.querySelectorAll('[id$="-hour"]').forEach(function(el) {
-      el.setAttribute('transform', 'rotate(' + hourDeg + ' 22 28)');
-    });
-    document.querySelectorAll('[id$="-min"]').forEach(function(el) {
-      el.setAttribute('transform', 'rotate(' + minuteDeg + ' 22 28)');
-    });
-    document.querySelectorAll('[id$="-sec"]').forEach(function(el) {
-      el.setAttribute('transform', 'rotate(' + secDeg + ' 22 28)');
-    });
-  }
-  window.updateClocks = updateClocks;
-  updateClocks();
-  setInterval(updateClocks, 1000);
-})();
-</script>
-
-
-
-<script>
-function toggleTheme() {
-  var html = document.documentElement;
-  var isDark = html.getAttribute("data-theme") === "dark";
-  html.setAttribute("data-theme", isDark ? "light" : "dark");
-  var _tb1 = document.getElementById("themeBtn"); if(_tb1) _tb1.textContent = isDark ? "🌙 Dark Mode" : "☀️ Light Mode";
-  localStorage.setItem("theme", isDark ? "light" : "dark");
+if('serviceWorker' in navigator&&location.hostname!=='www.claudeusercontent.com'){
+  window.addEventListener('load',()=>navigator.serviceWorker.register('/sw.js').catch(()=>{}));
 }
-(function() {
-  var saved = localStorage.getItem("theme") || "dark";
-  document.documentElement.setAttribute("data-theme", saved);
-  var btn = document.getElementById("themeBtn");
-  if (btn) btn.textContent = saved === "dark" ? "☀️ Light Mode" : "🌙 Dark Mode"; 
-})();
-function toggleMenu() {
-  var m = document.getElementById('mobileMenuOverlay');
-  if (!m) return;
-  var isOpen = m.style.display === 'flex';
-  m.style.display = isOpen ? 'none' : 'flex';
-}
-function toggleLabMenu() {
-  var m = document.getElementById('mobileLabMenu');
-  if (m) m.style.display = m.style.display === 'block' ? 'none' : 'block';
-}
-function toggleMobileDropdown(el) {
-  if (window.innerWidth <= 768) {
-    var d = el.nextElementSibling;
-    d.classList.toggle("open");
-    if (window.updateClocks) window.updateClocks();
-  }
-}
-(function() {
-  var item = document.getElementById("navThinkingLab");
-  var dropdown = document.getElementById("thinkingLabDropdown");
-  if (!item || !dropdown) return;
-  var timer;
-  item.addEventListener("mouseenter", function() {
-    clearTimeout(timer); dropdown.classList.add("open");
-    if (window.updateClocks) window.updateClocks();
-  });
-  item.addEventListener("mouseleave", function() {
-    timer = setTimeout(function() { dropdown.classList.remove("open"); }, 600);
-  });
-  dropdown.addEventListener("mouseenter", function() { clearTimeout(timer); });
-  dropdown.addEventListener("mouseleave", function() {
-    timer = setTimeout(function() { dropdown.classList.remove("open"); }, 600);
-  });
-})();
-document.addEventListener("DOMContentLoaded", function() {
-  document.querySelectorAll(".nav-center > a, .dropdown a").forEach(function(a) {
-    a.addEventListener("click", function() {
-      var _m=document.getElementById("mobileMenuOverlay"); if(_m) _m.style.display="none";
-    });
-  });
-});
 </script>
 </body>
 </html>
