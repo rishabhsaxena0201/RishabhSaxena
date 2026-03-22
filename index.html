@@ -707,7 +707,7 @@ footer {
         <span class="interest-icon">📱</span>
         <div class="interest-title">Building Apps</div>
         <p class="interest-desc">When something in daily life is needlessly annoying, the fix tends to be an app. The way these get built has changed a lot recently — turns out describing what you want clearly is a skill too.</p>
-        <div class="interest-tag" style="cursor:pointer;" onclick="showModal(event)">In the Making</div>
+        <a href="/in-the-making.html" class="interest-tag" style="text-decoration:none;">In the Making</a>
       </div>
 
     </div>
@@ -733,9 +733,10 @@ footer {
     <h2 class="section-title">In the Making</h2>
     <div class="section-divider" style="margin:0 0 32px;"></div>
     <div style="background:var(--sf-light-bg);border:1px solid var(--sf-border);border-radius:20px;padding:40px;display:flex;align-items:center;gap:40px;flex-wrap:wrap;">
+      <!-- Left: existing content -->
       <div style="flex:1;min-width:260px;">
         <div style="font-family:'Sora',sans-serif;font-size:1.3rem;font-weight:800;color:var(--sf-text);margin-bottom:10px;">Building things that scratch a real itch</div>
-        <p style="color:var(--sf-subtext);font-weight:300;line-height:1.7;margin-bottom:20px;">A few small apps in various stages of being built. The common thread — each one started because something in daily life was needlessly annoying. If you have a problem you'd love to see solved, Rishabh is genuinely interested.</p>
+        <p style="color:var(--sf-subtext);font-weight:300;line-height:1.7;margin-bottom:20px;">A few small apps in various stages of being built. The common thread — each one started because something in daily life was needlessly annoying. The first one is live. If you have a problem you'd love to see solved, Rishabh is genuinely interested.</p>
         <div style="display:flex;flex-wrap:wrap;gap:8px;">
           <span style="background:var(--sf-tag-bg);border:1px solid var(--sf-border);border-radius:20px;padding:5px 14px;font-family:'Sora',sans-serif;font-size:0.75rem;font-weight:700;color:var(--sf-subtext);">📱 Mobile Apps</span>
           <span style="background:var(--sf-tag-bg);border:1px solid var(--sf-border);border-radius:20px;padding:5px 14px;font-family:'Sora',sans-serif;font-size:0.75rem;font-weight:700;color:var(--sf-subtext);">💻 Vibe Coding</span>
@@ -743,10 +744,22 @@ footer {
           <span style="background:var(--sf-tag-bg);border:1px solid var(--sf-border);border-radius:20px;padding:5px 14px;font-family:'Sora',sans-serif;font-size:0.75rem;font-weight:700;color:var(--sf-subtext);">🚧 Work in Progress</span>
         </div>
       </div>
-      <div style="text-align:center;padding:20px;">
-        <div style="font-size:4rem;margin-bottom:12px;">🛠️</div>
-        <div style="font-family:'Sora',sans-serif;font-size:0.8rem;font-weight:700;color:var(--sf-subtext);letter-spacing:0.1em;text-transform:uppercase;">Something's cooking</div>
-      </div>
+      <!-- Right: ScoreMyPack card replacing the icon -->
+      <a href="/scoremypack/" style="text-decoration:none;flex-shrink:0;width:280px;color:inherit;">
+        <div style="background:var(--sf-tag-bg);border:1px solid var(--sf-border);border-radius:16px;padding:24px;transition:box-shadow .2s;" onmouseover="this.style.boxShadow='var(--shadow-card)'" onmouseout="this.style.boxShadow='none'">
+          <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px;">
+            <div style="font-family:'Sora',sans-serif;font-size:1rem;font-weight:800;color:var(--sf-text);">Project 1: ScoreMyPack</div>
+            <span style="background:var(--sf-tag-bg);border:1px solid var(--sf-blue);border-radius:20px;padding:2px 10px;font-family:'Sora',sans-serif;font-size:0.68rem;font-weight:700;color:var(--sf-blue);">Live</span>
+          </div>
+          <p style="color:var(--sf-subtext);font-size:0.85rem;font-weight:300;line-height:1.6;margin-bottom:16px;">Scan Indian packaged food labels for an instant Nutri-Score A–E grade. Runs entirely in the browser.</p>
+          <div style="display:flex;flex-wrap:wrap;gap:6px;margin-bottom:16px;">
+            <span style="background:var(--sf-card);border:1px solid var(--sf-border);border-radius:20px;padding:3px 10px;font-family:'Sora',sans-serif;font-size:0.68rem;font-weight:700;color:var(--sf-subtext);">FSSAI Labels</span>
+            <span style="background:var(--sf-card);border:1px solid var(--sf-border);border-radius:20px;padding:3px 10px;font-family:'Sora',sans-serif;font-size:0.68rem;font-weight:700;color:var(--sf-subtext);">Nutri-Score v2</span>
+            <span style="background:var(--sf-card);border:1px solid var(--sf-border);border-radius:20px;padding:3px 10px;font-family:'Sora',sans-serif;font-size:0.68rem;font-weight:700;color:var(--sf-subtext);">On-Device OCR</span>
+          </div>
+          <div style="font-family:'Sora',sans-serif;font-size:0.8rem;font-weight:700;color:var(--sf-blue);">Try It →</div>
+        </div>
+      </a>
     </div>
   </div>
 </section>
