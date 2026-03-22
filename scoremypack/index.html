@@ -184,72 +184,40 @@ footer{padding:16px 20px;text-align:center;font-size:11px;color:var(--border);bo
 .tip-dot{width:6px;height:6px;border-radius:50%;flex-shrink:0;margin-top:5px}
 .tip-green{background:var(--accent-bright)}.tip-orange{background:#B44020}
 
-/* ── Steps ── */
-.steps-row{display:flex;align-items:flex-start;justify-content:center;gap:4px;margin-bottom:16px;padding:0 4px}
-.step{flex:1;display:flex;flex-direction:column;align-items:center;gap:8px;text-align:center}
-.step-icon{width:44px;height:44px;border-radius:12px;background:var(--surface);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;color:var(--accent-bright)}
-.step-label{font-family:'Syne',sans-serif;font-size:12px;font-weight:700;color:var(--text)}
-.step-desc{font-size:10px;color:var(--muted);line-height:1.4}
-.step-arrow{font-size:20px;color:var(--border);margin-top:12px;flex-shrink:0}
+.steps-row{display:flex;align-items:flex-start;justify-content:center;gap:4px;margin-bottom:12px;padding:0 4px}
+.step{flex:1;display:flex;flex-direction:column;align-items:center;gap:6px;text-align:center}
+.step-icon{width:36px;height:36px;border-radius:10px;background:var(--surface);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;color:var(--accent-bright)}
+.step-label{font-family:'Syne',sans-serif;font-size:11px;font-weight:700;color:var(--text)}
+.step-desc{font-size:9px;color:var(--muted);line-height:1.4}
+.step-arrow{font-size:16px;color:var(--border);margin-top:10px;flex-shrink:0}
 
-/* ── Viewfinder ── */
-.viewfinder{width:120px;height:90px;position:relative;display:flex;align-items:center;justify-content:center}
-.vf-corner{position:absolute;width:18px;height:18px;border-color:var(--accent-bright);border-style:solid;opacity:.9}
+.viewfinder{width:110px;height:85px;position:relative;display:flex;align-items:center;justify-content:center}
+.vf-corner{position:absolute;width:16px;height:16px;border-color:var(--accent-bright);border-style:solid;opacity:.9}
 .vf-corner.vf-tl{top:0;left:0;border-width:2px 0 0 2px;border-radius:3px 0 0 0}
 .vf-corner.vf-tr{top:0;right:0;border-width:2px 2px 0 0;border-radius:0 3px 0 0}
 .vf-corner.vf-bl{bottom:0;left:0;border-width:0 0 2px 2px;border-radius:0 0 0 3px}
 .vf-corner.vf-br{bottom:0;right:0;border-width:0 2px 2px 0;border-radius:0 0 3px 0}
 .vf-pulse{position:absolute;inset:0;border-radius:4px;border:1px solid var(--accent-bright);opacity:0;animation:vfpulse 2.5s ease-in-out infinite}
-.vf-inner{display:flex;align-items:center;justify-content:center}
 @keyframes vfpulse{0%,100%{opacity:0;transform:scale(1)}50%{opacity:.3;transform:scale(1.06)}}
 
-/* ── Crop Modal ── */
-.crop-modal{display:none;flex-direction:column;gap:0;background:var(--surface);border:1px solid var(--border);border-radius:20px;overflow:hidden;margin-bottom:12px}
-.crop-modal.active{display:flex}
-.crop-header{padding:16px 20px 12px;border-bottom:1px solid var(--border)}
-.crop-title{font-family:'Syne',sans-serif;font-size:15px;font-weight:700;color:var(--text)}
-.crop-hint{font-size:12px;color:var(--muted);margin-top:2px}
-.crop-canvas-wrap{position:relative;width:100%;background:#000;overflow:hidden;max-height:65vw}
-.crop-canvas-wrap img{width:100%;display:block;user-select:none;-webkit-user-drag:none}
-#crop-canvas{display:none}
-.crop-overlay{position:absolute;inset:0;pointer-events:none}
-.crop-box{position:absolute;border:2px solid var(--accent-bright);box-shadow:0 0 0 9999px rgba(0,0,0,.55);pointer-events:all;cursor:move}
-.crop-guideline{position:absolute;background:rgba(255,255,255,.25);pointer-events:none}
-.crop-guideline-h1,.crop-guideline-h2{left:0;right:0;height:1px}
-.crop-guideline-h1{top:33.33%}.crop-guideline-h2{top:66.66%}
-.crop-guideline-v1,.crop-guideline-v2{top:0;bottom:0;width:1px}
-.crop-guideline-v1{left:33.33%}.crop-guideline-v2{left:66.66%}
-.crop-handle{position:absolute;width:18px;height:18px;background:var(--accent-bright);border-radius:3px}
-.crop-handle-tl{top:-4px;left:-4px;cursor:nw-resize}
-.crop-handle-tr{top:-4px;right:-4px;cursor:ne-resize}
-.crop-handle-bl{bottom:-4px;left:-4px;cursor:sw-resize}
-.crop-handle-br{bottom:-4px;right:-4px;cursor:se-resize}
-.crop-actions{display:flex;gap:10px;padding:14px 16px;border-top:1px solid var(--border)}
-.crop-btn{flex:1;padding:12px;border-radius:12px;border:none;font-family:'DM Sans',sans-serif;font-size:13px;font-weight:500;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:6px;transition:all .2s}
-.crop-btn-skip{background:var(--surface2);color:var(--muted)}.crop-btn-skip:hover{color:var(--text)}
-.crop-btn-confirm{background:var(--accent);color:#fff}.crop-btn-confirm:hover{background:var(--accent-bright)}
+.data-notice{display:flex;align-items:flex-start;gap:8px;padding:8px 12px;background:var(--surface);border:1px solid var(--border);border-radius:10px;font-size:10px;color:var(--muted);line-height:1.6}
+.data-notice svg{flex-shrink:0;margin-top:1px;opacity:.5}
 
-/* ── Data Notice ── */
-.data-notice{display:flex;align-items:flex-start;gap:8px;padding:12px 16px;background:var(--surface);border:1px solid var(--border);border-radius:12px;font-size:11px;color:var(--muted);line-height:1.6}
-.data-notice svg{flex-shrink:0;margin-top:1px;opacity:.6}
-
-/* ── Review accuracy note ── */
 .review-accuracy-note{display:flex;align-items:flex-start;gap:7px;padding:10px 16px;background:rgba(46,138,230,.07);border-bottom:1px solid var(--border);font-size:12px;color:var(--muted);line-height:1.6}
 .review-accuracy-note svg{flex-shrink:0;margin-top:1px;color:var(--accent-bright);opacity:.8}
 
-/* ── Splash Modal ── */
-.splash-modal{position:fixed;inset:0;z-index:999;display:flex;flex-direction:column;background:var(--bg);overflow-y:auto;-webkit-overflow-scrolling:touch}
+.splash-modal{position:fixed;inset:0;z-index:999;background:var(--bg);overflow-y:auto;-webkit-overflow-scrolling:touch;display:flex;flex-direction:column}
 .splash-modal.hidden{display:none}
-.splash-inner{max-width:480px;margin:0 auto;width:100%;padding:32px 24px 120px;display:flex;flex-direction:column;gap:28px}
+.splash-inner{max-width:480px;margin:0 auto;width:100%;padding:32px 24px 120px;display:flex;flex-direction:column;gap:24px}
 .splash-logo-row{display:flex;align-items:center;gap:12px}
 .splash-logo-img{width:40px;height:40px;border-radius:10px;flex-shrink:0}
 .splash-brand-name{font-family:'Syne',sans-serif;font-size:17px;font-weight:800;color:var(--text)}
 .splash-brand-name span{color:var(--accent-bright)}
-.splash-eyebrow{font-family:'Syne',sans-serif;font-size:11px;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:var(--accent-bright)}
-.splash-headline{font-family:'Syne',sans-serif;font-size:clamp(22px,6vw,30px);font-weight:800;color:var(--text);line-height:1.25}
+.splash-eyebrow{font-family:'Syne',sans-serif;font-size:10px;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:var(--accent-bright)}
+.splash-headline{font-family:'Syne',sans-serif;font-size:clamp(20px,5vw,26px);font-weight:800;color:var(--text);line-height:1.3}
 .splash-headline em{color:var(--accent-bright);font-style:normal}
 .splash-divider{width:36px;height:3px;background:var(--accent);border-radius:2px}
-.splash-.splash-body{font-size:14px;font-weight:300;color:var(--muted);line-height:1.85;display:flex;flex-direction:column;gap:12px}
+.splash-body{font-size:14px;font-weight:300;color:var(--muted);line-height:1.85;display:flex;flex-direction:column;gap:10px}
 .splash-body p{margin:0}
 .splash-grade-row{display:flex;gap:8px}
 .splash-grade-chip{flex:1;display:flex;flex-direction:column;align-items:center;gap:4px;padding:10px 4px;border-radius:10px;border:1px solid var(--border)}
@@ -265,119 +233,65 @@ footer{padding:16px 20px;text-align:center;font-size:11px;color:var(--border);bo
 .splash-cta-inner{max-width:480px;margin:0 auto}
 .splash-btn{width:100%;padding:16px;background:var(--accent);color:#fff;border:none;border-radius:14px;font-family:'Syne',sans-serif;font-size:15px;font-weight:700;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:10px;transition:background .2s}
 .splash-btn:hover{background:var(--accent-bright)}
-.splash-btn svg{transition:transform .2s}
-.splash-btn:hover svg{transform:translateX(3px)}
 
-/* ══ FITMENT: no-scroll for scanner + processing + error screens ══ */
+/* ── Fitment: scanner screen fills viewport ── */
+html,body{height:100%;overflow:hidden}
+body{min-height:unset!important}
+.app{height:100%;min-height:unset!important;overflow:hidden}
+header{flex-shrink:0;padding:10px 20px!important}
+main{flex:1;padding:10px 16px;gap:8px;overflow:hidden;position:relative}
+.scanner-card{display:flex;flex-direction:column;flex:1;min-height:0}
+.scanner-area{aspect-ratio:unset!important;flex:1;min-height:0}
+.scanner-actions{flex-shrink:0}
+.steps-row{margin-bottom:6px}
+.btn-analyse{padding:11px;font-size:14px}
+.data-notice{padding:7px 12px;font-size:10px}
+.compress-notice{padding:6px 12px;font-size:10px}
+/* Review + Result scroll freely */
+.review-card{position:fixed!important;inset:0!important;z-index:400;border-radius:0!important;overflow-y:auto!important;display:none}
+.review-card.active{display:block}
+.result-card{position:fixed!important;inset:0!important;z-index:400;border-radius:0!important;overflow-y:auto!important;display:none}
+.result-card.active{display:block}
+/* Processing + Error centre vertically */
+.processing-card{flex:1;justify-content:center}
+.error-card{flex:1;justify-content:center}
 
-/* Lock viewport */
-html { height: 100%; }
-
-/* Header: tighter padding */
-header { padding: 12px 20px 10px; flex-shrink: 0; }
-
-/* Main: fills remaining space, clips scanner screen only */
-main { padding: 12px 16px; gap: 10px; overflow: hidden; position: relative; }
-
-/* Scanner card: flex-grow to fill space, scanner-area uses remaining */
-.scanner-card { display: flex; flex-direction: column; flex: 1; min-height: 0; }
-.scanner-area {
-  aspect-ratio: unset !important;
-  flex: 1;
-  min-height: 0;
-}
-.scanner-actions { flex-shrink: 0; }
-
-/* Steps: more compact */
-.steps-row { margin-bottom: 8px; }
-.step-icon { width: 36px; height: 36px; }
-.step-label { font-size: 11px; }
-.step-desc { font-size: 9px; }
-.step-arrow { font-size: 16px; margin-top: 8px; }
-
-/* Analyse button: slightly tighter */
-.btn-analyse { padding: 12px; font-size: 14px; }
-
-/* Data notice: tighter */
-.data-notice { padding: 8px 12px; font-size: 10px; }
-
-/* Compress notice: compact */
-.compress-notice { padding: 7px 12px; font-size: 10px; }
-
-/* Processing: centred, fills main */
-.processing-card { flex: 1; justify-content: center; }
-
-/* Error card: fills space */
-.error-card { flex: 1; justify-content: center; }
-
-/* ── CROP: fullscreen fixed overlay so it's never clipped ── */
-.crop-modal {
-  position: fixed !important;
-  inset: 0 !important;
-  z-index: 500;
-  border-radius: 0 !important;
-  margin: 0 !important;
-  display: none;
-  flex-direction: column;
-  background: var(--bg);
-  overflow: hidden;
-}
-.crop-modal.active { display: flex; }
-.crop-canvas-wrap {
-  flex: 1;
-  max-height: unset !important;
-  overflow: hidden;
-  display: flex;
-  align-items: center;
-  background: #000;
-}
-.crop-canvas-wrap img {
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-}
-
-/* ── REVIEW + RESULT: fullscreen fixed so they can scroll freely ── */
-.review-card {
-  position: fixed !important;
-  inset: 0 !important;
-  z-index: 400;
-  border-radius: 0 !important;
-  overflow-y: auto !important;
-  max-height: unset !important;
-  display: none;
-  animation: none !important;
-}
-.review-card.active { display: block; }
-
-.result-card {
-  position: fixed !important;
-  inset: 0 !important;
-  z-index: 400;
-  border-radius: 0 !important;
-  overflow-y: auto !important;
-  max-height: unset !important;
-  display: none;
-  animation: none !important;
-}
-.result-card.active { display: block; }
-
-/* Rescan button: fixed at bottom when result is showing */
-.rescan-btn {
-  position: sticky;
-  bottom: 16px;
-  margin: 16px 20px;
-  display: block;
-}
-
-/* ── Download ── */
 .download-row{padding:0 20px 12px;display:flex;gap:10px}
-.download-btn{flex:1;padding:13px;border-radius:12px;border:none;font-family:'DM Sans',sans-serif;font-size:13px;font-weight:600;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:7px;transition:all .2s;background:var(--surface2);color:var(--text);border:1px solid var(--border)}
+.download-btn{flex:1;padding:12px;border-radius:12px;border:1px solid var(--border);font-family:'DM Sans',sans-serif;font-size:13px;font-weight:600;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:7px;transition:all .2s;background:var(--surface2);color:var(--text)}
 .download-btn:hover{background:var(--accent);color:#fff;border-color:var(--accent)}
+
+
+/* ── Crop Tool ── */
+.crop-modal{display:none;position:fixed;inset:0;z-index:500;background:var(--bg);flex-direction:column}
+.crop-modal.active{display:flex}
+.crop-header{padding:14px 20px 10px;border-bottom:1px solid var(--border);flex-shrink:0}
+.crop-title{font-family:'Syne',sans-serif;font-size:15px;font-weight:700;color:var(--text)}
+.crop-hint{font-size:11px;color:var(--muted);margin-top:2px}
+.crop-canvas-wrap{position:relative;flex:1;background:#000;overflow:hidden}
+.crop-canvas-wrap img{position:absolute;top:0;left:0;width:100%;height:100%;object-fit:contain;user-select:none;-webkit-user-drag:none}
+#crop-canvas{display:none}
+.crop-overlay{position:absolute;top:0;left:0;pointer-events:none}
+.crop-box{position:absolute;border:2px solid var(--accent-bright);box-shadow:0 0 0 9999px rgba(0,0,0,.6);pointer-events:all;cursor:move;touch-action:none}
+.crop-handle{position:absolute;width:24px;height:24px;background:var(--accent-bright);border-radius:4px;touch-action:none}
+.crop-handle-tl{top:-6px;left:-6px;cursor:nw-resize}
+.crop-handle-tr{top:-6px;right:-6px;cursor:ne-resize}
+.crop-handle-bl{bottom:-6px;left:-6px;cursor:sw-resize}
+.crop-handle-br{bottom:-6px;right:-6px;cursor:se-resize}
+.crop-guideline{position:absolute;background:rgba(255,255,255,.2);pointer-events:none}
+.crop-gl-h1,.crop-gl-h2{left:0;right:0;height:1px}
+.crop-gl-h1{top:33.33%}.crop-gl-h2{top:66.66%}
+.crop-gl-v1,.crop-gl-v2{top:0;bottom:0;width:1px}
+.crop-gl-v1{left:33.33%}.crop-gl-v2{left:66.66%}
+.crop-actions{display:flex;gap:10px;padding:12px 16px;border-top:1px solid var(--border);flex-shrink:0}
+.crop-btn{flex:1;padding:12px;border-radius:12px;border:none;font-family:'DM Sans',sans-serif;font-size:13px;font-weight:500;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:6px;transition:all .2s}
+.crop-btn-skip{background:var(--surface2);color:var(--muted)}
+.crop-btn-confirm{background:var(--accent);color:#fff}
+
+.low-quality-warning{display:flex;align-items:flex-start;gap:7px;padding:10px 16px;background:rgba(238,129,0,.08);border-bottom:1px solid rgba(238,129,0,.2);font-size:12px;color:#EE8100;line-height:1.6}
+.low-quality-warning svg{flex-shrink:0;margin-top:1px;color:#EE8100}
 </style>
 </head>
 <body>
-  <!-- SPLASH MODAL -->
   <div class="splash-modal" id="splash-modal">
     <div class="splash-inner">
       <div class="splash-logo-row">
@@ -385,7 +299,7 @@ main { padding: 12px 16px; gap: 10px; overflow: hidden; position: relative; }
         <div class="splash-brand-name">Score<span>MyPack</span></div>
       </div>
       <div>
-        <div class="splash-eyebrow" style="margin-bottom:12px;">A Thinking Lab Project</div>
+        <div class="splash-eyebrow" style="margin-bottom:10px">A Thinking Lab Project</div>
         <h1 class="splash-headline">We eat a lot of packaged food assuming it's safe.<br><em>Short term — probably fine. Long term, nobody's counting.</em></h1>
       </div>
       <div class="splash-divider"></div>
@@ -411,7 +325,6 @@ main { padding: 12px 16px; gap: 10px; overflow: hidden; position: relative; }
       </div>
     </div>
   </div>
-
 <div class="app">
   <header>
     <div class="logo-group">
@@ -424,27 +337,25 @@ main { padding: 12px 16px; gap: 10px; overflow: hidden; position: relative; }
     <div class="fssai-badge">India 🇮🇳</div>
   </header>
   <main>
-    <!-- Steps -->
     <div class="steps-row">
       <div class="step">
-        <div class="step-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg></div>
+        <div class="step-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg></div>
         <div class="step-label">Photograph</div>
-        <div class="step-desc">Capture the nutrition table</div>
+        <div class="step-desc">Capture nutrition table</div>
       </div>
       <div class="step-arrow">›</div>
       <div class="step">
-        <div class="step-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg></div>
+        <div class="step-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg></div>
         <div class="step-label">Review</div>
         <div class="step-desc">Verify extracted values</div>
       </div>
       <div class="step-arrow">›</div>
       <div class="step">
-        <div class="step-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg></div>
+        <div class="step-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg></div>
         <div class="step-label">Get Grade</div>
         <div class="step-desc">Nutri-Score A to E</div>
       </div>
     </div>
-
     <div class="scanner-card" id="scanner-card">
       <div class="scanner-area" id="scanner-area" onclick="document.getElementById('upload-input').click()">
         <div class="corner tl"></div><div class="corner tr"></div>
@@ -456,7 +367,7 @@ main { padding: 12px 16px; gap: 10px; overflow: hidden; position: relative; }
             <div class="vf-corner vf-tl"></div><div class="vf-corner vf-tr"></div>
             <div class="vf-corner vf-bl"></div><div class="vf-corner vf-br"></div>
             <div class="vf-pulse"></div>
-            <div class="vf-inner"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.5)" stroke-width="1.5"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg></div>
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.4)" stroke-width="1.5"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg>
           </div>
           <div class="scan-text"><strong>Tap to photograph nutrition label</strong>Point camera at the nutrition table</div>
         </div>
@@ -471,37 +382,6 @@ main { padding: 12px 16px; gap: 10px; overflow: hidden; position: relative; }
       </div>
     </div>
 
-    <!-- Crop -->
-    <div class="crop-modal" id="crop-modal">
-      <div class="crop-header">
-        <div class="crop-title">Select Nutrition Table</div>
-        <div class="crop-hint">Drag corners to fit the table</div>
-      </div>
-      <div class="crop-canvas-wrap" id="crop-canvas-wrap">
-        <img id="crop-img" alt="crop preview">
-        <canvas id="crop-canvas"></canvas>
-        <div class="crop-overlay" id="crop-overlay">
-          <div class="crop-box" id="crop-box">
-            <div class="crop-handle crop-handle-tl" data-handle="tl"></div>
-            <div class="crop-handle crop-handle-tr" data-handle="tr"></div>
-            <div class="crop-handle crop-handle-bl" data-handle="bl"></div>
-            <div class="crop-handle crop-handle-br" data-handle="br"></div>
-            <div class="crop-guideline crop-guideline-h1"></div>
-            <div class="crop-guideline crop-guideline-h2"></div>
-            <div class="crop-guideline crop-guideline-v1"></div>
-            <div class="crop-guideline crop-guideline-v2"></div>
-          </div>
-        </div>
-      </div>
-      <div class="crop-actions">
-        <button class="crop-btn crop-btn-skip" onclick="cropSkip()">Use Full Image</button>
-        <button class="crop-btn crop-btn-confirm" onclick="cropConfirm()">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
-          Crop &amp; Analyse
-        </button>
-      </div>
-    </div>
-
     <div class="compress-notice" id="compress-notice">
       <div class="compress-dot"></div><span>Large image — optimising…</span>
     </div>
@@ -511,12 +391,10 @@ main { padding: 12px 16px; gap: 10px; overflow: hidden; position: relative; }
       Analyse Nutrition Label
     </button>
 
-    <!-- Data notice -->
     <div class="data-notice">
-      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
-      <span>Images you capture are retained to improve ScoreMyPack's accuracy. By using this app you consent to this. No personal data is collected.</span>
+      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+      <span>Images you capture are retained to improve ScoreMyPack. Analytics via PostHog. No personal data collected.</span>
     </div>
-
     <div class="processing-card" id="processing-card">
       <div class="spinner"></div>
       <div class="processing-text" id="proc-text">Loading OCR…</div>
@@ -535,6 +413,10 @@ main { padding: 12px 16px; gap: 10px; overflow: hidden; position: relative; }
       <div class="review-accuracy-note">
         <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
         These values were read from your image. Give them a quick check before scoring.
+      </div>
+      <div class="low-quality-warning" id="low-quality-warning" style="display:none">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+        <span>Low confidence read. For better results: lay the pack flat, shoot straight down, fill the frame with just the nutrition table.</span>
       </div>
       <!-- Editable portion size -->
       <div class="portion-row">
@@ -599,11 +481,11 @@ main { padding: 12px 16px; gap: 10px; overflow: hidden; position: relative; }
       </div>
       <div class="download-row">
         <button class="download-btn" onclick="downloadPNG()">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
           Save as Image
         </button>
       </div>
-      <button class="rescan-btn" id="rescan-btn" onclick="resetApp()" style="margin:0 20px 24px;display:block;">↩ Scan Another Product</button>
+      <button class="rescan-btn" onclick="resetApp()" style="margin:0 20px 24px;display:block;">↩ Scan Another Product</button>
     </div>
   </main>
   <footer>ScoreMyPack • Nutri-Score v2 • Tesseract OCR • Thinking Lab</footer>
@@ -617,8 +499,25 @@ main { padding: 12px 16px; gap: 10px; overflow: hidden; position: relative; }
 let _tReady=null;
 function loadTesseract(){
   if(_tReady) return _tReady;
-  const cdns=['https://unpkg.com/tesseract.js@5.1.0/dist/tesseract.min.js','https://cdn.jsdelivr.net/npm/tesseract.js@5.1.0/dist/tesseract.min.js'];
-  _tReady=(async()=>{for(const url of cdns){if(typeof Tesseract!=='undefined')return;try{await new Promise((res,rej)=>{const s=document.createElement('script');s.src=url;s.onload=res;s.onerror=rej;document.head.appendChild(s);});if(typeof Tesseract!=='undefined')return;}catch(e){}}throw new Error('Could not load Tesseract.js');})();
+  const cdns=[
+    'https://cdn.jsdelivr.net/npm/tesseract.js@5.1.0/dist/tesseract.min.js',
+    'https://unpkg.com/tesseract.js@5.1.0/dist/tesseract.min.js'
+  ];
+  _tReady=(async()=>{
+    for(const url of cdns){
+      if(typeof Tesseract!=='undefined') return;
+      try{
+        await new Promise((res,rej)=>{
+          const s=document.createElement('script');
+          s.src=url; s.onload=res; s.onerror=rej;
+          document.head.appendChild(s);
+          setTimeout(()=>rej(new Error('timeout')),25000);
+        });
+        if(typeof Tesseract!=='undefined') return;
+      }catch(e){console.warn('CDN failed:',url,e);}
+    }
+    throw new Error('Could not load OCR engine — check internet');
+  })();
   return _tReady;
 }
 
@@ -633,16 +532,14 @@ async function handleImage(input){
   const notice=document.getElementById('compress-notice');
   if(file.size>3*1024*1024)notice.classList.add('active');
   try{
-    const r=await compressImage(file,1800);
+    const r=await compressImage(file,2400);
     imgDataUrl=r.dataUrl;
     document.getElementById('preview-img').src=r.dataUrl;
     document.getElementById('scanner-area').classList.add('has-image');
     document.getElementById('analyse-btn').disabled=false;
-    document.getElementById('analyse-btn').style.display='none';
-    showCropTool(r.dataUrl);
     notice.classList.remove('active');
     if(file.size>3*1024*1024){notice.querySelector('span').textContent=`✓ Optimised ${(file.size/1024/1024).toFixed(1)}MB → ${(r.size/1024).toFixed(0)}KB`;notice.classList.add('active');setTimeout(()=>notice.classList.remove('active'),3000);}
-    hideAll();
+    showCropTool(r.dataUrl);
   }catch(e){console.error(e);}
   input.value='';
 }
@@ -807,45 +704,91 @@ function scoreOcrText(text){
 
 // ── Main preprocessing pipeline ─────────────────────────────────
 // Returns array of {dataUrl, label} preprocessed versions for multi-pass OCR
+
+function isDarkBackground(grey,w,h){
+  let dark=0,total=0;
+  const x0=Math.floor(w*.25),x1=Math.floor(w*.75),y0=Math.floor(h*.25),y1=Math.floor(h*.75);
+  for(let y=y0;y<y1;y+=4)for(let x=x0;x<x1;x+=4){if(grey[y*w+x]<100)dark++;total++;}
+  return total>0&&(dark/total)>0.5;
+}
+function invertGrey(grey){
+  const out=new Float32Array(grey.length);
+  for(let i=0;i<grey.length;i++)out[i]=255-grey[i];
+  return out;
+}
 function buildPreprocessedVersions(imgData,w,h){
   const grey=toGrey(imgData,w,h);
-  // Detect label region — silently fall back to full image if not found
-  const region=detectLabelRegion(grey,w,h);
+  const dark=isDarkBackground(grey,w,h);
+  const workGrey=dark?invertGrey(grey):grey;
   const versions=[];
-  // Helper: crop grey to region, sharpen, threshold, return canvas dataUrl
-  function makeVersion(g,gw,gh,label){
-    const sharpened=unsharpMask(g,gw,gh);
-    const thresholded=sauvolaThreshold(sharpened,gw,gh);
-    const c=document.createElement('canvas');c.width=gw;c.height=gh;
-    const ctx=c.getContext('2d');
-    const id=ctx.createImageData(gw,gh);id.data.set(thresholded);
-    ctx.putImageData(id,0,0);
-    return{dataUrl:c.toDataURL('image/png'),label};
-  }
-  if(region){
-    // Version 1: cropped + adaptive threshold (primary)
-    const cw=region.w,ch=region.h;
-    const cropped=new Float32Array(cw*ch);
-    for(let y=0;y<ch;y++)for(let x=0;x<cw;x++)
-      cropped[y*cw+x]=grey[(region.y+y)*w+(region.x+x)];
-    versions.push(makeVersion(cropped,cw,ch,'crop+adaptive'));
-    // Version 2: cropped + light sharpen only (different radius)
-    const c2=document.createElement('canvas');c2.width=cw;c2.height=ch;
-    const ctx2=c2.getContext('2d');
-    const sharpened2=unsharpMask(cropped,cw,ch,0.3);
-    const id2=ctx2.createImageData(cw,ch);
-    // Simple contrast stretch for version 2
-    let mn=255,mx=0;for(const v of sharpened2){if(v<mn)mn=v;if(v>mx)mx=v;}
-    const range=mx-mn||1;
-    for(let i=0;i<cw*ch;i++){
-      const v=Math.round((sharpened2[i]-mn)/range*255);
-      id2.data[i*4]=id2.data[i*4+1]=id2.data[i*4+2]=v;id2.data[i*4+3]=255;
+
+  // ── v1: raw greyscale, no thresholding — Tesseract.js handles this best ──
+  try{
+    const cv=document.createElement('canvas');cv.width=w;cv.height=h;
+    const ctx=cv.getContext('2d');
+    const id=ctx.createImageData(w,h);
+    for(let i=0;i<w*h;i++){
+      const v=Math.round(workGrey[i]);
+      id.data[i*4]=id.data[i*4+1]=id.data[i*4+2]=v;id.data[i*4+3]=255;
     }
-    ctx2.putImageData(id2,0,0);
-    versions.push({dataUrl:c2.toDataURL('image/png'),label:'crop+contrast'});
-  }
-  // Always include full-image adaptive threshold as fallback
-  versions.push(makeVersion(grey,w,h,'full+adaptive'));
+    ctx.putImageData(id,0,0);
+    versions.push({dataUrl:cv.toDataURL('image/jpeg',0.92),label:'raw+grey',psm:'6'});
+  }catch(e){console.warn('v1 failed:',e);}
+
+  // ── v2: contrast stretch + raw (no threshold) ──
+  try{
+    let mn=255,mx=0;
+    for(const v of workGrey){if(v<mn)mn=v;if(v>mx)mx=v;}
+    const range=mx-mn||1;
+    const stretched=new Float32Array(workGrey.length);
+    for(let i=0;i<workGrey.length;i++) stretched[i]=(workGrey[i]-mn)/range*255;
+    const cv=document.createElement('canvas');cv.width=w;cv.height=h;
+    const ctx=cv.getContext('2d');
+    const id=ctx.createImageData(w,h);
+    for(let i=0;i<w*h;i++){
+      const v=Math.round(stretched[i]);
+      id.data[i*4]=id.data[i*4+1]=id.data[i*4+2]=v;id.data[i*4+3]=255;
+    }
+    ctx.putImageData(id,0,0);
+    versions.push({dataUrl:cv.toDataURL('image/jpeg',0.92),label:'contrast+raw',psm:'6'});
+  }catch(e){console.warn('v2 failed:',e);}
+
+  // ── v3: table crop raw (centre 25-72% height, 0-78% width) ──
+  try{
+    const tx0=0,ty0=Math.floor(h*0.25),tx1=Math.floor(w*0.78),ty1=Math.floor(h*0.72);
+    const cw=tx1-tx0,ch=ty1-ty0;
+    if(cw>100&&ch>100){
+      // Contrast stretch the crop
+      let mn=255,mx=0;
+      for(let y=0;y<ch;y++)for(let x=0;x<cw;x++){
+        const v=workGrey[(ty0+y)*w+(tx0+x)];
+        if(v<mn)mn=v;if(v>mx)mx=v;
+      }
+      const range=mx-mn||1;
+      const cv=document.createElement('canvas');cv.width=cw;cv.height=ch;
+      const ctx=cv.getContext('2d');
+      const id=ctx.createImageData(cw,ch);
+      for(let y=0;y<ch;y++)for(let x=0;x<cw;x++){
+        const v=Math.round((workGrey[(ty0+y)*w+(tx0+x)]-mn)/range*255);
+        const i=(y*cw+x)*4;
+        id.data[i]=id.data[i+1]=id.data[i+2]=v;id.data[i+3]=255;
+      }
+      ctx.putImageData(id,0,0);
+      versions.push({dataUrl:cv.toDataURL('image/jpeg',0.92),label:'table+raw',psm:'6'});
+    }
+  }catch(e){console.warn('v3 failed:',e);}
+
+  // ── v4: Sauvola threshold (original approach, as fallback) ──
+  try{
+    const sharpened=unsharpMask(workGrey,w,h);
+    const thresholded=sauvolaThreshold(sharpened,w,h);
+    const cv=document.createElement('canvas');cv.width=w;cv.height=h;
+    const ctx=cv.getContext('2d');
+    const id=ctx.createImageData(w,h);id.data.set(thresholded);
+    ctx.putImageData(id,0,0);
+    versions.push({dataUrl:cv.toDataURL('image/png'),label:'full+sauvola',psm:'6'});
+  }catch(e){console.warn('v4 failed:',e);}
+
   return versions;
 }
 
@@ -855,11 +798,13 @@ function prepareImage(dataUrl){
     const img=new Image();
     img.onload=()=>{
       let w=img.naturalWidth,h=img.naturalHeight;
-      // Upscale if too small — Tesseract needs at least 1400px on longest side
-      const MIN=1400;
+      // Ensure longest side >= 1600px
+      const MIN=1600;
       if(Math.max(w,h)<MIN){const sc=MIN/Math.max(w,h);w=Math.round(w*sc);h=Math.round(h*sc);}
-      // Cap at 3000px to avoid memory issues on mobile
-      const MAX=3000;
+      // Ensure shortest side >= 1000px (fixes narrow portrait images)
+      const MIN_SHORT=1000;
+      if(Math.min(w,h)<MIN_SHORT){const sc=MIN_SHORT/Math.min(w,h);w=Math.round(w*sc);h=Math.round(h*sc);}
+      const MAX=3500;
       if(Math.max(w,h)>MAX){const sc=MAX/Math.max(w,h);w=Math.round(w*sc);h=Math.round(h*sc);}
       const canvas=document.createElement('canvas');canvas.width=w;canvas.height=h;
       const ctx=canvas.getContext('2d');ctx.drawImage(img,0,0,w,h);
@@ -873,29 +818,48 @@ function prepareImage(dataUrl){
 // ── Multi-pass OCR: run all versions, pick best result ───────────
 async function runOcr(dataUrl){
   const versions=await prepareImage(dataUrl);
-  setProgress(18,'Preprocessing image…',`${versions.length} versions prepared`);
-  const worker=await Tesseract.createWorker('eng',1,{logger:m=>{
-    if(m.status==='loading tesseract core')setProgress(12,'Loading OCR engine…','');
-    else if(m.status==='loading language traineddata')setProgress(16,'Loading language data…','');
-  }});
+  setProgress(18,'Preprocessing image…',versions.length+' versions prepared');
+
+  // v5 API — simpler, uses tessdata_fast (~4MB total vs 13MB for v4)
+  setProgress(22,'Downloading OCR data…','First use only, ~4MB');
+  const worker=await Tesseract.createWorker('eng',1,{
+    logger: m=>{
+      if(m.status==='loading tesseract core'){
+        setProgress(25,'Loading OCR engine…','');
+      } else if(m.status==='loading language traineddata'){
+        const pct=Math.round((m.progress||0)*100);
+        setProgress(25+Math.round((m.progress||0)*25),
+          'Downloading language data…',pct+'% — please wait');
+      } else if(m.status==='initializing api'){
+        setProgress(52,'Initialising…','');
+      }
+    },
+    errorHandler: e=>console.error('[SMP] Tesseract error:',e)
+  });
+
   try{
     let best='',bestScore=-1,pass=0;
     for(const v of versions){
       pass++;
-      setProgress(20+Math.round((pass/versions.length)*40),
-        `Reading label… (pass ${pass}/${versions.length})`,v.label);
+      setProgress(55+Math.round((pass/versions.length)*25),
+        'Reading label… (pass '+pass+'/'+versions.length+')',v.label);
       await worker.setParameters({
-        tessedit_pageseg_mode: v.label.startsWith('crop')?'6':'6',
-        preserve_interword_spaces:'1'
+        tessedit_pageseg_mode: v.psm||'6',
+        preserve_interword_spaces: '1',
       });
       const r=await worker.recognize(v.dataUrl);
-      const text=filterNonLatin(r.data.text);
+      const rawText=r.data.text||'';
+      const text=filterNonLatin(rawText);
       const score=scoreOcrText(text);
+      console.log('[SMP] pass',pass,v.label,'score:',score,'len:',text.length);
       if(score>bestScore){bestScore=score;best=text;}
     }
     await worker.terminate();
     return best;
-  }catch(e){await worker.terminate();throw e;}
+  }catch(e){
+    await worker.terminate();
+    throw e;
+  }
 }
 
 // ═══════════════════════════════════════════════════════════════════
@@ -919,36 +883,56 @@ function truncateToTable(raw){
 }
 
 function cleanOcr(raw){
-  // FIX 2: strip % Daily Value column — strip trailing "NN%" AND bare trailing integers
-  // that look like DV% (1–100) after a unit like g/mg
   const stripDvCol=line=>{
-    // Remove explicit "NN%" patterns
     let l=line.replace(/\s+\d{1,3}\s*%/g,'');
-    // Also strip a bare trailing integer 1–100 that follows a unit token (g/mg/mcg/iu)
     l=l.replace(/(\b(?:mg|mcg|iu|g)\b)\s+(\d{1,3})$/i,'$1');
     return l;
   };
   return raw.replace(/\r\n|\r/g,'\n')
-    // dot/dash leaders (3+ chars)
-    .replace(/([.\-_\u2022]{3,})/g,' ')
-    // OCR: ll/II → 11
+    // dot/dash leaders (3+ chars) — must run BEFORE digit fixes
+    .replace(/([.\-_~\u2022]{3,})/g,' ')
+    // OCR confusion: I/l/1 — comprehensive fix
     .replace(/\bll\b/g,'11').replace(/\bII\b/g,'11').replace(/\blI\b/g,'11').replace(/\bIl\b/g,'11')
-    // l/I adjacent to digits
-    .replace(/(\d)[lI](\d)/g,'$11$2').replace(/\b[lI](\d)/g,'1$1').replace(/(\d)[lI]\b/g,'$11')
+    // I/l between or adjacent to digits
+    .replace(/(\d)[lI](\d)/g,'$11$2')
+    .replace(/\b[lI](\d)/g,'1$1')
+    .replace(/(\d)[lI]\b/g,'$11')
+    // Capital I at end of number-like token (e.g. "I5.6" → "15.6", "21.I" → "21.1")
+    .replace(/\bI(\d)/g,'1$1')
+    .replace(/(\d)I\b/g,'$11')
+    .replace(/(\d\.)(I)\b/g,'$11')  // e.g. "265.I" → "265.1"
     // O adjacent to digits
     .replace(/(\d)O(\d)/g,'$10$2').replace(/\bO(\d)/g,'0$1').replace(/(\d)O\b/g,'$10')
+    // Missing dot in decimals: 4-digit numbers that should be X.XX or XX.X
+    // e.g. "2653" where real value is "265.3" — if > 999 but context is nutrition value
+    // Fix: if a standalone number >999 appears on a nutrient line, try inserting decimal
+    // (handled in parseNutrition via maxVal clamping)
     // unit normalisation
     .replace(/#\s*kcal/gi,'kcal').replace(/\bKCAL\b/g,'kcal').replace(/\bKcal\b/g,'kcal')
     .replace(/\bKJ\b/gi,'kJ').replace(/\bMG\b/g,'mg')
-    // trace values
+    // trace/less-than values
     .replace(/<\s*0[.,]\d+/g,'0').replace(/<\s*(\d)/g,'$1')
-    // percent columns (existing)
+    // stray letters adjacent to numbers that are clearly OCR noise (e.g. "146E" → "146", "el.l" → "")
+    .replace(/(\d+(?:\.\d+)?)[A-Za-z]\b/g,'$1')  // trailing letter after number
+    .replace(/\b[A-Za-z](\d+(?:\.\d+)?)/g,'$1')  // leading letter before number
+    // percent columns
     .replace(/[*†‡]/g,'')
-    // apply DV column strip per line
     .split('\n').map(stripDvCol).join('\n')
     .replace(/[ \t]+/g,' ').trim();
 }
-function nums(str){return(str.match(/\d+(?:[.,]\d+)?/g)||[]).map(n=>parseFloat(n.replace(',','.'))).filter(n=>isFinite(n)&&n>=0);}
+function nums(str){
+  return(str.match(/\d+(?:[.,]\d+)?/g)||[]).map(n=>{
+    let v=parseFloat(n.replace(',','.'));
+    // If number looks like a missing-decimal OCR error (e.g. 2653 → 265.3),
+    // try inserting decimal before last digit if value > 999
+    if(v>999&&v<10000){
+      const s=String(Math.round(v));
+      const fixed=parseFloat(s.slice(0,-1)+'.'+s.slice(-1));
+      if(fixed>0&&fixed<1000) v=fixed;
+    }
+    return v;
+  }).filter(n=>isFinite(n)&&n>=0);
+}
 function matchLines(lines,re){return lines.reduce((acc,line,i)=>{if(re.test(line))acc.push({line,next:lines[i+1]||'',idx:i});return acc;},[]);}
 function detectStruct(lines){
   for(let i=0;i<Math.min(15,lines.length);i++){
@@ -1065,10 +1049,17 @@ function parseNutrition(rawText){
   // Serving size detection — covers: "Serving size 67g", "per 67g serve", "(30g)", "per 20g serving"
   // Also scans first 5 lines for header-embedded serving sizes (e.g. dark label with split header)
   const SERVING_PATTERNS=[
-    /serving\s*size\s*[:\-]?\s*(\d+(?:\.\d+)?)\s*g/i,
-    /per\s*(\d+(?:\.\d+)?)\s*g\s*serv/i,
-    /\bserv(?:ing|e)?\s+(\d+(?:\.\d+)?)\s*g\b/i,
-    /\((\d+(?:\.\d+)?)\s*g\s*\)/i,
+    /serving\s*size\s*[:\-]?\s*(\d+(?:\.\d+)?)\s*g/i,        // "Serving size: 50g"
+    /per\s*(\d+(?:\.\d+)?)\s*g\s*serv/i,                       // "per 50g serving"
+    /\bserv(?:ing|e)?\s+(\d+(?:\.\d+)?)\s*g\b/i,              // "serving 50g"
+    /\((\d+(?:\.\d+)?)\s*g\s*\)/i,                            // "(50g)"
+    /approx\.?\s*(\d+(?:\.\d+)?)\s*g/i,                       // "Approx 50g"
+    /portion\s*(?:size)?\s*[:\-]?\s*(\d+(?:\.\d+)?)\s*g/i,  // "Portion size: 50g"
+    /(\d+(?:\.\d+)?)\s*g\s*per\s*serv/i,                      // "50g per serving"
+    /(\d+(?:\.\d+)?)\s*g\s*\/\s*serv/i,                      // "50g/serving"
+    /per\s*pack\s*[:\-]?\s*(\d+(?:\.\d+)?)\s*g/i,           // "per pack 50g"
+    /each\s*(?:serving|serve)?\s*[:\-]?\s*(\d+(?:\.\d+)?)\s*g/i, // "each serving: 50g"
+    /\bsize\s*[:\-]?\s*(\d+(?:\.\d+)?)\s*g/i,               // "size: 50g"
   ];
   function extractServingG(str){
     for(const re of SERVING_PATTERNS){const m=str.match(re);if(m)return parseFloat(m[1]);}
@@ -1141,7 +1132,7 @@ function setProgress(pct,text,sub){
   if(text)document.getElementById('proc-text').textContent=text;
   if(sub!==undefined)document.getElementById('proc-sub').textContent=sub;
 }
-function hideAll(){['result-card','error-card','review-card','rescan-btn'].forEach(id=>document.getElementById(id).classList.remove('active'));}
+function hideAll(){['result-card','error-card','review-card','rescan-btn'].forEach(id=>{const el=document.getElementById(id);if(el)el.classList.remove('active');});}
 function showError(msg){document.getElementById('error-msg').textContent=msg;document.getElementById('error-card').classList.add('active');document.getElementById('rescan-btn').classList.add('active');}
 
 // ═══════════════════════════════════════════════════════════════════
@@ -1201,6 +1192,7 @@ function onServingInput(){
 
 // ── Build review form ─────────────────────────────────────────────
 function showReviewCard(nutrition){
+  const ocrScore = nutrition._ocrScore || 0;
   _portionG = nutrition.serving_size_g || 100;
 
   // OCR confidence badge
@@ -1209,6 +1201,9 @@ function showReviewCard(nutrition){
   const badge = document.getElementById('ocr-conf');
   badge.textContent = `${pct}% OCR`;
   badge.className = 'ocr-conf '+(pct>=80?'conf-hi':pct>=50?'conf-md':'conf-lo');
+  // Show low quality warning if OCR score is poor
+  const lqw = document.getElementById('low-quality-warning');
+  if(lqw) lqw.style.display = (ocrScore < 15 || pct < 40) ? 'flex' : 'none';
 
   // Portion size field
   const portionEl = document.getElementById('portion-size');
@@ -1320,8 +1315,8 @@ async function analyseImage(){
   document.getElementById('compress-notice').classList.remove('active');
   document.getElementById('processing-card').classList.add('active');
   hideAll();
-  setProgress(5,'Loading OCR engine…','First use downloads ~3MB');
-  try{await loadTesseract();}catch(e){document.getElementById('processing-card').classList.remove('active');showError('Could not load OCR engine. Please check your internet connection.');resetApp();return;}
+  setProgress(5,'Loading OCR engine…','First use downloads ~4MB of data');
+  try{await loadTesseract();}catch(e){document.getElementById('processing-card').classList.remove('active');showError('OCR engine failed to load. Check your internet and try again. ('+e.message+')');resetApp();return;}
   try{
     setProgress(10,'Finding nutrition table…','Detecting label region');
     const ocrText=await runOcr(imgDataUrl);
@@ -1420,81 +1415,6 @@ function resetApp(){
 }
 
 
-/* ── Crop Tool ── */
-let _cropBox={x:10,y:10,w:80,h:80};
-let _cropDragging=null,_cropDragStart=null,_cropImgNatural={w:0,h:0};
-function showCropTool(dataUrl){
-  const modal=document.getElementById('crop-modal');
-  const img=document.getElementById('crop-img');
-  img.src=dataUrl;
-  img.onload=function(){
-    _cropImgNatural={w:img.naturalWidth,h:img.naturalHeight};
-    _cropBox={x:10,y:10,w:80,h:80};
-    renderCropBox();modal.classList.add('active');
-    modal.scrollIntoView({behavior:'smooth',block:'center'});
-    initCropDrag();
-  };
-}
-function renderCropBox(){
-  const box=document.getElementById('crop-box');
-  box.style.left=_cropBox.x+'%';box.style.top=_cropBox.y+'%';
-  box.style.width=_cropBox.w+'%';box.style.height=_cropBox.h+'%';
-}
-function initCropDrag(){
-  const wrap=document.getElementById('crop-canvas-wrap');
-  const box=document.getElementById('crop-box');
-  function getRelPos(e,el){
-    const r=el.getBoundingClientRect();
-    const cx=e.touches?e.touches[0].clientX:e.clientX;
-    const cy=e.touches?e.touches[0].clientY:e.clientY;
-    return{x:(cx-r.left)/r.width*100,y:(cy-r.top)/r.height*100};
-  }
-  document.querySelectorAll('.crop-handle').forEach(h=>{
-    const start=e=>{e.preventDefault();e.stopPropagation();_cropDragging=h.dataset.handle;const p=getRelPos(e,wrap);_cropDragStart={...p,box:{..._cropBox}};};
-    h.addEventListener('mousedown',start);h.addEventListener('touchstart',start,{passive:false});
-  });
-  const startMove=e=>{if(e.target.classList.contains('crop-handle'))return;e.preventDefault();_cropDragging='move';const p=getRelPos(e,wrap);_cropDragStart={...p,box:{..._cropBox}};};
-  box.addEventListener('mousedown',startMove);box.addEventListener('touchstart',startMove,{passive:false});
-  const onMove=e=>{
-    if(!_cropDragging)return;e.preventDefault();
-    const p=getRelPos(e,wrap);const dx=p.x-_cropDragStart.x,dy=p.y-_cropDragStart.y;
-    const b={..._cropDragStart.box};const MIN=8;
-    if(_cropDragging==='move'){b.x=Math.max(0,Math.min(100-b.w,b.x+dx));b.y=Math.max(0,Math.min(100-b.h,b.y+dy));}
-    else{
-      if(_cropDragging.includes('r'))b.w=Math.max(MIN,Math.min(100-b.x,b.w+dx));
-      if(_cropDragging.includes('b'))b.h=Math.max(MIN,Math.min(100-b.y,b.h+dy));
-      if(_cropDragging.includes('l')){const nw=Math.max(MIN,b.w-dx);b.x=b.x+b.w-nw;b.w=nw;}
-      if(_cropDragging.includes('t')){const nh=Math.max(MIN,b.h-dy);b.y=b.y+b.h-nh;b.h=nh;}
-    }
-    _cropBox=b;renderCropBox();
-  };
-  const onEnd=()=>{_cropDragging=null;_cropDragStart=null;};
-  document.addEventListener('mousemove',onMove);document.addEventListener('touchmove',onMove,{passive:false});
-  document.addEventListener('mouseup',onEnd);document.addEventListener('touchend',onEnd);
-}
-function cropSkip(){
-  document.getElementById('crop-modal').classList.remove('active');
-  document.getElementById('analyse-btn').disabled=false;
-  document.getElementById('analyse-btn').style.display='';
-}
-function cropConfirm(){
-  const img=document.getElementById('crop-img');
-  const canvas=document.getElementById('crop-canvas');
-  const ctx=canvas.getContext('2d');
-  const nw=_cropImgNatural.w,nh=_cropImgNatural.h;
-  const sx=_cropBox.x/100*nw,sy=_cropBox.y/100*nh;
-  const sw=_cropBox.w/100*nw,sh=_cropBox.h/100*nh;
-  canvas.width=sw;canvas.height=sh;
-  ctx.drawImage(img,sx,sy,sw,sh,0,0,sw,sh);
-  imgDataUrl=canvas.toDataURL('image/jpeg',0.92);
-  document.getElementById('preview-img').src=imgDataUrl;
-  document.getElementById('crop-modal').classList.remove('active');
-  document.getElementById('analyse-btn').disabled=false;
-  document.getElementById('analyse-btn').style.display='';
-}
-
-
-/* ── Splash Modal ── */
 function enterApp(){
   document.getElementById('splash-modal').classList.add('hidden');
   sessionStorage.setItem('smp_seen','1');
@@ -1505,239 +1425,235 @@ if(sessionStorage.getItem('smp_seen')){
 
 
 
-/* ── PNG Report Generator ── */
 async function downloadPNG(){
-  const btn = document.querySelector('.download-btn');
-  const origText = btn.innerHTML;
-  btn.innerHTML = '⏳ Generating…';
-  btn.disabled = true;
-
-  try {
-    const SCALE = 2; // retina
-    const W = 800, PAD = 40;
-    let y = 0;
-
-    // ── Collect data from DOM ──
-    const grade      = document.getElementById('grade-badge').textContent.trim();
-    const badPts     = document.getElementById('bad-pts').textContent.trim();
-    const goodPts    = document.getElementById('good-pts').textContent.trim();
-    const finalScore = document.getElementById('final-score').textContent.trim();
-    const verdict    = document.getElementById('verdict-box').textContent.trim();
-    const sectionTitle = document.getElementById('result-section-title').textContent.trim();
-
-    // Nutrient rows from grid
-    const nutrientRows = [];
-    document.querySelectorAll('#nutrient-grid .nutrient-row').forEach(row => {
-      const name = row.querySelector('.nutrient-name')?.textContent.trim() || '';
-      const val  = row.querySelector('.nutrient-val')?.textContent.trim() || '';
-      nutrientRows.push({name, val});
+  const btn=document.querySelector('.download-btn');
+  const orig=btn.innerHTML;btn.innerHTML='⏳ Generating…';btn.disabled=true;
+  try{
+    const SCALE=2,W=800,PAD=40;
+    let y=0;
+    const grade=document.getElementById('grade-badge').textContent.trim();
+    const badPts=document.getElementById('bad-pts').textContent.trim();
+    const goodPts=document.getElementById('good-pts').textContent.trim();
+    const finalScore=document.getElementById('final-score').textContent.trim();
+    const verdict=document.getElementById('verdict-box').textContent.trim();
+    const secTitle=document.getElementById('result-section-title').textContent.trim();
+    const nutrientRows=[];
+    document.querySelectorAll('#nutrient-grid .nutrient-row').forEach(r=>{
+      const name=r.querySelector('.nutrient-name')?.textContent.trim()||'';
+      const val=r.querySelector('.nutrient-val')?.textContent.trim()||'';
+      nutrientRows.push({name,val});
     });
-
-    // Grade colours
-    const GRADE_COLORS = {A:'#038141',B:'#85BB2F',C:'#FECB02',D:'#EE8100',E:'#E63E11'};
-    const gradeColor = GRADE_COLORS[grade] || '#7A96B0';
-
-    // ── Calculate total canvas height ──
-    const IMG_H    = imgDataUrl ? 220 : 0;
-    const HDR_H    = 80;
-    const GRADE_H  = 160;
-    const NUTR_H   = 40 + nutrientRows.length * 36;
-    const SCORE_H  = 140;
-    const VERDICT_H= verdict ? 80 + Math.ceil(verdict.length / 80) * 22 : 0;
-    const FOOTER_H = 60;
-    const TOTAL_H  = HDR_H + IMG_H + GRADE_H + NUTR_H + SCORE_H + VERDICT_H + FOOTER_H + PAD*2;
-
-    const canvas = document.createElement('canvas');
-    canvas.width  = W * SCALE;
-    canvas.height = TOTAL_H * SCALE;
-    const ctx = canvas.getContext('2d');
-    ctx.scale(SCALE, SCALE);
-
-    // ── Background ──
-    ctx.fillStyle = '#0B1520';
-    ctx.fillRect(0, 0, W, TOTAL_H);
-
-    // ── Helper functions ──
-    function roundRect(x, y, w, h, r, fill, stroke) {
-      ctx.beginPath();
-      ctx.moveTo(x+r, y);
-      ctx.lineTo(x+w-r, y); ctx.quadraticCurveTo(x+w, y, x+w, y+r);
-      ctx.lineTo(x+w, y+h-r); ctx.quadraticCurveTo(x+w, y+h, x+w-r, y+h);
-      ctx.lineTo(x+r, y+h); ctx.quadraticCurveTo(x, y+h, x, y+h-r);
-      ctx.lineTo(x, y+r); ctx.quadraticCurveTo(x, y, x+r, y);
-      ctx.closePath();
-      if(fill){ ctx.fillStyle=fill; ctx.fill(); }
-      if(stroke){ ctx.strokeStyle=stroke; ctx.lineWidth=1; ctx.stroke(); }
+    const GC={A:'#038141',B:'#85BB2F',C:'#FECB02',D:'#EE8100',E:'#E63E11'};
+    const gc=GC[grade]||'#7A96B0';
+    const IMG_H=imgDataUrl?200:0;
+    const TOTAL_H=70+IMG_H+140+40+nutrientRows.length*34+120+(verdict?60+Math.ceil(verdict.length/80)*20:0)+50+PAD*2;
+    const canvas=document.createElement('canvas');
+    canvas.width=W*SCALE;canvas.height=TOTAL_H*SCALE;
+    const ctx=canvas.getContext('2d');ctx.scale(SCALE,SCALE);
+    ctx.fillStyle='#0B1520';ctx.fillRect(0,0,W,TOTAL_H);
+    function rr(x,y,w,h,r,fill,stroke){
+      ctx.beginPath();ctx.moveTo(x+r,y);ctx.lineTo(x+w-r,y);ctx.quadraticCurveTo(x+w,y,x+w,y+r);
+      ctx.lineTo(x+w,y+h-r);ctx.quadraticCurveTo(x+w,y+h,x+w-r,y+h);
+      ctx.lineTo(x+r,y+h);ctx.quadraticCurveTo(x,y+h,x,y+h-r);
+      ctx.lineTo(x,y+r);ctx.quadraticCurveTo(x,y,x+r,y);ctx.closePath();
+      if(fill){ctx.fillStyle=fill;ctx.fill();}
+      if(stroke){ctx.strokeStyle=stroke;ctx.lineWidth=1;ctx.stroke();}
     }
-
-    function text(str, x, yy, font, color, align='left') {
-      ctx.font = font;
-      ctx.fillStyle = color;
-      ctx.textAlign = align;
-      ctx.fillText(str, x, yy);
-      ctx.textAlign = 'left';
+    function txt(s,x,yy,font,color,align){
+      ctx.font=font;ctx.fillStyle=color;ctx.textAlign=align||'left';ctx.fillText(s,x,yy);ctx.textAlign='left';
     }
-
-    function wrapText(str, x, yy, maxW, lineH, font, color) {
-      ctx.font = font;
-      ctx.fillStyle = color;
-      const words = str.split(' ');
-      let line = '';
-      for(const word of words){
-        const test = line ? line+' '+word : word;
-        if(ctx.measureText(test).width > maxW && line){
-          ctx.fillText(line, x, yy); yy += lineH; line = word;
-        } else { line = test; }
-      }
-      if(line) ctx.fillText(line, x, yy);
-      return yy + lineH;
-    }
-
-    y = PAD;
-
-    // ── HEADER ──
-    text('ScoreMyPack', PAD, y+28, 'bold 22px Syne,sans-serif', '#E2EBF5');
-    text('Nutrition Report', PAD, y+50, '300 14px sans-serif', '#7A96B0');
-    text(new Date().toLocaleDateString('en-IN',{day:'numeric',month:'short',year:'numeric'}),
-         W-PAD, y+28, '12px sans-serif', '#7A96B0', 'right');
-    // accent line
-    ctx.fillStyle = '#1464B4';
-    ctx.fillRect(W-PAD-60, y+40, 60, 2);
-    y += HDR_H;
-
-    // ── SCANNED IMAGE ──
+    y=PAD;
+    txt('ScoreMyPack',PAD,y+24,'bold 20px sans-serif','#E2EBF5');
+    txt('Nutrition Report',PAD,y+44,'300 13px sans-serif','#7A96B0');
+    txt(new Date().toLocaleDateString('en-IN',{day:'numeric',month:'short',year:'numeric'}),W-PAD,y+24,'12px sans-serif','#7A96B0','right');
+    ctx.fillStyle='#1464B4';ctx.fillRect(W-PAD-50,y+36,50,2);
+    y+=70;
     if(imgDataUrl){
-      await new Promise(resolve=>{
-        const img = new Image();
-        img.onload = ()=>{
-          const iw=img.naturalWidth, ih=img.naturalHeight;
-          const scale = Math.min((W-PAD*2)/iw, (IMG_H-20)/ih);
-          const dw=iw*scale, dh=ih*scale;
-          const dx=PAD+(W-PAD*2-dw)/2;
-          roundRect(PAD, y, W-PAD*2, IMG_H-10, 12, '#111E2E', '#1E3450');
-          ctx.drawImage(img, dx, y+(IMG_H-10-dh)/2, dw, dh);
-          resolve();
-        };
-        img.src = imgDataUrl;
-      });
-      y += IMG_H;
+      await new Promise(res=>{
+        const img=new Image();
+        img.onload=()=>{
+          const iw=img.naturalWidth,ih=img.naturalHeight;
+          const sc=Math.min((W-PAD*2)/iw,(IMG_H-10)/ih);
+          const dw=iw*sc,dh=ih*sc,dx=PAD+(W-PAD*2-dw)/2;
+          rr(PAD,y,W-PAD*2,IMG_H-5,10,'#111E2E','#1E3450');
+          ctx.drawImage(img,dx,y+(IMG_H-5-dh)/2,dw,dh);res();
+        };img.src=imgDataUrl;
+      });y+=IMG_H;
     }
-
-    // ── GRADE SECTION ──
-    roundRect(PAD, y, W-PAD*2, GRADE_H-20, 16, '#111E2E', '#1E3450');
-
-    // Big grade letter
-    const gx = PAD+32, gy = y+20;
-    roundRect(gx, gy, 90, 90, 16, gradeColor+'22', gradeColor);
-    ctx.font = 'bold 56px Syne,sans-serif';
-    ctx.fillStyle = gradeColor;
-    ctx.textAlign = 'center';
-    ctx.fillText(grade, gx+45, gy+65);
-    ctx.textAlign = 'left';
-
-    // Grade label + description
-    const GRADE_LABELS = {A:'Excellent',B:'Good',C:'Average',D:'Below Average',E:'Poor'};
-    text('Nutri-Score v2', gx+110, gy+28, '700 11px sans-serif', '#7A96B0');
-    text('Grade '+grade+' — '+( GRADE_LABELS[grade]||''), gx+110, gy+56, 'bold 20px Syne,sans-serif', '#E2EBF5');
-    text('Nutritional quality assessment', gx+110, gy+78, '300 13px sans-serif', '#7A96B0');
-
-    // Grade pills A-E
-    const pills=['A','B','C','D','E'];
-    const pillW=54, pillGap=8;
-    const totalPillW = pills.length*pillW + (pills.length-1)*pillGap;
-    let px = PAD + (W-PAD*2-totalPillW)/2;
-    const py = gy+100;
+    // Grade
+    rr(PAD,y,W-PAD*2,120,14,'#111E2E','#1E3450');
+    rr(PAD+20,y+15,80,80,14,gc+'22',gc);
+    txt(grade,PAD+60,y+72,'bold 48px sans-serif',gc,'center');
+    const GL={A:'Excellent',B:'Good',C:'Average',D:'Below Average',E:'Poor'};
+    txt('Nutri-Score v2',PAD+120,y+34,'700 11px sans-serif','#7A96B0');
+    txt('Grade '+grade+' — '+(GL[grade]||''),PAD+120,y+58,'bold 18px sans-serif','#E2EBF5');
+    txt('Nutritional quality assessment',PAD+120,y+78,'300 12px sans-serif','#7A96B0');
+    const pills=['A','B','C','D','E'];const pw=54,pg=8;
+    let px=PAD+(W-PAD*2-(pills.length*pw+(pills.length-1)*pg))/2;
     pills.forEach(g=>{
-      const isActive = g===grade;
-      const col = GRADE_COLORS[g];
-      roundRect(px, py, pillW, 28, 8, isActive?col:col+'22', col);
-      ctx.font = 'bold 14px Syne,sans-serif';
-      ctx.fillStyle = isActive?'#fff':col;
-      ctx.textAlign='center';
-      ctx.fillText(g, px+pillW/2, py+19);
-      ctx.textAlign='left';
-      px += pillW+pillGap;
-    });
-    y += GRADE_H;
-
-    // ── NUTRIENTS ──
-    y += 8;
-    text(sectionTitle, PAD, y+18, '700 13px sans-serif', '#7A96B0');
-    y += 30;
-
-    nutrientRows.forEach((row, i)=>{
-      const rowY = y + i*36;
-      if(i%2===0) roundRect(PAD, rowY-4, W-PAD*2, 32, 6, '#111E2E', 'transparent');
-      text(row.name, PAD+12, rowY+16, '300 13px sans-serif', '#E2EBF5');
-      text(row.val,  W-PAD-12, rowY+16, '600 13px sans-serif', '#E2EBF5', 'right');
-    });
-    y += nutrientRows.length*36 + 16;
-
-    // ── SCORE BREAKDOWN ──
-    roundRect(PAD, y, W-PAD*2, SCORE_H-20, 12, '#111E2E', '#1E3450');
-    text('Score Breakdown', PAD+16, y+24, '700 13px sans-serif', '#7A96B0');
-    ctx.fillStyle='#1E3450'; ctx.fillRect(PAD+16, y+32, W-PAD*2-32, 1);
-
-    text('Negative points (energy, fat, sugar, sodium)', PAD+16, y+58, '300 13px sans-serif', '#7A96B0');
-    text(badPts, W-PAD-16, y+58, '600 14px sans-serif', '#7AB0D0', 'right');
-    text('Positive points (protein, fibre, fruits/veg)', PAD+16, y+82, '300 13px sans-serif', '#7A96B0');
-    text(goodPts, W-PAD-16, y+82, '600 14px sans-serif', '#2E8AE6', 'right');
-    ctx.fillStyle='#1E3450'; ctx.fillRect(PAD+16, y+94, W-PAD*2-32, 1);
-    text('Final Score', PAD+16, y+114, '500 14px sans-serif', '#E2EBF5');
-    text(finalScore, W-PAD-16, y+114, 'bold 16px Syne,sans-serif', gradeColor, 'right');
-    y += SCORE_H;
-
-    // ── VERDICT ──
+      const ia=g===grade;rr(px,y+88,pw,24,6,ia?GC[g]:GC[g]+'22',GC[g]);
+      txt(g,px+pw/2,y+104,'bold 12px sans-serif',ia?'#fff':GC[g],'center');px+=pw+pg;
+    });y+=130;
+    // Nutrients
+    txt(secTitle,PAD,y+16,'700 12px sans-serif','#7A96B0');y+=28;
+    nutrientRows.forEach((row,i)=>{
+      if(i%2===0)rr(PAD,y+i*34-2,W-PAD*2,30,5,'#111E2E','transparent');
+      txt(row.name,PAD+10,y+i*34+16,'300 12px sans-serif','#E2EBF5');
+      txt(row.val,W-PAD-10,y+i*34+16,'600 12px sans-serif','#E2EBF5','right');
+    });y+=nutrientRows.length*34+12;
+    // Score
+    rr(PAD,y,W-PAD*2,100,10,'#111E2E','#1E3450');
+    txt('Score Breakdown',PAD+14,y+22,'700 12px sans-serif','#7A96B0');
+    ctx.fillStyle='#1E3450';ctx.fillRect(PAD+14,y+30,W-PAD*2-28,1);
+    txt('Negative points',PAD+14,y+52,'300 12px sans-serif','#7A96B0');
+    txt(badPts,W-PAD-14,y+52,'600 13px sans-serif','#7AB0D0','right');
+    txt('Positive points',PAD+14,y+72,'300 12px sans-serif','#7A96B0');
+    txt(goodPts,W-PAD-14,y+72,'600 13px sans-serif','#2E8AE6','right');
+    ctx.fillStyle='#1E3450';ctx.fillRect(PAD+14,y+82,W-PAD*2-28,1);
+    txt('Final Score',PAD+14,y+96,'500 13px sans-serif','#E2EBF5');
+    txt(finalScore,W-PAD-14,y+96,'bold 15px sans-serif',gc,'right');
+    y+=110;
     if(verdict){
-      y += 8;
-      roundRect(PAD, y, W-PAD*2, VERDICT_H+16, 12, '#111E2E', '#1464B4');
-      ctx.fillStyle='#1464B4'; ctx.fillRect(PAD, y, 3, VERDICT_H+16);
-      text('Verdict', PAD+16, y+24, '700 13px sans-serif', '#7A96B0');
-      wrapText(verdict, PAD+16, y+46, W-PAD*2-32, 22, '300 13px sans-serif', '#E2EBF5');
-      y += VERDICT_H + 24;
+      rr(PAD,y,W-PAD*2,50+Math.ceil(verdict.length/80)*20,10,'#111E2E','#1464B4');
+      ctx.fillStyle='#1464B4';ctx.fillRect(PAD,y,3,50+Math.ceil(verdict.length/80)*20);
+      txt('Verdict',PAD+14,y+20,'700 12px sans-serif','#7A96B0');
+      ctx.font='300 12px sans-serif';ctx.fillStyle='#E2EBF5';
+      const words=verdict.split(' ');let line='',vy=y+38;
+      words.forEach(word=>{
+        const t=line?line+' '+word:word;
+        if(ctx.measureText(t).width>W-PAD*2-30&&line){ctx.fillText(line,PAD+14,vy);vy+=18;line=word;}
+        else line=t;
+      });if(line)ctx.fillText(line,PAD+14,vy);
+      y+=60+Math.ceil(verdict.length/80)*20;
     }
+    // Footer
+    ctx.fillStyle='#1E3450';ctx.fillRect(0,TOTAL_H-40,W,1);
+    txt('Generated by ScoreMyPack · Thinking Lab · Nutri-Score v2',W/2,TOTAL_H-22,'300 10px sans-serif','#7A96B0','center');
+    const dataUrl=canvas.toDataURL('image/png');
+    const fname='scoremypack-'+new Date().toISOString().slice(0,10)+'.png';
+    const link=document.createElement('a');link.download=fname;link.href=dataUrl;
+    document.body.appendChild(link);link.click();document.body.removeChild(link);
+    setTimeout(()=>{const w=window.open();if(w){w.document.write('<title>'+fname+'</title><img src="'+dataUrl+'" style="max-width:100%;height:auto;"><p style="position:fixed;bottom:16px;left:0;right:0;text-align:center;color:#fff;font-family:sans-serif;font-size:12px">Long-press image → Save to Photos</p>');w.document.close();}},200);
+  }catch(e){console.error(e);alert('Could not generate image: '+e.message);}
+  finally{btn.innerHTML=orig;btn.disabled=false;}
+}
 
-    // ── FOOTER ──
-    y = TOTAL_H - FOOTER_H;
-    ctx.fillStyle='#1E3450'; ctx.fillRect(0, y, W, 1);
-    text('Generated by ScoreMyPack · Thinking Lab · Nutri-Score v2 Algorithm',
-         W/2, y+28, '300 11px sans-serif', '#7A96B0', 'center');
-    text('This report is for informational purposes only.',
-         W/2, y+46, '300 11px sans-serif', '#7A96B0'+'88', 'center');
 
-    // ── DOWNLOAD ──
-    const dataUrl = canvas.toDataURL('image/png');
-    const filename = 'scoremypack-report-' + new Date().toISOString().slice(0,10) + '.png';
 
-    // Try standard download first
-    try {
-      const link = document.createElement('a');
-      link.download = filename;
-      link.href = dataUrl;
-      document.body.appendChild(link);
-      link.click();
-      document.body.removeChild(link);
-    } catch(e) {}
+/* ── Crop Tool ── */
+let _cropBox={x:10,y:10,w:80,h:80};
+let _drag=null,_dragStart=null,_natW=0,_natH=0,_rendW=0,_rendH=0;
 
-    // Also open in new tab as fallback (works on iOS — user can long-press to save)
-    setTimeout(() => {
-      const w = window.open();
-      if(w) {
-        w.document.write('<title>' + filename + '</title>');
-        w.document.write('<style>body{margin:0;background:#000;display:flex;align-items:center;justify-content:center;min-height:100vh}</style>');
-        w.document.write('<img src="' + dataUrl + '" style="max-width:100%;height:auto;">');
-        w.document.write('<p style="position:fixed;bottom:20px;left:0;right:0;text-align:center;color:#fff;font-family:sans-serif;font-size:13px">Long-press the image and tap Save to Photos</p>');
-        w.document.close();
-      }
-    }, 300);
+function showCropTool(dataUrl){
+  const modal=document.getElementById('crop-modal');
+  const img=document.getElementById('crop-img');
+  // Show modal FIRST so dimensions are available
+  modal.classList.add('active');
+  img.onload=function(){
+    _natW=img.naturalWidth;_natH=img.naturalHeight;
+    const wrap=document.getElementById('crop-canvas-wrap');
+    const ww=wrap.clientWidth||window.innerWidth;
+    const wh=wrap.clientHeight||Math.round(window.innerHeight*0.7);
+    const scale=Math.min(ww/_natW,wh/_natH);
+    _rendW=Math.round(_natW*scale);_rendH=Math.round(_natH*scale);
+    const overlay=document.getElementById('crop-overlay');
+    const offX=Math.round((ww-_rendW)/2);const offY=Math.round((wh-_rendH)/2);
+    overlay.style.left=offX+'px';overlay.style.top=offY+'px';
+    overlay.style.width=_rendW+'px';overlay.style.height=_rendH+'px';
+    _cropBox={x:5,y:5,w:90,h:90};
+    renderCropBox();
+    initCropDrag();
+  };
+  img.src=dataUrl;
+  // If image already cached, onload may not fire — trigger manually
+  if(img.complete&&img.naturalWidth>0){img.onload();}
+}
 
-  } catch(e) {
-    console.error('PNG generation failed:', e);
-    alert('Could not generate report. Please try again.');
-  } finally {
-    btn.innerHTML = origText;
-    btn.disabled = false;
+function renderCropBox(){
+  const box=document.getElementById('crop-box');
+  box.style.left=_cropBox.x+'%';
+  box.style.top=_cropBox.y+'%';
+  box.style.width=_cropBox.w+'%';
+  box.style.height=_cropBox.h+'%';
+}
+
+function initCropDrag(){
+  const overlay=document.getElementById('crop-overlay');
+  const box=document.getElementById('crop-box');
+
+  function pos(e){
+    const r=overlay.getBoundingClientRect();
+    const cx=e.touches?e.touches[0].clientX:e.clientX;
+    const cy=e.touches?e.touches[0].clientY:e.clientY;
+    return{x:(cx-r.left)/r.width*100,y:(cy-r.top)/r.height*100};
   }
+
+  // Handle corners
+  document.querySelectorAll('.crop-handle').forEach(h=>{
+    function onStart(e){
+      e.preventDefault();e.stopPropagation();
+      _drag=h.dataset.h;
+      const p=pos(e);_dragStart={...p,box:{..._cropBox}};
+    }
+    h.addEventListener('mousedown',onStart);
+    h.addEventListener('touchstart',onStart,{passive:false});
+  });
+
+  // Move box
+  function onBoxStart(e){
+    if(e.target.classList.contains('crop-handle'))return;
+    e.preventDefault();_drag='move';
+    const p=pos(e);_dragStart={...p,box:{..._cropBox}};
+  }
+  box.addEventListener('mousedown',onBoxStart);
+  box.addEventListener('touchstart',onBoxStart,{passive:false});
+
+  function onMove(e){
+    if(!_drag)return;e.preventDefault();
+    const p=pos(e);
+    const dx=p.x-_dragStart.x,dy=p.y-_dragStart.y;
+    const b={..._dragStart.box};const MIN=8;
+    if(_drag==='move'){
+      b.x=Math.max(0,Math.min(100-b.w,b.x+dx));
+      b.y=Math.max(0,Math.min(100-b.h,b.y+dy));
+    } else {
+      if(_drag.includes('r'))b.w=Math.max(MIN,Math.min(100-b.x,b.w+dx));
+      if(_drag.includes('b'))b.h=Math.max(MIN,Math.min(100-b.y,b.h+dy));
+      if(_drag.includes('l')){const nw=Math.max(MIN,b.w-dx);b.x=b.x+b.w-nw;b.w=nw;}
+      if(_drag.includes('t')){const nh=Math.max(MIN,b.h-dy);b.y=b.y+b.h-nh;b.h=nh;}
+    }
+    _cropBox=b;renderCropBox();
+  }
+  function onEnd(){_drag=null;_dragStart=null;}
+  document.addEventListener('mousemove',onMove);
+  document.addEventListener('touchmove',onMove,{passive:false});
+  document.addEventListener('mouseup',onEnd);
+  document.addEventListener('touchend',onEnd);
+}
+
+function cropSkip(){
+  document.getElementById('crop-modal').classList.remove('active');
+}
+
+function cropConfirm(){
+  const img=document.getElementById('crop-img');
+  const canvas=document.getElementById('crop-canvas');
+  const ctx=canvas.getContext('2d');
+  // Calculate crop in natural image pixels
+  const sx=_cropBox.x/100*_natW;
+  const sy=_cropBox.y/100*_natH;
+  const sw=_cropBox.w/100*_natW;
+  const sh=_cropBox.h/100*_natH;
+  // Output at min 1200px on longer side for good OCR
+  const outScale=Math.max(1,1200/Math.max(sw,sh));
+  const outW=Math.round(sw*outScale);
+  const outH=Math.round(sh*outScale);
+  canvas.width=outW;canvas.height=outH;
+  ctx.imageSmoothingEnabled=true;ctx.imageSmoothingQuality='high';
+  ctx.drawImage(img,sx,sy,sw,sh,0,0,outW,outH);
+  imgDataUrl=canvas.toDataURL('image/jpeg',0.95);
+  document.getElementById('preview-img').src=imgDataUrl;
+  document.getElementById('crop-modal').classList.remove('active');
 }
 
 </script>
@@ -1746,5 +1662,35 @@ if('serviceWorker' in navigator&&location.hostname!=='www.claudeusercontent.com'
   window.addEventListener('load',()=>navigator.serviceWorker.register('/sw.js').catch(()=>{}));
 }
 </script>
+  <!-- Crop Tool -->
+  <div class="crop-modal" id="crop-modal">
+    <div class="crop-header">
+      <div class="crop-title">Select Nutrition Table</div>
+      <div class="crop-hint">Drag the blue handles to frame the nutrition table tightly</div>
+    </div>
+    <div class="crop-canvas-wrap" id="crop-canvas-wrap">
+      <img id="crop-img" alt="crop">
+      <canvas id="crop-canvas"></canvas>
+      <div class="crop-overlay" id="crop-overlay">
+        <div class="crop-box" id="crop-box">
+          <div class="crop-handle crop-handle-tl" data-h="tl"></div>
+          <div class="crop-handle crop-handle-tr" data-h="tr"></div>
+          <div class="crop-handle crop-handle-bl" data-h="bl"></div>
+          <div class="crop-handle crop-handle-br" data-h="br"></div>
+          <div class="crop-guideline crop-gl-h1"></div>
+          <div class="crop-guideline crop-gl-h2"></div>
+          <div class="crop-guideline crop-gl-v1"></div>
+          <div class="crop-guideline crop-gl-v2"></div>
+        </div>
+      </div>
+    </div>
+    <div class="crop-actions">
+      <button class="crop-btn crop-btn-skip" onclick="cropSkip()">Skip — Use Full Image</button>
+      <button class="crop-btn crop-btn-confirm" onclick="cropConfirm()">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+        Crop &amp; Analyse
+      </button>
+    </div>
+  </div>
 </body>
 </html>
