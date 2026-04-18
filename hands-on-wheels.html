@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="/styles.css">
+  <link rel="stylesheet" href="/styles.css?v=2">
 <title>Hands on Wheels · Rishabh Saxena</title>
 <meta name="description" content="Automobiles, motorsport, and everything in between. From the circuit to the street — a passion for machines that move.">
   <!-- Open Graph -->
@@ -74,21 +74,15 @@ footer span { color: #1B96FF; }
 .ve-bubble.open .ve-close { display: block; }
 
 .ve-window {
-  position: fixed;
-  bottom: 92px; right: 28px;
-  width: 360px;
-  max-height: 520px;
-  background: var(--sf-card);
-  border: 1px solid var(--sf-border);
-  border-radius: 20px;
-  box-shadow: 0 8px 40px rgba(0,0,0,0.2);
-  display: none;
-  flex-direction: column;
-  overflow: hidden;
-  z-index: 9998;
+  position: fixed; bottom: 92px; right: 28px; width: 360px; max-height: 520px;
+  background: var(--glass-bg); backdrop-filter: var(--blur-lg); -webkit-backdrop-filter: var(--blur-lg);
+  border: 1px solid var(--glass-border); border-radius: 20px; box-shadow: var(--shadow-overlay);
+  display: none; flex-direction: column; overflow: hidden; z-index: 9998;
   font-family: 'DM Sans', sans-serif;
+  transform: translateY(20px); opacity: 0;
+  transition: opacity 0.3s, transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
-.ve-window.open { display: flex; }
+.ve-window.open { display: flex; transform: translateY(0); opacity: 1; }
 
 .ve-header {
   background: linear-gradient(135deg, var(--sf-navy), #0a2a5e);
@@ -229,6 +223,14 @@ footer span { color: #1B96FF; }
   </script>
 </head>
 <body>
+
+<!-- BACKGROUND EFFECT -->
+<div class="glow-container">
+  <div class="blob blob-1"></div>
+  <div class="blob blob-2"></div>
+  <div class="blob blob-3"></div>
+</div>
+
 <script>
 
 </script>

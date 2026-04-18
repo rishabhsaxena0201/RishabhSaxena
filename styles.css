@@ -19,6 +19,24 @@
   --shadow-card: 0 2px 20px rgba(0,0,0,0.07);
   --watch-dial: #ffffff;
   --watch-hand: #0A1F44;
+  
+  /* Depth & Glass Tokens */
+  --blur-sm: blur(8px);
+  --blur-md: blur(16px);
+  --blur-lg: blur(32px);
+  --glass-bg: rgba(255, 255, 255, 0.3);
+  --glass-border: rgba(255, 255, 255, 0.6);
+  --glass-glow: rgba(255, 255, 255, 0.5);
+  --shadow-float: 0 16px 40px rgba(0, 50, 100, 0.08), 0 4px 12px rgba(0, 50, 100, 0.04);
+  --shadow-overlay: 0 24px 60px rgba(0, 60, 120, 0.15), 0 8px 24px rgba(0, 60, 120, 0.08);
+  --shadow-inset: inset 0 0 0 1px rgba(255, 255, 255, 0.4);
+  
+  /* Blob Colors - Light Mode */
+  --blob-1: #cce0ff;
+  --blob-2: #e6f0ff;
+  --blob-3: #99c2ff;
+  --blob-blend: multiply;
+  --blob-opacity: 0.8;
 }
 
 [data-theme="dark"] {
@@ -32,6 +50,21 @@
   --shadow-card: 0 2px 20px rgba(0,0,0,0.3);
   --watch-dial: #0A1F44;
   --watch-hand: #E8F4FF;
+
+  /* Depth & Glass Tokens - Dark Mode */
+  --glass-bg: rgba(20, 50, 90, 0.75); /* Bolder opacity */
+  --glass-border: rgba(255, 255, 255, 0.3); /* Stronger border for "separate tab" look */
+  --glass-glow: rgba(255, 255, 255, 0.08);
+  --shadow-float: 0 20px 50px rgba(0, 0, 0, 0.6);
+  --shadow-overlay: 0 30px 80px rgba(0, 0, 0, 0.8);
+  --shadow-inset: inset 0 1px 1px 0 rgba(255, 255, 255, 0.2);
+
+  /* Blob Colors - Dark Mode */
+  --blob-1: #002b5e;
+  --blob-2: #051329;
+  --blob-3: #004080;
+  --blob-blend: screen;
+  --blob-opacity: 0.8;
 }
 
 /* ── RESET ── */
@@ -40,24 +73,55 @@
 /* ── BASE ── */
 body {
   font-family: 'DM Sans', sans-serif;
-  background: var(--bg);
+  background: transparent; /* Changed to let blobs show behind everything */
   color: var(--sf-text);
   transition: background 0.3s, color 0.3s;
   overflow-x: hidden;
+}
+
+/* ── AMBIENT BLOBS ── */
+.glow-container {
+  position: fixed;
+  inset: 0;
+  z-index: -2;
+  overflow: hidden;
+  pointer-events: none;
+  background: var(--bg);
+  transition: background 0.3s;
+}
+.blob {
+  position: absolute;
+  filter: blur(80px);
+  opacity: var(--blob-opacity);
+  border-radius: 50%;
+  animation: blob-float 8s infinite alternate ease-in-out;
+  mix-blend-mode: var(--blob-blend);
+  will-change: transform;
+}
+.blob-1 { top: -10%; left: -10%; width: 50vw; height: 50vw; background: var(--blob-1); animation-delay: 0s; }
+.blob-2 { bottom: -20%; right: -10%; width: 60vw; height: 60vw; background: var(--blob-2); animation-duration: 6s; animation-delay: -2s; }
+.blob-3 { top: 30%; left: 50%; width: 40vw; height: 40vw; background: var(--blob-3); animation-duration: 10s; animation-delay: -5s; }
+
+@keyframes blob-float {
+  0% { transform: translate(0, 0) scale(1); }
+  33% { transform: translate(8%, 15%) scale(1.15); }
+  66% { transform: translate(-5%, -10%) scale(0.9); }
+  100% { transform: translate(12%, 5%) scale(1.05); }
 }
 
 /* ── NAV ── */
 nav {
   position: fixed; top: 0; left: 0; right: 0;
   height: 68px;
-  background: rgba(244,246,249,0.92);
-  backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
-  border-bottom: 1px solid var(--sf-border);
+  background: var(--glass-bg);
+  backdrop-filter: var(--blur-md); -webkit-backdrop-filter: var(--blur-md);
+  border-bottom: 1px solid var(--glass-border);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.05);
   display: flex; align-items: center; justify-content: space-between;
   padding: 0 5%; z-index: 1000;
-  transition: background 0.3s;
+  transition: background 0.3s, border-color 0.3s;
 }
-[data-theme="dark"] nav { background: rgba(6,15,30,0.92); }
+[data-theme="dark"] nav { box-shadow: 0 4px 30px rgba(0, 0, 0, 0.2); }
 .nav-logo a { display: flex; align-items: center; text-decoration: none; }
 .nav-logo img { height: 44px; width: 44px; border-radius: 50%; object-fit: cover; }
 .nav-center {
@@ -143,8 +207,8 @@ nav {
   }
   .nav-item:hover .dropdown { display: none; }
   .dropdown {
-    position: static !important;
-    box-shadow: none !important;
+    position: relative; overflow: hidden;
+    box-shadow: var(--shadow-float), var(--shadow-inset);
     border: none !important;
     border-radius: 0 !important;
     padding: 0 !important;

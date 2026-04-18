@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="/styles.css">
+  <link rel="stylesheet" href="/styles.css?v=2">
 <title>About | Rishabh Saxena</title>
 <meta name="description" content="Rishabh Saxena — Salesforce Consultant, problem solver, motorsport marshal, watch enthusiast. Full professional profile, experience, certifications and...">
   <!-- Open Graph -->
@@ -163,13 +163,15 @@ body { padding-top: 68px; }
 }
 .ve-bubble:hover { transform: scale(1.1); }
 .ve-window {
-  display: none; position: fixed; bottom: 88px; right: 24px;
-  width: 340px; max-height: 520px;
-  background: var(--sf-card); border: 1px solid var(--sf-border);
-  border-radius: 20px; box-shadow: 0 8px 40px rgba(0,0,0,0.15);
-  flex-direction: column; z-index: 500; overflow: hidden;
+  position: fixed; bottom: 92px; right: 28px; width: 360px; max-height: 520px;
+  background: var(--glass-bg); backdrop-filter: var(--blur-lg); -webkit-backdrop-filter: var(--blur-lg);
+  border: 1px solid var(--glass-border); border-radius: 20px; box-shadow: var(--shadow-overlay);
+  display: none; flex-direction: column; overflow: hidden; z-index: 9998;
+  font-family: 'DM Sans', sans-serif;
+  transform: translateY(20px); opacity: 0;
+  transition: opacity 0.3s, transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
-.ve-window.open { display: flex; }
+.ve-window.open { display: flex; transform: translateY(0); opacity: 1; }
 .ve-header {
   background: var(--sf-blue); color: #fff;
   padding: 14px 16px; display: flex; align-items: center; gap: 10px;
@@ -443,21 +445,15 @@ section[style*="background:#0A1F44"] .section-label::before { background: #7ec8f
 .ve-bubble.open .ve-close { display: block; }
 
 .ve-window {
-  position: fixed;
-  bottom: 92px; right: 28px;
-  width: 360px;
-  max-height: 520px;
-  background: var(--sf-card);
-  border: 1px solid var(--sf-border);
-  border-radius: 20px;
-  box-shadow: 0 8px 40px rgba(0,0,0,0.2);
-  display: none;
-  flex-direction: column;
-  overflow: hidden;
-  z-index: 9998;
+  position: fixed; bottom: 92px; right: 28px; width: 360px; max-height: 520px;
+  background: var(--glass-bg); backdrop-filter: var(--blur-lg); -webkit-backdrop-filter: var(--blur-lg);
+  border: 1px solid var(--glass-border); border-radius: 20px; box-shadow: var(--shadow-overlay);
+  display: none; flex-direction: column; overflow: hidden; z-index: 9998;
   font-family: 'DM Sans', sans-serif;
+  transform: translateY(20px); opacity: 0;
+  transition: opacity 0.3s, transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
-.ve-window.open { display: flex; }
+.ve-window.open { display: flex; transform: translateY(0); opacity: 1; }
 
 .ve-header {
   background: linear-gradient(135deg, var(--sf-navy), #0a2a5e);
@@ -598,6 +594,14 @@ section[style*="background:#0A1F44"] .section-label::before { background: #7ec8f
   </script>
 </head>
 <body>
+
+<!-- BACKGROUND EFFECT -->
+<div class="glow-container">
+  <div class="blob blob-1"></div>
+  <div class="blob blob-2"></div>
+  <div class="blob blob-3"></div>
+</div>
+
 
 <nav>
   <div class="nav-logo"><a href="/"><img src="/logo.png" alt="RS Logo" width="44" height="44"></a></div>
@@ -821,7 +825,7 @@ section[style*="background:#0A1F44"] .section-label::before { background: #7ec8f
 
 
 <!-- CERTIFICATIONS -->
-<section style="padding:60px 5%;background:var(--sf-light-bg);">
+<section style="padding:60px 5%;background:transparent;">
   <div class="section-inner">
     <div class="section-label">Credentials</div>
     <h2 class="section-title">Certifications</h2>
@@ -859,7 +863,7 @@ section[style*="background:#0A1F44"] .section-label::before { background: #7ec8f
   </div>
 </section>
 
-<section style="background:var(--sf-card);padding:60px 5%;">
+<section style="background:transparent;padding:60px 5%;">
   <div class="section-inner">
     <div class="section-label">Beyond Work</div>
     <h2 class="section-title">The Person Behind the Profile</h2>
@@ -901,7 +905,7 @@ section[style*="background:#0A1F44"] .section-label::before { background: #7ec8f
 
 <!-- CONTACT FORM -->
 
-<section id="contact-form" style="background:var(--sf-light-bg);padding:60px 5%;">
+<section id="contact-form" style="background:transparent;padding:60px 5%;">
   <div class="section-inner" style="max-width:700px;">
     <div class="section-label">Quick Form</div>
     <h2 class="section-title">Drop Me a Note</h2>
