@@ -3,42 +3,24 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Hands on Wrist Â· Rishabh Saxena</title>
+  <link rel="stylesheet" href="/styles.css?v=2">
+<title>Hands on Wrist · Rishabh Saxena</title>
 <meta name="description" content="Horology through the eyes of someone who appreciates craft, precision, and the stories behind what we wear on our wrists.">
-<link rel="icon" href="/logo.png" type="image/png">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <!-- Open Graph -->
+  <meta property="og:type"        content="website">
+  <meta property="og:url"         content="https://rishabhsaxena.co.in/hands-on-wrist.html">
+  <meta property="og:title"       content="Hands on Wrist · Rishabh Saxena">
+  <meta property="og:description" content="Horology through the eyes of someone who appreciates craft, precision, and the stories behind what we wear on our wrists.">
+  <meta property="og:image"       content="https://rishabhsaxena.co.in/photo.png">
+  <!-- Twitter Card -->
+  <meta name="twitter:card"        content="summary_large_image">
+  <meta name="twitter:title"       content="Hands on Wrist · Rishabh Saxena">
+  <meta name="twitter:description" content="Horology through the eyes of someone who appreciates craft, precision, and the stories behind what we wear on our wrists.">
+  <meta name="twitter:image"       content="https://rishabhsaxena.co.in/photo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+  <link rel="icon" href="/logo.png" type="image/png">
 <style>
-:root {
-  --sf-navy: #0A1F44;
-  --sf-blue: #0070D2;
-  --sf-electric: #1B96FF;
-  --sf-text: #0A1F44;
-  --sf-subtext: #5C6B7A;
-  --sf-card: #FFFFFF;
-  --sf-border: #E0E5EB;
-  --sf-light-bg: #F4F6F9;
-  --sf-tag-bg: #EEF4FF;
-  --bg: #F4F6F9;
-  --shadow-card: 0 2px 20px rgba(0,0,0,0.07);
-  --watch-dial: #ffffff;
-  --watch-hand: #0A1F44;
-}
-[data-theme="dark"] {
-  --sf-text: #E8F4FF;
-  --sf-subtext: #8CA0B8;
-  --sf-card: #0F2847;
-  --sf-border: #1A3A5C;
-  --sf-light-bg: #081830;
-  --sf-tag-bg: #0D2240;
-  --bg: #060F1E;
-  --shadow-card: 0 2px 20px rgba(0,0,0,0.3);
-  --watch-dial: #0A1F44;
-  --watch-hand: #E8F4FF;
-}
-* { margin:0; padding:0; box-sizing:border-box; }
-body { font-family: 'DM Sans', sans-serif; background: var(--sf-light-bg); color: var(--sf-text); line-height: 1.7; transition: background 0.3s, color 0.3s; }
-
 .page-hero { padding: 120px 5% 60px; max-width: 1100px; margin: 0 auto; }
 .page-label { font-family: 'Sora', sans-serif; font-size: 0.72rem; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: var(--sf-blue); margin-bottom: 12px; display: flex; align-items: center; gap: 10px; }
 .page-label::before { content:''; display:block; width: 32px; height: 2px; background: var(--sf-blue); }
@@ -66,125 +48,10 @@ body { font-family: 'DM Sans', sans-serif; background: var(--sf-light-bg); color
 footer { background: #020E1E; padding: 30px 5%; text-align: center; border-top: 1px solid rgba(255,255,255,0.05); }
 footer p { color: rgba(255,255,255,0.3); font-size: 0.8rem; font-family: 'Sora', sans-serif; }
 footer span { color: #1B96FF; }
-
-/* ââ NAV ââ */
-nav {
-  position: fixed; top: 0; left: 0; right: 0;
-  height: 68px;
-  background: rgba(244,246,249,0.92);
-  backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
-  border-bottom: 1px solid var(--sf-border);
-  display: flex; align-items: center; justify-content: space-between;
-  padding: 0 5%; z-index: 1000;
-  transition: background 0.3s;
-}
-[data-theme="dark"] nav { background: rgba(6,15,30,0.92); }
-.nav-logo a { display: flex; align-items: center; text-decoration: none; }
-.nav-logo img { height: 44px; width: 44px; border-radius: 50%; object-fit: cover; }
-.nav-center {
-  position: absolute; left: 50%; transform: translateX(-50%);
-  display: flex; align-items: center; gap: 28px;
-}
-.nav-center a {
-  text-decoration: none; color: var(--sf-text);
-  font-size: 0.88rem; font-weight: 400;
-  transition: color 0.2s; white-space: nowrap;
-}
-.nav-center a:hover { color: var(--sf-blue); }
-.nav-item { position: relative; padding-bottom: 16px; margin-bottom: -16px; }
-.nav-item .has-dropdown {
-  cursor: pointer; display: flex; align-items: center; gap: 4px;
-  font-size: 0.88rem; font-weight: 400; color: var(--sf-text);
-  text-decoration: none; white-space: nowrap;
-}
-.nav-item .has-dropdown::after { content: "â¾"; font-size: 0.7rem; opacity: 0.5; margin-left: 2px; }
-.dropdown {
-  display: none; position: absolute; top: 100%; left: -16px;
-  background: var(--sf-card); border: 1px solid var(--sf-border);
-  border-radius: 12px; padding: 8px 0; min-width: 220px;
-  box-shadow: 0 8px 30px rgba(0,0,0,0.12); z-index: 2000;
-}
-.dropdown a {
-  display: flex; align-items: center; padding: 9px 20px;
-  font-size: 0.88rem; color: var(--sf-text); text-decoration: none; transition: background 0.15s;
-}
-.dropdown a:hover { background: var(--sf-tag-bg); }
-.nav-item:hover .dropdown, .nav-item .dropdown.open { display: block; }
-.nav-right { display: flex; align-items: center; gap: 12px; }
-.theme-toggle {
-  background: var(--sf-tag-bg); border: 1px solid var(--sf-border);
-  color: var(--sf-text); padding: 6px 14px; border-radius: 20px;
-  cursor: pointer; font-size: 0.78rem; font-family: "Sora", sans-serif;
-  font-weight: 600; transition: all 0.2s; white-space: nowrap;
-}
-.theme-toggle:hover { border-color: var(--sf-blue); color: var(--sf-blue); }
-.hamburger {
-  display: none; flex-direction: column; gap: 5px;
-  background: none; border: none; cursor: pointer; padding: 4px;
-}
-.hamburger span { display: block; width: 22px; height: 2px; background: var(--sf-text); border-radius: 2px; transition: 0.3s; }
 @media (max-width: 768px) {
-  .nav-center {
-    display: none;
-    position: fixed;
-    top: 68px; left: 0; right: 0; bottom: 0;
-    transform: none;
-    background: var(--sf-card);
-    box-shadow: 0 8px 40px rgba(0,0,0,0.5);
-    border-top: 1px solid var(--sf-border);
-    flex-direction: column;
-    align-items: stretch;
-    padding: 8px 0;
-    gap: 0;
-    z-index: 999;
-    overflow-y: auto;
-    box-shadow: 0 8px 24px rgba(0,0,0,0.1);
-  }
-  .nav-center.open { display: flex; }
-  .nav-center > a {
-    padding: 14px 24px;
-    width: 100%;
-    border-bottom: 1px solid var(--sf-border);
-    font-size: 1rem !important;
-    color: var(--sf-text) !important;
-    display: block;
-  }
-  .nav-item {
-    width: 100%;
-    padding-bottom: 0 !important;
-    margin-bottom: 0 !important;
-    border-bottom: 1px solid var(--sf-border);
-  }
-  .nav-item .has-dropdown {
-    padding: 14px 24px;
-    width: 100%;
-    font-size: 1rem !important;
-    display: flex;
-    justify-content: space-between;
-  }
-  .nav-item:hover .dropdown { display: none; }
-  .dropdown {
-    position: static !important;
-    box-shadow: none !important;
-    border: none !important;
-    border-radius: 0 !important;
-    padding: 0 !important;
-    background: var(--sf-light-bg) !important;
-    min-width: unset !important;
-    display: none;
-  }
-  .dropdown.open { display: block !important; }
-  .dropdown a {
-    padding: 12px 24px 12px 40px !important;
-    border-bottom: 1px solid var(--sf-border) !important;
-    font-size: 0.9rem !important;
-  }
-  .hamburger { display: flex !important; background: none; border: none; }
-  .theme-toggle { font-size: 0.72rem; padding: 5px 10px; }
 }
 [data-theme="dark"] .nav-center.open { background: #132d56 !important; }
-[data-theme="light"] .nav-center.open { background: #ffffff !important; }
-/* ââ END NAV ââ */
+/* ── END NAV ── */
 </style>
 <style>
 /* Bot Widget */
@@ -207,21 +74,15 @@ nav {
 .ve-bubble.open .ve-close { display: block; }
 
 .ve-window {
-  position: fixed;
-  bottom: 92px; right: 28px;
-  width: 360px;
-  max-height: 520px;
-  background: var(--sf-card);
-  border: 1px solid var(--sf-border);
-  border-radius: 20px;
-  box-shadow: 0 8px 40px rgba(0,0,0,0.2);
-  display: none;
-  flex-direction: column;
-  overflow: hidden;
-  z-index: 9998;
+  position: fixed; bottom: 92px; right: 28px; width: 360px; max-height: 520px;
+  background: var(--glass-bg); backdrop-filter: var(--blur-lg); -webkit-backdrop-filter: var(--blur-lg);
+  border: 1px solid var(--glass-border); border-radius: 20px; box-shadow: var(--shadow-overlay);
+  display: none; flex-direction: column; overflow: hidden; z-index: 9998;
   font-family: 'DM Sans', sans-serif;
+  transform: translateY(20px); opacity: 0;
+  transition: opacity 0.3s, transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
-.ve-window.open { display: flex; }
+.ve-window.open { display: flex; transform: translateY(0); opacity: 1; }
 
 .ve-header {
   background: linear-gradient(135deg, var(--sf-navy), #0a2a5e);
@@ -362,6 +223,14 @@ nav {
   </script>
 </head>
 <body>
+
+<!-- BACKGROUND EFFECT -->
+<div class="glow-container">
+  <div class="blob blob-1"></div>
+  <div class="blob blob-2"></div>
+  <div class="blob blob-3"></div>
+</div>
+
 <script>
 
 </script>
@@ -374,19 +243,19 @@ nav {
       <a class="has-dropdown" onclick="toggleMobileDropdown(this)">Thinking Lab</a>
       <div class="dropdown" id="thinkingLabDropdown">
         <div style="font-size:0.68rem;font-family:'Sora',sans-serif;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:var(--sf-blue);padding:8px 20px 4px;cursor:default;">Blog</div>
-        <a href="/salesforce.html">âï¸&nbsp; Salesforce</a>
+        <a href="/salesforce.html">☁️&nbsp; Salesforce</a>
         <a href="/hands-on-wrist.html" style="color:var(--sf-blue);font-weight:700;"><svg id="watch-navwrist" viewBox="0 0 44 56" width="18" height="22" xmlns="http://www.w3.org/2000/svg" style="display:inline-block;vertical-align:middle;margin-right:8px;flex-shrink:0;"><rect x="14" y="1" width="16" height="9" rx="3" fill="var(--sf-subtext)" opacity="0.6"/><rect x="14" y="46" width="16" height="9" rx="3" fill="var(--sf-subtext)" opacity="0.6"/><circle cx="22" cy="28" r="17" fill="var(--sf-subtext)" opacity="0.25"/><circle cx="22" cy="28" r="14" fill="var(--watch-dial,#ffffff)"/><g id="watch-navwrist-hour"><line x1="22" y1="28" x2="22" y2="22" stroke="var(--sf-text,#0A1F44)" stroke-width="2.5" stroke-linecap="round"/></g><g id="watch-navwrist-min"><line x1="22" y1="28" x2="22" y2="17" stroke="var(--sf-text,#0A1F44)" stroke-width="1.5" stroke-linecap="round"/></g><circle cx="22" cy="28" r="1.8" fill="var(--sf-blue,#1B96FF)"/></svg> Hands on Wrist</a>
         <a href="/hands-on-wheels.html"><svg viewBox="10 10 80 80" width="18" height="18" xmlns="http://www.w3.org/2000/svg" style="display:inline-block;vertical-align:middle;margin-right:8px;flex-shrink:0;"><circle cx="50" cy="50" r="38" fill="none" stroke="var(--sf-subtext)" stroke-width="7"/><line x1="50" y1="50" x2="17" y2="31" stroke="var(--sf-subtext)" stroke-width="5" stroke-linecap="round"/><line x1="50" y1="50" x2="83" y2="31" stroke="var(--sf-subtext)" stroke-width="5" stroke-linecap="round"/><line x1="50" y1="50" x2="50" y2="88" stroke="var(--sf-subtext)" stroke-width="5" stroke-linecap="round"/><circle cx="50" cy="50" r="9" fill="var(--sf-card,#fff)" stroke="var(--sf-subtext)" stroke-width="2.5"/><circle cx="50" cy="50" r="5.5" fill="#C0392B"/><circle cx="50" cy="50" r="3.5" fill="#E74C3C"/><path d="M10 38 Q7 30 12 24 Q17 19 23 23 Q26 26 24 32 Q22 37 17 39 Q13 40 10 38Z" fill="var(--sf-subtext)" opacity="0.85"/><path d="M90 38 Q93 30 88 24 Q83 19 77 23 Q74 26 76 32 Q78 37 83 39 Q87 40 90 38Z" fill="var(--sf-subtext)" opacity="0.85"/></svg> Hands on Wheels</a>
-        <a href="/open-tabs.html"><svg viewBox="7 9 47 54" width="18" height="18" xmlns="http://www.w3.org/2000/svg" style="display:inline-block;vertical-align:middle;margin-right:8px;flex-shrink:0;"><rect x="8" y="10" width="38" height="48" rx="3" fill="var(--sf-tag-bg,#E8EEF4)" stroke="var(--sf-subtext)" stroke-width="2.5"/><rect x="5" y="16" width="6" height="4" rx="2" fill="none" stroke="var(--sf-subtext)" stroke-width="1.8"/><rect x="5" y="26" width="6" height="4" rx="2" fill="none" stroke="var(--sf-subtext)" stroke-width="1.8"/><rect x="5" y="36" width="6" height="4" rx="2" fill="none" stroke="var(--sf-subtext)" stroke-width="1.8"/><line x1="16" y1="22" x2="40" y2="22" stroke="var(--sf-subtext)" stroke-width="1.2" stroke-linecap="round" opacity="0.5"/><line x1="16" y1="30" x2="40" y2="30" stroke="var(--sf-subtext)" stroke-width="1.2" stroke-linecap="round" opacity="0.5"/><line x1="16" y1="38" x2="34" y2="38" stroke="var(--sf-subtext)" stroke-width="1.2" stroke-linecap="round" opacity="0.5"/><rect x="30" y="38" width="5" height="18" rx="2" fill="var(--sf-blue,#1B96FF)" transform="rotate(-35 32 46)"/><polygon points="0,0 4,0 2,5" fill="var(--sf-subtext)" transform="translate(37,51) rotate(-35)"/></svg> Open Tabs</a>
+        <a href="/open-tabs.html"><svg viewBox="7 9 47 54" width="18" height="18" xmlns="http://www.w3.org/2000/svg" style="display:inline-block;vertical-align:middle;margin-right:8px;flex-shrink:0;"><rect x="8" y="10" width="38" height="48" rx="3" fill="var(--sf-subtext)" opacity="0.3" stroke="var(--sf-subtext)" stroke-width="2.5"/><rect x="5" y="16" width="6" height="4" rx="2" fill="none" stroke="var(--sf-subtext)" stroke-width="2.2"/><rect x="5" y="26" width="6" height="4" rx="2" fill="none" stroke="var(--sf-subtext)" stroke-width="2.2"/><rect x="5" y="36" width="6" height="4" rx="2" fill="none" stroke="var(--sf-subtext)" stroke-width="2.2"/><line x1="16" y1="22" x2="40" y2="22" stroke="var(--sf-subtext)" stroke-width="1.2" stroke-linecap="round" opacity="0.8"/><line x1="16" y1="30" x2="40" y2="30" stroke="var(--sf-subtext)" stroke-width="1.2" stroke-linecap="round" opacity="0.8"/><line x1="16" y1="38" x2="34" y2="38" stroke="var(--sf-subtext)" stroke-width="1.2" stroke-linecap="round" opacity="0.8"/><rect x="30" y="38" width="5" height="18" rx="2" fill="var(--sf-blue,#1B96FF)" transform="rotate(-35 32 46)"/><polygon points="0,0 4,0 2,5" fill="var(--sf-subtext)" transform="translate(37,51) rotate(-35)"/></svg> Open Tabs</a>
         <div style="height:1px;background:var(--sf-border);margin:6px 0;"></div>
         <div style="font-size:0.68rem;font-family:'Sora',sans-serif;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:var(--sf-blue);padding:8px 20px 4px;cursor:default;">Projects</div>
-        <a href="/in-the-making.html">ð ï¸&nbsp; In the Making</a>
+        <a href="/in-the-making.html">🛠️&nbsp; In the Making</a>
       </div>
     </div>
     <a href="#connect">Connect</a>
   </div>
   <div class="nav-right">
-    <button class="theme-toggle" onclick="toggleTheme()" id="themeBtn">ð Dark Mode</button>
+    <button class="theme-toggle" onclick="toggleTheme()" id="themeBtn">🌙 Dark Mode</button>
     <button class="hamburger" onclick="toggleMenu()" aria-label="Menu">
       <span></span><span></span><span></span>
     </button>
@@ -403,7 +272,7 @@ nav {
     <a href="/salesforce.html" style="display:block;padding:12px 24px 12px 40px;border-bottom:1px solid var(--sf-border);color:var(--sf-text);text-decoration:none;font-size:0.9rem;">&#9729;&#65039;&nbsp; Salesforce</a>
     <a href="/hands-on-wrist.html" style="display:block;padding:12px 24px 12px 40px;border-bottom:1px solid var(--sf-border);color:var(--sf-blue);font-weight:700;text-decoration:none;font-size:0.9rem;"><svg id="watch-navwrist-mob" viewBox="0 0 44 56" width="18" height="22" xmlns="http://www.w3.org/2000/svg" style="display:inline-block;vertical-align:middle;margin-right:8px;flex-shrink:0;"><rect x="14" y="1" width="16" height="9" rx="3" fill="var(--sf-subtext)" opacity="0.6"/><rect x="14" y="46" width="16" height="9" rx="3" fill="var(--sf-subtext)" opacity="0.6"/><circle cx="22" cy="28" r="17" fill="var(--sf-subtext)" opacity="0.25"/><circle cx="22" cy="28" r="14" fill="var(--watch-dial,#ffffff)"/><g id="watch-navwrist-mob-hour"><line x1="22" y1="28" x2="22" y2="22" stroke="var(--sf-text,#0A1F44)" stroke-width="2.5" stroke-linecap="round"/></g><g id="watch-navwrist-mob-min"><line x1="22" y1="28" x2="22" y2="17" stroke="var(--sf-text,#0A1F44)" stroke-width="1.5" stroke-linecap="round"/></g><circle cx="22" cy="28" r="1.8" fill="var(--sf-blue,#1B96FF)"/></svg> Hands on Wrist</a>
     <a href="/hands-on-wheels.html" style="display:block;padding:12px 24px 12px 40px;border-bottom:1px solid var(--sf-border);color:var(--sf-text);text-decoration:none;font-size:0.9rem;"><svg viewBox="10 10 80 80" width="18" height="18" xmlns="http://www.w3.org/2000/svg" style="display:inline-block;vertical-align:middle;margin-right:8px;flex-shrink:0;"><circle cx="50" cy="50" r="38" fill="none" stroke="var(--sf-subtext)" stroke-width="7"/><line x1="50" y1="50" x2="17" y2="31" stroke="var(--sf-subtext)" stroke-width="5" stroke-linecap="round"/><line x1="50" y1="50" x2="83" y2="31" stroke="var(--sf-subtext)" stroke-width="5" stroke-linecap="round"/><line x1="50" y1="50" x2="50" y2="88" stroke="var(--sf-subtext)" stroke-width="5" stroke-linecap="round"/><circle cx="50" cy="50" r="9" fill="var(--sf-card,#fff)" stroke="var(--sf-subtext)" stroke-width="2.5"/><circle cx="50" cy="50" r="5.5" fill="#C0392B"/><circle cx="50" cy="50" r="3.5" fill="#E74C3C"/><path d="M10 38 Q7 30 12 24 Q17 19 23 23 Q26 26 24 32 Q22 37 17 39 Q13 40 10 38Z" fill="var(--sf-subtext)" opacity="0.85"/><path d="M90 38 Q93 30 88 24 Q83 19 77 23 Q74 26 76 32 Q78 37 83 39 Q87 40 90 38Z" fill="var(--sf-subtext)" opacity="0.85"/></svg> Hands on Wheels</a>
-    <a href="/open-tabs.html" style="display:block;padding:12px 24px 12px 40px;border-bottom:1px solid var(--sf-border);color:var(--sf-text);text-decoration:none;font-size:0.9rem;"><svg viewBox="7 9 47 54" width="18" height="18" xmlns="http://www.w3.org/2000/svg" style="display:inline-block;vertical-align:middle;margin-right:8px;flex-shrink:0;"><rect x="8" y="10" width="38" height="48" rx="3" fill="var(--sf-tag-bg,#E8EEF4)" stroke="var(--sf-subtext)" stroke-width="2.5"/><rect x="5" y="16" width="6" height="4" rx="2" fill="none" stroke="var(--sf-subtext)" stroke-width="1.8"/><rect x="5" y="26" width="6" height="4" rx="2" fill="none" stroke="var(--sf-subtext)" stroke-width="1.8"/><rect x="5" y="36" width="6" height="4" rx="2" fill="none" stroke="var(--sf-subtext)" stroke-width="1.8"/><line x1="16" y1="22" x2="40" y2="22" stroke="var(--sf-subtext)" stroke-width="1.2" stroke-linecap="round" opacity="0.5"/><line x1="16" y1="30" x2="40" y2="30" stroke="var(--sf-subtext)" stroke-width="1.2" stroke-linecap="round" opacity="0.5"/><line x1="16" y1="38" x2="34" y2="38" stroke="var(--sf-subtext)" stroke-width="1.2" stroke-linecap="round" opacity="0.5"/><rect x="30" y="38" width="5" height="18" rx="2" fill="var(--sf-blue,#1B96FF)" transform="rotate(-35 32 46)"/><polygon points="0,0 4,0 2,5" fill="var(--sf-subtext)" transform="translate(37,51) rotate(-35)"/></svg> Open Tabs</a>
+    <a href="/open-tabs.html" style="display:block;padding:12px 24px 12px 40px;border-bottom:1px solid var(--sf-border);color:var(--sf-text);text-decoration:none;font-size:0.9rem;"><svg viewBox="7 9 47 54" width="18" height="18" xmlns="http://www.w3.org/2000/svg" style="display:inline-block;vertical-align:middle;margin-right:8px;flex-shrink:0;"><rect x="8" y="10" width="38" height="48" rx="3" fill="var(--sf-subtext)" opacity="0.3" stroke="var(--sf-subtext)" stroke-width="2.5"/><rect x="5" y="16" width="6" height="4" rx="2" fill="none" stroke="var(--sf-subtext)" stroke-width="2.2"/><rect x="5" y="26" width="6" height="4" rx="2" fill="none" stroke="var(--sf-subtext)" stroke-width="2.2"/><rect x="5" y="36" width="6" height="4" rx="2" fill="none" stroke="var(--sf-subtext)" stroke-width="2.2"/><line x1="16" y1="22" x2="40" y2="22" stroke="var(--sf-subtext)" stroke-width="1.2" stroke-linecap="round" opacity="0.8"/><line x1="16" y1="30" x2="40" y2="30" stroke="var(--sf-subtext)" stroke-width="1.2" stroke-linecap="round" opacity="0.8"/><line x1="16" y1="38" x2="34" y2="38" stroke="var(--sf-subtext)" stroke-width="1.2" stroke-linecap="round" opacity="0.8"/><rect x="30" y="38" width="5" height="18" rx="2" fill="var(--sf-blue,#1B96FF)" transform="rotate(-35 32 46)"/><polygon points="0,0 4,0 2,5" fill="var(--sf-subtext)" transform="translate(37,51) rotate(-35)"/></svg> Open Tabs</a>
     <div style="height:1px;background:var(--sf-border);margin:4px 0;"></div>
     <div style="font-size:0.68rem;font-family:'Sora',sans-serif;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:var(--sf-blue);padding:10px 24px 4px 40px;">Projects</div>
     <a href="/in-the-making.html" style="display:block;padding:12px 24px 12px 40px;border-bottom:1px solid var(--sf-border);color:var(--sf-text);text-decoration:none;font-size:0.9rem;">&#128736;&#65039;&nbsp; In the Making</a>
@@ -411,8 +280,10 @@ nav {
   <a href="#connect" onclick="toggleMenu()" style="display:block;padding:16px 24px;border-bottom:1px solid var(--sf-border);color:var(--sf-text);text-decoration:none;font-size:1rem;">Connect</a>
 </div>
 
+
+
 <div class="page-hero">
-  <div class="page-label">Thinking Lab Â· Blog</div>
+  <div class="page-label">Thinking Lab · Blog</div>
   <div style="display:flex;align-items:center;gap:20px;margin-bottom:0;"><svg id="watch-wrist_header" viewBox="0 0 44 56" width="72" height="90" xmlns="http://www.w3.org/2000/svg" style="display:block;">
   <rect x="13" y="0" width="18" height="10" rx="3" fill="var(--sf-subtext)" opacity="0.7"/>
   <rect x="13" y="46" width="18" height="10" rx="3" fill="var(--sf-subtext)" opacity="0.7"/>
@@ -438,26 +309,26 @@ nav {
 
 <div class="articles-grid">
   <!-- ARTICLES GO HERE -->
-  <a href="/beyond-the-shadow-a-fascination-with-the-omega-dark-side-of-the-moon.html" class="article-card">
-    <div class="article-info">
-      <div class="article-tag">Article · April 2026</div>
-      <div class="article-title">Beyond the Shadow: A Fascination with the Omega Dark Side of the Moon</div>
-      <div class="article-desc">Read the full article.</div>
-      <div class="article-meta">READ ARTICLE &#8594;</div>
-    </div>
-    <div class="article-arrow">&#8594;</div>
-  </a>
   <!-- To add a new article, copy this block and fill in the details:
+  <a href="YOUR_ARTICLE_FILE.html" class="article-card">
+    <div class="article-info">
+      <div class="article-tag">CATEGORY · DATE</div>
+      <div class="article-title">Your Article Title</div>
+      <div class="article-desc">A one line description of what the article is about.</div>
+    </div>
+    <div class="article-meta">5 min read</div>
+    <div class="article-arrow">→</div>
+  </a>
   -->
 
   <a href="/how-it-all-started.html" class="article-card">
     <div class="article-info">
-      <div class="article-tag">Introduction Â· March 2026</div>
+      <div class="article-tag">Introduction · March 2026</div>
       <div class="article-title">How It All Started</div>
-      <div class="article-desc">Watches mean different things at different times. A personal look at the stories strapped to our wrists â and why this conversation matters.</div>
+      <div class="article-desc">Watches mean different things at different times. A personal look at the stories strapped to our wrists — and why this conversation matters.</div>
     </div>
     <div class="article-meta">5 min read</div>
-    <div class="article-arrow">â</div>
+    <div class="article-arrow">→</div>
   </a>
 
   <div class="empty-state" style="display:none;">
@@ -481,9 +352,10 @@ nav {
   <rect x="38" y="25.5" width="4" height="5" rx="1.5" fill="var(--sf-subtext)" opacity="0.8"/>
 </svg></div>
     <div class="empty-title">First article coming soon</div>
-    <p>Good writing takes time. Check back shortly â or follow me on <a href="https://www.linkedin.com/in/rishabh0201/" style="color:var(--sf-blue);">LinkedIn</a> to get notified.</p>
+    <p>Good writing takes time. Check back shortly — or follow me on <a href="https://www.linkedin.com/in/rishabh0201/" style="color:var(--sf-blue);">LinkedIn</a> to get notified.</p>
   </div>
 </div>
+
 
 <!-- CONTACT STRIP -->
 <section id="connect" style="background:var(--sf-navy);padding:60px 5%;">
@@ -491,7 +363,7 @@ nav {
     <div style="font-family:'Sora',sans-serif;font-size:0.72rem;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:var(--sf-electric);margin-bottom:12px;">Get In Touch</div>
     <h2 style="font-family:'Sora',sans-serif;font-size:clamp(1.8rem,4vw,2.6rem);font-weight:800;color:#fff;margin-bottom:12px;">Enjoyed this? Let's talk.</h2>
     <div style="width:48px;height:3px;background:var(--sf-electric);border-radius:2px;margin:0 auto 20px;"></div>
-    <p style="color:rgba(255,255,255,0.5);font-size:0.95rem;font-weight:300;max-width:480px;margin:0 auto 32px;">Whether it's about what you just read, Salesforce, or something else entirely â Rishabh is always up for a good conversation.</p>
+    <p style="color:rgba(255,255,255,0.5);font-size:0.95rem;font-weight:300;max-width:480px;margin:0 auto 32px;">Whether it's about what you just read, Salesforce, or something else entirely — Rishabh is always up for a good conversation.</p>
     <div style="display:flex;gap:16px;justify-content:center;flex-wrap:wrap;margin-bottom:40px;">
       <a href="https://www.linkedin.com/in/rishabh0201/" target="_blank" style="display:inline-flex;align-items:center;gap:10px;background:var(--sf-blue);color:white;padding:16px 32px;border-radius:10px;text-decoration:none;font-family:'Sora',sans-serif;font-weight:700;font-size:0.95rem;min-width:220px;justify-content:center;">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
@@ -503,7 +375,7 @@ nav {
     <div style="font-family:'Sora',sans-serif;font-size:0.72rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--sf-electric);margin-bottom:16px;">Drop a Note</div>
 
     <div id="formSuccess-watchit" style="display:none;background:rgba(27,150,255,0.1);border:1px solid rgba(27,150,255,0.3);border-radius:12px;padding:24px;text-align:center;margin-bottom:24px;">
-      <div style="font-size:2rem;margin-bottom:8px;">â</div>
+      <div style="font-size:2rem;margin-bottom:8px;">✅</div>
       <div style="font-family:'Sora',sans-serif;font-weight:700;color:#fff;margin-bottom:4px;">Message received!</div>
       <div style="color:rgba(255,255,255,0.5);font-size:0.9rem;">I'll get back to you soon.</div>
     </div>
@@ -549,7 +421,7 @@ nav {
       </div>
       <button type="submit" id="btn-watchit"
         style="background:var(--sf-blue);color:white;border:none;padding:13px 28px;border-radius:8px;font-family:'Sora',sans-serif;font-weight:700;font-size:0.92rem;cursor:pointer;align-self:flex-start;">
-        Send Message â
+        Send Message →
       </button>
     </form>
 
@@ -579,7 +451,7 @@ document.addEventListener('DOMContentLoaded', function() {
         document.getElementById('contactForm-watchit').style.display = 'none';
         document.getElementById('formSuccess-watchit').style.display = 'block';
       } catch(err) {
-        btn.textContent = 'Send Message â';
+        btn.textContent = 'Send Message →';
         btn.disabled = false;
       }
     });
@@ -588,7 +460,7 @@ document.addEventListener('DOMContentLoaded', function() {
   </section>
 
 <footer>
-  <p>Â© 2026 <span>Rishabh Saxena</span> Â· rishabhsaxena.co.in</p>
+  <p>© 2026 <span>Rishabh Saxena</span> · rishabhsaxena.co.in</p>
 </footer>
 
 <script>
@@ -618,7 +490,7 @@ function match(text) {
   return best || 'fallback';
 }
 
-// ââ UI ââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââ
+// ── UI ──────────────────────────────────────────────────────────────
 function veToggle() {
   veOpen = !veOpen;
   document.getElementById('veBubble').classList.toggle('open', veOpen);
@@ -676,7 +548,7 @@ function typeMsg(text, who) {
       setTimeout(tick, speed);
     } else if (hasForm) {
       var formDiv = document.createElement('div');
-      formDiv.innerHTML = '<div style="margin-top:10px;"><div style="font-size:0.82rem;margin-bottom:8px;color:var(--sf-text);font-weight:600;">Drop your details and Rishabh will get back to you:</div><input id="vfName2" placeholder="Your name" style="width:100%;margin-bottom:6px;padding:7px 10px;border-radius:7px;border:1.5px solid var(--sf-border);background:var(--sf-tag-bg);color:var(--sf-text);font-size:0.82rem;outline:none;font-family:DM Sans,sans-serif;"><input id="vfEmail2" type="email" placeholder="your@email.com" style="width:100%;margin-bottom:6px;padding:7px 10px;border-radius:7px;border:1.5px solid var(--sf-border);background:var(--sf-tag-bg);color:var(--sf-text);font-size:0.82rem;outline:none;font-family:DM Sans,sans-serif;"><input id="vfMsg2" placeholder="Your question or message" style="width:100%;margin-bottom:7px;padding:7px 10px;border-radius:7px;border:1.5px solid var(--sf-border);background:var(--sf-tag-bg);color:var(--sf-text);font-size:0.82rem;outline:none;font-family:DM Sans,sans-serif;"><button onclick="submitInlineForm()" style="background:var(--sf-blue);color:white;border:none;padding:7px 16px;border-radius:7px;font-family:Sora,sans-serif;font-weight:700;font-size:0.8rem;cursor:pointer;width:100%;">Send to Rishabh â</button></div>';
+      formDiv.innerHTML = '<div style="margin-top:10px;"><div style="font-size:0.82rem;margin-bottom:8px;color:var(--sf-text);font-weight:600;">Drop your details and Rishabh will get back to you:</div><input id="vfName2" placeholder="Your name" style="width:100%;margin-bottom:6px;padding:7px 10px;border-radius:7px;border:1.5px solid var(--sf-border);background:var(--sf-tag-bg);color:var(--sf-text);font-size:0.82rem;outline:none;font-family:DM Sans,sans-serif;"><input id="vfEmail2" type="email" placeholder="your@email.com" style="width:100%;margin-bottom:6px;padding:7px 10px;border-radius:7px;border:1.5px solid var(--sf-border);background:var(--sf-tag-bg);color:var(--sf-text);font-size:0.82rem;outline:none;font-family:DM Sans,sans-serif;"><input id="vfMsg2" placeholder="Your question or message" style="width:100%;margin-bottom:7px;padding:7px 10px;border-radius:7px;border:1.5px solid var(--sf-border);background:var(--sf-tag-bg);color:var(--sf-text);font-size:0.82rem;outline:none;font-family:DM Sans,sans-serif;"><button onclick="submitInlineForm()" style="background:var(--sf-blue);color:white;border:none;padding:7px 16px;border-radius:7px;font-family:Sora,sans-serif;font-weight:700;font-size:0.8rem;cursor:pointer;width:100%;">Send to Rishabh →</button></div>';
       el.appendChild(formDiv);
       scrollBot();
     }
@@ -694,7 +566,7 @@ function showMiniForm() {
   el.innerHTML = '<div style="font-size:0.82rem;margin-bottom:10px;color:var(--sf-text);">Leave your details and Rishabh will get back to you directly:</div>' +
     '<input id="vfName" placeholder="Your name" style="width:100%;margin-bottom:7px;padding:7px 10px;border-radius:7px;border:1.5px solid var(--sf-border);background:var(--sf-tag-bg);color:var(--sf-text);font-size:0.82rem;outline:none;font-family:DM Sans,sans-serif;">' +
     '<input id="vfMsg" placeholder="Your question or message" style="width:100%;margin-bottom:7px;padding:7px 10px;border-radius:7px;border:1.5px solid var(--sf-border);background:var(--sf-tag-bg);color:var(--sf-text);font-size:0.82rem;outline:none;font-family:DM Sans,sans-serif;">' +
-    '<button onclick="submitMiniForm()" style="background:var(--sf-blue);color:white;border:none;padding:7px 16px;border-radius:7px;font-family:Sora,sans-serif;font-weight:700;font-size:0.8rem;cursor:pointer;width:100%;">Send to Rishabh â</button>';
+    '<button onclick="submitMiniForm()" style="background:var(--sf-blue);color:white;border:none;padding:7px 16px;border-radius:7px;font-family:Sora,sans-serif;font-weight:700;font-size:0.8rem;cursor:pointer;width:100%;">Send to Rishabh →</button>';
   document.getElementById('veMessages').appendChild(el);
   scrollBot();
 }
@@ -709,7 +581,7 @@ function submitMiniForm() {
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(payload)
   });
-  document.getElementById('veMiniForm').innerHTML = '<div style="text-align:center;padding:8px 0;">â Sent! Rishabh will be in touch.</div>';
+  document.getElementById('veMiniForm').innerHTML = '<div style="text-align:center;padding:8px 0;">✅ Sent! Rishabh will be in touch.</div>';
   fallbackCount = 0;
 }
 
@@ -749,11 +621,15 @@ function submitInlineForm() {
     body: JSON.stringify({ name: n.value.trim(), linkedin: e ? e.value.trim() : '', message: m.value.trim(), source: 'VE Fallback Inline', company: '', designation: '' })
   });
   var btn = document.querySelector('[onclick="submitInlineForm()"]');
-  if (btn) btn.closest('div').innerHTML = '<div style="text-align:center;padding:6px 0;">â Sent! Rishabh will be in touch.</div>';
+  if (btn) btn.closest('div').innerHTML = '<div style="text-align:center;padding:6px 0;">✅ Sent! Rishabh will be in touch.</div>';
 }
 window.submitInlineForm = submitInlineForm;
 
+
+
 </script>
+
+
 
 <script>
 (function() {
@@ -786,19 +662,21 @@ window.submitInlineForm = submitInlineForm;
 })();
 </script>
 
+
+
 <script>
 function toggleTheme() {
   var html = document.documentElement;
   var isDark = html.getAttribute("data-theme") === "dark";
   html.setAttribute("data-theme", isDark ? "light" : "dark");
-  var _tb1 = document.getElementById("themeBtn"); if(_tb1) _tb1.textContent = isDark ? "ð Dark Mode" : "âï¸ Light Mode";
+  var _tb1 = document.getElementById("themeBtn"); if(_tb1) _tb1.textContent = isDark ? "🌙 Dark Mode" : "☀️ Light Mode";
   localStorage.setItem("theme", isDark ? "light" : "dark");
 }
 (function() {
   var saved = localStorage.getItem("theme") || "dark";
   document.documentElement.setAttribute("data-theme", saved);
   var btn = document.getElementById("themeBtn");
-  if (btn) btn.textContent = saved === "dark" ? "âï¸ Light Mode" : "ð Dark Mode"; 
+  if (btn) btn.textContent = saved === "dark" ? "☀️ Light Mode" : "🌙 Dark Mode"; 
 })();
 function toggleMenu() {
   var m = document.getElementById('mobileMenuOverlay');
@@ -846,7 +724,7 @@ document.addEventListener("DOMContentLoaded", function() {
   <svg class="ve-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
     <path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm0 14H6l-2 2V4h16v12z"/>
   </svg>
-  <span class="ve-close">â</span>
+  <span class="ve-close">✕</span>
 </div>
 
 <div class="ve-window" id="veWindow">
@@ -854,7 +732,7 @@ document.addEventListener("DOMContentLoaded", function() {
     <div class="ve-avatar">VE</div>
     <div class="ve-header-info">
       <div class="ve-header-name">Virtual Executive</div>
-      <div class="ve-header-status"><span class="ve-status-dot"></span> Rishabh's assistant Â· Always on</div>
+      <div class="ve-header-status"><span class="ve-status-dot"></span> Rishabh's assistant · Always on</div>
     </div>
   </div>
   <div class="ve-messages" id="veMessages"></div>
@@ -864,99 +742,99 @@ document.addEventListener("DOMContentLoaded", function() {
       <svg viewBox="0 0 24 24"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/></svg>
     </button>
   </div>
-  <div class="ve-footer">Powered by Rishabh Saxena Â· rishabhsaxena.co.in</div>
+  <div class="ve-footer">Powered by Rishabh Saxena · rishabhsaxena.co.in</div>
 </div>
 
 <script>
 (function() {
 
-// ââ RESPONSE LIBRARY ââââââââââââââââââââââââââââââââââââââââââââââ
+// ── RESPONSE LIBRARY ──────────────────────────────────────────────
 const R = {
   greeting: [
-    "Hey there! I'm the Virtual Executive â Rishabh's digital assistant. Whether you're here to learn about his work, explore the blog, or just say hello â I've got you. What's on your mind?",
+    "Hey there! I'm the Virtual Executive — Rishabh's digital assistant. Whether you're here to learn about his work, explore the blog, or just say hello — I've got you. What's on your mind?",
     "Hello! Good to have you here. I'm the Virtual Executive, and I know quite a bit about Rishabh and his work. What would you like to know?",
-    "Hi! I'm VE â Virtual Executive. Think of me as Rishabh's always-on assistant. Ask me anything."
+    "Hi! I'm VE — Virtual Executive. Think of me as Rishabh's always-on assistant. Ask me anything."
   ],
   who: [
-    "Rishabh Saxena is a Salesforce Consultant with a decade in the ecosystem â 5x certified, and currently part of Salesforce's own Professional Services team in India. Before that, he's done presales and consulting at LTIMindtree, Brillio, and TCS. He's also an MBA from Great Lakes, a motorsport enthusiast, and a watch collector. Quite a range, I know.",
-    "Rishabh is a Salesforce Consultant â part of the India PS GTM team. He owns end-to-end presales for Data Cloud, Marketing Cloud, and RCG Cloud. A decade in the Salesforce ecosystem, 5 certifications, and a genuine belief that most implementations fail not because of bad tech, but because the original problem gets lost. That's the gap he works in."
+    "Rishabh Saxena is a Salesforce Consultant with a decade in the ecosystem — 5x certified, and currently part of Salesforce's own Professional Services team in India. Before that, he's done presales and consulting at LTIMindtree, Brillio, and TCS. He's also an MBA from Great Lakes, a motorsport enthusiast, and a watch collector. Quite a range, I know.",
+    "Rishabh is a Salesforce Consultant — part of the India PS GTM team. He owns end-to-end presales for Data Cloud, Marketing Cloud, and RCG Cloud. A decade in the Salesforce ecosystem, 5 certifications, and a genuine belief that most implementations fail not because of bad tech, but because the original problem gets lost. That's the gap he works in."
   ],
   salesforce: [
-    "Rishabh has been in the Salesforce ecosystem for a decade â across development, presales, consulting, and now engagement management. He's worked across Sales Cloud, Service Cloud, Data Cloud, Marketing Cloud, RCG Cloud, Experience Cloud, and CMS. Currently at Salesforce itself, managing the PS India GTM for Data Cloud, Marketing Cloud, and RCG Cloud.",
-    "Salesforce is Rishabh's core domain. He's 5x certified â Data Cloud Consultant, AI Associate, Sales Cloud Consultant, Administrator, and Platform Developer I. He's been a developer, a presales consultant, and now a Salesforce Consultant. He understands the full lifecycle â from discovery to delivery.",
-    "If you're looking for Salesforce expertise â Rishabh's been living and breathing it since 2016. He's particularly strong in presales, discovery, and making sure the right problem gets solved before a single line of config is written."
+    "Rishabh has been in the Salesforce ecosystem for a decade — across development, presales, consulting, and now engagement management. He's worked across Sales Cloud, Service Cloud, Data Cloud, Marketing Cloud, RCG Cloud, Experience Cloud, and CMS. Currently at Salesforce itself, managing the PS India GTM for Data Cloud, Marketing Cloud, and RCG Cloud.",
+    "Salesforce is Rishabh's core domain. He's 5x certified — Data Cloud Consultant, AI Associate, Sales Cloud Consultant, Administrator, and Platform Developer I. He's been a developer, a presales consultant, and now a Salesforce Consultant. He understands the full lifecycle — from discovery to delivery.",
+    "If you're looking for Salesforce expertise — Rishabh's been living and breathing it since 2016. He's particularly strong in presales, discovery, and making sure the right problem gets solved before a single line of config is written."
   ],
   datacloud: [
     "Data Cloud is one of Rishabh's current focus areas at Salesforce PS India. He's owned the Data Cloud deal pipeline and has a Data Cloud Consultant certification. If you have specific questions about Data Cloud engagements or implementations, he'd be the right person to talk to.",
   ],
   marketingcloud: [
-    "Marketing Cloud is another key area Rishabh covers in his current role at Salesforce PS India. He's managed the Marketing Cloud deal pipeline end-to-end â from discovery and proposals to SOW structuring.",
+    "Marketing Cloud is another key area Rishabh covers in his current role at Salesforce PS India. He's managed the Marketing Cloud deal pipeline end-to-end — from discovery and proposals to SOW structuring.",
   ],
   presales: [
-    "Presales is where Rishabh has spent a significant part of his career â at TCS, Brillio, LTIMindtree, and now Salesforce. He's run RFP/RFI responses, built proposals, written SOWs, created staffing models, and supported oral defenses. He's also built reusable content repositories to scale presales efficiency.",
-    "Rishabh's presales experience spans the full cycle â qualifying opportunities, running discovery, crafting solution narratives, building commercial structures, and closing. He's done this across EMEA and APAC for some of the largest Salesforce partners in India."
+    "Presales is where Rishabh has spent a significant part of his career — at TCS, Brillio, LTIMindtree, and now Salesforce. He's run RFP/RFI responses, built proposals, written SOWs, created staffing models, and supported oral defenses. He's also built reusable content repositories to scale presales efficiency.",
+    "Rishabh's presales experience spans the full cycle — qualifying opportunities, running discovery, crafting solution narratives, building commercial structures, and closing. He's done this across EMEA and APAC for some of the largest Salesforce partners in India."
   ],
   certs: [
     "Rishabh holds 5 Salesforce certifications: Data Cloud Consultant (2024), AI Associate (2024), Sales Cloud Consultant (2020), Administrator (2020), and Platform Developer I (2016). He also holds SAFe Agilist and a Microsoft Partner Sales Bootcamp certification.",
-    "Five Salesforce certifications â Data Cloud Consultant, AI Associate, Sales Cloud Consultant, Administrator, and Platform Developer I. Plus SAFe Agilist for good measure. He's been collecting them since 2016."
+    "Five Salesforce certifications — Data Cloud Consultant, AI Associate, Sales Cloud Consultant, Administrator, and Platform Developer I. Plus SAFe Agilist for good measure. He's been collecting them since 2016."
   ],
   experience: [
-    "Rishabh's career spans Salesforce PS (current), LTIMindtree, Brillio Technologies, and TCS â with an MBA sabbatical from Great Lakes Institute of Management in between. That's 9+ years across development, presales, consulting, and engagement management.",
-    "The journey: TCS (2016â2021) as a Salesforce Developer turned Presales Consultant, with an MBA break in 2018â19. Then Brillio (2021â2022), LTIMindtree (2022â2023), and now Salesforce Professional Services since July 2023."
+    "Rishabh's career spans Salesforce PS (current), LTIMindtree, Brillio Technologies, and TCS — with an MBA sabbatical from Great Lakes Institute of Management in between. That's 9+ years across development, presales, consulting, and engagement management.",
+    "The journey: TCS (2016–2021) as a Salesforce Developer turned Presales Consultant, with an MBA break in 2018–19. Then Brillio (2021–2022), LTIMindtree (2022–2023), and now Salesforce Professional Services since July 2023."
   ],
   tcs: [
-    "Rishabh started his career at TCS in 2016 as a Salesforce Developer â led a team of three, reduced daily incidents from 100+ to under 30, and then transitioned to Presales. He drove Salesforce business expansion in the EMEA region before leaving in 2021. He also took an MBA sabbatical during his TCS tenure."
+    "Rishabh started his career at TCS in 2016 as a Salesforce Developer — led a team of three, reduced daily incidents from 100+ to under 30, and then transitioned to Presales. He drove Salesforce business expansion in the EMEA region before leaving in 2021. He also took an MBA sabbatical during his TCS tenure."
   ],
   mba: [
-    "Rishabh did his MBA from Great Lakes Institute of Management, Chennai â a one-year intensive in Marketing and AI & Machine Learning. His thesis was on the effect of nostalgia on consumer buying behaviour. He took a sabbatical from TCS for this and returned as a Presales Consultant.",
+    "Rishabh did his MBA from Great Lakes Institute of Management, Chennai — a one-year intensive in Marketing and AI & Machine Learning. His thesis was on the effect of nostalgia on consumer buying behaviour. He took a sabbatical from TCS for this and returned as a Presales Consultant.",
   ],
   watchit: [
-    "WatchIt is Rishabh's horology blog â perspectives on watches, craft, and what it means to appreciate something built to last. It's not a review site. It's more about the stories behind what we wear on our wrists. First article coming soon.",
-    "If you're into watches, Hands on Wrist is worth bookmarking. It's Rishabh's take on horology â the craft, the history, the obsession. He's been collecting and following the watch world seriously. Head over to rishabhsaxena.co.in/hands-on-wrist.html."
+    "WatchIt is Rishabh's horology blog — perspectives on watches, craft, and what it means to appreciate something built to last. It's not a review site. It's more about the stories behind what we wear on our wrists. First article coming soon.",
+    "If you're into watches, Hands on Wrist is worth bookmarking. It's Rishabh's take on horology — the craft, the history, the obsession. He's been collecting and following the watch world seriously. Head over to rishabhsaxena.co.in/hands-on-wrist.html."
   ],
   shiftit: [
     "Hands on Wheels is the automobiles and motorsport section of Rishabh's blog. He's been a Track and Flag Marshal with the Indian Motorsport Marshals Club, attended the Formula 1 Indian Grand Prix in 2013 and Bharat MotoGP 2023, and has been following MRF and JK Tyre championships since 2013. Expect passionate writing.",
-    "Hands on Wheels covers cars, motorsport, and everything in between. Rishabh is deeply into this â not as a casual fan but as someone who's been on the circuit as a marshal. Check it out at rishabhsaxena.co.in/hands-on-wheels.html."
+    "Hands on Wheels covers cars, motorsport, and everything in between. Rishabh is deeply into this — not as a casual fan but as someone who's been on the circuit as a marshal. Check it out at rishabhsaxena.co.in/hands-on-wheels.html."
   ],
   blog: [
-    "The Thinking Lab is Rishabh's blog â three sections: Salesforce (implementations, presales, strategy), WatchIt (horology and watches), and ShiftIt (automobiles and motorsport). Content is coming â follow him on LinkedIn to stay updated.",
+    "The Thinking Lab is Rishabh's blog — three sections: Salesforce (implementations, presales, strategy), WatchIt (horology and watches), and ShiftIt (automobiles and motorsport). Content is coming — follow him on LinkedIn to stay updated.",
     "Three blogs, one person. Salesforce at rishabhsaxena.co.in/salesforce.html, WatchIt at /hands-on-wrist.html, and ShiftIt at /hands-on-wheels.html. All part of the Thinking Lab."
   ],
   motorsport: [
-    "Rishabh has been involved in Indian motorsport since 2013 â attended the F1 Indian Grand Prix, the Bharat MotoGP 2023, and has been a continuous participant in MRF and JK Tyre National Racing Championships as a Track and Flag Marshal with the Indian Motorsport Marshals Club.",
+    "Rishabh has been involved in Indian motorsport since 2013 — attended the F1 Indian Grand Prix, the Bharat MotoGP 2023, and has been a continuous participant in MRF and JK Tyre National Racing Championships as a Track and Flag Marshal with the Indian Motorsport Marshals Club.",
   ],
   collaborate: [
-    "If you're thinking about working with Rishabh â whether it's a Salesforce engagement, a presales challenge, or a consulting conversation â the best way to start is by dropping a note via the contact form on this page, or connecting on LinkedIn at linkedin.com/in/rishabh0201.",
-    "Rishabh is open to the right conversations â Salesforce implementations, presales strategy, or just a good professional discussion. Use the contact form below or reach out on LinkedIn."
+    "If you're thinking about working with Rishabh — whether it's a Salesforce engagement, a presales challenge, or a consulting conversation — the best way to start is by dropping a note via the contact form on this page, or connecting on LinkedIn at linkedin.com/in/rishabh0201.",
+    "Rishabh is open to the right conversations — Salesforce implementations, presales strategy, or just a good professional discussion. Use the contact form below or reach out on LinkedIn."
   ],
   contact: [
-    "You can reach Rishabh on LinkedIn at linkedin.com/in/rishabh0201, or drop a note using the contact form at the bottom of this page â just fill in your email and he'll get back to you directly.",
-    "Best way to get in touch â LinkedIn at linkedin.com/in/rishabh0201, or the contact form at the bottom of this page. Leave your email and he'll come back to you."
+    "You can reach Rishabh on LinkedIn at linkedin.com/in/rishabh0201, or drop a note using the contact form at the bottom of this page — just fill in your email and he'll get back to you directly.",
+    "Best way to get in touch — LinkedIn at linkedin.com/in/rishabh0201, or the contact form at the bottom of this page. Leave your email and he'll come back to you."
   ],
   compliment: [
-    "That's kind of you to say â I'll pass it along to Rishabh. He'd appreciate hearing that.",
+    "That's kind of you to say — I'll pass it along to Rishabh. He'd appreciate hearing that.",
     "Glad you think so! If you'd like to connect with Rishabh directly, the contact form at the bottom works well.",
-    "Thank you â Rishabh has put a lot of thought into this. If something resonated, he'd love to hear about it."
+    "Thank you — Rishabh has put a lot of thought into this. If something resonated, he'd love to hear about it."
   ],
   linkedin: [
     "Rishabh is active on LinkedIn at linkedin.com/in/rishabh0201. Best place to follow his professional updates, articles, and to connect directly."
   ],
   apps: [
-    "Rishabh is currently working on a few tools under the 'In the Making' section of his site â simple apps built around everyday problems, the kind that make you wonder why they don't already exist. Nothing to announce just yet, but worth watching. You can follow him on LinkedIn at linkedin.com/in/rishabh0201 for updates.",
-    "The 'In the Making' section on this site hints at what's coming â a few tools Rishabh is quietly building. He's not ready to announce specifics yet, but if you have a problem you'd like solved, the contact form below is a good place to share it. It might just influence what he builds next."
+    "Rishabh is currently working on a few tools under the 'In the Making' section of his site — simple apps built around everyday problems, the kind that make you wonder why they don't already exist. Nothing to announce just yet, but worth watching. You can follow him on LinkedIn at linkedin.com/in/rishabh0201 for updates.",
+    "The 'In the Making' section on this site hints at what's coming — a few tools Rishabh is quietly building. He's not ready to announce specifics yet, but if you have a problem you'd like solved, the contact form below is a good place to share it. It might just influence what he builds next."
   ],
   job: [
-    "Rishabh is always open to interesting conversations â but the best way to explore if there's a fit is to share a bit more about the role and what you're looking to solve. Drop the details via the contact form below and he'll reach out if the timing feels right.",
-    "Rishabh isn't actively looking, but the right opportunity has a way of making itself known. If you think there's something worth discussing, share the role details and what makes it interesting â he'll take a look and connect if it resonates.",
-    "Rishabh believes in having the right conversations at the right time. If you have something specific in mind, share the details via the contact form below â company, role, what you're solving for. He'll be in touch if the stars align."
+    "Rishabh is always open to interesting conversations — but the best way to explore if there's a fit is to share a bit more about the role and what you're looking to solve. Drop the details via the contact form below and he'll reach out if the timing feels right.",
+    "Rishabh isn't actively looking, but the right opportunity has a way of making itself known. If you think there's something worth discussing, share the role details and what makes it interesting — he'll take a look and connect if it resonates.",
+    "Rishabh believes in having the right conversations at the right time. If you have something specific in mind, share the details via the contact form below — company, role, what you're solving for. He'll be in touch if the stars align."
   ],
   contentidea: [
-    "That's actually really helpful to know â Rishabh is always thinking about what to write or build next. Could you share a bit more? Is this about a Salesforce challenge, a watch you're curious about, a car or motorsport topic, or something else entirely? Drop it in the contact form below and he'll factor it into what he builds next.",
-    "Ideas from real people are worth more than anything Rishabh could come up with in isolation. If you've got a specific topic, problem, or question you'd love to see covered â share it via the contact form. It might just become his next article or app.",
-    "Noted â and genuinely appreciated. The best content comes from real problems. Share the specifics via the contact form below and Rishabh will keep it in mind for future articles, tools, or apps."
+    "That's actually really helpful to know — Rishabh is always thinking about what to write or build next. Could you share a bit more? Is this about a Salesforce challenge, a watch you're curious about, a car or motorsport topic, or something else entirely? Drop it in the contact form below and he'll factor it into what he builds next.",
+    "Ideas from real people are worth more than anything Rishabh could come up with in isolation. If you've got a specific topic, problem, or question you'd love to see covered — share it via the contact form. It might just become his next article or app.",
+    "Noted — and genuinely appreciated. The best content comes from real problems. Share the specifics via the contact form below and Rishabh will keep it in mind for future articles, tools, or apps."
   ],
   fallback: [
-    "That's a bit outside my coverage â but I don't want to leave you hanging. ||FORM||",
+    "That's a bit outside my coverage — but I don't want to leave you hanging. ||FORM||",
     "Hmm, I didn't quite catch that. I cover Rishabh's work, Salesforce, the blog, watches, motorsport, and how to connect. Drop it here and he'll get back to you: ||FORM||",
     "I want to be helpful, but I'm not sure I have the right answer for this one. Share it directly here and he'll get back to you: ||FORM||"
   ],
@@ -966,7 +844,7 @@ const R = {
   ]
 };
 
-// ââ KEYWORD MAP ââââââââââââââââââââââââââââââââââââââââââââââââââââ
+// ── KEYWORD MAP ────────────────────────────────────────────────────
 const K = [
   { keys: ['hi','hello','hey','howdy','sup','good morning','good evening','good afternoon','greetings','hiya','yo'], res: 'greeting' },
   { keys: ['who is','who are','about rishabh','introduce','tell me about','about you','what do you do','background','yourself'], res: 'who' },
@@ -990,7 +868,7 @@ const K = [
   { keys: ['great','impressive','amazing','love','nice','good work','well done','awesome','brilliant','excellent','interesting','cool'], res: 'compliment' },
 ];
 
-// ââ STATE ââââââââââââââââââââââââââââââââââââââââââââââââââââââââââ
+// ── STATE ──────────────────────────────────────────────────────────
 let veOpen = false;
 let veStarted = false;
 let rIdx = {};
@@ -1021,7 +899,7 @@ function match(text) {
   return best || 'fallback';
 }
 
-// ââ UI ââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââ
+// ── UI ──────────────────────────────────────────────────────────────
 function veToggle() {
   veOpen = !veOpen;
   document.getElementById('veBubble').classList.toggle('open', veOpen);
@@ -1079,7 +957,7 @@ function typeMsg(text, who) {
       setTimeout(tick, speed);
     } else if (hasForm) {
       var formDiv = document.createElement('div');
-      formDiv.innerHTML = '<div style="margin-top:10px;"><div style="font-size:0.82rem;margin-bottom:8px;color:var(--sf-text);font-weight:600;">Drop your details and Rishabh will get back to you:</div><input id="vfName2" placeholder="Your name" style="width:100%;margin-bottom:6px;padding:7px 10px;border-radius:7px;border:1.5px solid var(--sf-border);background:var(--sf-tag-bg);color:var(--sf-text);font-size:0.82rem;outline:none;font-family:DM Sans,sans-serif;"><input id="vfEmail2" type="email" placeholder="your@email.com" style="width:100%;margin-bottom:6px;padding:7px 10px;border-radius:7px;border:1.5px solid var(--sf-border);background:var(--sf-tag-bg);color:var(--sf-text);font-size:0.82rem;outline:none;font-family:DM Sans,sans-serif;"><input id="vfMsg2" placeholder="Your question or message" style="width:100%;margin-bottom:7px;padding:7px 10px;border-radius:7px;border:1.5px solid var(--sf-border);background:var(--sf-tag-bg);color:var(--sf-text);font-size:0.82rem;outline:none;font-family:DM Sans,sans-serif;"><button onclick="submitInlineForm()" style="background:var(--sf-blue);color:white;border:none;padding:7px 16px;border-radius:7px;font-family:Sora,sans-serif;font-weight:700;font-size:0.8rem;cursor:pointer;width:100%;">Send to Rishabh â</button></div>';
+      formDiv.innerHTML = '<div style="margin-top:10px;"><div style="font-size:0.82rem;margin-bottom:8px;color:var(--sf-text);font-weight:600;">Drop your details and Rishabh will get back to you:</div><input id="vfName2" placeholder="Your name" style="width:100%;margin-bottom:6px;padding:7px 10px;border-radius:7px;border:1.5px solid var(--sf-border);background:var(--sf-tag-bg);color:var(--sf-text);font-size:0.82rem;outline:none;font-family:DM Sans,sans-serif;"><input id="vfEmail2" type="email" placeholder="your@email.com" style="width:100%;margin-bottom:6px;padding:7px 10px;border-radius:7px;border:1.5px solid var(--sf-border);background:var(--sf-tag-bg);color:var(--sf-text);font-size:0.82rem;outline:none;font-family:DM Sans,sans-serif;"><input id="vfMsg2" placeholder="Your question or message" style="width:100%;margin-bottom:7px;padding:7px 10px;border-radius:7px;border:1.5px solid var(--sf-border);background:var(--sf-tag-bg);color:var(--sf-text);font-size:0.82rem;outline:none;font-family:DM Sans,sans-serif;"><button onclick="submitInlineForm()" style="background:var(--sf-blue);color:white;border:none;padding:7px 16px;border-radius:7px;font-family:Sora,sans-serif;font-weight:700;font-size:0.8rem;cursor:pointer;width:100%;">Send to Rishabh →</button></div>';
       el.appendChild(formDiv);
       scrollBot();
     }
@@ -1097,7 +975,7 @@ function showMiniForm() {
   el.innerHTML = '<div style="font-size:0.82rem;margin-bottom:10px;color:var(--sf-text);">Leave your details and Rishabh will get back to you directly:</div>' +
     '<input id="vfName" placeholder="Your name" style="width:100%;margin-bottom:7px;padding:7px 10px;border-radius:7px;border:1.5px solid var(--sf-border);background:var(--sf-tag-bg);color:var(--sf-text);font-size:0.82rem;outline:none;font-family:DM Sans,sans-serif;">' +
     '<input id="vfMsg" placeholder="Your question or message" style="width:100%;margin-bottom:7px;padding:7px 10px;border-radius:7px;border:1.5px solid var(--sf-border);background:var(--sf-tag-bg);color:var(--sf-text);font-size:0.82rem;outline:none;font-family:DM Sans,sans-serif;">' +
-    '<button onclick="submitMiniForm()" style="background:var(--sf-blue);color:white;border:none;padding:7px 16px;border-radius:7px;font-family:Sora,sans-serif;font-weight:700;font-size:0.8rem;cursor:pointer;width:100%;">Send to Rishabh â</button>';
+    '<button onclick="submitMiniForm()" style="background:var(--sf-blue);color:white;border:none;padding:7px 16px;border-radius:7px;font-family:Sora,sans-serif;font-weight:700;font-size:0.8rem;cursor:pointer;width:100%;">Send to Rishabh →</button>';
   document.getElementById('veMessages').appendChild(el);
   scrollBot();
 }
@@ -1112,7 +990,7 @@ function submitMiniForm() {
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(payload)
   });
-  document.getElementById('veMiniForm').innerHTML = '<div style="text-align:center;padding:8px 0;">â Sent! Rishabh will be in touch.</div>';
+  document.getElementById('veMiniForm').innerHTML = '<div style="text-align:center;padding:8px 0;">✅ Sent! Rishabh will be in touch.</div>';
   fallbackCount = 0;
 }
 
@@ -1152,12 +1030,17 @@ function submitInlineForm() {
     body: JSON.stringify({ name: n.value.trim(), linkedin: e ? e.value.trim() : '', message: m.value.trim(), source: 'VE Fallback Inline', company: '', designation: '' })
   });
   var btn = document.querySelector('[onclick="submitInlineForm()"]');
-  if (btn) btn.closest('div').innerHTML = '<div style="text-align:center;padding:6px 0;">â Sent! Rishabh will be in touch.</div>';
+  if (btn) btn.closest('div').innerHTML = '<div style="text-align:center;padding:6px 0;">✅ Sent! Rishabh will be in touch.</div>';
 }
 window.submitInlineForm = submitInlineForm;
 
+
 })();
 </script>
+
+
+
+
 
 <script>
 (function() {
@@ -1190,19 +1073,22 @@ window.submitInlineForm = submitInlineForm;
 })();
 </script>
 
+
+
+
 <script>
 function toggleTheme() {
   var html = document.documentElement;
   var isDark = html.getAttribute("data-theme") === "dark";
   html.setAttribute("data-theme", isDark ? "light" : "dark");
-  var _tb1 = document.getElementById("themeBtn"); if(_tb1) _tb1.textContent = isDark ? "ð Dark Mode" : "âï¸ Light Mode";
+  var _tb1 = document.getElementById("themeBtn"); if(_tb1) _tb1.textContent = isDark ? "🌙 Dark Mode" : "☀️ Light Mode";
   localStorage.setItem("theme", isDark ? "light" : "dark");
 }
 (function() {
   var saved = localStorage.getItem("theme") || "dark";
   document.documentElement.setAttribute("data-theme", saved);
   var btn = document.getElementById("themeBtn");
-  if (btn) btn.textContent = saved === "dark" ? "âï¸ Light Mode" : "ð Dark Mode"; 
+  if (btn) btn.textContent = saved === "dark" ? "☀️ Light Mode" : "🌙 Dark Mode"; 
 })();
 function toggleMenu() {
   var m = document.getElementById('mobileMenuOverlay');
